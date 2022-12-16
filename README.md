@@ -8,8 +8,7 @@ Geo data REST API service with admin dashboard to manage regions, countries, sta
 ```bash
 make install
 make migrate
-make sh
-bin/console app:create-user admin@app.test qwerty
+make user
 ```
 
 ### Tech stack

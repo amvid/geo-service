@@ -15,6 +15,10 @@ migration:
 migrate:
 	@docker exec app sh -c "php bin/console d:m:m"
 
-.PHONE: ssh
+.PHONY: ssh
 ssh:
 	@docker exec -it app sh
+
+.PHONY: test
+test:
+	@docker exec app sh -c "./vendor/bin/phpunit"
