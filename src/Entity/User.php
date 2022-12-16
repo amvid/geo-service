@@ -19,6 +19,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampTrait;
 
+    public const ADMIN = 'ROLE_ADMIN';
+    public const USER = 'ROLE_USER';
+
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]

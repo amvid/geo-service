@@ -9,4 +9,5 @@ interface UserRepositoryInterface
 {
     public function save(User $user, bool $flush = false): void;
     public function remove(User $user, bool $flush = false): void;
+    public function findByEmail(string $email): ?User;
 }
