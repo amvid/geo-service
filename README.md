@@ -16,7 +16,9 @@ make user
 make test
 ```
 
-
-### Tech stack
-
-PHP8.2, Symfony6, EasyAdminBundle and Mariadb.
+### Sources
+```
+https://download.geonames.org/export/zip/
+https://public.opendatasoft.com/api/v2/console
+https://osmnames.org/download/
+```
