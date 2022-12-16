@@ -33,4 +33,14 @@ trait TimestampTrait
         $this->updatedAt = $now;
         $this->createdAt = $now;
     }
+
+    public function getCreatedAt(): DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt(): DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
 }
