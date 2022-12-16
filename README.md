@@ -11,6 +11,12 @@ make migrate
 make user
 ```
 
+### Tests
+```bash
+make test
+```
+
+
 ### Tech stack
 
 PHP8.2, Symfony6, EasyAdminBundle and Mariadb.
