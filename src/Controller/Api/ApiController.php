@@ -24,15 +24,23 @@ class ApiController extends AbstractController
     /**
      * @throws ValidationException
      */
-    public function handleRequest(Request $request, string $class, string $format = self::FORMAT_JSON)
+    protected function handleRequest(Request $request, string $class, string $format = self::FORMAT_JSON)
     {
         $req = $this->serializer->deserialize($request->getContent(), $class, $format);
-        $errors = $this->validator->validate($req);
-
-        if (count($errors) > 0) {
-            throw new ValidationException((string)$errors);
-        }
+        $this->validateRequest($req);
 
         return $req;
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    protected function validateRequest(object $request): void
+    {
+        $errors = $this->validator->validate($request);
+
+        if (count($errors) > 0) {
+            throw new ValidationException((string) $errors);
+        }
     }
 }

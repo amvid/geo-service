@@ -6,6 +6,8 @@ namespace App\Controller\Api\V1;
 
 use App\Action\Region\Create\CreateRegionActionInterface;
 use App\Action\Region\Create\CreateRegionActionRequest;
+use App\Action\Region\Delete\DeleteRegionActionInterface;
+use App\Action\Region\Delete\DeleteRegionActionRequest;
 use App\Controller\Api\ApiController;
 use App\Controller\HttpMethod;
 use App\Exception\ValidationException;
@@ -24,6 +26,18 @@ class RegionController extends ApiController
     public function create(Request $request, CreateRegionActionInterface $action): JsonResponse
     {
         $req = $this->handleRequest($request, CreateRegionActionRequest::class);
+        return $this->json($action->run($req));
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    #[Route(self::API_ROUTE . '/{title}', name: 'app_api_v1_region_delete', methods: HttpMethod::DELETE)]
+    public function delete(string $title, DeleteRegionActionInterface $action): JsonResponse
+    {
+        $req = new DeleteRegionActionRequest($title);
+        $this->validateRequest($req);
+
         return $this->json($action->run($req));
     }
 
