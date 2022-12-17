@@ -25,6 +25,6 @@ class RegionFactoryTest extends TestCase
             ->setTitle($title)
             ->create();
 
-        self::assertEquals($title, $actual->getTitle());
+        $this->assertEquals($title, $actual->getTitle());
     }
 }

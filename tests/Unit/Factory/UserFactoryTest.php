@@ -39,8 +39,8 @@ class UserFactoryTest extends TestCase
             ->setRoles([$role])
             ->create();
 
-        self::assertEquals($email, $actual->getEmail());
-        self::assertEquals($hashedPassword, $actual->getPassword());
-        self::assertEquals($role, $actual->getRoles()[0]);
+        $this->assertEquals($email, $actual->getEmail());
+        $this->assertEquals($hashedPassword, $actual->getPassword());
+        $this->assertEquals($role, $actual->getRoles()[0]);
     }
 }

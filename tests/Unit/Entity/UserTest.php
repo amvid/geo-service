@@ -19,8 +19,8 @@ class UserTest extends TestCase
         $user->setEmail($email);
         $user->setRoles([$role]);
 
-        self::assertEquals($password, $user->getPassword(), 'Passwords should match');
-        self::assertEquals($email, $user->getEmail(), 'Emails should match');
-        self::assertEquals($role, $user->getRoles()[0], 'Should have a role');
+        $this->assertEquals($password, $user->getPassword(), 'Passwords should match');
+        $this->assertEquals($email, $user->getEmail(), 'Emails should match');
+        $this->assertEquals($role, $user->getRoles()[0], 'Should have a role');
     }
 }
