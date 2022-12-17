@@ -38,4 +38,17 @@ class RegionRepository extends ServiceEntityRepository implements RegionReposito
         return $this->findOneBy(['title' => $title]);
     }
 
+    public function list(int $offset, int $limit, ?string $title): array
+    {
+        $qb = $this->createQueryBuilder('r')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset);
+
+        if ($title) {
+            $qb->where('r.title LIKE :title')
+                ->setParameter('title', "%$title%");
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }
