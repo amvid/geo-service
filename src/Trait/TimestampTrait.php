@@ -13,10 +13,10 @@ use Doctrine\ORM\Mapping\PreUpdate;
 #[HasLifecycleCallbacks]
 trait TimestampTrait
 {
-    #[Column(type: 'datetime')]
+    #[Column(type: 'datetime_immutable')]
     private DateTimeImmutable $updatedAt;
 
-    #[Column(type: 'datetime')]
+    #[Column(type: 'datetime_immutable')]
     private DateTimeImmutable $createdAt;
 
     #[PreUpdate]
