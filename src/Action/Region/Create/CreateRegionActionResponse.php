@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace App\Action\Region\Create;
 
 use App\Entity\Region;
-use DateTimeInterface;
+use DateTimeImmutable;
 use Symfony\Component\Uid\Uuid;
 
-readonly class CreateRegionActionResponse
+class CreateRegionActionResponse
 {
     public Uuid $id;
     public string $title;
-    public DateTimeInterface $createdAt;
-    public DateTimeInterface $updatedAt;
+    public DateTimeImmutable $createdAt;
+    public DateTimeImmutable $updatedAt;
 
     public function __construct(Region $region)
     {
