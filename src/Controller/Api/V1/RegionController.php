@@ -10,8 +10,11 @@ use App\Action\Region\Delete\DeleteRegionActionInterface;
 use App\Action\Region\Delete\DeleteRegionActionRequest;
 use App\Action\Region\Get\GetRegionsAction;
 use App\Action\Region\Get\GetRegionsActionRequest;
+use App\Action\Region\Update\UpdateRegionAction;
+use App\Action\Region\Update\UpdateRegionActionRequest;
 use App\Controller\Api\ApiController;
 use App\Controller\HttpMethod;
+use App\Exception\RegionNotFoundException;
 use App\Exception\ValidationException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,10 +37,10 @@ class RegionController extends ApiController
     /**
      * @throws ValidationException
      */
-    #[Route(self::API_ROUTE . '/{title}', name: 'app_api_v1_region_delete', methods: HttpMethod::DELETE)]
-    public function delete(string $title, DeleteRegionActionInterface $action): JsonResponse
+    #[Route(self::API_ROUTE . '/{id}', name: 'app_api_v1_region_delete', methods: HttpMethod::DELETE)]
+    public function delete(string $id, DeleteRegionActionInterface $action): JsonResponse
     {
-        $req = new DeleteRegionActionRequest($title);
+        $req = new DeleteRegionActionRequest($id);
         $this->validateRequest($req);
         return $this->json($action->run($req));
     }
@@ -52,6 +55,19 @@ class RegionController extends ApiController
         $this->validateRequest($req);
 
         return $this->json($action->run($req)->regions);
+    }
+
+    /**
+     * @throws ValidationException
+     * @throws RegionNotFoundException
+     */
+    #[Route(self::API_ROUTE . '/{id}', name: 'app_api_v1_region_update', methods: HttpMethod::PUT)]
+    public function update(string $id, Request $request, UpdateRegionAction $action): JsonResponse
+    {
+        $req = $this->handleRequest($request, UpdateRegionActionRequest::class);
+        $req->setId($id);
+
+        return $this->json($action->run($req));
     }
 
 }
