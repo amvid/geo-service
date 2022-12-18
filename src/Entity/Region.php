@@ -7,8 +7,9 @@ namespace App\Entity;
 use App\Repository\RegionRepository;
 use App\Trait\TimestampTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Types\UuidType;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: RegionRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -19,20 +20,20 @@ class Region
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
-    private Uuid $id;
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    private UuidInterface $id;
 
     #[ORM\Column(length: 150, unique: true)]
     private string $title;
 
-    public function __construct(?Uuid $id = null)
+    public function __construct(?UuidInterface $id = null)
     {
         if ($id) {
             $this->id = $id;
         }
     }
 
-    public function getId(): Uuid
+    public function getId(): UuidInterface
     {
         return $this->id;
     }

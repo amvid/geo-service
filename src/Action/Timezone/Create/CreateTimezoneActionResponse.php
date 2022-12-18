@@ -6,11 +6,11 @@ namespace App\Action\Timezone\Create;
 
 use App\Entity\Timezone;
 use DateTimeImmutable;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class CreateTimezoneActionResponse
 {
-    public Uuid $id;
+    public UuidInterface $id;
     public string $title;
     public string $code;
     public string $utc;

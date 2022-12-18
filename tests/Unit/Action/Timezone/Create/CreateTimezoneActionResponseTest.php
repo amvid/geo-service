@@ -7,13 +7,13 @@ namespace App\Tests\Unit\Action\Timezone\Create;
 use App\Action\Timezone\Create\CreateTimezoneActionResponse;
 use App\Entity\Timezone;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class CreateTimezoneActionResponseTest extends TestCase
 {
     public function testValidInstantiation(): void
     {
-        $id = Uuid::v1();
+        $id = Uuid::uuid7();
         $title = 'Europe/Oslo (GMT+01:00)';
         $code = 'Europe/Oslo';
         $utc = '+01:00';

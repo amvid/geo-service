@@ -12,7 +12,7 @@ use App\Exception\TimezoneAlreadyExistsException;
 use App\Factory\TimezoneFactoryInterface;
 use App\Repository\TimezoneRepositoryInterface;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class CreateTimezoneActionTest extends TestCase
 {
@@ -27,7 +27,7 @@ class CreateTimezoneActionTest extends TestCase
 
     public function testShouldReturnAValidResponseOnSuccess(): void
     {
-        $id = Uuid::v1();
+        $id = Uuid::uuid7();
         $title = 'Europe/Oslo (GMT+01:00)';
         $code = 'Europe/Oslo';
         $utc = '+01:00';

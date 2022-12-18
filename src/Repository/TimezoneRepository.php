@@ -7,7 +7,7 @@ namespace App\Repository;
 use App\Entity\Timezone;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class TimezoneRepository extends ServiceEntityRepository implements TimezoneRepositoryInterface
 {
@@ -34,7 +34,7 @@ class TimezoneRepository extends ServiceEntityRepository implements TimezoneRepo
         }
     }
 
-    public function findById(Uuid $id): ?Timezone
+    public function findById(UuidInterface $id): ?Timezone
     {
         return $this->find($id);
     }
