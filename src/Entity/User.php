@@ -7,10 +7,11 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use App\Trait\TimestampTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -25,8 +26,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
-    #[ORM\CustomIdGenerator(class: 'doctrine.uuid_generator')]
-    private Uuid $id;
+    #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
+    private UuidInterface $id;
 
     #[ORM\Column(length: 180, unique: true)]
     private string $email;
@@ -37,7 +38,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private string $password;
 
-    public function getId(): Uuid
+    public function __construct(?UuidInterface $id = null)
+    {
+        if ($id) {
+            $this->id = $id;
+        }
+    }
+
+    public function __toString(): string
+    {
+        return $this->email;
+    }
+
+    public function getId(): UuidInterface
     {
         return $this->id;
     }

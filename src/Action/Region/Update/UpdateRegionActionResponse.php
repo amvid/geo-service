@@ -6,11 +6,11 @@ namespace App\Action\Region\Update;
 
 use App\Entity\Region;
 use DateTimeInterface;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class UpdateRegionActionResponse
 {
-    public Uuid $id;
+    public UuidInterface $id;
     public string $title;
     public DateTimeInterface $createdAt;
     public DateTimeInterface $updatedAt;

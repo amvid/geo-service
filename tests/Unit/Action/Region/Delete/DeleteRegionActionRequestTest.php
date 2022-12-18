@@ -6,16 +6,16 @@ namespace App\Tests\Unit\Action\Region\Delete;
 
 use App\Action\Region\Delete\DeleteRegionActionRequest;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class DeleteRegionActionRequestTest extends TestCase
 {
     public function testValidInstantiation(): void
     {
-        $id = Uuid::v1()->toRfc4122();
+        $id = Uuid::uuid7();
 
-        $actual = new DeleteRegionActionRequest($id);
+        $actual = new DeleteRegionActionRequest($id->toString());
 
-        $this->assertEquals($id, $actual->id->toRfc4122());
+        $this->assertEquals($id, $actual->id);
     }
 }

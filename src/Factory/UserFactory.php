@@ -39,4 +39,5 @@ class UserFactory implements UserFactoryInterface
     {
         return $this->user;
     }
+
 }

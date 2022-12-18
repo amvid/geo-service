@@ -7,14 +7,14 @@ namespace App\Tests\Unit\Action\Region\Get;
 use App\Action\Region\Get\GetRegionsActionResponse;
 use App\Entity\Region;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class GetRegionsActionResponseTest extends TestCase
 {
     public function testValidInstantiation(): void
     {
-        $id1 = Uuid::v1();
-        $id2 = Uuid::v1();
+        $id1 = Uuid::uuid7();
+        $id2 = Uuid::uuid7();
 
         $asia = new Region($id1);
         $europe = new Region($id2);

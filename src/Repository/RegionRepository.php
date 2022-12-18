@@ -7,7 +7,7 @@ namespace App\Repository;
 use App\Entity\Region;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 class RegionRepository extends ServiceEntityRepository implements RegionRepositoryInterface
 {
@@ -53,7 +53,7 @@ class RegionRepository extends ServiceEntityRepository implements RegionReposito
         return $qb->getQuery()->getResult();
     }
 
-    public function findById(Uuid $id): ?Region
+    public function findById(UuidInterface $id): ?Region
     {
         return $this->find($id);
     }

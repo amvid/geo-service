@@ -10,7 +10,7 @@ use App\Entity\Region;
 use App\Exception\RegionNotFoundException;
 use App\Repository\RegionRepositoryInterface;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class UpdateRegionActionTest extends TestCase
 {
@@ -25,13 +25,13 @@ class UpdateRegionActionTest extends TestCase
     {
         $title = 'Europe';
         $updateTitle = 'Asia';
-        $id = Uuid::v1();
+        $id = Uuid::uuid7();
 
         $region = new Region($id);
         $region->setTitle($title)->setCreatedAt();
 
         $req = new UpdateRegionActionRequest();
-        $req->setTitle($updateTitle)->setId($id->toRfc4122());
+        $req->setTitle($updateTitle)->setId($id->toString());
 
         $this->regionRepository
             ->expects($this->once())
@@ -58,9 +58,9 @@ class UpdateRegionActionTest extends TestCase
 
     public function testShouldThrowNotFoundExceptionIfRegionNotFound(): void
     {
-        $id = Uuid::v1();
+        $id = Uuid::uuid7();
         $req = new UpdateRegionActionRequest();
-        $req->setId($id->toRfc4122());
+        $req->setId($id->toString());
 
         $this->regionRepository
             ->expects($this->once())
