@@ -14,7 +14,7 @@ readonly class DeleteRegionAction implements DeleteRegionActionInterface
 
     public function run(DeleteRegionActionRequest $request): DeleteRegionActionResponse
     {
-        $exists = $this->regionRepository->findByTitle($request->title);
+        $exists = $this->regionRepository->findById($request->id);
         $res = new DeleteRegionActionResponse();
 
         if (!$exists) {

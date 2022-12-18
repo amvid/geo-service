@@ -30,8 +30,8 @@ class DeleteRegionActionTest extends TestCase
 
         $this->repository
             ->expects($this->once())
-            ->method('findByTitle')
-            ->with($title)
+            ->method('findById')
+            ->with($id)
             ->willReturn($region);
 
         $this->repository
@@ -40,23 +40,23 @@ class DeleteRegionActionTest extends TestCase
             ->with($region);
 
         $action = new DeleteRegionAction($this->repository);
-        $req = new DeleteRegionActionRequest($title);
+        $req = new DeleteRegionActionRequest($id->toRfc4122());
 
         $action->run($req);
     }
 
     public function testShouldReturnResponseIfResourceNotFound(): void
     {
-        $title = 'Europe';
+        $id = Uuid::v1();
 
         $this->repository
             ->expects($this->once())
-            ->method('findByTitle')
-            ->with($title)
+            ->method('findById')
+            ->with($id)
             ->willReturn(null);
 
         $action = new DeleteRegionAction($this->repository);
-        $req = new DeleteRegionActionRequest($title);
+        $req = new DeleteRegionActionRequest($id->toRfc4122());
 
         $action->run($req);
     }
