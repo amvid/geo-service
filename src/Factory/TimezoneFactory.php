@@ -6,13 +6,18 @@ namespace App\Factory;
 
 use App\Entity\Timezone;
 
-class TimezoneFactory implements TimezoneFactoryInterface
+class TimezoneFactory implements TimezoneFactoryInterface, BuilderInterface
 {
     private Timezone $timezone;
 
     public function __construct()
     {
         $this->timezone = new Timezone();
+    }
+
+    public static function builder(): BuilderInterface
+    {
+        return new self();
     }
 
     public function setTitle(string $title): TimezoneFactoryInterface

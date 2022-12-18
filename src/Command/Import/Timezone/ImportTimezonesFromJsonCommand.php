@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command\Import\Timezone;
 
-use App\Factory\TimezoneFactoryInterface;
+use App\Factory\TimezoneFactory;
 use App\Repository\TimezoneRepositoryInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -20,7 +20,6 @@ use Throwable;
 class ImportTimezonesFromJsonCommand extends Command
 {
     public function __construct(
-        private readonly TimezoneFactoryInterface    $timezoneFactory,
         private readonly TimezoneRepositoryInterface $timezoneRepository,
     )
     {
@@ -55,7 +54,7 @@ class ImportTimezonesFromJsonCommand extends Command
                     continue;
                 }
 
-                $tz = $this->timezoneFactory
+                $tz = TimezoneFactory::builder()
                     ->setTitle($timezone['label'])
                     ->setCode($timezone['tzCode'])
                     ->setUtc($timezone['utc'])
