@@ -9,10 +9,14 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 readonly class ExceptionListener
 {
-    public function __construct(private LoggerInterface $logger)
+    public function __construct(
+        private LoggerInterface $logger,
+        private KernelInterface $kernel,
+    )
     {
     }
 
@@ -20,8 +24,8 @@ readonly class ExceptionListener
     {
         $e = $event->getThrowable();
 
-        if ($e instanceof ApplicationException) {
-            $code = $e->getCode();
+        if ($e instanceof ApplicationException || $this->kernel->getEnvironment() === 'dev') {
+            $code = $e->getCode() === 0 ? Response::HTTP_INTERNAL_SERVER_ERROR : $e->getCode();
             $message = $e->getMessage();
         } else {
             $code = Response::HTTP_INTERNAL_SERVER_ERROR;

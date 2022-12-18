@@ -8,6 +8,8 @@ use App\Action\Region\Create\CreateRegionActionInterface;
 use App\Action\Region\Create\CreateRegionActionRequest;
 use App\Action\Region\Delete\DeleteRegionActionInterface;
 use App\Action\Region\Delete\DeleteRegionActionRequest;
+use App\Action\Region\Get\GetRegionsAction;
+use App\Action\Region\Get\GetRegionsActionRequest;
 use App\Controller\Api\ApiController;
 use App\Controller\HttpMethod;
 use App\Exception\ValidationException;
@@ -37,8 +39,19 @@ class RegionController extends ApiController
     {
         $req = new DeleteRegionActionRequest($title);
         $this->validateRequest($req);
-
         return $this->json($action->run($req));
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    #[Route(self::API_ROUTE, name: 'app_api_v1_region_list', methods: HttpMethod::GET)]
+    public function list(Request $request, GetRegionsAction $action): JsonResponse
+    {
+        $req = GetRegionsActionRequest::fromArray($request->query->all());
+        $this->validateRequest($req);
+
+        return $this->json($action->run($req)->regions);
     }
 
 }
