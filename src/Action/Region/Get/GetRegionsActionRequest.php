@@ -17,7 +17,7 @@ class GetRegionsActionRequest
     #[Range(min: 0)]
     public int $offset = self::DEFAULT_OFFSET;
 
-    public ?string $title;
+    public ?string $title = null;
 
     public static function fromArray(array $params): self
     {
