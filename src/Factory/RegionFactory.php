@@ -6,7 +6,7 @@ namespace App\Factory;
 
 use App\Entity\Region;
 
-class RegionFactory implements RegionFactoryInterface
+class RegionFactory implements RegionFactoryInterface, BuilderInterface
 {
     private Region $region;
 
@@ -24,5 +24,10 @@ class RegionFactory implements RegionFactoryInterface
     public function create(): Region
     {
         return $this->region;
+    }
+
+    public static function builder(): BuilderInterface
+    {
+        return new self();
     }
 }

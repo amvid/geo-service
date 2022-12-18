@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Action\Region\Update;
 
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class UpdateRegionActionRequest
 {
-    public Uuid $id;
+    public UuidInterface $id;
 
     #[NotBlank]
     public string $title;
@@ -22,7 +23,7 @@ class UpdateRegionActionRequest
 
     public function setId(string $id): self
     {
-        $this->id = Uuid::fromRfc4122($id);
+        $this->id = Uuid::fromString($id);
         return $this;
     }
 }

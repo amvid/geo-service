@@ -2,7 +2,7 @@
 
 ## Info
 
-Geo data REST API service with admin dashboard to manage regions, countries, states, cities and airports.
+Geo data REST API service with admin dashboard to manage regions, countries, timezones, states, cities and airports.
 
 ### Installation
 ```bash

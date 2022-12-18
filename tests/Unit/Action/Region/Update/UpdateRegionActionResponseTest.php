@@ -7,13 +7,13 @@ namespace App\Tests\Unit\Action\Region\Update;
 use App\Action\Region\Update\UpdateRegionActionResponse;
 use App\Entity\Region;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class UpdateRegionActionResponseTest extends TestCase
 {
     public function testValidInstantiation(): void
     {
-        $id = Uuid::v1();
+        $id = Uuid::uuid7();
         $title = 'Europe';
         $region = new Region($id);
         $region->setTitle($title)->setCreatedAt();

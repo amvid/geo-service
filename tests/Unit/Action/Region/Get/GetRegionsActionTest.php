@@ -9,7 +9,7 @@ use App\Action\Region\Get\GetRegionsActionRequest;
 use App\Entity\Region;
 use App\Repository\RegionRepositoryInterface;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class GetRegionsActionTest extends TestCase
 {
@@ -21,8 +21,8 @@ class GetRegionsActionTest extends TestCase
     {
         $this->repository = $this->getMockBuilder(RegionRepositoryInterface::class)->getMock();
 
-        $id1 = Uuid::v1();
-        $id2 = Uuid::v1();
+        $id1 = Uuid::uuid7();
+        $id2 = Uuid::uuid7();
 
         $this->europe = new Region($id1);
         $this->europe->setTitle('Europe');

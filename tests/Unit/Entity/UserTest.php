@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Entity;
 
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Uuid\Uuid;
 
 class UserTest extends TestCase
 {
@@ -13,14 +14,16 @@ class UserTest extends TestCase
     {
         $password = 'password';
         $email = 'john@doe.com';
+        $id = Uuid::uuid7();
         $role = User::USER;
-        $user = new User();
+        $user = new User($id);
         $user->setPassword($password);
         $user->setEmail($email);
         $user->setRoles([$role]);
 
-        $this->assertEquals($password, $user->getPassword(), 'Passwords should match');
-        $this->assertEquals($email, $user->getEmail(), 'Emails should match');
-        $this->assertEquals($role, $user->getRoles()[0], 'Should have a role');
+        $this->assertEquals($id, $user->getId());
+        $this->assertEquals($password, $user->getPassword());
+        $this->assertEquals($email, $user->getEmail());
+        $this->assertEquals($role, $user->getRoles()[0]);
     }
 }

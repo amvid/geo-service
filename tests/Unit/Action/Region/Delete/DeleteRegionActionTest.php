@@ -9,7 +9,7 @@ use App\Action\Region\Delete\DeleteRegionActionRequest;
 use App\Entity\Region;
 use App\Repository\RegionRepositoryInterface;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class DeleteRegionActionTest extends TestCase
 {
@@ -22,7 +22,7 @@ class DeleteRegionActionTest extends TestCase
 
     public function testShouldReturnResponseOnSuccess(): void
     {
-        $id = Uuid::v1();
+        $id = Uuid::uuid7();
         $title = 'Europe';
 
         $region = new Region($id);
@@ -40,14 +40,14 @@ class DeleteRegionActionTest extends TestCase
             ->with($region);
 
         $action = new DeleteRegionAction($this->repository);
-        $req = new DeleteRegionActionRequest($id->toRfc4122());
+        $req = new DeleteRegionActionRequest($id->toString());
 
         $action->run($req);
     }
 
     public function testShouldReturnResponseIfResourceNotFound(): void
     {
-        $id = Uuid::v1();
+        $id = Uuid::uuid7();
 
         $this->repository
             ->expects($this->once())
@@ -56,7 +56,7 @@ class DeleteRegionActionTest extends TestCase
             ->willReturn(null);
 
         $action = new DeleteRegionAction($this->repository);
-        $req = new DeleteRegionActionRequest($id->toRfc4122());
+        $req = new DeleteRegionActionRequest($id->toString());
 
         $action->run($req);
     }

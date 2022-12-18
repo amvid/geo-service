@@ -12,7 +12,7 @@ use App\Exception\RegionAlreadyExistsException;
 use App\Factory\RegionFactoryInterface;
 use App\Repository\RegionRepositoryInterface;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Uid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class CreateRegionActionTest extends TestCase
 {
@@ -27,7 +27,7 @@ class CreateRegionActionTest extends TestCase
 
     public function testShouldReturnAValidResponseOnSuccess(): void
     {
-        $id = Uuid::v1();
+        $id = Uuid::uuid7();
         $title = 'Europe';
 
         $request = new CreateRegionActionRequest($title);
