@@ -27,3 +27,12 @@ https://download.geonames.org/export/zip/
 https://public.opendatasoft.com/api/v2/console
 https://osmnames.org/download/
 ```
+
+### Import
+
+Timezones
+
+```bash
+make ssh
+php bin/console app:import-timezones
+```
