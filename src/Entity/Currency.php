@@ -29,7 +29,7 @@ class Currency
     #[ORM\Column(length: 100, unique: true)]
     private string $name;
 
-    #[ORM\Column(length: 50, unique: true)]
+    #[ORM\Column(length: 10)]
     private string $symbol;
 
     public function __construct(?UuidInterface $id = null)

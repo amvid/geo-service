@@ -25,14 +25,15 @@ class ImportCurrenciesFromJsonCommand extends Command
         private readonly CurrencyRepositoryInterface $currencyRepository,
     )
     {
+        parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setHelp('This command will import currencies from json file.');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
             $data = json_decode(
@@ -40,11 +41,23 @@ class ImportCurrenciesFromJsonCommand extends Command
                 true, 512, JSON_THROW_ON_ERROR
             );
 
+            $existsArr = [];
             $imported = 0;
-            $skipped = 0;
 
             foreach ($data as $country) {
                 $code = $country['currency'];
+
+                if (array_key_exists($code, $existsArr)) {
+                    continue;
+                }
+
+                $exists = $this->currencyRepository->findByCode($code);
+
+                if ($exists) {
+                    $existsArr[$code] = true;
+                    continue;
+                }
+
                 $name = $country['currency_name'];
                 $symbol = $country['currency_symbol'];
 
@@ -62,5 +75,8 @@ class ImportCurrenciesFromJsonCommand extends Command
             $output->writeln('An error occurred: ' . $e->getMessage());
             return Command::FAILURE;
         }
+
+        $output->writeln("Imported $imported currencies.");
+        return Command::SUCCESS;
     }
 }
