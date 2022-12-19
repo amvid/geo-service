@@ -4,35 +4,49 @@ declare(strict_types=1);
 
 namespace App\Action\Region\Get;
 
+use App\Controller\Request\LimitOffsetInterface;
+use App\Controller\Request\LimitOffsetParser;
 use Symfony\Component\Validator\Constraints\Range;
 
-class GetRegionsActionRequest
+class GetRegionsActionRequest implements LimitOffsetInterface
 {
-    public const DEFAULT_LIMIT = 500;
-    public const DEFAULT_OFFSET = 0;
-
     #[Range(min: 1)]
-    public int $limit = self::DEFAULT_LIMIT;
+    public int $limit = LimitOffsetParser::DEFAULT_LIMIT;
 
     #[Range(min: 0)]
-    public int $offset = self::DEFAULT_OFFSET;
+    public int $offset = LimitOffsetParser::DEFAULT_OFFSET;
 
     public ?string $title = null;
 
     public static function fromArray(array $params): self
     {
-        $req = new self();
-
-        $req->limit = array_key_exists('limit', $params) && is_numeric($params['limit'])
-            ? (int)$params['limit']
-            : self::DEFAULT_LIMIT;
-
-        $req->offset = array_key_exists('offset', $params) && is_numeric($params['offset'])
-            ? (int)$params['offset']
-            : self::DEFAULT_OFFSET;
+        /** @var GetRegionsActionRequest $req */
+        $req = LimitOffsetParser::parse($params, new self());
 
         $req->title = $params['title'] ?? null;
 
         return $req;
+    }
+
+    public function setLimit(int $limit): LimitOffsetInterface
+    {
+        $this->limit = $limit;
+        return $this;
+    }
+
+    public function getLimit(): int
+    {
+        return $this->limit;
+    }
+
+    public function setOffset(int $offset): LimitOffsetInterface
+    {
+        $this->offset = $offset;
+        return $this;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
     }
 }
