@@ -40,4 +40,9 @@ class UserFactory implements UserFactoryInterface
         return $this->user;
     }
 
+    public function setUser(User $user): UserFactoryInterface
+    {
+        $this->user = $user;
+        return $this;
+    }
 }

@@ -11,5 +11,6 @@ interface UserFactoryInterface
     public function setEmail(string $email): self;
     public function setPassword(string $plainPassword): self;
     public function setRoles(array $roles): self;
+    public function setUser(User $user): self;
     public function create(): User;
 }

@@ -14,5 +14,7 @@ interface TimezoneFactoryInterface
 
     public function setUtc(string $utc): self;
 
+    public function setTimezone(Timezone $timezone): self;
+
     public function create(): Timezone;
 }
