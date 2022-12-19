@@ -33,6 +33,11 @@ class Region
         }
     }
 
+    public function __toString(): string
+    {
+        return $this->title;
+    }
+
     public function getId(): UuidInterface
     {
         return $this->id;
