@@ -27,7 +27,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/logout', name: 'app_logout', methods: HttpMethod::GET)]
-    public function logout(Security $security)
+    public function logout(Security $security): ?Response
     {
         return $security->logout();
     }
