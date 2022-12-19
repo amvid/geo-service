@@ -48,4 +48,41 @@ class TimezoneRepository extends ServiceEntityRepository implements TimezoneRepo
     {
         return $this->findOneBy(['code' => $code]);
     }
+
+    public function list(
+        int $offset,
+        int $limit,
+        ?string $title = null,
+        ?string $code = null,
+        ?string $utc = null
+    ): array
+    {
+        $qb = $this->createQueryBuilder('t')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->where('1=1');
+
+        $params = [];
+
+        if ($title) {
+            $params['title'] = "%$title%";
+            $qb->andWhere('t.title LIKE :title');
+        }
+
+        if ($code) {
+            $params['code'] = "%$code%";
+            $qb->andWhere('t.code LIKE :code');
+        }
+
+        if ($utc) {
+            $utc = trim($utc);
+            $params['utc'] = "%$utc%";
+            $qb->andWhere('t.utc LIKE :utc');
+        }
+
+        return $qb
+            ->setParameters($params)
+            ->getQuery()
+            ->getResult();
+    }
 }
