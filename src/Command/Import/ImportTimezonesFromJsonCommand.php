@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Command\Import\Timezone;
+namespace App\Command\Import;
 
 use App\Entity\Timezone;
 use App\Factory\TimezoneFactoryInterface;

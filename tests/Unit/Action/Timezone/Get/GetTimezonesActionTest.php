@@ -42,13 +42,13 @@ class GetTimezonesActionTest extends TestCase
         $limit = 10;
         $offset = 0;
 
-        $regions = [$this->riga, $this->oslo];
+        $timezones = [$this->riga, $this->oslo];
 
         $this->repository
             ->expects($this->once())
             ->method('list')
             ->with($offset, $limit)
-            ->willReturn($regions);
+            ->willReturn($timezones);
 
         $req = new GetTimezonesActionRequest();
         $req->limit = $limit;

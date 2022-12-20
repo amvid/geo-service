@@ -20,4 +20,25 @@ class LimitOffsetParserTest extends TestCase
         $this->assertEquals($limit, $actual->getLimit());
         $this->assertEquals($offset, $actual->getOffset());
     }
+
+    public function testShouldReturnDefaultValuesOnEmptyLimitAndOffset(): void
+    {
+        $actual = LimitOffsetParser::parse([], new LimitOffsetRequestTestClass());
+
+        $this->assertEquals(LimitOffsetParser::DEFAULT_LIMIT, $actual->getLimit());
+        $this->assertEquals(LimitOffsetParser::DEFAULT_OFFSET, $actual->getOffset());
+    }
+
+    public function testShouldReturnDefaultValuesOnInvalidLimitAndOffset(): void
+    {
+        $params = [
+            'limit' => '1o',
+            'offset' => 'o'
+        ];
+
+        $actual = LimitOffsetParser::parse($params, new LimitOffsetRequestTestClass());
+
+        $this->assertEquals(LimitOffsetParser::DEFAULT_LIMIT, $actual->getLimit());
+        $this->assertEquals(LimitOffsetParser::DEFAULT_OFFSET, $actual->getOffset());
+    }
 }

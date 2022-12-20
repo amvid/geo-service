@@ -45,7 +45,7 @@ class CreateTimezoneActionTest extends TestCase
 
         $expectedResponse = new CreateTimezoneActionResponse($tz);
 
-        $this->repository->expects($this->once())->method('findByTitle')->willReturn(null);
+        $this->repository->expects($this->once())->method('findByTitle')->with($title)->willReturn(null);
         $this->factory->expects($this->once())->method('setTitle')->with($title)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setCode')->with($code)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setUtc')->with($utc)->willReturn($this->factory);
