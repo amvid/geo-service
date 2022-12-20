@@ -26,11 +26,11 @@ class CreateCurrencyActionResponseTest extends TestCase
 
         $actual = new CreateCurrencyActionResponse($currency);
 
-        $this->assertEquals($id, $actual->id);
-        $this->assertEquals($name, $actual->name);
-        $this->assertEquals($code, $actual->code);
-        $this->assertEquals($symbol, $actual->symbol);
-        $this->assertEquals($currency->getCreatedAt(), $actual->createdAt);
-        $this->assertEquals($currency->getUpdatedAt(), $actual->updatedAt);
+        $this->assertEquals($id, $actual->currencyResponse->id);
+        $this->assertEquals($name, $actual->currencyResponse->name);
+        $this->assertEquals($code, $actual->currencyResponse->code);
+        $this->assertEquals($symbol, $actual->currencyResponse->symbol);
+        $this->assertEquals($currency->getCreatedAt(), $actual->currencyResponse->createdAt);
+        $this->assertEquals($currency->getUpdatedAt(), $actual->currencyResponse->updatedAt);
     }
 }

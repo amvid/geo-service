@@ -17,12 +17,21 @@ class GetCurrenciesActionResponseTest extends TestCase
         $id2 = Uuid::uuid4();
 
         $nok = new Currency($id1);
+        $nok->setName('Norwegian Krone');
+        $nok->setCode('NOK');
+        $nok->setSymbol('kr');
+        $nok->setCreatedAt();
+
         $eur = new Currency($id2);
+        $eur->setName('Euro');
+        $eur->setCode('EUR');
+        $eur->setSymbol('E');
+        $eur->setCreatedAt();
 
         $actual = new GetCurrenciesActionResponse([$nok, $eur]);
 
-        $this->assertCount(2, $actual->currencies);
-        $this->assertEquals($nok, $actual->currencies[0]);
-        $this->assertEquals($eur, $actual->currencies[1]);
+        $this->assertCount(2, $actual->response);
+        $this->assertEquals($nok->getId(), $actual->response[0]->id);
+        $this->assertEquals($eur->getId(), $actual->response[1]->id);
     }
 }
