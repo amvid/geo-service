@@ -30,7 +30,7 @@ class RegionController extends ApiController
     public function create(Request $request, CreateRegionActionInterface $action): JsonResponse
     {
         $req = $this->handleRequest($request, CreateRegionActionRequest::class);
-        return $this->json($action->run($req));
+        return $this->json($action->run($req)->regionResponse);
     }
 
     /**
@@ -53,7 +53,7 @@ class RegionController extends ApiController
         $req = GetRegionsActionRequest::fromArray($request->query->all());
         $this->validateRequest($req);
 
-        return $this->json($action->run($req)->regions);
+        return $this->json($action->run($req)->response);
     }
 
     /**
@@ -65,7 +65,7 @@ class RegionController extends ApiController
         $req = $this->handleRequest($request, UpdateRegionActionRequest::class);
         $req->setId($id);
 
-        return $this->json($action->run($req));
+        return $this->json($action->run($req)->regionResponse);
     }
 
 }

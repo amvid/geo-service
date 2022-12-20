@@ -17,12 +17,14 @@ class GetRegionsActionResponseTest extends TestCase
         $id2 = Uuid::uuid7();
 
         $asia = new Region($id1);
+        $asia->setTitle('Asia')->setCreatedAt();
         $europe = new Region($id2);
+        $europe->setTitle('Europe')->setCreatedAt();
 
         $actual = new GetRegionsActionResponse([$asia, $europe]);
 
-        $this->assertCount(2, $actual->regions);
-        $this->assertEquals($asia, $actual->regions[0]);
-        $this->assertEquals($europe, $actual->regions[1]);
+        $this->assertCount(2, $actual->response);
+        $this->assertEquals($asia->getId(), $actual->response[0]->id);
+        $this->assertEquals($europe->getId(), $actual->response[1]->id);
     }
 }
