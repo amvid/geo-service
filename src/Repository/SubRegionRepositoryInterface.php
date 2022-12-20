@@ -13,5 +13,5 @@ interface SubRegionRepositoryInterface
     public function save(SubRegion $subRegion, bool $flush = false): void;
     public function remove(SubRegion $subRegion, bool $flush = false): void;
     public function findByTitle(string $title): ?SubRegion;
-    public function list(int $offset, int $limit, ?string $title): array;
+    public function list(int $offset, int $limit, ?string $title, ?UuidInterface $regionId): array;
 }

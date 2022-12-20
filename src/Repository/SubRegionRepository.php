@@ -39,18 +39,26 @@ class SubRegionRepository extends ServiceEntityRepository implements SubRegionRe
         return $this->findOneBy(['title' => $title]);
     }
 
-    public function list(int $offset, int $limit, ?string $title): array
+    public function list(int $offset, int $limit, ?string $title = null, ?UuidInterface $regionId = null): array
     {
-        $qb = $this->createQueryBuilder('r')
+        $qb = $this->createQueryBuilder('s')
             ->setMaxResults($limit)
-            ->setFirstResult($offset);
+            ->setFirstResult($offset)
+            ->where('1=1');
+
+        $params = [];
 
         if ($title) {
-            $qb->where('r.title LIKE :title')
-                ->setParameter('title', "%$title%");
+            $params['title'] = "%$title%";
+            $qb->andWhere('s.title LIKE :title');
         }
 
-        return $qb->getQuery()->getResult();
+        if ($regionId) {
+            $params['regionId'] = $regionId;
+            $qb->andWhere('s.region = :regionId');
+        }
+
+        return $qb->setParameters($params)->getQuery()->getResult();
     }
 
     public function findById(UuidInterface $id): ?SubRegion

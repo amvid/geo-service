@@ -21,7 +21,7 @@ use Throwable;
 class ImportCurrenciesFromJsonCommand extends Command
 {
     public function __construct(
-        private readonly CurrencyFactoryInterface $currencyFactory,
+        private readonly CurrencyFactoryInterface    $currencyFactory,
         private readonly CurrencyRepositoryInterface $currencyRepository,
     )
     {
