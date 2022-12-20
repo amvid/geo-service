@@ -28,14 +28,14 @@ class Country
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private Region $region;
+    private SubRegion $subRegion;
 
     #[ORM\ManyToMany(targetEntity: Timezone::class)]
     private Collection $timezones;
 
-//    #[ORM\ManyToOne]
-//    #[ORM\JoinColumn(nullable: false)]
-//    private Currency $currency;
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private Currency $currency;
 
 //    #[ORM\ManyToOne]
 //    #[ORM\JoinColumn(nullable: false)]
@@ -48,10 +48,10 @@ class Country
     private string $nativeTitle;
 
     #[ORM\Column(length: 2, unique: true, nullable: false)]
-    private string $ISO2;
+    private string $iso2;
 
     #[ORM\Column(length: 3, unique: true, nullable: false)]
-    private string $ISO3;
+    private string $iso3;
 
     #[ORM\Column(length: 3, unique: true, nullable: false)]
     private string $numericCode;
@@ -84,14 +84,14 @@ class Country
         return $this->id;
     }
 
-    public function getRegion(): Region
+    public function getSubRegion(): SubRegion
     {
-        return $this->region;
+        return $this->subRegion;
     }
 
-    public function setRegion(Region $region): self
+    public function setSubRegion(SubRegion $subRegion): self
     {
-        $this->region = $region;
+        $this->subRegion = $subRegion;
 
         return $this;
     }
@@ -108,26 +108,26 @@ class Country
         return $this;
     }
 
-    public function getISO2(): string
+    public function getIso2(): string
     {
-        return $this->ISO2;
+        return $this->iso2;
     }
 
-    public function setISO2(string $ISO2): self
+    public function setIso2(string $iso2): self
     {
-        $this->ISO2 = $ISO2;
+        $this->iso2 = $iso2;
 
         return $this;
     }
 
-    public function getISO3(): string
+    public function getIso3(): string
     {
-        return $this->ISO3;
+        return $this->iso3;
     }
 
-    public function setISO3(string $ISO3): self
+    public function setIso3(string $iso3): self
     {
-        $this->ISO3 = $ISO3;
+        $this->iso3 = $iso3;
 
         return $this;
     }
@@ -152,4 +152,16 @@ class Country
 
         return $this;
     }
+
+    public function getCurrency(): Currency
+    {
+        return $this->currency;
+    }
+
+    public function setCurrency(Currency $currency): self
+    {
+        $this->currency = $currency;
+        return $this;
+    }
+
 }
