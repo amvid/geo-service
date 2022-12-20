@@ -59,12 +59,12 @@ class CreateTimezoneActionTest extends TestCase
             $this->fail('Must not thrown an exception: ' . $e->getMessage());
         }
 
-        $this->assertEquals($expectedResponse->id, $actual->id);
-        $this->assertEquals($expectedResponse->title, $actual->title);
-        $this->assertEquals($expectedResponse->code, $actual->code);
-        $this->assertEquals($expectedResponse->utc, $actual->utc);
-        $this->assertEquals($expectedResponse->createdAt, $actual->createdAt);
-        $this->assertEquals($expectedResponse->updatedAt, $actual->updatedAt);
+        $this->assertEquals($expectedResponse->timezoneResponse->id, $actual->timezoneResponse->id);
+        $this->assertEquals($expectedResponse->timezoneResponse->title, $actual->timezoneResponse->title);
+        $this->assertEquals($expectedResponse->timezoneResponse->code, $actual->timezoneResponse->code);
+        $this->assertEquals($expectedResponse->timezoneResponse->utc, $actual->timezoneResponse->utc);
+        $this->assertEquals($expectedResponse->timezoneResponse->createdAt, $actual->timezoneResponse->createdAt);
+        $this->assertEquals($expectedResponse->timezoneResponse->updatedAt, $actual->timezoneResponse->updatedAt);
     }
 
     public function testShouldThrowAnErrorIfTitleHasBeenAlreadyTaken(): void

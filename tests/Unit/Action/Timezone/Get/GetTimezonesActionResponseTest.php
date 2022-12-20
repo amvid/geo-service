@@ -17,12 +17,14 @@ class GetTimezonesActionResponseTest extends TestCase
         $id2 = Uuid::uuid4();
 
         $riga = new Timezone($id1);
+        $riga->setTitle('Europe/Riga (GMT+02:00')->setCode('Europe/Riga')->setUtc('+02:00')->setCreatedAt();
         $oslo = new Timezone($id2);
+        $oslo->setTitle('Europe/Oslo (GMT+01:00')->setCode('Europe/Oslo')->setUtc('+01:00')->setCreatedAt();
 
         $actual = new GetTimezonesActionResponse([$riga, $oslo]);
 
-        $this->assertCount(2, $actual->timezones);
-        $this->assertEquals($riga, $actual->timezones[0]);
-        $this->assertEquals($oslo, $actual->timezones[1]);
+        $this->assertCount(2, $actual->response);
+        $this->assertEquals($riga->getId(), $actual->response[0]->id);
+        $this->assertEquals($oslo->getId(), $actual->response[1]->id);
     }
 }

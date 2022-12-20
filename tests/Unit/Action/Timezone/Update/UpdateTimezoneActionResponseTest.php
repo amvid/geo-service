@@ -27,11 +27,11 @@ class UpdateTimezoneActionResponseTest extends TestCase
 
         $actual = new UpdateTimezoneActionResponse($tz);
 
-        $this->assertEquals($id, $actual->id);
-        $this->assertEquals($title, $actual->title);
-        $this->assertEquals($code, $actual->code);
-        $this->assertEquals($utc, $actual->utc);
-        $this->assertEquals($tz->getUpdatedAt(), $actual->updatedAt);
-        $this->assertEquals($tz->getCreatedAt(), $actual->createdAt);
+        $this->assertEquals($id, $actual->timezoneResponse->id);
+        $this->assertEquals($title, $actual->timezoneResponse->title);
+        $this->assertEquals($code, $actual->timezoneResponse->code);
+        $this->assertEquals($utc, $actual->timezoneResponse->utc);
+        $this->assertEquals($tz->getUpdatedAt(), $actual->timezoneResponse->updatedAt);
+        $this->assertEquals($tz->getCreatedAt(), $actual->timezoneResponse->createdAt);
     }
 }
