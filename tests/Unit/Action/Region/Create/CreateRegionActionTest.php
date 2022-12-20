@@ -39,7 +39,7 @@ class CreateRegionActionTest extends TestCase
 
         $expectedResponse = new CreateRegionActionResponse($region);
 
-        $this->repository->expects($this->once())->method('findByTitle')->willReturn(null);
+        $this->repository->expects($this->once())->method('findByTitle')->with($title)->willReturn(null);
         $this->factory->expects($this->once())->method('setTitle')->with($title)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('create')->willReturn($region);
 
