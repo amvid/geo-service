@@ -44,4 +44,39 @@ class CurrencyRepository extends ServiceEntityRepository implements CurrencyRepo
         return $this->findOneBy(['code' => $code]);
     }
 
+    public function list(
+        int     $offset,
+        int     $limit,
+        ?string $name = null,
+        ?string $code = null,
+        ?string $symbol = null,
+    ): array
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->where('1=1');
+
+        $params = [];
+
+        if ($name) {
+            $params['name'] = "%$name%";
+            $qb->andWhere('c.name LIKE :name');
+        }
+
+        if ($code) {
+            $params['code'] = "%$code%";
+            $qb->andWhere('c.code LIKE :code');
+        }
+
+        if ($symbol) {
+            $params['symbol'] = "%$symbol%";
+            $qb->andWhere('c.symbol LIKE :symbol');
+        }
+
+        return $qb
+            ->setParameters($params)
+            ->getQuery()
+            ->getResult();
+    }
 }
