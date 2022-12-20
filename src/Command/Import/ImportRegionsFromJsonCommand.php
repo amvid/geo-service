@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Command\Import;
 
-use App\Entity\Currency;
-use App\Factory\CurrencyFactoryInterface;
-use App\Repository\CurrencyRepositoryInterface;
+use App\Entity\Region;
+use App\Factory\RegionFactoryInterface;
+use App\Repository\RegionRepositoryInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,15 +14,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Throwable;
 
 #[AsCommand(
-    name: 'app:import-currencies',
-    description: 'Import currencies from json file.',
+    name: 'app:import-regions',
+    description: 'Import regions from json file.',
     hidden: false,
 )]
-class ImportCurrenciesFromJsonCommand extends Command
+class ImportRegionsFromJsonCommand extends Command
 {
     public function __construct(
-        private readonly CurrencyFactoryInterface    $currencyFactory,
-        private readonly CurrencyRepositoryInterface $currencyRepository,
+        private readonly RegionFactoryInterface $regionFactory,
+        private readonly RegionRepositoryInterface $regionRepository,
     )
     {
         parent::__construct();
@@ -30,7 +30,7 @@ class ImportCurrenciesFromJsonCommand extends Command
 
     protected function configure(): void
     {
-        $this->setHelp('This command will import currencies from json file.');
+        $this->setHelp('This command will import regions from json file.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -45,30 +45,29 @@ class ImportCurrenciesFromJsonCommand extends Command
             $imported = 0;
 
             foreach ($data as $country) {
-                $code = $country['currency'];
+                $region = $country['region'];
 
-                if (array_key_exists($code, $existsArr)) {
+                if ($region === '') {
                     continue;
                 }
 
-                $exists = $this->currencyRepository->findByCode($code);
-
-                if ($exists) {
-                    $existsArr[$code] = true;
+                if (array_key_exists($region, $existsArr)) {
                     continue;
                 }
 
-                $name = $country['currency_name'];
-                $symbol = $country['currency_symbol'];
+                $existsRegion = $this->regionRepository->findByTitle($region);
 
-                $currency = $this->currencyFactory
-                    ->setCurrency(new Currency())
-                    ->setCode($code)
-                    ->setName($name)
-                    ->setSymbol($symbol)
+                if ($existsRegion) {
+                    $existsArr[$region] = true;
+                    continue;
+                }
+
+                $regionEntity = $this->regionFactory
+                    ->setRegion(new Region())
+                    ->setTitle($region)
                     ->create();
 
-                $this->currencyRepository->save($currency, true);
+                $this->regionRepository->save($regionEntity, true);
                 $imported++;
             }
         } catch (Throwable $e) {
@@ -76,7 +75,7 @@ class ImportCurrenciesFromJsonCommand extends Command
             return Command::FAILURE;
         }
 
-        $output->writeln("Imported $imported currencies.");
+        $output->writeln("Imported $imported regions.");
         return Command::SUCCESS;
     }
 }

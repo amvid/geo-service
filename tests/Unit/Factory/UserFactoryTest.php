@@ -21,7 +21,7 @@ class UserFactoryTest extends TestCase
         $this->factory = new UserFactory($this->hasher);
     }
 
-    public function testShouldReturnAUser(): void
+    public function testShouldReturnANewUser(): void
     {
         $email = 'john@doe.com';
         $password = 'qwerty';
