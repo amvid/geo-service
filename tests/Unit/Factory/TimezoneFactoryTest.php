@@ -17,7 +17,7 @@ class TimezoneFactoryTest extends TestCase
         $this->timezoneFactory = new TimezoneFactory();
     }
 
-    public function testShouldReturnANewRegion(): void
+    public function testShouldReturnANewTimezone(): void
     {
         $title = 'Europe/Oslo (GMT+01:00)';
         $code = 'Europe/Oslo';

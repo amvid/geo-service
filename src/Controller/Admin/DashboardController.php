@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Currency;
 use App\Entity\Region;
+use App\Entity\SubRegion;
 use App\Entity\Timezone;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -44,5 +45,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Currencies', 'fa fa-dollar', Currency::class);
         yield MenuItem::linkToCrud('Timezones', 'fa fa-clock', Timezone::class);
         yield MenuItem::linkToCrud('Regions', 'fa fa-earth', Region::class);
+        yield MenuItem::linkToCrud('Sub Regions', 'fa fa-location', SubRegion::class);
     }
 }
