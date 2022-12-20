@@ -30,7 +30,7 @@ class SubRegionController extends ApiController
     public function create(Request $request, CreateSubRegionActionInterface $action): JsonResponse
     {
         $req = $this->handleRequest($request, CreateSubRegionActionRequest::class);
-        return $this->json($action->run($req));
+        return $this->json($action->run($req)->subRegionResponse);
     }
 
     /**
@@ -65,7 +65,7 @@ class SubRegionController extends ApiController
         $req = $this->handleRequest($request, UpdateSubRegionActionRequest::class);
         $req->setId($id);
 
-        return $this->json($action->run($req));
+        return $this->json($action->run($req)->subRegionResponse);
     }
 
 }

@@ -27,11 +27,11 @@ class UpdateSubRegionActionResponseTest extends TestCase
 
         $actual = new UpdateSubRegionActionResponse($subRegion);
 
-        $this->assertEquals($id, $actual->id);
-        $this->assertEquals($title, $actual->title);
-        $this->assertEquals($subRegion->getUpdatedAt(), $actual->updatedAt);
-        $this->assertEquals($subRegion->getCreatedAt(), $actual->createdAt);
-        $this->assertEquals($regionTitle, $actual->region->title);
-        $this->assertEquals($regionId, $actual->region->id);
+        $this->assertEquals($id, $actual->subRegionResponse->id);
+        $this->assertEquals($title, $actual->subRegionResponse->title);
+        $this->assertEquals($subRegion->getUpdatedAt(), $actual->subRegionResponse->updatedAt);
+        $this->assertEquals($subRegion->getCreatedAt(), $actual->subRegionResponse->createdAt);
+        $this->assertEquals($regionTitle, $actual->subRegionResponse->region->title);
+        $this->assertEquals($regionId, $actual->subRegionResponse->region->id);
     }
 }
