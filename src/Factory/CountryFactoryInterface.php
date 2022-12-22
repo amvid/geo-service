@@ -21,7 +21,7 @@ interface CountryFactoryInterface
 
     public function setTitle(string $title): self;
 
-    public function setNativeTitle(string $nativeTitle): self;
+    public function setNativeTitle(?string $nativeTitle = null): self;
 
     public function setIso2(string $iso2): self;
 

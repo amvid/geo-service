@@ -30,7 +30,7 @@ class Country
     #[ORM\JoinColumn(nullable: false)]
     private SubRegion $subRegion;
 
-    #[ORM\ManyToMany(targetEntity: Timezone::class)]
+    #[ORM\ManyToMany(targetEntity: Timezone::class, orphanRemoval: true)]
     private Collection $timezones;
 
     #[ORM\ManyToOne]
@@ -40,8 +40,8 @@ class Country
     #[ORM\Column(length: 150, unique: true, nullable: false)]
     private string $title;
 
-    #[ORM\Column(length: 150, unique: true, nullable: false)]
-    private string $nativeTitle;
+    #[ORM\Column(length: 150, nullable: true)]
+    private ?string $nativeTitle = null;
 
     #[ORM\Column(length: 2, unique: true, nullable: false)]
     private string $iso2;
@@ -52,10 +52,10 @@ class Country
     #[ORM\Column(length: 3, unique: true, nullable: false)]
     private string $numericCode;
 
-    #[ORM\Column(length: 20, unique: true, nullable: false)]
+    #[ORM\Column(length: 20, nullable: false)]
     private string $phoneCode;
 
-    #[ORM\Column(length: 100, unique: true, nullable: false)]
+    #[ORM\Column(length: 100, nullable: false)]
     private string $flag;
 
     #[ORM\Column(length: 20, nullable: false)]
@@ -160,12 +160,12 @@ class Country
         return $this;
     }
 
-    public function getNativeTitle(): string
+    public function getNativeTitle(): ?string
     {
         return $this->nativeTitle;
     }
 
-    public function setNativeTitle(string $nativeTitle): self
+    public function setNativeTitle(?string $nativeTitle = null): self
     {
         $this->nativeTitle = $nativeTitle;
         return $this;

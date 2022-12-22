@@ -51,7 +51,7 @@ class CountryFactory implements CountryFactoryInterface
         return $this;
     }
 
-    public function setNativeTitle(string $nativeTitle): CountryFactoryInterface
+    public function setNativeTitle(?string $nativeTitle = null): CountryFactoryInterface
     {
         $this->country->setNativeTitle($nativeTitle);
         return $this;
