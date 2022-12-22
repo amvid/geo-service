@@ -53,9 +53,9 @@ class GetRegionsActionTest extends TestCase
         $action = new GetRegionsAction($this->repository);
         $actual = $action->run($req);
 
-        $this->assertCount(2, $actual->regions);
-        $this->assertEquals($this->europe, $actual->regions[0]);
-        $this->assertEquals($this->asia, $actual->regions[1]);
+        $this->assertCount(2, $actual->response);
+        $this->assertEquals($this->europe->getId(), $actual->response[0]->id);
+        $this->assertEquals($this->asia->getId(), $actual->response[1]->id);
     }
 
 }

@@ -59,12 +59,12 @@ class CreateCurrencyActionTest extends TestCase
             $this->fail('Must not thrown an exception: ' . $e->getMessage());
         }
 
-        $this->assertEquals($expectedResponse->id, $actual->id);
-        $this->assertEquals($expectedResponse->name, $actual->name);
-        $this->assertEquals($expectedResponse->code, $actual->code);
-        $this->assertEquals($expectedResponse->symbol, $actual->symbol);
-        $this->assertEquals($expectedResponse->createdAt, $actual->createdAt);
-        $this->assertEquals($expectedResponse->updatedAt, $actual->updatedAt);
+        $this->assertEquals($expectedResponse->currencyResponse->id, $actual->currencyResponse->id);
+        $this->assertEquals($expectedResponse->currencyResponse->name, $actual->currencyResponse->name);
+        $this->assertEquals($expectedResponse->currencyResponse->code, $actual->currencyResponse->code);
+        $this->assertEquals($expectedResponse->currencyResponse->symbol, $actual->currencyResponse->symbol);
+        $this->assertEquals($expectedResponse->currencyResponse->createdAt, $actual->currencyResponse->createdAt);
+        $this->assertEquals($expectedResponse->currencyResponse->updatedAt, $actual->currencyResponse->updatedAt);
     }
 
     public function testShouldThrowAnErrorIfTitleHasBeenAlreadyTaken(): void

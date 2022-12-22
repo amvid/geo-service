@@ -20,9 +20,9 @@ class UpdateRegionActionResponseTest extends TestCase
 
         $actual = new UpdateRegionActionResponse($region);
 
-        $this->assertEquals($id, $actual->id);
-        $this->assertEquals($title, $actual->title);
-        $this->assertEquals($region->getUpdatedAt(), $actual->updatedAt);
-        $this->assertEquals($region->getCreatedAt(), $actual->createdAt);
+        $this->assertEquals($id, $actual->regionResponse->id);
+        $this->assertEquals($title, $actual->regionResponse->title);
+        $this->assertEquals($region->getUpdatedAt(), $actual->regionResponse->updatedAt);
+        $this->assertEquals($region->getCreatedAt(), $actual->regionResponse->createdAt);
     }
 }

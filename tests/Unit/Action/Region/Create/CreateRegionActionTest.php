@@ -51,10 +51,10 @@ class CreateRegionActionTest extends TestCase
             $this->fail('Must not thrown an exception: ' . $e->getMessage());
         }
 
-        $this->assertEquals($expectedResponse->id, $actual->id);
-        $this->assertEquals($expectedResponse->title, $actual->title);
-        $this->assertEquals($expectedResponse->createdAt, $actual->createdAt);
-        $this->assertEquals($expectedResponse->updatedAt, $actual->updatedAt);
+        $this->assertEquals($expectedResponse->regionResponse->id, $actual->regionResponse->id);
+        $this->assertEquals($expectedResponse->regionResponse->title, $actual->regionResponse->title);
+        $this->assertEquals($expectedResponse->regionResponse->createdAt, $actual->regionResponse->createdAt);
+        $this->assertEquals($expectedResponse->regionResponse->updatedAt, $actual->regionResponse->updatedAt);
     }
 
     public function testShouldThrowAnErrorIfTitleHasBeenAlreadyTaken(): void

@@ -65,10 +65,10 @@ class UpdateTimezoneActionTest extends TestCase
             $this->fail('Must not throw an error: ' . $e->getMessage());
         }
 
-        $this->assertEquals($updateTitle, $actual->title);
-        $this->assertEquals($updateCode, $actual->code);
-        $this->assertEquals($updateUtc, $actual->utc);
-        $this->assertEquals($id, $actual->id);
+        $this->assertEquals($updateTitle, $actual->timezoneResponse->title);
+        $this->assertEquals($updateCode, $actual->timezoneResponse->code);
+        $this->assertEquals($updateUtc, $actual->timezoneResponse->utc);
+        $this->assertEquals($id, $actual->timezoneResponse->id);
     }
 
     public function testShouldThrowNotFoundExceptionIfRegionNotFound(): void

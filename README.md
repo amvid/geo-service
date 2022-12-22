@@ -30,11 +30,32 @@ make test
 
 ### Import
 
+Currencies
+
+```bash
+make ssh
+php bin/console app:import-currencies
+```
+
 Timezones
 
 ```bash
 make ssh
 php bin/console app:import-timezones
+```
+
+Regions
+
+```bash
+make ssh
+php bin/console app:import-regions
+```
+
+Sub regions
+
+```bash
+make ssh
+php bin/console app:import-subregions
 ```
 
 ### Data sources

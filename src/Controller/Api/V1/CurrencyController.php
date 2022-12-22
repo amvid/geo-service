@@ -30,7 +30,7 @@ class CurrencyController extends ApiController
     public function create(Request $request, CreateCurrencyActionInterface $action): JsonResponse
     {
         $req = $this->handleRequest($request, CreateCurrencyActionRequest::class);
-        return $this->json($action->run($req));
+        return $this->json($action->run($req)->currencyResponse);
     }
 
     /**
@@ -53,7 +53,7 @@ class CurrencyController extends ApiController
         $req = GetCurrenciesActionRequest::fromArray($request->query->all());
         $this->validateRequest($req);
 
-        return $this->json($action->run($req)->currencies);
+        return $this->json($action->run($req)->response);
     }
 
     /**
@@ -65,7 +65,7 @@ class CurrencyController extends ApiController
         $req = $this->handleRequest($request, UpdateCurrencyActionRequest::class);
         $req->setId($id);
 
-        return $this->json($action->run($req));
+        return $this->json($action->run($req)->currencyResponse);
     }
 
 }

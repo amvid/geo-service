@@ -4,17 +4,20 @@ declare(strict_types=1);
 
 namespace App\Action\Currency\Get;
 
+use App\Controller\Response\CurrencyResponse;
 use App\Entity\Currency;
 
 class GetCurrenciesActionResponse
 {
-    public array $currencies;
+    public array $response;
 
     /**
      * @param array<Currency> $currencies
      */
     public function __construct(array $currencies)
     {
-        $this->currencies = $currencies;
+        foreach ($currencies as $currency) {
+            $this->response[] = new CurrencyResponse($currency);
+        }
     }
 }

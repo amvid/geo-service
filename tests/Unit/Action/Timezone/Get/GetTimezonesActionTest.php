@@ -57,9 +57,9 @@ class GetTimezonesActionTest extends TestCase
         $action = new GetTimezonesAction($this->repository);
         $actual = $action->run($req);
 
-        $this->assertCount(2, $actual->timezones);
-        $this->assertEquals($this->riga, $actual->timezones[0]);
-        $this->assertEquals($this->oslo, $actual->timezones[1]);
+        $this->assertCount(2, $actual->response);
+        $this->assertEquals($this->riga->getId(), $actual->response[0]->id);
+        $this->assertEquals($this->oslo->getId(), $actual->response[1]->id);
     }
 
 }

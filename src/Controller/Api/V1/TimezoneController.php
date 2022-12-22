@@ -31,7 +31,7 @@ class TimezoneController extends ApiController
     public function create(Request $request, CreateTimezoneActionInterface $action): JsonResponse
     {
         $req = $this->handleRequest($request, CreateTimezoneActionRequest::class);
-        return $this->json($action->run($req));
+        return $this->json($action->run($req)->timezoneResponse);
     }
 
     /**
@@ -54,7 +54,7 @@ class TimezoneController extends ApiController
         $req = GetTimezonesActionRequest::fromArray($request->query->all());
         $this->validateRequest($req);
 
-        return $this->json($action->run($req)->timezones);
+        return $this->json($action->run($req)->response);
     }
 
     /**
@@ -66,7 +66,7 @@ class TimezoneController extends ApiController
         $req = $this->handleRequest($request, UpdateTimezoneActionRequest::class);
         $req->setId($id);
 
-        return $this->json($action->run($req));
+        return $this->json($action->run($req)->timezoneResponse);
     }
 
 }

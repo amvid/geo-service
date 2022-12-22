@@ -52,8 +52,8 @@ class UpdateRegionActionTest extends TestCase
             $this->fail('Must not throw an error: ' . $e->getMessage());
         }
 
-        $this->assertEquals($updateTitle, $actual->title);
-        $this->assertEquals($id, $actual->id);
+        $this->assertEquals($updateTitle, $actual->regionResponse->title);
+        $this->assertEquals($id, $actual->regionResponse->id);
     }
 
     public function testShouldThrowNotFoundExceptionIfRegionNotFound(): void

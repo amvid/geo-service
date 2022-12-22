@@ -57,9 +57,9 @@ class GetCurrenciesActionTest extends TestCase
         $action = new GetCurrenciesAction($this->repository);
         $actual = $action->run($req);
 
-        $this->assertCount(2, $actual->currencies);
-        $this->assertEquals($this->nok, $actual->currencies[0]);
-        $this->assertEquals($this->eur, $actual->currencies[1]);
+        $this->assertCount(2, $actual->response);
+        $this->assertEquals($this->nok->getId(), $actual->response[0]->id);
+        $this->assertEquals($this->eur->getId(), $actual->response[1]->id);
     }
 
 }

@@ -65,10 +65,10 @@ class UpdateCurrencyActionTest extends TestCase
             $this->fail('Must not throw an error: ' . $e->getMessage());
         }
 
-        $this->assertEquals($updateName, $actual->name);
-        $this->assertEquals($updateCode, $actual->code);
-        $this->assertEquals($updateSymbol, $actual->symbol);
-        $this->assertEquals($id, $actual->id);
+        $this->assertEquals($updateName, $actual->currencyResponse->name);
+        $this->assertEquals($updateCode, $actual->currencyResponse->code);
+        $this->assertEquals($updateSymbol, $actual->currencyResponse->symbol);
+        $this->assertEquals($id, $actual->currencyResponse->id);
     }
 
     public function testShouldThrowNotFoundExceptionIfRegionNotFound(): void
