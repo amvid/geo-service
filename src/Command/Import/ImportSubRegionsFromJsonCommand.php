@@ -39,7 +39,7 @@ class ImportSubRegionsFromJsonCommand extends Command
     {
         try {
             $data = json_decode(
-                file_get_contents(ImportConfig::getGeoDataFilepath()),
+                file_get_contents(Config::getGeoDataFilepath()),
                 true, 512, JSON_THROW_ON_ERROR
             );
 

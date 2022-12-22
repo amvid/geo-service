@@ -44,13 +44,13 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
         return $this->findOneBy(['title' => $title]);
     }
 
-    public function findByISO3(string $iso3): ?Country
+    public function findByIso3(string $iso3): ?Country
     {
-        return $this->findOneBy(['ISO3' => $iso3]);
+        return $this->findOneBy(['iso3' => $iso3]);
     }
 
-    public function findByISO2(string $iso2): ?Country
+    public function findByIso2(string $iso2): ?Country
     {
-        return $this->findOneBy(['ISO2' => $iso2]);
+        return $this->findOneBy(['iso2' => $iso2]);
     }
 }

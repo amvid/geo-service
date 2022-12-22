@@ -36,10 +36,7 @@ class ImportCurrenciesFromJsonCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
-            $data = json_decode(
-                file_get_contents(ImportConfig::getGeoDataFilepath()),
-                true, 512, JSON_THROW_ON_ERROR
-            );
+            $data = ImportHelper::getDataFromJsonFile(Config::getGeoDataFilepath());
 
             $existsArr = [];
             $imported = 0;

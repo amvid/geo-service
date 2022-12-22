@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
+use App\Entity\Country;
 use App\Entity\Currency;
 use App\Entity\Region;
 use App\Entity\SubRegion;
@@ -46,5 +47,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Timezones', 'fa fa-clock', Timezone::class);
         yield MenuItem::linkToCrud('Regions', 'fa fa-earth', Region::class);
         yield MenuItem::linkToCrud('Sub Regions', 'fa fa-location', SubRegion::class);
+        yield MenuItem::linkToCrud('Countries', 'fa fa-flag', Country::class);
     }
 }

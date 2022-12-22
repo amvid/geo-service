@@ -17,7 +17,7 @@ interface CountryRepositoryInterface
 
     public function findByTitle(string $title): ?Country;
 
-    public function findByISO3(string $iso3): ?Country;
+    public function findByIso3(string $iso3): ?Country;
 
-    public function findByISO2(string $iso2): ?Country;
+    public function findByIso2(string $iso2): ?Country;
 }

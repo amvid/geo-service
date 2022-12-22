@@ -37,10 +37,6 @@ class Country
     #[ORM\JoinColumn(nullable: false)]
     private Currency $currency;
 
-//    #[ORM\ManyToOne]
-//    #[ORM\JoinColumn(nullable: false)]
-//    private City $capital;
-
     #[ORM\Column(length: 150, unique: true, nullable: false)]
     private string $title;
 
@@ -161,6 +157,61 @@ class Country
     public function setCurrency(Currency $currency): self
     {
         $this->currency = $currency;
+        return $this;
+    }
+
+    public function getNativeTitle(): string
+    {
+        return $this->nativeTitle;
+    }
+
+    public function setNativeTitle(string $nativeTitle): self
+    {
+        $this->nativeTitle = $nativeTitle;
+        return $this;
+    }
+
+    public function getNumericCode(): string
+    {
+        return $this->numericCode;
+    }
+
+    public function setNumericCode(string $numericCode): self
+    {
+        $this->numericCode = $numericCode;
+        return $this;
+    }
+
+    public function getPhoneCode(): string
+    {
+        return $this->phoneCode;
+    }
+
+    public function setPhoneCode(string $phoneCode): self
+    {
+        $this->phoneCode = $phoneCode;
+        return $this;
+    }
+
+    public function getFlag(): string
+    {
+        return $this->flag;
+    }
+
+    public function setFlag(string $flag): self
+    {
+        $this->flag = $flag;
+        return $this;
+    }
+
+    public function getTld(): string
+    {
+        return $this->tld;
+    }
+
+    public function setTld(string $tld): self
+    {
+        $this->tld = $tld;
         return $this;
     }
 
