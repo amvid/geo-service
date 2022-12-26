@@ -256,7 +256,7 @@ class CreateCountryActionTest extends TestCase
         $this->factory
             ->expects($this->once())->method('create')->willReturn($country);
 
-        $this->countryRepository->expects($this->once())->method('save')->with($country);
+        $this->countryRepository->expects($this->once())->method('save')->with($country, true);
 
         $actual = $this->action->run($this->request);
 

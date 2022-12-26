@@ -44,13 +44,13 @@ readonly class CreateCountryAction implements CreateCountryActionInterface
         $subRegion = $this->subRegionRepository->findByTitle($request->subRegion);
 
         if (!$subRegion) {
-            throw new SubRegionNotFoundException();
+            throw new SubRegionNotFoundException($request->subRegion);
         }
 
         $currency = $this->currencyRepository->findByCode($request->currencyCode);
 
         if (!$currency) {
-            throw new CurrencyNotFoundException();
+            throw new CurrencyNotFoundException($request->currencyCode);
         }
 
         $tzs = new ArrayCollection();
@@ -59,7 +59,7 @@ readonly class CreateCountryAction implements CreateCountryActionInterface
             $timezone = $this->timezoneRepository->findByCode($tz);
 
             if (!$timezone) {
-                throw new TimezoneNotFoundException();
+                throw new TimezoneNotFoundException($tz);
             }
 
             $tzs->add($timezone);

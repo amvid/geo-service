@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TimezoneNotFoundException extends ApplicationException
 {
-    public function __construct()
+    public function __construct(string $identifier)
     {
-        parent::__construct('Timezone not found.', Response::HTTP_NOT_FOUND);
+        parent::__construct("Timezone '$identifier' not found.", Response::HTTP_NOT_FOUND);
     }
 }
