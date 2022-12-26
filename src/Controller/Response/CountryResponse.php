@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Controller\Response;
 
 use App\Entity\Country;
-use App\Entity\Timezone;
 use DateTimeInterface;
 use Ramsey\Uuid\UuidInterface;
 

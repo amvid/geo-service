@@ -52,7 +52,9 @@ class CreateCountryActionRequest
     #[NotBlank]
     public float $longitude;
 
-    // Array of timezone codes: "Europe/Oslo"
+    /**
+     * Array of timezone codes: "Europe/Oslo"
+     */
     #[NotBlank]
     #[Count(min: 1)]
     public array $timezones;

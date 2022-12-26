@@ -82,7 +82,7 @@ readonly class CreateCountryAction implements CreateCountryActionInterface
             ->setTld($request->tld)
             ->create();
 
-        $this->countryRepository->save($country);
+        $this->countryRepository->save($country, true);
 
         return new CreateCountryActionResponse($country);
     }
