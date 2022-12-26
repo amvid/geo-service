@@ -8,6 +8,8 @@ use App\Action\Country\Create\CreateCountryActionInterface;
 use App\Action\Country\Create\CreateCountryActionRequest;
 use App\Action\Country\Delete\DeleteCountryActionInterface;
 use App\Action\Country\Delete\DeleteCountryActionRequest;
+use App\Action\Country\Update\UpdateCountryActionInterface;
+use App\Action\Country\Update\UpdateCountryActionRequest;
 use App\Controller\Api\ApiController;
 use App\Controller\HttpMethod;
 use App\Exception\ValidationException;
@@ -51,17 +53,17 @@ class CountryController extends ApiController
 //
 //        return $this->json($action->run($req)->response);
 //    }
-//
-//    /**
-//     * @throws ValidationException
-//     */
-//    #[Route(self::API_ROUTE . '/{id}', name: 'app_api_v1_country_update', methods: HttpMethod::PUT)]
-//    public function update(string $id, Request $request, UpdateCurrencyActionInterface $action): JsonResponse
-//    {
-//        $req = $this->handleRequest($request, UpdateCurrencyActionRequest::class);
-//        $req->setId($id);
-//
-//        return $this->json($action->run($req)->currencyResponse);
-//    }
+
+    /**
+     * @throws ValidationException
+     */
+    #[Route(self::API_ROUTE . '/{id}', name: 'app_api_v1_country_update', methods: HttpMethod::PUT)]
+    public function update(string $id, Request $request, UpdateCountryActionInterface $action): JsonResponse
+    {
+        $req = $this->handleRequest($request, UpdateCountryActionRequest::class);
+        $req->setId($id);
+
+        return $this->json($action->run($req)->countryResponse);
+    }
 
 }
