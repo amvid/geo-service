@@ -13,7 +13,7 @@ class CountryResponse
 {
     public UuidInterface $id;
     public string $title;
-    public string $nativeTitle;
+    public ?string $nativeTitle = null;
     public string $iso2;
     public string $iso3;
     public string $numericCode;
@@ -22,7 +22,7 @@ class CountryResponse
     public string $tld;
     public float $longitude;
     public float $latitude;
-    public int $altitude;
+    public ?int $altitude = null;
 
     public DateTimeInterface $createdAt;
     public DateTimeInterface $updatedAt;
@@ -31,7 +31,7 @@ class CountryResponse
     public SubRegionResponse $subRegion;
 
     /**
-     * @var array<Timezone> $timezones
+     * @var array<TimezoneResponse> $timezones
      */
     public array $timezones;
 
@@ -45,6 +45,7 @@ class CountryResponse
         $this->numericCode = $country->getNumericCode();
         $this->phoneCode = $country->getPhoneCode();
         $this->tld = $country->getTld();
+        $this->flag = $country->getFlag();
         $this->longitude = $country->getLongitude();
         $this->latitude = $country->getLatitude();
         $this->altitude = $country->getAltitude();

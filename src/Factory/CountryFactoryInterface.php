@@ -39,7 +39,7 @@ interface CountryFactoryInterface
 
     public function setLatitude(float $latitude): self;
 
-    public function setAltitude(int $altitude): self;
+    public function setAltitude(?int $altitude = null): self;
 
     public function create(): Country;
 }

@@ -105,7 +105,7 @@ class CountryFactory implements CountryFactoryInterface
         return $this;
     }
 
-    public function setAltitude(int $altitude): CountryFactoryInterface
+    public function setAltitude(?int $altitude = null): CountryFactoryInterface
     {
         $this->country->setAltitude($altitude);
         return $this;

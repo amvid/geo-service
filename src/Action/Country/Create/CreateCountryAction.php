@@ -37,7 +37,7 @@ readonly class CreateCountryAction implements CreateCountryActionInterface
     {
         $exists = $this->countryRepository->findByIso2($request->iso2);
 
-        if (!$exists) {
+        if ($exists) {
             throw new CountryAlreadyExistsException();
         }
 

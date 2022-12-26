@@ -17,12 +17,12 @@ trait PositionTrait
     #[Column(nullable: true)]
     private ?int $altitude = null;
 
-    public function getAltitude(): int
+    public function getAltitude(): ?int
     {
         return $this->altitude;
     }
 
-    public function setAltitude(int $altitude): self
+    public function setAltitude(?int $altitude = null): self
     {
         $this->altitude = $altitude;
         return $this;
