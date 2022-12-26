@@ -60,7 +60,7 @@ class UpdateSubRegionActionTest extends TestCase
         $this->subRegionRepository
             ->expects($this->once())
             ->method('save')
-            ->with($subRegion);
+            ->with($subRegion, true);
 
         $action = new UpdateSubRegionAction($this->subRegionRepository, $this->regionRepository);
 

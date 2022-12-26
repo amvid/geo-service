@@ -21,7 +21,7 @@ readonly class UpdateRegionAction implements UpdateRegionActionInterface
         $region = $this->regionRepository->findById($request->id);
 
         if (!$region) {
-            throw new RegionNotFoundException();
+            throw new RegionNotFoundException($request->id->toString());
         }
 
         $region->setTitle($request->title);

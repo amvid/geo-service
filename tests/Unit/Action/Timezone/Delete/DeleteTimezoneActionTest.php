@@ -37,7 +37,7 @@ class DeleteTimezoneActionTest extends TestCase
         $this->repository
             ->expects($this->once())
             ->method('remove')
-            ->with($tz);
+            ->with($tz, true);
 
         $action = new DeleteTimezoneAction($this->repository);
         $req = new DeleteTimezoneActionRequest($id->toString());

@@ -55,7 +55,7 @@ class UpdateCurrencyActionTest extends TestCase
         $this->repository
             ->expects($this->once())
             ->method('save')
-            ->with($currency);
+            ->with($currency, true);
 
         $action = new UpdateCurrencyAction($this->repository);
 
@@ -71,7 +71,7 @@ class UpdateCurrencyActionTest extends TestCase
         $this->assertEquals($id, $actual->currencyResponse->id);
     }
 
-    public function testShouldThrowNotFoundExceptionIfRegionNotFound(): void
+    public function testShouldThrowNotFoundExceptionIfCurrencyNotFound(): void
     {
         $id = Uuid::uuid4();
         $req = new UpdateCurrencyActionRequest();

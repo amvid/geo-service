@@ -55,7 +55,7 @@ class UpdateTimezoneActionTest extends TestCase
         $this->timezoneRepository
             ->expects($this->once())
             ->method('save')
-            ->with($tz);
+            ->with($tz, true);
 
         $action = new UpdateTimezoneAction($this->timezoneRepository);
 

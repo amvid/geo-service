@@ -37,7 +37,7 @@ class DeleteRegionActionTest extends TestCase
         $this->repository
             ->expects($this->once())
             ->method('remove')
-            ->with($region);
+            ->with($region, true);
 
         $action = new DeleteRegionAction($this->repository);
         $req = new DeleteRegionActionRequest($id->toString());

@@ -50,6 +50,7 @@ class CreateCurrencyActionTest extends TestCase
         $this->factory->expects($this->once())->method('setCode')->with($code)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setSymbol')->with($symbol)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('create')->willReturn($currency);
+        $this->repository->expects($this->once())->method('save')->with($currency, true);
 
         $action = new CreateCurrencyAction($this->repository, $this->factory);
 

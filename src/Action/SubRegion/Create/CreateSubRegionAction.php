@@ -35,7 +35,7 @@ readonly class CreateSubRegionAction implements CreateSubRegionActionInterface
         $region = $this->regionRepository->findById($request->regionId);
 
         if (!$region) {
-            throw new RegionNotFoundException();
+            throw new RegionNotFoundException($request->regionId->toString());
         }
 
         $subRegion = $this->subRegionFactory
