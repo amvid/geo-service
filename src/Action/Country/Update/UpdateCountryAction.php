@@ -14,7 +14,6 @@ use App\Repository\CurrencyRepositoryInterface;
 use App\Repository\SubRegionRepositoryInterface;
 use App\Repository\TimezoneRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use Ramsey\Uuid\UuidInterface;
 
 readonly class UpdateCountryAction implements UpdateCountryActionInterface
 {

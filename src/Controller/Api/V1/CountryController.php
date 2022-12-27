@@ -8,11 +8,14 @@ use App\Action\Country\Create\CreateCountryActionInterface;
 use App\Action\Country\Create\CreateCountryActionRequest;
 use App\Action\Country\Delete\DeleteCountryActionInterface;
 use App\Action\Country\Delete\DeleteCountryActionRequest;
+use App\Action\Country\Get\GetCountriesActionInterface;
+use App\Action\Country\Get\GetCountriesActionRequest;
 use App\Action\Country\Update\UpdateCountryActionInterface;
 use App\Action\Country\Update\UpdateCountryActionRequest;
 use App\Controller\Api\ApiController;
 use App\Controller\HttpMethod;
 use App\Exception\ValidationException;
+use JsonException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,6 +26,7 @@ class CountryController extends ApiController
 
     /**
      * @throws ValidationException
+     * @throws JsonException
      */
     #[Route(self::API_ROUTE, name: 'app_api_v1_country_create', methods: HttpMethod::POST)]
     public function create(Request $request, CreateCountryActionInterface $action): JsonResponse
@@ -42,20 +46,20 @@ class CountryController extends ApiController
         return $this->json($action->run($req));
     }
 
-//    /**
-//     * @throws ValidationException
-//     */
-//    #[Route(self::API_ROUTE, name: 'app_api_v1_country_list', methods: HttpMethod::GET)]
-//    public function list(Request $request, GetCurrenciesActionInterface $action): JsonResponse
-//    {
-//        $req = GetCurrenciesActionRequest::fromArray($request->query->all());
-//        $this->validateRequest($req);
-//
-//        return $this->json($action->run($req)->response);
-//    }
-
     /**
      * @throws ValidationException
+     */
+    #[Route(self::API_ROUTE, name: 'app_api_v1_country_list', methods: HttpMethod::GET)]
+    public function list(Request $request, GetCountriesActionInterface $action): JsonResponse
+    {
+        $req = GetCountriesActionRequest::fromArray($request->query->all());
+        $this->validateRequest($req);
+
+        return $this->json($action->run($req)->response);
+    }
+
+    /**
+     * @throws ValidationException|JsonException
      */
     #[Route(self::API_ROUTE . '/{id}', name: 'app_api_v1_country_update', methods: HttpMethod::PUT)]
     public function update(string $id, Request $request, UpdateCountryActionInterface $action): JsonResponse

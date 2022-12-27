@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Country;
+use App\Entity\Currency;
+use App\Entity\SubRegion;
 use Ramsey\Uuid\UuidInterface;
 
 interface CountryRepositoryInterface
@@ -20,4 +22,19 @@ interface CountryRepositoryInterface
     public function findByIso3(string $iso3): ?Country;
 
     public function findByIso2(string $iso2): ?Country;
+
+    public function list(
+        int $offset,
+        int $limit,
+        ?UuidInterface $id,
+        ?string $title,
+        ?string $nativeTitle,
+        ?string $iso2,
+        ?string $iso3,
+        ?string $phoneCode,
+        ?string $numericCode,
+        ?string $tld,
+        ?Currency $currency,
+        ?SubRegion $subRegion,
+    ): array;
 }

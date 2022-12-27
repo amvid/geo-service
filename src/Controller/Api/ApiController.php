@@ -40,7 +40,7 @@ class ApiController extends AbstractController
         $errors = $this->validator->validate($request);
 
         if (count($errors) > 0) {
-            throw new ValidationException((string) $errors);
+            throw new ValidationException((string)$errors);
         }
     }
 }
