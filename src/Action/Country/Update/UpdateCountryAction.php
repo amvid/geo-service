@@ -44,21 +44,21 @@ readonly class UpdateCountryAction implements UpdateCountryActionInterface
 
         $this->countryFactory->setCountry($exists);
 
-        if ($request->subRegionId) {
-            $subRegion = $this->subRegionRepository->findById($request->subRegionId);
+        if ($request->subRegion) {
+            $subRegion = $this->subRegionRepository->findByTitle($request->subRegion);
 
             if (!$subRegion) {
-                throw new SubRegionNotFoundException($request->subRegionId->toString());
+                throw new SubRegionNotFoundException($request->subRegion);
             }
 
             $this->countryFactory->setSubRegion($subRegion);
         }
 
-        if ($request->currencyId) {
-            $currency = $this->currencyRepository->findById($request->currencyId);
+        if ($request->currencyCode) {
+            $currency = $this->currencyRepository->findByCode($request->currencyCode);
 
             if (!$currency) {
-                throw new CurrencyNotFoundException($request->currencyId->toString());
+                throw new CurrencyNotFoundException($request->currencyCode);
             }
 
             $this->countryFactory->setCurrency($currency);
@@ -67,12 +67,11 @@ readonly class UpdateCountryAction implements UpdateCountryActionInterface
         if ($request->timezones) {
             $tzs = new ArrayCollection();
 
-            /** @var UuidInterface $tzId */
-            foreach ($request->timezones as $tzId) {
-                $timezone = $this->timezoneRepository->findById($tzId);
+            foreach ($request->timezones as $tzCode) {
+                $timezone = $this->timezoneRepository->findByCode($tzCode);
 
                 if (!$timezone) {
-                    throw new TimezoneNotFoundException($tzId->toString());
+                    throw new TimezoneNotFoundException($tzCode);
                 }
 
                 $tzs->add($timezone);

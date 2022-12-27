@@ -36,8 +36,8 @@ class UpdateCountryActionTest extends TestCase
     private UpdateCountryActionRequest $request;
 
     private UuidInterface $id;
-    private UuidInterface $subRegionId;
-    private UuidInterface $currencyId;
+    private string $subRegion = 'Northern Europe';
+    private string $currencyCode = 'NOK';
     private string $title = 'Norway';
     private string $nativeTitle = 'Norge';
     private string $iso2 = 'NO';
@@ -49,7 +49,7 @@ class UpdateCountryActionTest extends TestCase
     private float $longitude = 10.0;
     private float $latitude = 62.0;
 
-    private UuidInterface $timezoneId;
+    private array $timezones = ['Europe/Oslo'];
 
     protected function setUp(): void
     {
@@ -67,15 +67,11 @@ class UpdateCountryActionTest extends TestCase
             $this->subRegionRepository
         );
 
-        $this->subRegionId = Uuid::uuid4();
-        $this->currencyId = Uuid::uuid4();
-
-        $this->timezoneId = Uuid::uuid4();
-
         $this->id = Uuid::uuid4();
-        $this->request = new UpdateCountryActionRequest($this->subRegionId->toString(), $this->currencyId->toString(), [
-            $this->timezoneId->toString(),
-        ]);
+        $this->request = new UpdateCountryActionRequest();
+        $this->request->currencyCode = $this->currencyCode;
+        $this->request->subRegion = $this->subRegion;
+        $this->request->timezones = $this->timezones;
         $this->request->nativeTitle = $this->nativeTitle;
         $this->request->flag = $this->flag;
         $this->request->phoneCode = $this->phoneCode;
@@ -108,8 +104,8 @@ class UpdateCountryActionTest extends TestCase
 
         $this->subRegionRepository
             ->expects($this->once())
-            ->method('findById')
-            ->with($this->subRegionId)
+            ->method('findByTitle')
+            ->with($this->subRegion)
             ->willReturn(null);
 
         $this->expectException(SubRegionNotFoundException::class);
@@ -126,14 +122,14 @@ class UpdateCountryActionTest extends TestCase
 
         $this->subRegionRepository
             ->expects($this->once())
-            ->method('findById')
-            ->with($this->subRegionId)
+            ->method('findByTitle')
+            ->with($this->subRegion)
             ->willReturn(new SubRegion());
 
         $this->currencyRepository
             ->expects($this->once())
-            ->method('findById')
-            ->with($this->currencyId)
+            ->method('findByCode')
+            ->with($this->currencyCode)
             ->willReturn(null);
 
         $this->expectException(CurrencyNotFoundException::class);
@@ -150,20 +146,20 @@ class UpdateCountryActionTest extends TestCase
 
         $this->subRegionRepository
             ->expects($this->once())
-            ->method('findById')
-            ->with($this->subRegionId)
+            ->method('findByTitle')
+            ->with($this->subRegion)
             ->willReturn(new SubRegion());
 
         $this->currencyRepository
             ->expects($this->once())
-            ->method('findById')
-            ->with($this->currencyId)
+            ->method('findByCode')
+            ->with($this->currencyCode)
             ->willReturn(new Currency());
 
         $this->timezoneRepository
             ->expects($this->once())
-            ->method('findById')
-            ->with($this->timezoneId)
+            ->method('findByCode')
+            ->with($this->timezones[0])
             ->willReturn(null);
 
         $this->expectException(TimezoneNotFoundException::class);
@@ -201,8 +197,8 @@ class UpdateCountryActionTest extends TestCase
         $subRegion->setTitle('Northern Europe')->setRegion($region)->setCreatedAt();
         $this->subRegionRepository
             ->expects($this->once())
-            ->method('findById')
-            ->with($this->subRegionId)
+            ->method('findByTitle')
+            ->with($this->subRegion)
             ->willReturn($subRegion);
 
         $country->setSubRegion($subRegion);
@@ -212,8 +208,8 @@ class UpdateCountryActionTest extends TestCase
         $currency->setName('Norwegian Krone')->setCode('NOK')->setSymbol('kr')->setCreatedAt();
         $this->currencyRepository
             ->expects($this->once())
-            ->method('findById')
-            ->with($this->currencyId)
+            ->method('findByCode')
+            ->with($this->currencyCode)
             ->willReturn($currency);
 
         $country->setCurrency($currency);
@@ -225,8 +221,8 @@ class UpdateCountryActionTest extends TestCase
         $tzs->add($timezone);
         $this->timezoneRepository
             ->expects($this->once())
-            ->method('findById')
-            ->with($this->timezoneId)
+            ->method('findByCode')
+            ->with($this->timezones[0])
             ->willReturn($timezone);
 
         $country->addTimezone($timezone);

@@ -20,10 +20,10 @@ class UpdateCountryActionRequest
     public ?string $phoneCode = null;
 
     #[Length(min: 1, max: 150)]
-    public ?UuidInterface $subRegionId = null;
+    public ?string $subRegion = null;
 
     #[Length(min: 1, max: 3)]
-    public ?UuidInterface $currencyId = null;
+    public ?string $currencyCode = null;
 
     #[Length(min: 1, max: 100)]
     public ?string $flag = null;
@@ -32,7 +32,7 @@ class UpdateCountryActionRequest
     public ?string $tld = null;
 
     /**
-     * @param array<UuidInterface> $timezones
+     * @param array<string> $timezones
      */
     #[Count(min: 1)]
     public ?array $timezones = null;
@@ -42,23 +42,6 @@ class UpdateCountryActionRequest
     public ?float $longitude = null;
 
     public ?int $altitude = null;
-
-    public function __construct(?string $subRegionId = null, ?string $currencyId = null, ?array $timezones = null)
-    {
-        if ($subRegionId) {
-            $this->subRegionId = Uuid::fromString($subRegionId);
-        }
-
-        if ($currencyId) {
-            $this->currencyId = Uuid::fromString($currencyId);
-        }
-
-        if (!empty($timezones)) {
-            foreach ($timezones as $tzId) {
-                $this->timezones[] = Uuid::fromString($tzId);
-            }
-        }
-    }
 
     public function setId(string $id): self
     {
