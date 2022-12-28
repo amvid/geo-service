@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
+use App\Currency\Entity\Currency;
 use App\Entity\Country;
-use App\Entity\Currency;
 use App\Entity\User;
 use App\Region\Entity\Region;
 use App\SubRegion\Entity\SubRegion;

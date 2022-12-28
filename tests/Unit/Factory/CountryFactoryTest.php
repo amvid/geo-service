@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Factory;
 
-use App\Entity\Currency;
+use App\Currency\Entity\Currency;
 use App\Factory\CountryFactory;
 use App\Factory\CountryFactoryInterface;
 use App\SubRegion\Entity\SubRegion;

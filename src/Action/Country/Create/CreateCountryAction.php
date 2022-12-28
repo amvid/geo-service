@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Action\Country\Create;
 
+use App\Currency\Exception\CurrencyNotFoundException;
+use App\Currency\Repository\CurrencyRepositoryInterface;
 use App\Exception\CountryAlreadyExistsException;
-use App\Exception\CurrencyNotFoundException;
 use App\Factory\CountryFactoryInterface;
 use App\Repository\CountryRepositoryInterface;
-use App\Repository\CurrencyRepositoryInterface;
 use App\SubRegion\Exception\SubRegionNotFoundException;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
 use App\Timezone\Exception\TimezoneNotFoundException;

@@ -6,14 +6,14 @@ namespace App\Tests\Unit\Action\Country\Update;
 
 use App\Action\Country\Update\UpdateCountryAction;
 use App\Action\Country\Update\UpdateCountryActionRequest;
+use App\Currency\Entity\Currency;
+use App\Currency\Exception\CurrencyNotFoundException;
+use App\Currency\Repository\CurrencyRepositoryInterface;
 use App\Entity\Country;
-use App\Entity\Currency;
 use App\Exception\CountryNotFoundException;
-use App\Exception\CurrencyNotFoundException;
 use App\Factory\CountryFactoryInterface;
 use App\Region\Entity\Region;
 use App\Repository\CountryRepositoryInterface;
-use App\Repository\CurrencyRepositoryInterface;
 use App\SubRegion\Entity\SubRegion;
 use App\SubRegion\Exception\SubRegionNotFoundException;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;

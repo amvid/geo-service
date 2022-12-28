@@ -30,6 +30,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Timezone/Entity'
                 prefix: 'App\Timezone\Entity'
                 alias: Timezone
+            Currency:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Currency/Entity'
+                prefix: 'App\Currency\Entity'
+                alias: Currency
 
 when@test:
     doctrine:

@@ -21,3 +21,9 @@ app_timezones:
     path: ../src/Timezone/Controller/
     namespace: App\Timezone\Controller
   type: attribute
+
+app_currencies:
+  resource:
+    path: ../src/Currency/Controller/
+    namespace: App\Currency\Controller
+  type: attribute

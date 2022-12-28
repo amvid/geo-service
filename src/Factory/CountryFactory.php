@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
+use App\Currency\Entity\Currency;
 use App\Entity\Country;
-use App\Entity\Currency;
 use App\SubRegion\Entity\SubRegion;
 use Doctrine\Common\Collections\Collection;
 

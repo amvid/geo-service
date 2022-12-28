@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Entity;
 
+use App\Currency\Entity\Currency;
 use App\Entity\Country;
-use App\Entity\Currency;
 use App\SubRegion\Entity\SubRegion;
 use App\Timezone\Entity\Timezone;
 use PHPUnit\Framework\TestCase;

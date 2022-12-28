@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Currency\Entity\Currency;
 use App\Repository\CountryRepository;
 use App\SubRegion\Entity\SubRegion;
 use App\Timezone\Entity\Timezone;

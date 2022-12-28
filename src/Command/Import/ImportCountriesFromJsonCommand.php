@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Command\Import;
 
+use App\Currency\Repository\CurrencyRepositoryInterface;
 use App\Entity\Country;
 use App\Factory\CountryFactoryInterface;
 use App\Repository\CountryRepositoryInterface;
-use App\Repository\CurrencyRepositoryInterface;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Response;
 
+use App\Currency\Controller\Response\CurrencyResponse;
 use App\Entity\Country;
 use App\SubRegion\Controller\Response\SubRegionResponse;
 use App\Timezone\Controller\Response\TimezoneResponse;
