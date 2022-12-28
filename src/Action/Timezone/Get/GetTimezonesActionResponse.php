@@ -7,7 +7,7 @@ namespace App\Action\Timezone\Get;
 use App\Controller\Response\TimezoneResponse;
 use App\Entity\Timezone;
 
-class GetTimezonesActionResponse
+readonly class GetTimezonesActionResponse
 {
     public array $response;
 

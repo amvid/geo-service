@@ -7,7 +7,7 @@ namespace App\Action\Country\Get;
 use App\Controller\Response\CountryResponse;
 use App\Entity\Country;
 
-class GetCountriesActionResponse
+readonly class GetCountriesActionResponse
 {
     public array $response;
 

@@ -7,7 +7,7 @@ namespace App\Action\SubRegion\Create;
 use App\Controller\Response\SubRegionResponse;
 use App\Entity\SubRegion;
 
-class CreateSubRegionActionResponse
+readonly class CreateSubRegionActionResponse
 {
     public SubRegionResponse $subRegionResponse;
 
