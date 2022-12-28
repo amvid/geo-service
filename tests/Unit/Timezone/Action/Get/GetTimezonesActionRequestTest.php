@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Timezone\Action\Get;
 
-use App\Controller\Request\LimitOffsetParser;
+use App\Application\Controller\Request\LimitOffsetParser;
 use App\Timezone\Action\Get\GetTimezonesActionRequest;
 use PHPUnit\Framework\TestCase;
 

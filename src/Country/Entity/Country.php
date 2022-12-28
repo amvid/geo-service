@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Country\Entity;
 
+use App\Application\Trait\PositionTrait;
+use App\Application\Trait\TimestampTrait;
 use App\Country\Repository\CountryRepository;
 use App\Currency\Entity\Currency;
 use App\SubRegion\Entity\SubRegion;
 use App\Timezone\Entity\Timezone;
-use App\Trait\PositionTrait;
-use App\Trait\TimestampTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

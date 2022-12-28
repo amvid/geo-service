@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Timezone\Controller\Api;
 
-use App\Controller\Api\ApiController;
-use App\Controller\HttpMethod;
-use App\Exception\ValidationException;
+use App\Application\Controller\Api\ApiController;
+use App\Application\Controller\HttpMethod;
+use App\Application\Exception\ValidationException;
 use App\Timezone\Action\Create\CreateTimezoneActionInterface;
 use App\Timezone\Action\Create\CreateTimezoneActionRequest;
 use App\Timezone\Action\Delete\DeleteTimezoneActionInterface;

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Country\Action\Get;
 
-use App\Controller\Request\LimitOffsetInterface;
-use App\Controller\Request\LimitOffsetParser;
+use App\Application\Controller\Request\LimitOffsetInterface;
+use App\Application\Controller\Request\LimitOffsetParser;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints\Range;

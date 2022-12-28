@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Country\Command\Import;
 
-use App\Command\Import\Config;
-use App\Command\Import\ImportHelper;
+use App\Application\Command\Import\Config;
+use App\Application\Command\Import\ImportHelper;
 use App\Country\Entity\Country;
 use App\Country\Factory\CountryFactoryInterface;
 use App\Country\Repository\CountryRepositoryInterface;

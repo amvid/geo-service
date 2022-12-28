@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Timezone\Entity;
 
+use App\Application\Trait\TimestampTrait;
 use App\Timezone\Repository\TimezoneRepository;
-use App\Trait\TimestampTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;

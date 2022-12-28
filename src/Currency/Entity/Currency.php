@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Currency\Entity;
 
+use App\Application\Trait\TimestampTrait;
 use App\Currency\Repository\CurrencyRepository;
-use App\Trait\TimestampTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\Doctrine\UuidType;

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\SubRegion\Entity;
 
+use App\Application\Trait\TimestampTrait;
 use App\Region\Entity\Region;
 use App\SubRegion\Repository\SubRegionRepository;
-use App\Trait\TimestampTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;

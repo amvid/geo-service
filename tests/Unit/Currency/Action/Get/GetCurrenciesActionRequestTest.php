@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Currency\Action\Get;
 
-use App\Controller\Request\LimitOffsetParser;
+use App\Application\Controller\Request\LimitOffsetParser;
 use App\Currency\Action\Get\GetCurrenciesActionRequest;
 use PHPUnit\Framework\TestCase;
 

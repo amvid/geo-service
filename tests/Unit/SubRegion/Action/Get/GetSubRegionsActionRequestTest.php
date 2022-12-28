@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\SubRegion\Action\Get;
 
-use App\Controller\Request\LimitOffsetParser;
+use App\Application\Controller\Request\LimitOffsetParser;
 use App\Region\Action\Get\GetRegionsActionRequest;
 use App\SubRegion\Action\Get\GetSubRegionsActionRequest;
 use PHPUnit\Framework\TestCase;

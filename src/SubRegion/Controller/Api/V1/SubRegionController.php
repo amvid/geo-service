@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\SubRegion\Controller\Api\V1;
 
-use App\Controller\Api\ApiController;
-use App\Controller\HttpMethod;
-use App\Exception\ValidationException;
+use App\Application\Controller\Api\ApiController;
+use App\Application\Controller\HttpMethod;
+use App\Application\Exception\ValidationException;
 use App\SubRegion\Action\Create\CreateSubRegionActionInterface;
 use App\SubRegion\Action\Create\CreateSubRegionActionRequest;
 use App\SubRegion\Action\Delete\DeleteSubRegionActionInterface;

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Currency\Command\Import;
 
-use App\Command\Import\Config;
-use App\Command\Import\ImportHelper;
+use App\Application\Command\Import\Config;
+use App\Application\Command\Import\ImportHelper;
 use App\Currency\Entity\Currency;
 use App\Currency\Factory\CurrencyFactoryInterface;
 use App\Currency\Repository\CurrencyRepositoryInterface;

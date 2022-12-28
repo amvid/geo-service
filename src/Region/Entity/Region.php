@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Region\Entity;
 
+use App\Application\Trait\TimestampTrait;
 use App\Region\Repository\RegionRepository;
-use App\Trait\TimestampTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;

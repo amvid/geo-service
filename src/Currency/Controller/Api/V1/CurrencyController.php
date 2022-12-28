@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Currency\Controller\Api\V1;
 
-use App\Controller\Api\ApiController;
-use App\Controller\HttpMethod;
+use App\Application\Controller\Api\ApiController;
+use App\Application\Controller\HttpMethod;
+use App\Application\Exception\ValidationException;
 use App\Currency\Action\Create\CreateCurrencyActionInterface;
 use App\Currency\Action\Create\CreateCurrencyActionRequest;
 use App\Currency\Action\Delete\DeleteCurrencyActionInterface;
@@ -14,7 +15,6 @@ use App\Currency\Action\Get\GetCurrenciesActionInterface;
 use App\Currency\Action\Get\GetCurrenciesActionRequest;
 use App\Currency\Action\Update\UpdateCurrencyActionInterface;
 use App\Currency\Action\Update\UpdateCurrencyActionRequest;
-use App\Exception\ValidationException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;

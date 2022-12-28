@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Country\Controller\Api\V1;
 
-use App\Controller\Api\ApiController;
-use App\Controller\HttpMethod;
+use App\Application\Controller\Api\ApiController;
+use App\Application\Controller\HttpMethod;
+use App\Application\Exception\ValidationException;
 use App\Country\Action\Create\CreateCountryActionInterface;
 use App\Country\Action\Create\CreateCountryActionRequest;
 use App\Country\Action\Delete\DeleteCountryActionInterface;
@@ -14,7 +15,6 @@ use App\Country\Action\Get\GetCountriesActionInterface;
 use App\Country\Action\Get\GetCountriesActionRequest;
 use App\Country\Action\Update\UpdateCountryActionInterface;
 use App\Country\Action\Update\UpdateCountryActionRequest;
-use App\Exception\ValidationException;
 use JsonException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
