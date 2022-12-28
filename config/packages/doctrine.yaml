@@ -40,6 +40,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Country/Entity'
                 prefix: 'App\Country\Entity'
                 alias: Country
+            State:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/State/Entity'
+                prefix: 'App\State\Entity'
+                alias: State
 
 when@test:
     doctrine:
