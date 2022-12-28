@@ -8,6 +8,7 @@ use App\Application\Entity\User;
 use App\Country\Entity\Country;
 use App\Currency\Entity\Currency;
 use App\Region\Entity\Region;
+use App\State\Entity\State;
 use App\SubRegion\Entity\SubRegion;
 use App\Timezone\Entity\Timezone;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -48,5 +49,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Regions', 'fa fa-earth', Region::class);
         yield MenuItem::linkToCrud('Sub Regions', 'fa fa-location', SubRegion::class);
         yield MenuItem::linkToCrud('Countries', 'fa fa-flag', Country::class);
+        yield MenuItem::linkToCrud('States', 'fa fa-arrows', State::class);
     }
 }
