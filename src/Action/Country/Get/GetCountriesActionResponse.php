@@ -10,7 +10,7 @@ use App\Entity\Country;
 class GetCountriesActionResponse
 {
     /** @var array<CountryResponse> $response */
-    public array $response;
+    public array $response = [];
 
     /**
      * @param array<Country> $countries

@@ -9,7 +9,7 @@ use App\Entity\Region;
 
 class GetRegionsActionResponse
 {
-    public array $response;
+    public array $response = [];
 
     /**
      * @param array<Region> $regions

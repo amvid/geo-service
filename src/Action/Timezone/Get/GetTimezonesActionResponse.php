@@ -9,7 +9,7 @@ use App\Entity\Timezone;
 
 class GetTimezonesActionResponse
 {
-    public array $response;
+    public array $response = [];
 
     /**
      * @param array<Timezone> $timezones
