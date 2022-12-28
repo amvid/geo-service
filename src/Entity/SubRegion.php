@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Region\Entity\Region;
 use App\Repository\SubRegionRepository;
 use App\Trait\TimestampTrait;
 use Doctrine\ORM\Mapping as ORM;

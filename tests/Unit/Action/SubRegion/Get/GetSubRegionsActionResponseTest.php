@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Action\SubRegion\Get;
 
 use App\Action\SubRegion\Get\GetSubRegionsActionResponse;
-use App\Entity\Region;
 use App\Entity\SubRegion;
+use App\Region\Entity\Region;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 

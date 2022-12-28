@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Factory;
 
-use App\Entity\Region;
 use App\Factory\SubRegionFactory;
 use App\Factory\SubRegionFactoryInterface;
+use App\Region\Entity\Region;
 use PHPUnit\Framework\TestCase;
 
 class SubRegionFactoryTest extends TestCase

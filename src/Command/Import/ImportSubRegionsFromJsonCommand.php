@@ -6,7 +6,7 @@ namespace App\Command\Import;
 
 use App\Entity\SubRegion;
 use App\Factory\SubRegionFactoryInterface;
-use App\Repository\RegionRepositoryInterface;
+use App\Region\Repository\RegionRepositoryInterface;
 use App\Repository\SubRegionRepositoryInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
