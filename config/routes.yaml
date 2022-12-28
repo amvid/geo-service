@@ -27,3 +27,9 @@ app_currencies:
     path: ../src/Currency/Controller/
     namespace: App\Currency\Controller
   type: attribute
+
+app_countries:
+  resource:
+    path: ../src/Country/Controller/
+    namespace: App\Country\Controller
+  type: attribute
