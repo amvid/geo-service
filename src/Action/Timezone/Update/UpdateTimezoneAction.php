@@ -21,7 +21,7 @@ readonly class UpdateTimezoneAction implements UpdateTimezoneActionInterface
         $timezone = $this->timezoneRepository->findById($request->id);
 
         if (!$timezone) {
-            throw new TimezoneNotFoundException();
+            throw new TimezoneNotFoundException($request->id->toString());
         }
 
         if ($request->title) {

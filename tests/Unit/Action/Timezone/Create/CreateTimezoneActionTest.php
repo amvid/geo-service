@@ -50,6 +50,7 @@ class CreateTimezoneActionTest extends TestCase
         $this->factory->expects($this->once())->method('setCode')->with($code)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setUtc')->with($utc)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('create')->willReturn($tz);
+        $this->repository->expects($this->once())->method('save')->with($tz, true);
 
         $action = new CreateTimezoneAction($this->repository, $this->factory);
 

@@ -43,7 +43,7 @@ class DeleteCurrencyActionTest extends TestCase
         $this->repository
             ->expects($this->once())
             ->method('remove')
-            ->with($currency);
+            ->with($currency, true);
 
         $action = new DeleteCurrencyAction($this->repository);
         $req = new DeleteCurrencyActionRequest($id->toString());

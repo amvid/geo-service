@@ -9,7 +9,7 @@ use App\Entity\Currency;
 
 class GetCurrenciesActionResponse
 {
-    public array $response;
+    public array $response = [];
 
     /**
      * @param array<Currency> $currencies

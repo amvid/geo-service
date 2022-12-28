@@ -27,14 +27,14 @@ readonly class UpdateSubRegionAction implements UpdateSubRegionActionInterface
         $subRegion = $this->subRegionRepository->findById($request->id);
 
         if (!$subRegion) {
-            throw new SubRegionNotFoundException();
+            throw new SubRegionNotFoundException($request->id->toString());
         }
 
         if ($request->regionId) {
             $region = $this->regionRepository->findById($request->regionId);
 
             if (!$region) {
-                throw new RegionNotFoundException();
+                throw new RegionNotFoundException($request->regionId->toString());
             }
 
             $subRegion->setRegion($region);

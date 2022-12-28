@@ -9,7 +9,7 @@ use App\Entity\SubRegion;
 
 class GetSubRegionsActionResponse
 {
-    public array $response;
+    public array $response = [];
 
     /**
      * @param array<SubRegion> $subRegions

@@ -42,7 +42,7 @@ class UpdateRegionActionTest extends TestCase
         $this->regionRepository
             ->expects($this->once())
             ->method('save')
-            ->with($region);
+            ->with($region, true);
 
         $action = new UpdateRegionAction($this->regionRepository);
 

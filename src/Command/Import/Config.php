@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command\Import;
 
-class ImportConfig
+class Config
 {
     public static function getGeoDataFilepath(): string
     {

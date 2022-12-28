@@ -21,7 +21,7 @@ readonly class UpdateCurrencyAction implements UpdateCurrencyActionInterface
         $currency = $this->currencyRepository->findById($request->id);
 
         if (!$currency) {
-            throw new CurrencyNotFoundException();
+            throw new CurrencyNotFoundException($request->id->toString());
         }
 
         if ($request->name) {

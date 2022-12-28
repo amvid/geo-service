@@ -66,6 +66,7 @@ class CreateSubRegionActionTest extends TestCase
         $this->factory->expects($this->once())->method('setTitle')->with($subRegionTitle)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setRegion')->with($region)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('create')->willReturn($subRegion);
+        $this->subRegionRepository->expects($this->once())->method('save')->with($subRegion, true);
 
         $action = new CreateSubRegionAction($this->regionRepository, $this->subRegionRepository, $this->factory);
 
