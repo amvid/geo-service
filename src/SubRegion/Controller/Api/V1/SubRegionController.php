@@ -26,7 +26,7 @@ class SubRegionController extends ApiController
     /**
      * @throws ValidationException
      */
-    #[Route(self::API_ROUTE, name: 'app_api_v1_subregion_create', methods: HttpMethod::POST)]
+    #[Route(self::API_ROUTE, name: 'app_subregion_api_v1_subregion_create', methods: HttpMethod::POST)]
     public function create(Request $request, CreateSubRegionActionInterface $action): JsonResponse
     {
         $req = $this->handleRequest($request, CreateSubRegionActionRequest::class);
@@ -36,7 +36,7 @@ class SubRegionController extends ApiController
     /**
      * @throws ValidationException
      */
-    #[Route(self::API_ROUTE . '/{id}', name: 'app_api_v1_subregion_delete', methods: HttpMethod::DELETE)]
+    #[Route(self::API_ROUTE . '/{id}', name: 'app_subregion_api_v1_subregion_delete', methods: HttpMethod::DELETE)]
     public function delete(string $id, DeleteSubRegionActionInterface $action): JsonResponse
     {
         $req = new DeleteSubRegionActionRequest($id);
@@ -47,7 +47,7 @@ class SubRegionController extends ApiController
     /**
      * @throws ValidationException
      */
-    #[Route(self::API_ROUTE, name: 'app_api_v1_subregion_list', methods: HttpMethod::GET)]
+    #[Route(self::API_ROUTE, name: 'app_subregion_api_v1_subregion_list', methods: HttpMethod::GET)]
     public function list(Request $request, GetSubRegionsActionInterface $action): JsonResponse
     {
         $req = GetSubRegionsActionRequest::fromArray($request->query->all());
@@ -59,7 +59,7 @@ class SubRegionController extends ApiController
     /**
      * @throws ValidationException
      */
-    #[Route(self::API_ROUTE . '/{id}', name: 'app_api_v1_subregion_update', methods: HttpMethod::PUT)]
+    #[Route(self::API_ROUTE . '/{id}', name: 'app_subregion_api_v1_subregion_update', methods: HttpMethod::PUT)]
     public function update(string $id, Request $request, UpdateSubRegionActionInterface $action): JsonResponse
     {
         $req = $this->handleRequest($request, UpdateSubRegionActionRequest::class);

@@ -27,7 +27,7 @@ class CountryController extends ApiController
     /**
      * @throws ValidationException
      */
-    #[Route(self::API_ROUTE, name: 'app_api_v1_country_create', methods: HttpMethod::POST)]
+    #[Route(self::API_ROUTE, name: 'app_country_api_v1_country_create', methods: HttpMethod::POST)]
     public function create(Request $request, CreateCountryActionInterface $action): JsonResponse
     {
         $req = $this->handleRequest($request, CreateCountryActionRequest::class);
@@ -37,7 +37,7 @@ class CountryController extends ApiController
     /**
      * @throws ValidationException
      */
-    #[Route(self::API_ROUTE . '/{id}', name: 'app_api_v1_country_delete', methods: HttpMethod::DELETE)]
+    #[Route(self::API_ROUTE . '/{id}', name: 'app_country_api_v1_country_delete', methods: HttpMethod::DELETE)]
     public function delete(string $id, DeleteCountryActionInterface $action): JsonResponse
     {
         $req = new DeleteCountryActionRequest($id);
@@ -48,7 +48,7 @@ class CountryController extends ApiController
     /**
      * @throws ValidationException
      */
-    #[Route(self::API_ROUTE, name: 'app_api_v1_country_list', methods: HttpMethod::GET)]
+    #[Route(self::API_ROUTE, name: 'app_country_api_v1_country_list', methods: HttpMethod::GET)]
     public function list(Request $request, GetCountriesActionInterface $action): JsonResponse
     {
         $req = GetCountriesActionRequest::fromArray($request->query->all());
@@ -60,7 +60,7 @@ class CountryController extends ApiController
     /**
      * @throws ValidationException|JsonException
      */
-    #[Route(self::API_ROUTE . '/{id}', name: 'app_api_v1_country_update', methods: HttpMethod::PUT)]
+    #[Route(self::API_ROUTE . '/{id}', name: 'app_country_api_v1_country_update', methods: HttpMethod::PUT)]
     public function update(string $id, Request $request, UpdateCountryActionInterface $action): JsonResponse
     {
         $req = $this->handleRequest($request, UpdateCountryActionRequest::class);

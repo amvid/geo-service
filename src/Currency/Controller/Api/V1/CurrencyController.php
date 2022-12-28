@@ -26,7 +26,7 @@ class CurrencyController extends ApiController
     /**
      * @throws ValidationException
      */
-    #[Route(self::API_ROUTE, name: 'app_api_v1_currency_create', methods: HttpMethod::POST)]
+    #[Route(self::API_ROUTE, name: 'app_currency_api_v1_currency_create', methods: HttpMethod::POST)]
     public function create(Request $request, CreateCurrencyActionInterface $action): JsonResponse
     {
         $req = $this->handleRequest($request, CreateCurrencyActionRequest::class);
@@ -36,7 +36,7 @@ class CurrencyController extends ApiController
     /**
      * @throws ValidationException
      */
-    #[Route(self::API_ROUTE . '/{id}', name: 'app_api_v1_currency_delete', methods: HttpMethod::DELETE)]
+    #[Route(self::API_ROUTE . '/{id}', name: 'app_currency_api_v1_currency_delete', methods: HttpMethod::DELETE)]
     public function delete(string $id, DeleteCurrencyActionInterface $action): JsonResponse
     {
         $req = new DeleteCurrencyActionRequest($id);
@@ -47,7 +47,7 @@ class CurrencyController extends ApiController
     /**
      * @throws ValidationException
      */
-    #[Route(self::API_ROUTE, name: 'app_api_v1_currency_list', methods: HttpMethod::GET)]
+    #[Route(self::API_ROUTE, name: 'app_currency_api_v1_currency_list', methods: HttpMethod::GET)]
     public function list(Request $request, GetCurrenciesActionInterface $action): JsonResponse
     {
         $req = GetCurrenciesActionRequest::fromArray($request->query->all());
@@ -59,7 +59,7 @@ class CurrencyController extends ApiController
     /**
      * @throws ValidationException
      */
-    #[Route(self::API_ROUTE . '/{id}', name: 'app_api_v1_currency_update', methods: HttpMethod::PUT)]
+    #[Route(self::API_ROUTE . '/{id}', name: 'app_currency_api_v1_currency_update', methods: HttpMethod::PUT)]
     public function update(string $id, Request $request, UpdateCurrencyActionInterface $action): JsonResponse
     {
         $req = $this->handleRequest($request, UpdateCurrencyActionRequest::class);
