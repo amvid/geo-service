@@ -6,13 +6,13 @@ namespace App\Action\Country\Update;
 
 use App\Exception\CountryNotFoundException;
 use App\Exception\CurrencyNotFoundException;
-use App\Exception\TimezoneNotFoundException;
 use App\Factory\CountryFactoryInterface;
 use App\Repository\CountryRepositoryInterface;
 use App\Repository\CurrencyRepositoryInterface;
-use App\Repository\TimezoneRepositoryInterface;
 use App\SubRegion\Exception\SubRegionNotFoundException;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
+use App\Timezone\Exception\TimezoneNotFoundException;
+use App\Timezone\Repository\TimezoneRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 readonly class UpdateCountryAction implements UpdateCountryActionInterface

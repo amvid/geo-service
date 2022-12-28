@@ -6,8 +6,8 @@ namespace App\Tests\Unit\Entity;
 
 use App\Entity\Country;
 use App\Entity\Currency;
-use App\Entity\Timezone;
 use App\SubRegion\Entity\SubRegion;
+use App\Timezone\Entity\Timezone;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 

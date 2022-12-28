@@ -6,10 +6,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Country;
 use App\Entity\Currency;
-use App\Entity\Timezone;
 use App\Entity\User;
 use App\Region\Entity\Region;
 use App\SubRegion\Entity\SubRegion;
+use App\Timezone\Entity\Timezone;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;

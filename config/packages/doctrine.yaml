@@ -25,6 +25,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/SubRegion/Entity'
                 prefix: 'App\SubRegion\Entity'
                 alias: SubRegion
+            Timezone:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Timezone/Entity'
+                prefix: 'App\Timezone\Entity'
+                alias: Timezone
 
 when@test:
     doctrine:

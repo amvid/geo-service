@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Repository\CountryRepository;
 use App\SubRegion\Entity\SubRegion;
+use App\Timezone\Entity\Timezone;
 use App\Trait\PositionTrait;
 use App\Trait\TimestampTrait;
 use Doctrine\Common\Collections\ArrayCollection;
