@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Region\Command\Import;
 
+use App\Application\Command\Import\Config;
+use App\Application\Command\Import\ImportHelper;
 use App\Region\Entity\Region;
 use App\Region\Factory\RegionFactoryInterface;
 use App\Region\Repository\RegionRepositoryInterface;
@@ -36,10 +38,7 @@ class ImportRegionsFromJsonCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
-            $data = json_decode(
-                file_get_contents(Config::getGeoDataFilepath()),
-                true, 512, JSON_THROW_ON_ERROR
-            );
+            $data = ImportHelper::getDataFromJsonFile(Config::getGeoDataFilepath());
 
             $existsArr = [];
             $imported = 0;

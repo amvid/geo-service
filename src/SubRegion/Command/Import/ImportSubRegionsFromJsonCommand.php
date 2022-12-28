@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\SubRegion\Command\Import;
 
+use App\Application\Command\Import\Config;
+use App\Application\Command\Import\ImportHelper;
 use App\Region\Repository\RegionRepositoryInterface;
 use App\SubRegion\Entity\SubRegion;
 use App\SubRegion\Factory\SubRegionFactoryInterface;
@@ -38,10 +40,7 @@ class ImportSubRegionsFromJsonCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
-            $data = json_decode(
-                file_get_contents(Config::getGeoDataFilepath()),
-                true, 512, JSON_THROW_ON_ERROR
-            );
+            $data = ImportHelper::getDataFromJsonFile(Config::getGeoDataFilepath());
 
             $regionsArr = [];
             $existsArr = [];

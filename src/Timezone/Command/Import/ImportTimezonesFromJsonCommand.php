@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Timezone\Command\Import;
 
+use App\Application\Command\Import\Config;
+use App\Application\Command\Import\ImportHelper;
 use App\Timezone\Entity\Timezone;
 use App\Timezone\Factory\TimezoneFactoryInterface;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
@@ -22,7 +24,7 @@ class ImportTimezonesFromJsonCommand extends Command
 {
     public function __construct(
         private readonly TimezoneRepositoryInterface $timezoneRepository,
-        private readonly TimezoneFactoryInterface $timezoneFactory,
+        private readonly TimezoneFactoryInterface    $timezoneFactory,
     )
     {
         parent::__construct();
@@ -36,49 +38,45 @@ class ImportTimezonesFromJsonCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
-            $timezones = json_decode(
-                file_get_contents(getcwd() . '/data/timezone/timezones.json'),
-                true, 512, JSON_THROW_ON_ERROR
-            );
+            $data = ImportHelper::getDataFromJsonFile(Config::getGeoDataFilepath());
 
             $imported = 0;
-            $skipped = 0;
-            $skippedTimezones = [];
+            $skip = [];
 
             $output->writeln('Importing...');
 
-            foreach ($timezones as $timezone) {
-                $exists = $this->timezoneRepository->findByCode($timezone['tzCode']);
+            foreach ($data as $country) {
+                foreach ($country['timezones'] as $timezone) {
+                    $exists = $this->timezoneRepository->findByCode($timezone['zoneName']);
 
-                if ($exists) {
-                    $skippedTimezones[] = $timezone['tzCode'];
-                    $skipped++;
-                    continue;
+                    if ($exists) {
+                        continue;
+                    }
+
+                    if (isset($skip[$timezone['zoneName']])) {
+                        continue;
+                    }
+
+                    $skip[$timezone['zoneName']] = true;
+                    $tzName = "{$timezone['tzName']} {$timezone['zoneName']} ({$timezone['abbreviation']})";
+
+                    $tz = $this->timezoneFactory
+                        ->setTimezone(new Timezone())
+                        ->setTitle($tzName)
+                        ->setCode($timezone['zoneName'])
+                        ->setUtc($timezone['gmtOffsetName'])
+                        ->create();
+
+                    $this->timezoneRepository->save($tz, true);
+                    $imported++;
                 }
-
-                $tz = $this->timezoneFactory
-                    ->setTimezone(new Timezone())
-                    ->setTitle($timezone['label'])
-                    ->setCode($timezone['tzCode'])
-                    ->setUtc($timezone['utc'])
-                    ->create();
-
-                $this->timezoneRepository->save($tz, true);
-                $imported++;
             }
         } catch (Throwable $e) {
             $output->writeln("An error occurred: {$e->getMessage()}");
             return Command::FAILURE;
         }
 
-        $message = "Imported $imported timezones, skipped $skipped.";
-
-        if ($skipped > 0) {
-            $message .=
-                "\n===================================\n"
-                . implode("\n", $skippedTimezones) .
-                "\n===================================";
-        }
+        $message = "Imported $imported timezones.";
 
         $output->writeln($message);
 
