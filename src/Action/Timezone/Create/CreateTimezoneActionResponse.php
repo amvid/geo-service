@@ -7,7 +7,7 @@ namespace App\Action\Timezone\Create;
 use App\Controller\Response\TimezoneResponse;
 use App\Entity\Timezone;
 
-readonly class CreateTimezoneActionResponse
+class CreateTimezoneActionResponse
 {
     public TimezoneResponse $timezoneResponse;
 

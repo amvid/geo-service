@@ -7,7 +7,7 @@ namespace App\Action\Currency\Get;
 use App\Controller\Response\CurrencyResponse;
 use App\Entity\Currency;
 
-readonly class GetCurrenciesActionResponse
+class GetCurrenciesActionResponse
 {
     public array $response;
 

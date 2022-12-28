@@ -26,7 +26,6 @@ class CountryController extends ApiController
 
     /**
      * @throws ValidationException
-     * @throws JsonException
      */
     #[Route(self::API_ROUTE, name: 'app_api_v1_country_create', methods: HttpMethod::POST)]
     public function create(Request $request, CreateCountryActionInterface $action): JsonResponse

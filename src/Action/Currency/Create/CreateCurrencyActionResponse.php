@@ -7,7 +7,7 @@ namespace App\Action\Currency\Create;
 use App\Controller\Response\CurrencyResponse;
 use App\Entity\Currency;
 
-readonly class CreateCurrencyActionResponse
+class CreateCurrencyActionResponse
 {
     public CurrencyResponse $currencyResponse;
 

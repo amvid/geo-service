@@ -7,7 +7,7 @@ namespace App\Action\Country\Update;
 use App\Controller\Response\CountryResponse;
 use App\Entity\Country;
 
-readonly class UpdateCountryActionResponse
+class UpdateCountryActionResponse
 {
     public CountryResponse $countryResponse;
 

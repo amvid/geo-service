@@ -7,7 +7,7 @@ namespace App\Action\SubRegion\Update;
 use App\Controller\Response\SubRegionResponse;
 use App\Entity\SubRegion;
 
-readonly class UpdateSubRegionActionResponse
+class UpdateSubRegionActionResponse
 {
     public SubRegionResponse $subRegionResponse;
 

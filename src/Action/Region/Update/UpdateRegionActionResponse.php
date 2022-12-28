@@ -7,7 +7,7 @@ namespace App\Action\Region\Update;
 use App\Controller\Response\RegionResponse;
 use App\Entity\Region;
 
-readonly class UpdateRegionActionResponse
+class UpdateRegionActionResponse
 {
     public RegionResponse $regionResponse;
 

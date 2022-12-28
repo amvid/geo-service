@@ -7,7 +7,7 @@ namespace App\Action\SubRegion\Get;
 use App\Controller\Response\SubRegionResponse;
 use App\Entity\SubRegion;
 
-readonly class GetSubRegionsActionResponse
+class GetSubRegionsActionResponse
 {
     public array $response;
 
