@@ -15,7 +15,7 @@ security:
         enable_csrf: true
         login_path: app_login
         check_path: app_login
-        target: /admin
+        default_target_path: /admin
       logout:
         path: app_logout
         target: app_login
