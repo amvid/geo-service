@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Action\SubRegion\Get;
 
-use App\Action\Region\Get\GetRegionsActionRequest;
 use App\Action\SubRegion\Get\GetSubRegionsActionRequest;
 use App\Controller\Request\LimitOffsetParser;
+use App\Region\Action\Get\GetRegionsActionRequest;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 

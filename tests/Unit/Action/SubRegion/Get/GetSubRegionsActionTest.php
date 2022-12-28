@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Action\SubRegion\Get;
 
-use App\Action\Region\Get\GetRegionsAction;
-use App\Action\Region\Get\GetRegionsActionRequest;
 use App\Action\SubRegion\Get\GetSubRegionsAction;
 use App\Action\SubRegion\Get\GetSubRegionsActionRequest;
-use App\Entity\Region;
 use App\Entity\SubRegion;
+use App\Region\Entity\Region;
 use App\Repository\SubRegionRepositoryInterface;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;

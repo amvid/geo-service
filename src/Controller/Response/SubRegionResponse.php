@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Response;
 
 use App\Entity\SubRegion;
+use App\Region\Controller\Response\RegionResponse;
 use DateTimeInterface;
 use Ramsey\Uuid\UuidInterface;
 

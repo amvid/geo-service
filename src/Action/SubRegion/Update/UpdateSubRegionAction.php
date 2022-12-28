@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Action\SubRegion\Update;
 
-use App\Exception\RegionNotFoundException;
 use App\Exception\SubRegionNotFoundException;
-use App\Repository\RegionRepositoryInterface;
+use App\Region\Exception\RegionNotFoundException;
+use App\Region\Repository\RegionRepositoryInterface;
 use App\Repository\SubRegionRepositoryInterface;
 
 readonly class UpdateSubRegionAction implements UpdateSubRegionActionInterface

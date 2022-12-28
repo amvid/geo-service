@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Action\SubRegion\Delete;
 
-use App\Action\Region\Delete\DeleteRegionAction;
-use App\Action\Region\Delete\DeleteRegionActionRequest;
 use App\Action\SubRegion\Delete\DeleteSubRegionAction;
 use App\Action\SubRegion\Delete\DeleteSubRegionActionRequest;
 use App\Entity\SubRegion;

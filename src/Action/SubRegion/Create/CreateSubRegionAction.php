@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Action\SubRegion\Create;
 
-use App\Exception\RegionNotFoundException;
 use App\Exception\SubRegionAlreadyExistsException;
 use App\Factory\SubRegionFactoryInterface;
-use App\Repository\RegionRepositoryInterface;
+use App\Region\Exception\RegionNotFoundException;
+use App\Region\Repository\RegionRepositoryInterface;
 use App\Repository\SubRegionRepositoryInterface;
 
 readonly class CreateSubRegionAction implements CreateSubRegionActionInterface

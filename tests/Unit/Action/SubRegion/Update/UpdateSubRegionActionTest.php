@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Action\SubRegion\Update;
 
-use App\Action\Region\Update\UpdateRegionAction;
-use App\Action\Region\Update\UpdateRegionActionRequest;
 use App\Action\SubRegion\Update\UpdateSubRegionAction;
 use App\Action\SubRegion\Update\UpdateSubRegionActionRequest;
-use App\Entity\Region;
 use App\Entity\SubRegion;
-use App\Exception\RegionNotFoundException;
 use App\Exception\SubRegionNotFoundException;
-use App\Repository\RegionRepositoryInterface;
+use App\Region\Action\Update\UpdateRegionAction;
+use App\Region\Action\Update\UpdateRegionActionRequest;
+use App\Region\Entity\Region;
+use App\Region\Exception\RegionNotFoundException;
+use App\Region\Repository\RegionRepositoryInterface;
 use App\Repository\SubRegionRepositoryInterface;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;

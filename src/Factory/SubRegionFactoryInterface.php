@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
-use App\Entity\Region;
 use App\Entity\SubRegion;
+use App\Region\Entity\Region;
 
 interface SubRegionFactoryInterface
 {
