@@ -6,7 +6,7 @@ namespace App\Repository;
 
 use App\Entity\Country;
 use App\Entity\Currency;
-use App\Entity\SubRegion;
+use App\SubRegion\Entity\SubRegion;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Ramsey\Uuid\UuidInterface;

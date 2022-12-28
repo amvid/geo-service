@@ -20,6 +20,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Region/Entity'
                 prefix: 'App\Region\Entity'
                 alias: Region
+            SubRegion:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/SubRegion/Entity'
+                prefix: 'App\SubRegion\Entity'
+                alias: SubRegion
 
 when@test:
     doctrine:

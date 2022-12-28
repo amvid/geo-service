@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Action\Country\Get;
 
 use App\Exception\CurrencyNotFoundException;
-use App\Exception\SubRegionNotFoundException;
 use App\Repository\CountryRepositoryInterface;
 use App\Repository\CurrencyRepositoryInterface;
-use App\Repository\SubRegionRepositoryInterface;
+use App\SubRegion\Exception\SubRegionNotFoundException;
+use App\SubRegion\Repository\SubRegionRepositoryInterface;
 
 readonly class GetCountriesAction implements GetCountriesActionInterface
 {

@@ -6,7 +6,7 @@ namespace App\Factory;
 
 use App\Entity\Country;
 use App\Entity\Currency;
-use App\Entity\SubRegion;
+use App\SubRegion\Entity\SubRegion;
 use Doctrine\Common\Collections\Collection;
 
 interface CountryFactoryInterface

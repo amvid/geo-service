@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Factory;
 
 use App\Entity\Currency;
-use App\Entity\SubRegion;
 use App\Entity\Timezone;
 use App\Factory\CountryFactory;
 use App\Factory\CountryFactoryInterface;
+use App\SubRegion\Entity\SubRegion;
 use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
