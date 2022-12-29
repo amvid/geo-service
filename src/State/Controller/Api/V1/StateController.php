@@ -6,6 +6,9 @@ namespace App\State\Controller\Api\V1;
 
 use App\Application\Controller\Api\ApiController;
 use App\Application\Controller\HttpMethod;
+use App\Application\Exception\ValidationException;
+use App\State\Action\Create\CreateStateActionInterface;
+use App\State\Action\Create\CreateStateActionRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,10 +17,14 @@ class StateController extends ApiController
 {
     private const API_ROUTE = '/api/v1/states';
 
+    /**
+     * @throws ValidationException
+     */
     #[Route(self::API_ROUTE, name: 'app_state_api_v1_state_create', methods: HttpMethod::POST)]
-    public function create(Request $request): JsonResponse
+    public function create(Request $request, CreateStateActionInterface $action): JsonResponse
     {
-        return new JsonResponse();
+        $req = $this->handleRequest($request, CreateStateActionRequest::class);
+        return $this->json($action->run($req)->state);
     }
 
     #[Route(self::API_ROUTE . '/{id}', name: 'app_state_api_v1_state_delete', methods: HttpMethod::DELETE)]

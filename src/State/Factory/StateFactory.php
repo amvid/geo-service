@@ -46,6 +46,12 @@ class StateFactory implements StateFactoryInterface
         return $this;
     }
 
+    public function setAltitude(?int $altitude): StateFactoryInterface
+    {
+        $this->state->setAltitude($altitude);
+        return $this;
+    }
+
     public function setState(State $state): StateFactoryInterface
     {
         $this->state = $state;

@@ -19,6 +19,8 @@ interface StateFactoryInterface
 
     public function setLongitude(float $longitude): self;
 
+    public function setAltitude(?int $altitude): self;
+
     public function setState(State $state): self;
 
     public function setCountry(Country $country): self;

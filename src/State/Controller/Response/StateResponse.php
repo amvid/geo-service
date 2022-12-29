@@ -13,6 +13,8 @@ class StateResponse
     public UuidInterface $id;
     public string $title;
     public string $code;
+    public float $latitude;
+    public float $longitude;
     public ?string $type;
     public CountryResponse $country;
 
@@ -22,6 +24,8 @@ class StateResponse
         $this->title = $state->getTitle();
         $this->code = $state->getCode();
         $this->type = $state->getType();
+        $this->latitude = $state->getLatitude();
+        $this->longitude = $state->getLongitude();
         $this->country = new CountryResponse($state->getCountry());
     }
 }
