@@ -9,6 +9,8 @@ use App\Application\Controller\HttpMethod;
 use App\Application\Exception\ValidationException;
 use App\State\Action\Create\CreateStateActionInterface;
 use App\State\Action\Create\CreateStateActionRequest;
+use App\State\Action\Delete\DeleteStateActionInterface;
+use App\State\Action\Delete\DeleteStateActionRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,9 +30,10 @@ class StateController extends ApiController
     }
 
     #[Route(self::API_ROUTE . '/{id}', name: 'app_state_api_v1_state_delete', methods: HttpMethod::DELETE)]
-    public function delete(string $id): JsonResponse
+    public function delete(string $id, DeleteStateActionInterface $action): JsonResponse
     {
-        return new JsonResponse();
+        $req = new DeleteStateActionRequest($id);
+        return $this->json($action->run($req));
     }
 
     #[Route(self::API_ROUTE, name: 'app_state_api_v1_state_list', methods: HttpMethod::GET)]
