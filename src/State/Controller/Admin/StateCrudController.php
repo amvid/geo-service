@@ -30,6 +30,7 @@ class StateCrudController extends AbstractCrudController
             FormField::addPanel('Basic'),
             TextField::new('title')->setColumns(4),
             TextField::new('code')->setColumns(4),
+            TextField::new('type')->setColumns(4),
             FormField::addPanel('Position'),
             NumberField::new('longitude')->hideOnIndex()->setColumns(2),
             NumberField::new('latitude')->hideOnIndex()->setColumns(2),

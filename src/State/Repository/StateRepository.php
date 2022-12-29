@@ -35,9 +35,9 @@ class StateRepository extends ServiceEntityRepository implements StateRepository
         }
     }
 
-    public function findByTitle(string $title): ?State
+    public function findByTitle(string $title): array
     {
-        return $this->findOneBy(['title' => $title]);
+        return $this->findBy(['title' => $title]);
     }
 
     public function findByCode(string $code): ?State

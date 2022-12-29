@@ -10,4 +10,9 @@ class Config
     {
         return getcwd() . '/data/regions_countries_timezones_currencies.json';
     }
+
+    public static function getStatesDataFilepath(): string
+    {
+        return getcwd() . '/data/states.json';
+    }
 }
