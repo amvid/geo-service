@@ -17,6 +17,9 @@ class UpdateStateActionRequest
     #[Length(min: 1, max: 150)]
     public ?string $title;
 
+    #[Length(min: 1, max: 50)]
+    public ?string $type;
+
     public ?float $longitude;
 
     public ?float $latitude;
