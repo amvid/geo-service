@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application\Controller\Admin;
 
 use App\Application\Entity\User;
+use App\City\Entity\City;
 use App\Country\Entity\Country;
 use App\Currency\Entity\Currency;
 use App\Region\Entity\Region;
@@ -50,5 +51,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Sub Regions', 'fa fa-location', SubRegion::class);
         yield MenuItem::linkToCrud('Countries', 'fa fa-flag', Country::class);
         yield MenuItem::linkToCrud('States', 'fa fa-arrows', State::class);
+        yield MenuItem::linkToCrud('Cities', 'fa fa-building', City::class);
     }
 }
