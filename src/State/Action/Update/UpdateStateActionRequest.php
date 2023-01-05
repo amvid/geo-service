@@ -24,6 +24,7 @@ class UpdateStateActionRequest
 
     public ?int $altitude = null;
 
+    #[Length(2)]
     public ?string $countryIso2 = null;
 
     public function setId(string $id): self
