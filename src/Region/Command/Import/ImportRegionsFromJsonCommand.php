@@ -43,6 +43,8 @@ class ImportRegionsFromJsonCommand extends Command
             $existsArr = [];
             $imported = 0;
 
+            $output->writeln('Importing...');
+
             foreach ($data as $country) {
                 $region = $country['region'];
 

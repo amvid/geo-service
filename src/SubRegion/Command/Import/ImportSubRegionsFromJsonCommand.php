@@ -46,6 +46,8 @@ class ImportSubRegionsFromJsonCommand extends Command
             $existsArr = [];
             $imported = 0;
 
+            $output->writeln('Importing...');
+
             foreach ($data as $country) {
                 $subRegionTitle = $country['subregion'];
 

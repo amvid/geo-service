@@ -43,6 +43,8 @@ class ImportCurrenciesFromJsonCommand extends Command
             $existsArr = [];
             $imported = 0;
 
+            $output->writeln('Importing...');
+
             foreach ($data as $country) {
                 $code = $country['currency'];
 
