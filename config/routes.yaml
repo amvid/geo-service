@@ -33,3 +33,9 @@ app_countries:
     path: ../src/Country/Controller/
     namespace: App\Country\Controller
   type: attribute
+
+app_states:
+  resource:
+    path: ../src/State/Controller/
+    namespace: App\State\Controller
+  type: attribute

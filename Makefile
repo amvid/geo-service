@@ -22,3 +22,27 @@ ssh:
 .PHONY: test
 test:
 	@docker exec app sh -c "./vendor/bin/phpunit"
+
+.PHONY: regions
+regions:
+	@docker exec app sh -c "bin/console app:import-regions"
+
+.PHONY: subregions
+subregions:
+	@docker exec app sh -c "bin/console app:import-subregions"
+
+.PHONY: timezones
+timezones:
+	@docker exec app sh -c "bin/console app:import-timezones"
+
+.PHONY: currencies
+currencies:
+	@docker exec app sh -c "bin/console app:import-currencies"
+
+.PHONY: countries
+countries:
+	@docker exec app sh -c "bin/console app:import-countries"
+
+.PHONY: states
+states:
+	@docker exec app sh -c "bin/console app:import-states"

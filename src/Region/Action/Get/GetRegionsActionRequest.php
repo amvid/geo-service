@@ -11,10 +11,10 @@ use Symfony\Component\Validator\Constraints\Range;
 class GetRegionsActionRequest implements LimitOffsetInterface
 {
     #[Range(min: 1)]
-    public int $limit = LimitOffsetParser::DEFAULT_LIMIT;
+    public int $limit = LimitOffsetInterface::DEFAULT_LIMIT;
 
     #[Range(min: 0)]
-    public int $offset = LimitOffsetParser::DEFAULT_OFFSET;
+    public int $offset = LimitOffsetInterface::DEFAULT_OFFSET;
 
     public ?string $title = null;
 

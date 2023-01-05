@@ -54,6 +54,8 @@ class ImportCountriesFromJsonCommand extends Command
             $currencies = [];
             $subRegions = [];
 
+            $output->writeln('Importing...');
+
             foreach ($data as $country) {
                 $existsCountry = $this->countryRepository->findByTitle($country['name']);
 
