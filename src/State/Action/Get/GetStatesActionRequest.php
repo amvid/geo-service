@@ -8,6 +8,7 @@ use App\Application\Controller\Request\LimitOffsetInterface;
 use App\Application\Controller\Request\LimitOffsetParser;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\Range;
 
 class GetStatesActionRequest implements LimitOffsetInterface
@@ -20,17 +21,17 @@ class GetStatesActionRequest implements LimitOffsetInterface
 
     public ?UuidInterface $id = null;
 
+    #[Length(min: 1, max: 150)]
     public ?string $title = null;
-    public ?string $code = null;
-    public ?string $type = null;
-    public ?string $countryIso2 = null;
 
-    public function __construct(?string $id = null)
-    {
-        if ($id) {
-            $this->id = Uuid::fromString($id);
-        }
-    }
+    #[Length(min: 1, max: 5)]
+    public ?string $code = null;
+
+    #[Length(min: 1, max: 50)]
+    public ?string $type = null;
+
+    #[Length(2)]
+    public ?string $countryIso2 = null;
 
     public static function fromArray(array $params): self
     {

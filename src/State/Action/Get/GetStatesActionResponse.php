@@ -8,6 +8,9 @@ use App\State\Controller\Response\StateResponse;
 
 class GetStatesActionResponse
 {
+    /**
+     * @var array<StateResponse> $response
+     */
     public array $response = [];
 
     public function __construct(array $states)
