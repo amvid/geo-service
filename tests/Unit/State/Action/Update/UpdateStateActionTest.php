@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\State\Action\Update;
 
 use App\Country\Entity\Country;
+use App\Country\Repository\CountryRepositoryInterface;
 use App\Currency\Entity\Currency;
 use App\Region\Entity\Region;
 use App\State\Action\Update\UpdateStateAction;
@@ -23,6 +24,7 @@ class UpdateStateActionTest extends TestCase
 {
     private StateFactoryInterface $stateFactory;
     private StateRepositoryInterface $stateRepository;
+    private CountryRepositoryInterface $countryRepository;
 
     private UpdateStateActionRequest $request;
     private UuidInterface $id;
@@ -31,11 +33,13 @@ class UpdateStateActionTest extends TestCase
     private float $latitude;
     private int $altitude;
     private string $type;
+    private string $countryIso2;
 
     protected function setUp(): void
     {
         $this->stateRepository = $this->getMockBuilder(StateRepositoryInterface::class)->getMock();
         $this->stateFactory = $this->getMockBuilder(StateFactoryInterface::class)->getMock();
+        $this->countryRepository = $this->getMockBuilder(CountryRepositoryInterface::class)->getMock();
 
         $this->id = Uuid::uuid4();
         $this->title = 'New Jersey';
@@ -43,13 +47,16 @@ class UpdateStateActionTest extends TestCase
         $this->latitude = 15.1;
         $this->altitude = 10;
         $this->type = 'state';
+        $this->countryIso2 = 'US';
 
-        $this->request = new UpdateStateActionRequest($this->id->toString());
+        $this->request = new UpdateStateActionRequest();
+        $this->request->id = $this->id;
         $this->request->title = $this->title;
         $this->request->longitude = $this->longitude;
         $this->request->latitude = $this->latitude;
         $this->request->altitude = $this->altitude;
         $this->request->type = $this->type;
+        $this->request->countryIso2 = $this->countryIso2;
     }
 
     public function testShouldThrowStateNotFoundExceptionIfNotExists(): void
@@ -60,7 +67,7 @@ class UpdateStateActionTest extends TestCase
             ->with($this->id)
             ->willReturn(null);
 
-        $action = new UpdateStateAction($this->stateRepository, $this->stateFactory);
+        $action = new UpdateStateAction($this->countryRepository, $this->stateRepository, $this->stateFactory);
 
         $this->expectException(StateNotFoundException::class);
         $this->expectExceptionMessage("State '$this->id' not found.");
@@ -99,7 +106,7 @@ class UpdateStateActionTest extends TestCase
             ->setTitle('United States')
             ->setNumericCode('400')
             ->setIso3('USA')
-            ->setIso2('US')
+            ->setIso2($this->countryIso2)
             ->setFlag('flag')
             ->setSubRegion($subRegion)
             ->setCurrency($currency)
@@ -131,7 +138,15 @@ class UpdateStateActionTest extends TestCase
         $this->stateFactory->expects($this->once())->method('setLongitude')->with($this->longitude)->willReturn($this->stateFactory);
         $this->stateFactory->expects($this->once())->method('setAltitude')->with($this->altitude)->willReturn($this->stateFactory);
 
-        $action = new UpdateStateAction($this->stateRepository, $this->stateFactory);
+        $this->countryRepository
+            ->expects($this->once())
+            ->method('findByIso2')
+            ->with($this->countryIso2)
+            ->willReturn($country);
+
+        $this->stateFactory->expects($this->once())->method('setCountry')->with($country)->willReturn($this->stateFactory);
+
+        $action = new UpdateStateAction($this->countryRepository, $this->stateRepository, $this->stateFactory);
         $actual = $action->run($this->request);
 
         $this->assertEquals($this->id, $actual->state->id);

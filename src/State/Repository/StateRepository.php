@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\State\Repository;
 
-use App\Country\Entity\Country;
 use App\State\Entity\State;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -46,20 +45,21 @@ class StateRepository extends ServiceEntityRepository implements StateRepository
     }
 
     public function list(
-        int $offset,
-        int $limit,
-        ?string $code = null,
-        ?string $title = null,
-        ?string $type = null,
-        ?Country $country = null
+        int            $offset,
+        int            $limit,
+        ?UuidInterface $id = null,
+        ?string        $code = null,
+        ?string        $title = null,
+        ?string        $type = null,
+        ?UuidInterface $countryId = null
     ): array
     {
-        if ($code) {
-            return $this->findBy(['code' => $code]);
+        if ($id) {
+            return $this->findBy(['id' => $id]);
         }
 
-        if ($country) {
-            return $this->findBy(['country' => $country]);
+        if ($code) {
+            return $this->findBy(['code' => $code]);
         }
 
         $qb = $this->createQueryBuilder('s')
@@ -75,8 +75,13 @@ class StateRepository extends ServiceEntityRepository implements StateRepository
         }
 
         if ($title) {
-            $params['title'] = "%title%";
+            $params['title'] = "%$title%";
             $qb->andWhere('s.title LIKE :title');
+        }
+
+        if ($countryId) {
+            $params['countryId'] = $countryId;
+            $qb->andWhere('s.country = :countryId');
         }
 
         return $qb

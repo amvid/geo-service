@@ -21,11 +21,12 @@ interface StateRepositoryInterface
     public function findByCode(string $code): ?State;
 
     public function list(
-        int      $offset,
-        int      $limit,
-        ?string  $code = null,
-        ?string  $title = null,
-        ?string  $type = null,
-        ?Country $country = null,
+        int            $offset,
+        int            $limit,
+        ?UuidInterface $id = null,
+        ?string        $code = null,
+        ?string        $title = null,
+        ?string        $type = null,
+        ?UuidInterface $countryId = null,
     ): array;
 }
