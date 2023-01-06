@@ -26,9 +26,6 @@ class CountryResponse
     public float $latitude;
     public ?int $altitude = null;
 
-    public DateTimeInterface $createdAt;
-    public DateTimeInterface $updatedAt;
-
     public CurrencyResponse $currency;
     public SubRegionResponse $subRegion;
 
@@ -51,8 +48,6 @@ class CountryResponse
         $this->longitude = $country->getLongitude();
         $this->latitude = $country->getLatitude();
         $this->altitude = $country->getAltitude();
-        $this->createdAt = $country->getCreatedAt();
-        $this->updatedAt = $country->getUpdatedAt();
 
         $this->currency = new CurrencyResponse($country->getCurrency());
         $this->subRegion = new SubRegionResponse($country->getSubRegion());

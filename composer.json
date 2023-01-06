@@ -9,6 +9,7 @@
     "ext-iconv": "*",
     "doctrine/doctrine-migrations-bundle": "^3.2",
     "easycorp/easyadmin-bundle": "^4.4",
+    "halaxa/json-machine": "^1.1",
     "ramsey/uuid": "^4.6",
     "ramsey/uuid-doctrine": "^1.8",
     "symfony/console": "6.2.*",

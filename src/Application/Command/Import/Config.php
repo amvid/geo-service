@@ -15,4 +15,9 @@ class Config
     {
         return getcwd() . '/data/states.json';
     }
+
+    public static function getCitiesDataFilepath(): string
+    {
+        return getcwd() . '/data/cities.json';
+    }
 }
