@@ -10,8 +10,8 @@ use App\City\Factory\CityFactoryInterface;
 use App\City\Repository\CityRepositoryInterface;
 use App\Country\Repository\CountryRepositoryInterface;
 use App\State\Repository\StateRepositoryInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use JsonMachine\Items;
-use JsonStreamingParser\Parser;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -30,6 +30,7 @@ class ImportCitiesFromJsonCommand extends Command
         private readonly CountryRepositoryInterface $countryRepository,
         private readonly CityRepositoryInterface    $cityRepository,
         private readonly CityFactoryInterface       $cityFactory,
+        private readonly EntityManagerInterface     $em,
     )
     {
         parent::__construct();
@@ -40,6 +41,7 @@ class ImportCitiesFromJsonCommand extends Command
         $this->setHelp('This command will import cities from json file.');
     }
 
+    // TODO: find a way to speed up the import...
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
@@ -98,7 +100,11 @@ class ImportCitiesFromJsonCommand extends Command
                 $this->cityRepository->save($newCity, true);
                 $imported++;
 
-                if ($imported % 1000 === 0) {
+                if ($imported % 5000 === 0) {
+                    $this->em->clear();
+                    $countries = [];
+                    $states = [];
+                    gc_collect_cycles();
                     $output->writeln("Imported $imported cities... Still working...");
                 }
             }
