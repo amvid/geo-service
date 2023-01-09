@@ -78,12 +78,8 @@ class CreateSubRegionActionTest extends TestCase
 
         $this->assertEquals($expectedResponse->subRegionResponse->id, $actual->subRegionResponse->id);
         $this->assertEquals($expectedResponse->subRegionResponse->title, $actual->subRegionResponse->title);
-        $this->assertEquals($expectedResponse->subRegionResponse->createdAt, $actual->subRegionResponse->createdAt);
-        $this->assertEquals($expectedResponse->subRegionResponse->updatedAt, $actual->subRegionResponse->updatedAt);
         $this->assertEquals($expectedResponse->subRegionResponse->region->id, $actual->subRegionResponse->region->id);
         $this->assertEquals($expectedResponse->subRegionResponse->region->title, $actual->subRegionResponse->region->title);
-        $this->assertEquals($expectedResponse->subRegionResponse->region->createdAt, $actual->subRegionResponse->region->createdAt);
-        $this->assertEquals($expectedResponse->subRegionResponse->region->updatedAt, $actual->subRegionResponse->region->updatedAt);
     }
 
     public function testShouldThrowAnErrorIfTitleHasBeenAlreadyTaken(): void

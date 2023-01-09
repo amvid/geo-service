@@ -24,7 +24,7 @@ class SubRegion
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private UuidInterface $id;
 
-    #[ORM\ManyToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private Region $region;
 
