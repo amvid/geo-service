@@ -34,7 +34,7 @@ class State
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $type = null;
 
-    #[ORM\ManyToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private Country $country;
 
