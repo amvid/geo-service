@@ -16,16 +16,23 @@ class CityResponse
     public float $longitude;
     public float $latitude;
     public ?int $altitude = null;
+    public ?StateResponse $state = null;
     public CountryResponse $country;
-    public StateResponse $state;
 
-    public function __construct(City $city)
+    public function __construct(City $city, bool $withRelations = true)
     {
         $this->id = $city->getId();
+        $this->title = $city->getTitle();
         $this->longitude = $city->getLongitude();
         $this->latitude = $city->getLatitude();
         $this->altitude = $city->getAltitude();
-        $this->country = new CountryResponse($city->getCountry());
-        $this->state = new StateResponse($city->getState());
+
+        if ($withRelations) {
+            if ($city->getState()) {
+                $this->state = new StateResponse($city->getState(), false);
+            }
+
+            $this->country = new CountryResponse($city->getCountry());
+        }
     }
 }
