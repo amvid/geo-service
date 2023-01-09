@@ -48,7 +48,6 @@ class GetCountryActionTest extends TestCase
         $this->currencyRepository = $this->getMockBuilder(CurrencyRepositoryInterface::class)->getMock();
 
         $this->request = new GetCountriesActionRequest();
-        $this->request->timezones = $this->timezones;
         $this->request->tld = $this->tld;
         $this->request->currencyCode = $this->currency;
         $this->request->subRegion = $this->subRegionTitle;

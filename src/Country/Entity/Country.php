@@ -29,14 +29,14 @@ class Country
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private UuidInterface $id;
 
-    #[ORM\ManyToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private SubRegion $subRegion;
 
     #[ORM\ManyToMany(targetEntity: Timezone::class, orphanRemoval: true)]
     private Collection $timezones;
 
-    #[ORM\ManyToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private Currency $currency;
 

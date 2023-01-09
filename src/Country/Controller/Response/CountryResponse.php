@@ -8,7 +8,6 @@ use App\Country\Entity\Country;
 use App\Currency\Controller\Response\CurrencyResponse;
 use App\SubRegion\Controller\Response\SubRegionResponse;
 use App\Timezone\Controller\Response\TimezoneResponse;
-use DateTimeInterface;
 use Ramsey\Uuid\UuidInterface;
 
 class CountryResponse
@@ -26,15 +25,15 @@ class CountryResponse
     public float $latitude;
     public ?int $altitude = null;
 
-    public CurrencyResponse $currency;
-    public SubRegionResponse $subRegion;
+    public ?CurrencyResponse $currency = null;
+    public ?SubRegionResponse $subRegion = null;
 
     /**
      * @var array<TimezoneResponse> $timezones
      */
-    public array $timezones;
+    public ?array $timezones = null;
 
-    public function __construct(Country $country)
+    public function __construct(Country $country, bool $withRelations = true)
     {
         $this->id = $country->getId();
         $this->title = $country->getTitle();
@@ -49,15 +48,17 @@ class CountryResponse
         $this->latitude = $country->getLatitude();
         $this->altitude = $country->getAltitude();
 
-        $this->currency = new CurrencyResponse($country->getCurrency());
-        $this->subRegion = new SubRegionResponse($country->getSubRegion());
+        if ($withRelations) {
+            $this->currency = new CurrencyResponse($country->getCurrency());
+            $this->subRegion = new SubRegionResponse($country->getSubRegion());
 
-        $tzs = [];
+            $tzs = [];
 
-        foreach ($country->getTimezones() as $timezone) {
-            $tzs[] = new TimezoneResponse($timezone);
+            foreach ($country->getTimezones() as $timezone) {
+                $tzs[] = new TimezoneResponse($timezone);
+            }
+
+            $this->timezones = $tzs;
         }
-
-        $this->timezones = $tzs;
     }
 }
