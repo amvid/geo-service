@@ -46,3 +46,7 @@ countries:
 .PHONY: states
 states:
 	@docker exec app sh -c "bin/console app:import-states"
+
+.PHONY: cities
+cities:
+	@docker exec app sh -c "bin/console app:import-cities"

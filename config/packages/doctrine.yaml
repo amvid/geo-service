@@ -1,6 +1,8 @@
 doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
+        logging: false
+        profiling: false
 
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
@@ -45,6 +47,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/State/Entity'
                 prefix: 'App\State\Entity'
                 alias: State
+            City:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/City/Entity'
+                prefix: 'App\City\Entity'
+                alias: City
 
 when@test:
     doctrine:

@@ -11,10 +11,10 @@ use App\Country\Repository\CountryRepositoryInterface;
 use App\Currency\Entity\Currency;
 use App\Currency\Exception\CurrencyNotFoundException;
 use App\Currency\Repository\CurrencyRepositoryInterface;
-use App\Region\Entity\Region;
-use App\SubRegion\Entity\SubRegion;
 use App\SubRegion\Exception\SubRegionNotFoundException;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
+use App\Tests\Unit\Currency\CurrencyDummy;
+use App\Tests\Unit\SubRegion\SubRegionDummy;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -34,10 +34,9 @@ class GetCountryActionTest extends TestCase
     private string $iso3 = 'NOR';
     private string $phoneCode = '47';
     private string $numericCode = '407';
-    private string $subRegionTitle = 'Northern Europe';
-    private string $currency = 'NOK';
+    private string $subRegionTitle = 'Northern America';
+    private string $currency = 'USD';
     private string $tld = '.no';
-    private array $timezones = ['Europe/Oslo'];
     private int $limit = 10;
     private int $offset = 0;
 
@@ -48,7 +47,6 @@ class GetCountryActionTest extends TestCase
         $this->currencyRepository = $this->getMockBuilder(CurrencyRepositoryInterface::class)->getMock();
 
         $this->request = new GetCountriesActionRequest();
-        $this->request->timezones = $this->timezones;
         $this->request->tld = $this->tld;
         $this->request->currencyCode = $this->currency;
         $this->request->subRegion = $this->subRegionTitle;
@@ -110,9 +108,7 @@ class GetCountryActionTest extends TestCase
 
     public function testShouldReturnCountryResponse(): void
     {
-        $currencyId = Uuid::uuid4();
-        $currency = new Currency($currencyId);
-        $currency->setName('Norwegian Krone')->setCode('NOK')->setSymbol('kr')->setCreatedAt();
+        $currency = CurrencyDummy::get();
 
         $this->currencyRepository
             ->expects($this->once())
@@ -120,13 +116,7 @@ class GetCountryActionTest extends TestCase
             ->with($this->currency)
             ->willReturn($currency);
 
-        $regionId = Uuid::uuid4();
-        $region = new Region($regionId);
-        $region->setTitle('Europe')->setCreatedAt();
-
-        $subRegionId = Uuid::uuid4();
-        $subRegion = new SubRegion($subRegionId);
-        $subRegion->setTitle('Northern Europe')->setRegion($region)->setCreatedAt();
+        $subRegion = SubRegionDummy::get();
 
         $this->subRegionRepository
             ->expects($this->once())

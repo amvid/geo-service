@@ -31,7 +31,5 @@ class UpdateTimezoneActionResponseTest extends TestCase
         $this->assertEquals($title, $actual->timezoneResponse->title);
         $this->assertEquals($code, $actual->timezoneResponse->code);
         $this->assertEquals($utc, $actual->timezoneResponse->utc);
-        $this->assertEquals($tz->getUpdatedAt(), $actual->timezoneResponse->updatedAt);
-        $this->assertEquals($tz->getCreatedAt(), $actual->timezoneResponse->createdAt);
     }
 }

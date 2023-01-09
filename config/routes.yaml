@@ -39,3 +39,9 @@ app_states:
     path: ../src/State/Controller/
     namespace: App\State\Controller
   type: attribute
+
+app_cities:
+  resource:
+    path: ../src/City/Controller/
+    namespace: App\City\Controller
+  type: attribute

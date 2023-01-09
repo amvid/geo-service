@@ -29,12 +29,6 @@ class GetCountriesActionRequest implements LimitOffsetInterface
     public ?string $subRegion = null;
     public ?string $currencyCode = null;
 
-    /**
-     * ["Europe/Oslo", "Europe/Riga"]
-     * @var array<string> $timezones
-     */
-    public ?array $timezones = null;
-
     public static function fromArray(array $params): self
     {
         /** @var GetCountriesActionRequest $req */
@@ -53,7 +47,6 @@ class GetCountriesActionRequest implements LimitOffsetInterface
         $req->tld = $params['tld'] ?? null;
         $req->subRegion = $params['subRegion'] ?? null;
         $req->currencyCode = $params['currencyCode'] ?? null;
-        $req->timezones = $params['timezones'] ?? null;
 
         return $req;
     }

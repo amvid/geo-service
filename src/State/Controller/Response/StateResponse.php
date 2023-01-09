@@ -18,7 +18,7 @@ class StateResponse
     public ?string $type;
     public CountryResponse $country;
 
-    public function __construct(State $state)
+    public function __construct(State $state, bool $withRelations = true)
     {
         $this->id = $state->getId();
         $this->title = $state->getTitle();
@@ -26,6 +26,9 @@ class StateResponse
         $this->type = $state->getType();
         $this->latitude = $state->getLatitude();
         $this->longitude = $state->getLongitude();
-        $this->country = new CountryResponse($state->getCountry());
+
+        if ($withRelations) {
+            $this->country = new CountryResponse($state->getCountry());
+        }
     }
 }

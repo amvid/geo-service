@@ -13,6 +13,7 @@ use App\State\Action\Get\GetStatesActionRequest;
 use App\State\Entity\State;
 use App\State\Repository\StateRepositoryInterface;
 use App\SubRegion\Entity\SubRegion;
+use App\Tests\Unit\Country\CountryDummy;
 use App\Timezone\Entity\Timezone;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
@@ -72,45 +73,7 @@ class GetStatesActionTest extends TestCase
 
     public function testShouldReturnAValidResponseOfState(): void
     {
-        $regionId = Uuid::uuid4();
-        $region = new Region($regionId);
-        $region->setTitle('Americas')->setCreatedAt();
-
-        $subRegionId = Uuid::uuid4();
-        $subRegion = new SubRegion($subRegionId);
-        $subRegion
-            ->setRegion($region)
-            ->setTitle('Northern Americas')
-            ->setCreatedAt();
-
-        $currencyId = Uuid::uuid4();
-        $currency = new Currency($currencyId);
-        $currency
-            ->setCode('USD')
-            ->setName('United States Dollar')
-            ->setSymbol('$')
-            ->setCreatedAt();
-
-        $tzId = Uuid::uuid4();
-        $timezone = new Timezone($tzId);
-        $timezone->setCode('America/Texas')->setTitle('America/Texas')->setUtc('-08:00')->setCreatedAt();
-
-        $countryId = Uuid::uuid4();
-        $country = new Country($countryId);
-        $country
-            ->addTimezone($timezone)
-            ->setTitle('United States')
-            ->setNumericCode('400')
-            ->setIso3('USA')
-            ->setIso2($this->countryIso2)
-            ->setFlag('flag')
-            ->setSubRegion($subRegion)
-            ->setCurrency($currency)
-            ->setTld('.com')
-            ->setPhoneCode('1')
-            ->setLatitude(10)
-            ->setLongitude(10)
-            ->setCreatedAt();
+        $country = CountryDummy::get();
 
         $this->countryRepository
             ->expects($this->once())
