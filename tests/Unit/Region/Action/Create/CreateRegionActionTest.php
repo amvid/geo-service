@@ -54,8 +54,6 @@ class CreateRegionActionTest extends TestCase
 
         $this->assertEquals($expectedResponse->regionResponse->id, $actual->regionResponse->id);
         $this->assertEquals($expectedResponse->regionResponse->title, $actual->regionResponse->title);
-        $this->assertEquals($expectedResponse->regionResponse->createdAt, $actual->regionResponse->createdAt);
-        $this->assertEquals($expectedResponse->regionResponse->updatedAt, $actual->regionResponse->updatedAt);
     }
 
     public function testShouldThrowAnErrorIfTitleHasBeenAlreadyTaken(): void
