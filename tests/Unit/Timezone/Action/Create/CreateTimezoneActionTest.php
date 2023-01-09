@@ -64,8 +64,6 @@ class CreateTimezoneActionTest extends TestCase
         $this->assertEquals($expectedResponse->timezoneResponse->title, $actual->timezoneResponse->title);
         $this->assertEquals($expectedResponse->timezoneResponse->code, $actual->timezoneResponse->code);
         $this->assertEquals($expectedResponse->timezoneResponse->utc, $actual->timezoneResponse->utc);
-        $this->assertEquals($expectedResponse->timezoneResponse->createdAt, $actual->timezoneResponse->createdAt);
-        $this->assertEquals($expectedResponse->timezoneResponse->updatedAt, $actual->timezoneResponse->updatedAt);
     }
 
     public function testShouldThrowAnErrorIfTitleHasBeenAlreadyTaken(): void

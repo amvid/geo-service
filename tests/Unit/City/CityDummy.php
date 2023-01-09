@@ -13,7 +13,7 @@ use Ramsey\Uuid\Uuid;
 
 class CityDummy
 {
-    public const ID = '02e66466-5f4e-4684-8730-ff861f11d1c0';
+    public const ID = '1619adc7-815e-4ead-aa02-27d64f9bc2f6';
     public const TITLE = 'California';
     public const LONGITUDE = -97;
     public const LATITUDE = 123;
@@ -29,7 +29,7 @@ class CityDummy
             $state = StateDummy::get($country);
         }
 
-        $cityId = Uuid::fromString('');
+        $cityId = Uuid::fromString(self::ID);
         $city = new City($cityId);
         $city
             ->setTitle(self::TITLE)
