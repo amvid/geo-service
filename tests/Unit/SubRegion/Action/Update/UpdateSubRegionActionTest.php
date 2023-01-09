@@ -14,6 +14,7 @@ use App\SubRegion\Action\Update\UpdateSubRegionActionRequest;
 use App\SubRegion\Entity\SubRegion;
 use App\SubRegion\Exception\SubRegionNotFoundException;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
+use App\Tests\Unit\Region\RegionDummy;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
@@ -30,10 +31,7 @@ class UpdateSubRegionActionTest extends TestCase
 
     public function testShouldUpdateRegionAndReturnResponse(): void
     {
-        $regionId = Uuid::uuid4();
-        $regionTitle = 'Europe';
-        $region = new Region($regionId);
-        $region->setTitle($regionTitle)->setCreatedAt();
+        $region = RegionDummy::get();
 
         $updateTitle = 'Northern Europe';
         $title = 'Eastern Europe';
@@ -42,7 +40,8 @@ class UpdateSubRegionActionTest extends TestCase
         $subRegion = new SubRegion($id);
         $subRegion->setTitle($title)->setCreatedAt();
 
-        $req = new UpdateSubRegionActionRequest($title, $regionId->toString());
+        $regionId = Uuid::fromString(RegionDummy::ID);
+        $req = new UpdateSubRegionActionRequest($title, RegionDummy::ID);
         $req->setTitle($updateTitle)->setId($id->toString());
 
         $this->regionRepository

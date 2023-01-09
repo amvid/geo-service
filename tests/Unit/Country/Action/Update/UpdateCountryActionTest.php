@@ -17,6 +17,10 @@ use App\Region\Entity\Region;
 use App\SubRegion\Entity\SubRegion;
 use App\SubRegion\Exception\SubRegionNotFoundException;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
+use App\Tests\Unit\Currency\CurrencyDummy;
+use App\Tests\Unit\Region\RegionDummy;
+use App\Tests\Unit\SubRegion\SubRegionDummy;
+use App\Tests\Unit\Timezone\TimezoneDummy;
 use App\Timezone\Entity\Timezone;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
@@ -188,13 +192,8 @@ class UpdateCountryActionTest extends TestCase
             ->with($this->id)
             ->willReturn($country);
 
-        $regionId = Uuid::uuid4();
-        $region = new Region($regionId);
-        $region->setTitle('Europe')->setCreatedAt();
+        $subRegion = SubRegionDummy::get();
 
-        $subRegionId = Uuid::uuid4();
-        $subRegion = new SubRegion($subRegionId);
-        $subRegion->setTitle('Northern Europe')->setRegion($region)->setCreatedAt();
         $this->subRegionRepository
             ->expects($this->once())
             ->method('findByTitle')
@@ -203,9 +202,7 @@ class UpdateCountryActionTest extends TestCase
 
         $country->setSubRegion($subRegion);
 
-        $currencyId = Uuid::uuid4();
-        $currency = new Currency($currencyId);
-        $currency->setName('Norwegian Krone')->setCode('NOK')->setSymbol('kr')->setCreatedAt();
+        $currency = CurrencyDummy::get();
         $this->currencyRepository
             ->expects($this->once())
             ->method('findByCode')
@@ -215,9 +212,7 @@ class UpdateCountryActionTest extends TestCase
         $country->setCurrency($currency);
 
         $tzs = new ArrayCollection();
-        $timezoneId = Uuid::uuid4();
-        $timezone = new Timezone($timezoneId);
-        $timezone->setCode('Europe/Oslo')->setTitle('Europe/Oslo (GMT +01:00)')->setUtc('+01:00')->setCreatedAt();
+        $timezone = TimezoneDummy::get();
         $tzs->add($timezone);
         $this->timezoneRepository
             ->expects($this->once())
@@ -259,9 +254,9 @@ class UpdateCountryActionTest extends TestCase
         $this->assertEquals($this->tld, $actual->countryResponse->tld);
         $this->assertEquals($this->flag, $actual->countryResponse->flag);
         $this->assertEquals(null, $actual->countryResponse->altitude);
-        $this->assertEquals($subRegionId, $actual->countryResponse->subRegion->id);
-        $this->assertEquals($regionId, $actual->countryResponse->subRegion->region->id);
-        $this->assertEquals($currencyId, $actual->countryResponse->currency->id);
-        $this->assertEquals($timezoneId, $actual->countryResponse->timezones[0]->id);
+        $this->assertEquals(SubRegionDummy::ID, $actual->countryResponse->subRegion->id->toString());
+        $this->assertEquals(RegionDummy::ID, $actual->countryResponse->subRegion->region->id->toString());
+        $this->assertEquals(CurrencyDummy::ID, $actual->countryResponse->currency->id->toString());
+        $this->assertEquals(TimezoneDummy::ID, $actual->countryResponse->timezones[0]->id->toString());
     }
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\SubRegion\Action\Create;
 
-use App\Region\Entity\Region;
 use App\Region\Exception\RegionNotFoundException;
 use App\Region\Repository\RegionRepositoryInterface;
 use App\SubRegion\Action\Create\CreateSubRegionAction;
@@ -14,6 +13,7 @@ use App\SubRegion\Entity\SubRegion;
 use App\SubRegion\Exception\SubRegionAlreadyExistsException;
 use App\SubRegion\Factory\SubRegionFactoryInterface;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
+use App\Tests\Unit\Region\RegionDummy;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
@@ -32,12 +32,7 @@ class CreateSubRegionActionTest extends TestCase
 
     public function testShouldReturnAValidResponseOnSuccess(): void
     {
-        $regionId = Uuid::uuid4();
-        $regionTitle = 'Europe';
-
-        $region = new Region($regionId);
-        $region->setTitle($regionTitle);
-        $region->setCreatedAt();
+        $region = RegionDummy::get();
 
         $subRegionId = Uuid::uuid4();
         $subRegionTitle = 'Eastern Europe';
@@ -46,7 +41,8 @@ class CreateSubRegionActionTest extends TestCase
         $subRegion->setTitle($subRegionTitle);
         $subRegion->setCreatedAt();
 
-        $request = new CreateSubRegionActionRequest($subRegionTitle, $regionId->toString());
+        $regionId = Uuid::fromString(RegionDummy::ID);
+        $request = new CreateSubRegionActionRequest($subRegionTitle, RegionDummy::ID);
         $this->assertEquals($subRegionTitle, $request->title);
 
         $expectedResponse = new CreateSubRegionActionResponse($subRegion);

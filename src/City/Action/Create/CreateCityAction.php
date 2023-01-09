@@ -22,6 +22,10 @@ readonly class CreateCityAction implements CreateCityActionInterface
     {
     }
 
+    /**
+     * @throws CountryNotFoundException
+     * @throws StateNotFoundException
+     */
     public function run(CreateCityActionRequest $request): CreateCityActionResponse
     {
         $country = $this->countryRepository->findByIso2($request->countryIso2);
