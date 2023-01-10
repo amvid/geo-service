@@ -7,6 +7,8 @@ namespace App\Airport\Command\Import;
 use App\Airport\Entity\Airport;
 use App\Airport\Factory\AirportFactoryInterface;
 use App\Airport\Repository\AirportRepositoryInterface;
+use App\Application\Command\Import\Config;
+use App\Application\Helper\CsvReaderInterface;
 use App\City\Repository\CityRepositoryInterface;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,6 +26,7 @@ use Throwable;
 class ImportAirportsFromJsonCommand extends Command
 {
     public function __construct(
+        private readonly CsvReaderInterface          $csvReader,
         private readonly AirportFactoryInterface     $airportFactory,
         private readonly AirportRepositoryInterface  $airportRepository,
         private readonly TimezoneRepositoryInterface $timezoneRepository,
@@ -49,7 +52,7 @@ class ImportAirportsFromJsonCommand extends Command
 
             $output->writeln('Importing...');
 
-            foreach ($this->getAirports() as $a) {
+            foreach ($this->csvReader->read(Config::getAirportsDataFilepath()) as $a) {
                 $exists = $this->airportRepository->findByTitle($a['Airport']);
 
                 if ($exists) {
@@ -64,9 +67,9 @@ class ImportAirportsFromJsonCommand extends Command
                         continue;
                     }
 
-                    $cities[$a->city] = $city;
+                    $cities[$a['City']] = $city;
                 } else {
-                    $city = $cities[$a->city];
+                    $city = $cities[$a['City']];
                 }
 
                 if (!isset($timezones[$a['Tz']])) {
