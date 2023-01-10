@@ -57,8 +57,8 @@ class CreateStateActionTest extends TestCase
     {
         $this->stateRepository
             ->expects($this->once())
-            ->method('findByCode')
-            ->with($this->code)
+            ->method('findByTitle')
+            ->with($this->title)
             ->willReturn(new State());
 
         $action = new CreateStateAction($this->countryRepository, $this->stateRepository, $this->factory);
@@ -70,8 +70,8 @@ class CreateStateActionTest extends TestCase
     {
         $this->stateRepository
             ->expects($this->once())
-            ->method('findByCode')
-            ->with($this->code)
+            ->method('findByTitle')
+            ->with($this->title)
             ->willReturn(null);
 
         $this->countryRepository
@@ -92,8 +92,8 @@ class CreateStateActionTest extends TestCase
     {
         $this->stateRepository
             ->expects($this->once())
-            ->method('findByCode')
-            ->with($this->code)
+            ->method('findByTitle')
+            ->with($this->title)
             ->willReturn(null);
 
         $country = CountryDummy::get();

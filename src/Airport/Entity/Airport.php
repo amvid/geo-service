@@ -40,7 +40,7 @@ class Airport
     #[ORM\Column(length: 4, unique: true, nullable: false)]
     private string $icao;
 
-    #[ORM\Column(length: 150, unique: true, nullable: false)]
+    #[ORM\Column(length: 150, unique: false, nullable: false)]
     private string $title;
 
     public function __construct(?UuidInterface $id = null)

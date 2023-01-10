@@ -18,11 +18,11 @@ class Config
 
     public static function getCitiesDataFilepath(): string
     {
-        return getcwd() . '/data/airports_and_cities.csv';
+        return getcwd() . '/data/cities_airports.json';
     }
 
     public static function getAirportsDataFilepath(): string
     {
-        return getcwd() . '/data/airports_and_cities.csv';
+        return getcwd() . '/data/cities_airports.json';
     }
 }

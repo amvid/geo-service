@@ -15,7 +15,7 @@ interface AirportRepositoryInterface
 
     public function findById(UuidInterface $id): ?Airport;
 
-    public function findByTitle(string $title): ?Airport;
+    public function findByTitle(string $title): iterable;
 
     public function findByIata(string $iata): ?Airport;
 

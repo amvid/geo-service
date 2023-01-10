@@ -66,6 +66,18 @@ States
 make states
 ```
 
+Cities
+
+```bash
+make cities
+```
+
+Airports
+
+```bash
+make airports
+```
+
 ### Data sources
 
 https://github.com/dr5hn/countries-states-cities-database

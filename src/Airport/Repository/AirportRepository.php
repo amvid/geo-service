@@ -41,9 +41,9 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
         return $this->find($id);
     }
 
-    public function findByTitle(string $title): ?Airport
+    public function findByTitle(string $title): iterable
     {
-        return $this->findOneBy(['title' => $title]);
+        return $this->findBy(['title' => $title]);
     }
 
     public function list(

@@ -8,10 +8,10 @@ use App\Airport\Entity\Airport;
 use App\Airport\Factory\AirportFactoryInterface;
 use App\Airport\Repository\AirportRepositoryInterface;
 use App\Application\Command\Import\Config;
-use App\Application\Helper\CsvReaderInterface;
 use App\City\Repository\CityRepositoryInterface;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use JsonMachine\Items;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -26,7 +26,6 @@ use Throwable;
 class ImportAirportsFromJsonCommand extends Command
 {
     public function __construct(
-        private readonly CsvReaderInterface          $csvReader,
         private readonly AirportFactoryInterface     $airportFactory,
         private readonly AirportRepositoryInterface  $airportRepository,
         private readonly TimezoneRepositoryInterface $timezoneRepository,
@@ -52,49 +51,52 @@ class ImportAirportsFromJsonCommand extends Command
 
             $output->writeln('Importing...');
 
-            foreach ($this->csvReader->read(Config::getAirportsDataFilepath()) as $a) {
-                $exists = $this->airportRepository->findByTitle($a['Airport']);
+            foreach (Items::fromStream(fopen(Config::getAirportsDataFilepath(), 'rb')) as $a) {
+                if (empty($a->iata) || empty($a->city)) {
+                    continue;
+                }
+
+                $exists = $this->airportRepository->findByIata($a->iata);
 
                 if ($exists) {
                     continue;
                 }
 
-                if (!isset($cities[$a['City']])) {
-                    $city = $this->cityRepository->findByTitle($a['City']);
+                if (!isset($cities[$a->city])) {
+                    $city = $this->cityRepository->findByTitle($a->city);
 
                     if (!$city) {
-                        $output->writeln("City '{$a['City']}' not found. Skipping '{$a['IATA']}' airport");
+                        $output->writeln("City '$a->city' not found. Skipping '$a->iata' airport");
                         continue;
                     }
 
-                    $cities[$a['City']] = $city;
+                    $cities[$a->city] = $city;
                 } else {
-                    $city = $cities[$a['City']];
+                    $city = $cities[$a->city];
                 }
 
-                if (!isset($timezones[$a['Tz']])) {
-                    $timezone = $this->timezoneRepository->findByCode($a['Tz']);
+                if (!isset($timezones[$a->tz])) {
+                    $timezone = $this->timezoneRepository->findByCode($a->tz);
 
                     if (!$timezone) {
-                        $output->writeln("Timezone '{$a['Tz']}' not found. Skipping '{$a['IATA']}' airport");
+                        $output->writeln("Timezone '{$a->tz}' not found. Skipping '$a->iata' airport");
                         continue;
                     }
 
-                    $timezones[$a['Tz']] = $timezone;
+                    $timezones[$a->tz] = $timezone;
                 } else {
-                    $timezone = $timezones[$a['Tz']];
+                    $timezone = $timezones[$a->tz];
                 }
 
                 $newAirport = $this->airportFactory
                     ->setAirport(new Airport())
                     ->setCity($city)
                     ->setTimezone($timezone)
-                    ->setTitle($a['Airport'])
-                    ->setIcao($a['ICAO'])
-                    ->setIata($a['IATA'])
-                    ->setLongitude((float)$a['Longitude'])
-                    ->setLatitude((float)$a['Latitude'])
-                    ->setAltitude((int)$a['Altitude'])
+                    ->setTitle($a->name)
+                    ->setIcao($a->icao)
+                    ->setIata($a->iata)
+                    ->setLongitude((float)$a->lon)
+                    ->setLatitude((float)$a->lat)
                     ->create();
 
                 $this->airportRepository->save($newAirport, true);
