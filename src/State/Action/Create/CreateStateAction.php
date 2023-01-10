@@ -26,7 +26,7 @@ readonly class CreateStateAction implements CreateStateActionInterface
      */
     public function run(CreateStateActionRequest $request): CreateStateActionResponse
     {
-        $exists = $this->stateRepository->findByCode($request->code);
+        $exists = $this->stateRepository->findByTitle($request->title);
 
         if ($exists) {
             throw new StateAlreadyExistsException();

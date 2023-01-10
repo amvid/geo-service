@@ -22,7 +22,7 @@ class GetCitiesActionTest extends TestCase
     private StateRepositoryInterface $stateRepository;
     private CountryRepositoryInterface $countryRepository;
 
-    private string $stateCode = 'NJ';
+    private string $stateTitle = 'New Jersey';
     private string $countryIso2 = 'US';
     private string $title = 'California';
     private int $offset = 0;
@@ -39,7 +39,7 @@ class GetCitiesActionTest extends TestCase
         $this->request = new GetCitiesActionRequest();
         $this->request->title = $this->title;
         $this->request->countryIso2 = $this->countryIso2;
-        $this->request->stateCode = $this->stateCode;
+        $this->request->stateTitle = $this->stateTitle;
         $this->request->limit = $this->limit;
         $this->request->offset = $this->offset;
     }
@@ -48,14 +48,14 @@ class GetCitiesActionTest extends TestCase
     {
         $this->stateRepository
             ->expects($this->once())
-            ->method('findByCode')
-            ->with($this->stateCode)
+            ->method('findByTitle')
+            ->with($this->stateTitle)
             ->willReturn(null);
 
         $action = new GetCitiesAction($this->cityRepository, $this->stateRepository, $this->countryRepository);
 
         $this->expectException(StateNotFoundException::class);
-        $this->expectExceptionMessage("State '$this->stateCode' not found.");
+        $this->expectExceptionMessage("State '$this->stateTitle' not found.");
 
         $action->run($this->request);
     }
@@ -64,8 +64,8 @@ class GetCitiesActionTest extends TestCase
     {
         $this->stateRepository
             ->expects($this->once())
-            ->method('findByCode')
-            ->with($this->stateCode)
+            ->method('findByTitle')
+            ->with($this->stateTitle)
             ->willReturn(StateDummy::get());
 
         $this->countryRepository
@@ -87,8 +87,8 @@ class GetCitiesActionTest extends TestCase
         $state = StateDummy::get();
         $this->stateRepository
             ->expects($this->once())
-            ->method('findByCode')
-            ->with($this->stateCode)
+            ->method('findByTitle')
+            ->with($this->stateTitle)
             ->willReturn($state);
 
         $country = CountryDummy::get();

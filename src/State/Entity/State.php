@@ -28,7 +28,7 @@ class State
     #[ORM\Column(length: 150, nullable: false)]
     private string $title;
 
-    #[ORM\Column(length: 5, unique: true, nullable: false)]
+    #[ORM\Column(length: 5, nullable: true)]
     private string $code;
 
     #[ORM\Column(length: 50, nullable: true)]

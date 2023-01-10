@@ -40,11 +40,11 @@ readonly class UpdateCityAction implements UpdateCityActionInterface
 
         $this->cityFactory->setCity($city);
 
-        if ($request->stateCode) {
-            $state = $this->stateRepository->findByCode($request->stateCode);
+        if ($request->stateTitle) {
+            $state = $this->stateRepository->findByTitle($request->stateTitle);
 
             if (!$state) {
-                throw new StateNotFoundException($request->stateCode);
+                throw new StateNotFoundException($request->stateTitle);
             }
 
             $this->cityFactory->setState($state);

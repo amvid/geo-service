@@ -16,9 +16,9 @@ interface StateRepositoryInterface
 
     public function remove(State $state, bool $flush = false): void;
 
-    public function findByTitle(string $title): array;
+    public function findByTitle(string $title): ?State;
 
-    public function findByCode(string $code): ?State;
+    public function findByCode(string $code): iterable;
 
     public function list(
         int            $offset,

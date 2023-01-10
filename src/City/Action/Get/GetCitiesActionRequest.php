@@ -28,7 +28,7 @@ class GetCitiesActionRequest implements LimitOffsetInterface
     public ?string $countryIso2 = null;
 
     #[Length(max: 5)]
-    public ?string $stateCode = null;
+    public ?string $stateTitle = null;
 
     public static function fromArray(array $params): self
     {
@@ -41,7 +41,7 @@ class GetCitiesActionRequest implements LimitOffsetInterface
 
         $req->title = $params['title'] ?? null;
         $req->countryIso2 = $params['countryIso2'] ?? null;
-        $req->stateCode = $params['stateCode'] ?? null;
+        $req->stateTitle = $params['stateTitle'] ?? null;
 
         return $req;
     }
