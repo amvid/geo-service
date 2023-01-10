@@ -48,7 +48,7 @@ class ImportStatesFromJsonCommand extends Command
             $output->writeln('Importing...');
 
             foreach ($states as $state) {
-                $exists = $this->stateRepository->findByCode($state['state_code']);
+                $exists = $this->stateRepository->findByTitle($state['name']);
 
                 if ($exists) {
                     continue;
