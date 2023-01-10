@@ -54,3 +54,14 @@ cities:
 .PHONY: airports
 airports:
 	@docker exec app sh -c "bin/console app:import-airports"
+
+.PHONY: geo
+geo:
+	make currencies
+	make timezones
+	make regions
+	make subregions
+	make countries
+	make states
+	make cities
+	make airports
