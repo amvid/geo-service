@@ -30,6 +30,12 @@ make test
 
 ### Import
 
+All geo data
+
+```bash
+make geo
+```
+
 Currencies
 
 ```bash
