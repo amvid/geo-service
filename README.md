@@ -68,8 +68,6 @@ make states
 
 ### Data sources
 
-https://download.geonames.org/export/zip
-
-https://osmnames.org/download/
-
 https://github.com/dr5hn/countries-states-cities-database
+
+https://gist.githubusercontent.com/Chanch95/6ae45e4dd8b5020bb368128f791347ea/raw/2c98c7ff5d241098de14644ac2a1af46ed4f85f2/airport.csv
