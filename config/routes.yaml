@@ -45,3 +45,9 @@ app_cities:
     path: ../src/City/Controller/
     namespace: App\City\Controller
   type: attribute
+
+app_airports:
+  resource:
+    path: ../src/Airport/Controller/
+    namespace: App\Airport\Controller
+  type: attribute
