@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Airport\Controller\Admin;
 
 use App\Airport\Entity\Airport;
+use App\Country\Controller\Admin\CountryCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -35,6 +36,10 @@ class AirportCrudController extends AbstractCrudController
             DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex(),
             FormField::addPanel('Relations'),
             AssociationField::new('timezone')->autocomplete(),
+            AssociationField::new('city.country')
+                ->setLabel('Country')
+                ->hideOnForm()
+                ->setCrudController(CountryCrudController::class),
             AssociationField::new('city')->autocomplete(),
             FormField::addPanel('Basic'),
             TextField::new('title')->setColumns(4),
