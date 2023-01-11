@@ -20,7 +20,7 @@ class CityFactoryTest extends TestCase
         $this->cityFactory = new CityFactory();
     }
 
-    public function testShouldReturnANewState(): void
+    public function testShouldReturnANewCity(): void
     {
         $countryId = Uuid::uuid4();
         $country = new Country($countryId);
