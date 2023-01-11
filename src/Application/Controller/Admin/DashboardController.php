@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Controller\Admin;
 
+use App\Airport\Entity\Airport;
 use App\Application\Entity\User;
 use App\City\Entity\City;
 use App\Country\Entity\Country;
@@ -52,5 +53,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Countries', 'fa fa-flag', Country::class);
         yield MenuItem::linkToCrud('States', 'fa fa-arrows', State::class);
         yield MenuItem::linkToCrud('Cities', 'fa fa-building', City::class);
+        yield MenuItem::linkToCrud('Airports', 'fa fa-plane', Airport::class);
     }
 }

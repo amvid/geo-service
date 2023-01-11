@@ -44,6 +44,8 @@ class CreateUserCommand extends Command
 
         $email = $dialog->ask($input, $output, new Question('Please enter email: '));
 
+        $output->writeln('');
+
         $plainPassword = $dialog->ask(
             $input,
             $output,

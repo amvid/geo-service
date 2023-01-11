@@ -29,8 +29,8 @@ class RegionCrudController extends AbstractCrudController
         return [
             TextField::new('id')->hideOnForm(),
             TextField::new('title'),
-            DateTimeField::new('createdAt')->hideOnForm(),
-            DateTimeField::new('updatedAt')->hideOnForm(),
+            DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex(),
+            DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex(),
         ];
     }
 }

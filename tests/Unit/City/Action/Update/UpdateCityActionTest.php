@@ -29,7 +29,7 @@ class UpdateCityActionTest extends TestCase
 
     private string $title = 'California';
     private string $countryIso2 = 'US';
-    private string $stateCode = 'NJ';
+    private string $stateTitle = 'New Jersey';
     private float $latitude = 10.10;
     private float $longitude = 12.12;
     private int $altitude = 10;
@@ -44,7 +44,7 @@ class UpdateCityActionTest extends TestCase
         $this->request = new UpdateCityActionRequest();
         $this->request->setId(CityDummy::ID);
         $this->request->title = $this->title;
-        $this->request->stateCode = $this->stateCode;
+        $this->request->stateTitle = $this->stateTitle;
         $this->request->countryIso2 = $this->countryIso2;
         $this->request->latitude = $this->latitude;
         $this->request->longitude = $this->longitude;
@@ -82,8 +82,8 @@ class UpdateCityActionTest extends TestCase
 
         $this->stateRepository
             ->expects($this->once())
-            ->method('findByCode')
-            ->with($this->stateCode)
+            ->method('findByTitle')
+            ->with($this->stateTitle)
             ->willReturn(null);
 
         $action = new UpdateCityAction(
@@ -94,7 +94,7 @@ class UpdateCityActionTest extends TestCase
         );
 
         $this->expectException(StateNotFoundException::class);
-        $this->expectExceptionMessage("State '$this->stateCode' not found.");
+        $this->expectExceptionMessage("State '$this->stateTitle' not found.");
 
         $action->run($this->request);
     }
@@ -109,8 +109,8 @@ class UpdateCityActionTest extends TestCase
 
         $this->stateRepository
             ->expects($this->once())
-            ->method('findByCode')
-            ->with($this->stateCode)
+            ->method('findByTitle')
+            ->with($this->stateTitle)
             ->willReturn(StateDummy::get());
 
         $this->countryRepository

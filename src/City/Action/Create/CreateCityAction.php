@@ -14,9 +14,9 @@ use App\State\Repository\StateRepositoryInterface;
 readonly class CreateCityAction implements CreateCityActionInterface
 {
     public function __construct(
-        private CityFactoryInterface $cityFactory,
-        private CityRepositoryInterface $cityRepository,
-        private StateRepositoryInterface $stateRepository,
+        private CityFactoryInterface       $cityFactory,
+        private CityRepositoryInterface    $cityRepository,
+        private StateRepositoryInterface   $stateRepository,
         private CountryRepositoryInterface $countryRepository,
     )
     {
@@ -36,11 +36,11 @@ readonly class CreateCityAction implements CreateCityActionInterface
 
         $this->cityFactory->setCountry($country);
 
-        if ($request->stateCode) {
-            $state = $this->stateRepository->findByCode($request->stateCode);
+        if ($request->stateTitle) {
+            $state = $this->stateRepository->findByTitle($request->stateTitle);
 
             if (!$state) {
-                throw new StateNotFoundException($request->stateCode);
+                throw new StateNotFoundException($request->stateTitle);
             }
 
             $this->cityFactory->setState($state);

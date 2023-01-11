@@ -31,8 +31,8 @@ class CurrencyCrudController extends AbstractCrudController
             TextField::new('name'),
             TextField::new('code'),
             TextField::new('symbol'),
-            DateTimeField::new('createdAt')->hideOnForm(),
-            DateTimeField::new('updatedAt')->hideOnForm(),
+            DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex(),
+            DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex(),
         ];
     }
 }

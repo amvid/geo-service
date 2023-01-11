@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\State\Action\Get;
 
-use App\Application\Controller\Request\LimitOffsetParser;
+use App\Application\Controller\Request\LimitOffsetInterface;
 use App\State\Action\Get\GetStatesActionRequest;
 use PHPUnit\Framework\TestCase;
 
@@ -48,7 +48,7 @@ class GetStatesActionRequestTest extends TestCase
 
         $actual = GetStatesActionRequest::fromArray($request);
 
-        $this->assertEquals(LimitOffsetParser::DEFAULT_LIMIT, $actual->limit);
-        $this->assertEquals(LimitOffsetParser::DEFAULT_OFFSET, $actual->offset);
+        $this->assertEquals(LimitOffsetInterface::DEFAULT_LIMIT, $actual->limit);
+        $this->assertEquals(LimitOffsetInterface::DEFAULT_OFFSET, $actual->offset);
     }
 }

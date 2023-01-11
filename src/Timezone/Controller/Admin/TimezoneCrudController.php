@@ -31,8 +31,8 @@ class TimezoneCrudController extends AbstractCrudController
             TextField::new('title'),
             TextField::new('code'),
             TextField::new('utc'),
-            DateTimeField::new('createdAt')->hideOnForm(),
-            DateTimeField::new('updatedAt')->hideOnForm(),
+            DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex(),
+            DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex(),
         ];
     }
 }

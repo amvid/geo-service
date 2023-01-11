@@ -41,7 +41,6 @@ class ImportCitiesFromJsonCommand extends Command
         $this->setHelp('This command will import cities from json file.');
     }
 
-    // TODO: find a way to speed up the import...
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
@@ -52,39 +51,41 @@ class ImportCitiesFromJsonCommand extends Command
             $output->writeln('Importing...');
 
             foreach (Items::fromStream(fopen(Config::getCitiesDataFilepath(), 'rb')) as $city) {
-                $exists = $this->cityRepository->findByTitle($city->name);
+                if (empty($city->city)) {
+                    continue;
+                }
+
+                $exists = $this->cityRepository->findByTitle($city->city);
 
                 if ($exists) {
                     continue;
                 }
 
-                if (!isset($countries[$city->country_code])) {
-                    $country = $this->countryRepository->findByIso2($city->country_code);
+                if (!isset($countries[$city->country])) {
+                    $country = $this->countryRepository->findByIso2($city->country);
 
                     if (!$country) {
-                        $output->writeln("Country '$city->country_code' not found");
+                        $output->writeln("Country '{$city->country}' not found");
                         continue;
                     }
 
-                    $countries[$city->country_name] = $country;
+                    $countries[$city->country] = $country;
                 } else {
-                    $country = $countries[$city->country_code];
+                    $country = $countries[$city->country];
                 }
 
                 $state = null;
 
-                if (!empty($city->state_code)) {
-                    if (!isset($states[$city->state_code])) {
-                        $state = $this->stateRepository->findByCode($city->state_code);
+                if (!empty($city->state)) {
+                    if (str_contains($city->state, '-')) {
+                        $city->state = str_replace('-', ' ', $city->state);
+                    }
 
-                        if (!$state) {
-                            $output->writeln("State '$city->state_code' not found");
-                            continue;
-                        }
-
-                        $states[$city->state_code] = $state;
+                    if (!isset($states[$city->state])) {
+                        $state = $this->stateRepository->findByTitle($city->state);
+                        $states[$city->state] = $state;
                     } else {
-                        $state = $states[$city->state_code];
+                        $state = $states[$city->state];
                     }
                 }
 
@@ -92,15 +93,15 @@ class ImportCitiesFromJsonCommand extends Command
                     ->setCity(new City())
                     ->setCountry($country)
                     ->setState($state)
-                    ->setTitle($city->name)
-                    ->setLongitude((float)$city->longitude)
-                    ->setLatitude((float)$city->latitude)
+                    ->setTitle($city->city)
+                    ->setLongitude((float)$city->lon)
+                    ->setLatitude((float)$city->lat)
                     ->create();
 
                 $this->cityRepository->save($newCity, true);
                 $imported++;
 
-                if ($imported % 5000 === 0) {
+                if ($imported % 2500 === 0) {
                     $this->em->clear();
                     $countries = [];
                     $states = [];

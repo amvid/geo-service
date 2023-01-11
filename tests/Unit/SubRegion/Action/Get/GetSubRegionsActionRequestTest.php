@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\SubRegion\Action\Get;
 
-use App\Application\Controller\Request\LimitOffsetParser;
+use App\Application\Controller\Request\LimitOffsetInterface;
 use App\Region\Action\Get\GetRegionsActionRequest;
 use App\SubRegion\Action\Get\GetSubRegionsActionRequest;
 use PHPUnit\Framework\TestCase;
@@ -43,7 +43,7 @@ class GetSubRegionsActionRequestTest extends TestCase
 
         $actual = GetRegionsActionRequest::fromArray($request);
 
-        $this->assertEquals(LimitOffsetParser::DEFAULT_LIMIT, $actual->limit);
-        $this->assertEquals(LimitOffsetParser::DEFAULT_OFFSET, $actual->offset);
+        $this->assertEquals(LimitOffsetInterface::DEFAULT_LIMIT, $actual->limit);
+        $this->assertEquals(LimitOffsetInterface::DEFAULT_OFFSET, $actual->offset);
     }
 }

@@ -27,11 +27,11 @@ readonly class GetCitiesAction implements GetCitiesActionInterface
     public function run(GetCitiesActionRequest $request): GetCitiesActionResponse
     {
         $state = null;
-        if ($request->stateCode) {
-            $state = $this->stateRepository->findByCode($request->stateCode);
+        if ($request->stateTitle) {
+            $state = $this->stateRepository->findByTitle($request->stateTitle);
 
             if (!$state) {
-                throw new StateNotFoundException($request->stateCode);
+                throw new StateNotFoundException($request->stateTitle);
             }
         }
 

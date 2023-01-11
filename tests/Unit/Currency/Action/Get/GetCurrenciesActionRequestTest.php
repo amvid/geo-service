@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Currency\Action\Get;
 
-use App\Application\Controller\Request\LimitOffsetParser;
+use App\Application\Controller\Request\LimitOffsetInterface;
 use App\Currency\Action\Get\GetCurrenciesActionRequest;
 use PHPUnit\Framework\TestCase;
 
@@ -44,7 +44,7 @@ class GetCurrenciesActionRequestTest extends TestCase
 
         $actual = GetCurrenciesActionRequest::fromArray($request);
 
-        $this->assertEquals(LimitOffsetParser::DEFAULT_LIMIT, $actual->limit);
-        $this->assertEquals(LimitOffsetParser::DEFAULT_OFFSET, $actual->offset);
+        $this->assertEquals(LimitOffsetInterface::DEFAULT_LIMIT, $actual->limit);
+        $this->assertEquals(LimitOffsetInterface::DEFAULT_OFFSET, $actual->offset);
     }
 }

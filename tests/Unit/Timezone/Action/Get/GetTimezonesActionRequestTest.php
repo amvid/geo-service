@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Timezone\Action\Get;
 
-use App\Application\Controller\Request\LimitOffsetParser;
+use App\Application\Controller\Request\LimitOffsetInterface;
 use App\Timezone\Action\Get\GetTimezonesActionRequest;
 use PHPUnit\Framework\TestCase;
 
@@ -44,7 +44,7 @@ class GetTimezonesActionRequestTest extends TestCase
 
         $actual = GetTimezonesActionRequest::fromArray($request);
 
-        $this->assertEquals(LimitOffsetParser::DEFAULT_LIMIT, $actual->limit);
-        $this->assertEquals(LimitOffsetParser::DEFAULT_OFFSET, $actual->offset);
+        $this->assertEquals(LimitOffsetInterface::DEFAULT_LIMIT, $actual->limit);
+        $this->assertEquals(LimitOffsetInterface::DEFAULT_OFFSET, $actual->offset);
     }
 }

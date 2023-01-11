@@ -6,18 +6,14 @@ namespace App\City\Action\Get;
 
 use App\Application\Controller\Request\LimitOffsetInterface;
 use App\Application\Controller\Request\LimitOffsetParser;
+use App\Application\Controller\Request\LimitOffsetRequestTrait;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\Range;
 
 class GetCitiesActionRequest implements LimitOffsetInterface
 {
-    #[Range(min: 1)]
-    public int $limit = LimitOffsetInterface::DEFAULT_LIMIT;
-
-    #[Range(min: 0)]
-    public int $offset = LimitOffsetInterface::DEFAULT_OFFSET;
+    use LimitOffsetRequestTrait;
 
     public ?UuidInterface $id = null;
 
@@ -28,7 +24,7 @@ class GetCitiesActionRequest implements LimitOffsetInterface
     public ?string $countryIso2 = null;
 
     #[Length(max: 5)]
-    public ?string $stateCode = null;
+    public ?string $stateTitle = null;
 
     public static function fromArray(array $params): self
     {
@@ -41,30 +37,8 @@ class GetCitiesActionRequest implements LimitOffsetInterface
 
         $req->title = $params['title'] ?? null;
         $req->countryIso2 = $params['countryIso2'] ?? null;
-        $req->stateCode = $params['stateCode'] ?? null;
+        $req->stateTitle = $params['stateTitle'] ?? null;
 
         return $req;
-    }
-
-    public function setLimit(int $limit): LimitOffsetInterface
-    {
-        $this->limit = $limit;
-        return $this;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
-
-    public function setOffset(int $offset): LimitOffsetInterface
-    {
-        $this->offset = $offset;
-        return $this;
-    }
-
-    public function getOffset(): int
-    {
-        return $this->offset;
     }
 }

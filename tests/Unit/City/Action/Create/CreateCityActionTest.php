@@ -31,7 +31,7 @@ class CreateCityActionTest extends TestCase
 
     private string $title = 'Riga';
     private string $countryIso2 = 'LV';
-    private string $stateCode = 'RIX';
+    private string $stateTitle = 'RIX';
     private float $longitude = 55.12;
     private float $latitude = 10.0;
     private int $altitude = 1;
@@ -46,7 +46,7 @@ class CreateCityActionTest extends TestCase
         $this->request = new CreateCityActionRequest();
         $this->request->title = $this->title;
         $this->request->countryIso2 = $this->countryIso2;
-        $this->request->stateCode = $this->stateCode;
+        $this->request->stateTitle = $this->stateTitle;
         $this->request->latitude = $this->latitude;
         $this->request->altitude = $this->altitude;
         $this->request->longitude = $this->longitude;
@@ -82,8 +82,8 @@ class CreateCityActionTest extends TestCase
 
         $this->stateRepository
             ->expects($this->once())
-            ->method('findByCode')
-            ->with($this->stateCode)
+            ->method('findByTitle')
+            ->with($this->stateTitle)
             ->willReturn(null);
 
         $action = new CreateCityAction(
@@ -94,7 +94,7 @@ class CreateCityActionTest extends TestCase
         );
 
         $this->expectException(StateNotFoundException::class);
-        $this->expectExceptionMessage("State '$this->stateCode' not found.");
+        $this->expectExceptionMessage("State '$this->stateTitle' not found.");
 
         $action->run($this->request);
     }
@@ -111,8 +111,8 @@ class CreateCityActionTest extends TestCase
         $state = StateDummy::get($country);
         $this->stateRepository
             ->expects($this->once())
-            ->method('findByCode')
-            ->with($this->stateCode)
+            ->method('findByTitle')
+            ->with($this->stateTitle)
             ->willReturn($state);
 
         $city = new City(Uuid::fromString(CityDummy::ID));

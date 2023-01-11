@@ -37,8 +37,8 @@ class SubRegionCrudController extends AbstractCrudController
             TextField::new('id')->hideOnForm(),
             TextField::new('title'),
             AssociationField::new('region')->autocomplete(),
-            DateTimeField::new('createdAt')->hideOnForm(),
-            DateTimeField::new('updatedAt')->hideOnForm(),
+            DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex(),
+            DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex(),
         ];
     }
 }
