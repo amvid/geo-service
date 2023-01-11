@@ -6,6 +6,8 @@ namespace App\Airport\Controller\Api\V1;
 
 use App\Airport\Action\Create\CreateAirportActionInterface;
 use App\Airport\Action\Create\CreateAirportActionRequest;
+use App\Airport\Action\Delete\DeleteAirportActionInterface;
+use App\Airport\Action\Delete\DeleteAirportActionRequest;
 use App\Airport\Action\Update\UpdateAirportActionInterface;
 use App\Airport\Action\Update\UpdateAirportActionRequest;
 use App\Application\Controller\Api\ApiController;
@@ -39,5 +41,16 @@ class AirportController extends ApiController
         $req = $this->handleRequest($request, UpdateAirportActionRequest::class);
         $req->setId($id);
         return $this->json($action->run($req)->airport);
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    #[Route(self::API_ROUTE . '/{id}', name: 'app_airport_api_v1_airport_delete', methods: HttpMethod::DELETE)]
+    public function delete(string $id, DeleteAirportActionInterface $action): JsonResponse
+    {
+        $req = new DeleteAirportActionRequest($id);
+        $this->validateRequest($req);
+        return $this->json($action->run($req));
     }
 }
