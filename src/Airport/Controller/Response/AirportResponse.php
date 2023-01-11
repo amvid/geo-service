@@ -15,6 +15,9 @@ class AirportResponse
     public string $title;
     public string $iata;
     public string $icao;
+    public float $longitude;
+    public float $latitude;
+    public ?int $altitude = null;
     public TimezoneResponse $timezone;
     public CityResponse $city;
 
@@ -24,6 +27,9 @@ class AirportResponse
         $this->title = $airport->getTitle();
         $this->iata = $airport->getIata();
         $this->icao = $airport->getIcao();
+        $this->longitude = $airport->getLongitude();
+        $this->altitude = $airport->getAltitude();
+        $this->latitude = $airport->getLatitude();
 
         if ($withRelations) {
             $this->timezone = new TimezoneResponse($airport->getTimezone());
