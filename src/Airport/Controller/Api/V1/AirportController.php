@@ -6,6 +6,8 @@ namespace App\Airport\Controller\Api\V1;
 
 use App\Airport\Action\Create\CreateAirportActionInterface;
 use App\Airport\Action\Create\CreateAirportActionRequest;
+use App\Airport\Action\Update\UpdateAirportActionInterface;
+use App\Airport\Action\Update\UpdateAirportActionRequest;
 use App\Application\Controller\Api\ApiController;
 use App\Application\Controller\HttpMethod;
 use App\Application\Exception\ValidationException;
@@ -24,6 +26,18 @@ class AirportController extends ApiController
     public function create(Request $request, CreateAirportActionInterface $action): JsonResponse
     {
         $req = $this->handleRequest($request, CreateAirportActionRequest::class);
+        return $this->json($action->run($req)->airport);
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    #[Route(self::API_ROUTE . '/{id}', name: 'app_airport_api_v1_airport_update', methods: HttpMethod::PUT)]
+    public function update(string $id, Request $request, UpdateAirportActionInterface $action): JsonResponse
+    {
+        /** @var UpdateAirportActionRequest $req */
+        $req = $this->handleRequest($request, UpdateAirportActionRequest::class);
+        $req->setId($id);
         return $this->json($action->run($req)->airport);
     }
 }
