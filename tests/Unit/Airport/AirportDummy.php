@@ -17,6 +17,9 @@ class AirportDummy
     public const TITLE = 'Anaa';
     public const ICAO = 'NTGA';
     public const IATA = 'AAA';
+    public const LONGITUDE = 10.10;
+    public const LATITUDE = 11.11;
+    public const ALTITUDE = 10;
 
     public static function get(?Timezone $timezone = null, ?City $city = null): Airport
     {
@@ -33,6 +36,9 @@ class AirportDummy
             ->setTitle(self::TITLE)
             ->setIcao(self::ICAO)
             ->setIata(self::IATA)
+            ->setLongitude(self::LONGITUDE)
+            ->setLatitude(self::LATITUDE)
+            ->setAltitude(self::ALTITUDE)
             ->setTimezone($timezone)
             ->setCity($city)
             ->setCreatedAt();
