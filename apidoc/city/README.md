@@ -48,9 +48,7 @@ Response
       "id": "c5e56330-649f-4c5e-852d-a9fb8fb0190d",
       "name": "US Dollar",
       "code": "USD",
-      "symbol": "$",
-      "createdAt": "2023-01-10T18:14:07+00:00",
-      "updatedAt": "2023-01-10T18:14:07+00:00"
+      "symbol": "$"
     },
     "subRegion": {
       "id": "8bb7b205-695a-4c7d-b566-a716dac7e297",
@@ -133,9 +131,7 @@ Response
       "id": "c5e56330-649f-4c5e-852d-a9fb8fb0190d",
       "name": "US Dollar",
       "code": "USD",
-      "symbol": "$",
-      "createdAt": "2023-01-10T18:14:07+00:00",
-      "updatedAt": "2023-01-10T18:14:07+00:00"
+      "symbol": "$"
     },
     "subRegion": {
       "id": "8bb7b205-695a-4c7d-b566-a716dac7e297",
@@ -219,9 +215,7 @@ Response
         "id": "c5e56330-649f-4c5e-852d-a9fb8fb0190d",
         "name": "US Dollar",
         "code": "USD",
-        "symbol": "$",
-        "createdAt": "2023-01-10T18:14:07+00:00",
-        "updatedAt": "2023-01-10T18:14:07+00:00"
+        "symbol": "$"
       },
       "subRegion": {
         "id": "8bb7b205-695a-4c7d-b566-a716dac7e297",

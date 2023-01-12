@@ -145,9 +145,7 @@ Response
         "id": "06f8198b-6c60-4cfe-afa0-4c65ebb1002f",
         "name": "Norwegian Krone",
         "code": "NOK",
-        "symbol": "kr",
-        "createdAt": "2023-01-10T18:14:07+00:00",
-        "updatedAt": "2023-01-10T18:14:07+00:00"
+        "symbol": "kr"
       },
       "subRegion": {
         "id": "a2543731-e2a1-4f19-b89e-20b8948b7317",
