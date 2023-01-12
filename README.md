@@ -8,6 +8,11 @@ Geo data REST API service with admin dashboard to manage regions, countries, tim
 [Symfony 6](https://symfony.com) |
 [EasyAdminBundle](https://symfony.com/bundles/EasyAdminBundle/current/index.html)
 
+### Admin Dashboard
+
+![Screenshot](img/country_dark.png)
+![Screenshot](img/airport_light.png)
+
 ### Installation
 
 ```bash
