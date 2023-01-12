@@ -169,3 +169,10 @@ Response
 ```
 
 ### More [here](https://github.com/vfilipovsky/geo-service/tree/main/apidoc)
+
+License
+-------
+
+This software is published under the [MIT License](LICENSE.md)
+
+[1]: https://github.com/vfilipovsky/geo-service/tree/main/LICENSE.md
