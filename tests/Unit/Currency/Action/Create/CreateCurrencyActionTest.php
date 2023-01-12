@@ -64,8 +64,6 @@ class CreateCurrencyActionTest extends TestCase
         $this->assertEquals($expectedResponse->currencyResponse->name, $actual->currencyResponse->name);
         $this->assertEquals($expectedResponse->currencyResponse->code, $actual->currencyResponse->code);
         $this->assertEquals($expectedResponse->currencyResponse->symbol, $actual->currencyResponse->symbol);
-        $this->assertEquals($expectedResponse->currencyResponse->createdAt, $actual->currencyResponse->createdAt);
-        $this->assertEquals($expectedResponse->currencyResponse->updatedAt, $actual->currencyResponse->updatedAt);
     }
 
     public function testShouldThrowAnErrorIfTitleHasBeenAlreadyTaken(): void

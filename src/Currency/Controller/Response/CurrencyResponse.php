@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Currency\Controller\Response;
 
 use App\Currency\Entity\Currency;
-use DateTimeInterface;
 use Ramsey\Uuid\UuidInterface;
 
 class CurrencyResponse
@@ -14,8 +13,6 @@ class CurrencyResponse
     public string $name;
     public string $code;
     public string $symbol;
-    public DateTimeInterface $createdAt;
-    public DateTimeInterface $updatedAt;
 
     public function __construct(Currency $currency)
     {
@@ -23,7 +20,5 @@ class CurrencyResponse
         $this->name = $currency->getName();
         $this->code = $currency->getCode();
         $this->symbol = $currency->getSymbol();
-        $this->createdAt = $currency->getCreatedAt();
-        $this->updatedAt = $currency->getUpdatedAt();
     }
 }

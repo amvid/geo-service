@@ -31,7 +31,5 @@ class UpdateCurrencyActionResponseTest extends TestCase
         $this->assertEquals($name, $actual->currencyResponse->name);
         $this->assertEquals($code, $actual->currencyResponse->code);
         $this->assertEquals($symbol, $actual->currencyResponse->symbol);
-        $this->assertEquals($currency->getUpdatedAt(), $actual->currencyResponse->updatedAt);
-        $this->assertEquals($currency->getCreatedAt(), $actual->currencyResponse->createdAt);
     }
 }
