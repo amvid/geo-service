@@ -21,7 +21,7 @@ class UpdateCityActionRequest
     #[Length(2)]
     public ?string $countryIso2 = null;
 
-    #[Length(max: 5)]
+    #[Length(max: 150)]
     public ?string $stateTitle = null;
 
     public function setId(string $id): self

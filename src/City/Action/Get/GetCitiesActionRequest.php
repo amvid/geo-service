@@ -23,7 +23,7 @@ class GetCitiesActionRequest implements LimitOffsetInterface
     #[Length(2)]
     public ?string $countryIso2 = null;
 
-    #[Length(max: 5)]
+    #[Length(max: 150)]
     public ?string $stateTitle = null;
 
     public static function fromArray(array $params): self

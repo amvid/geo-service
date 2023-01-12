@@ -20,6 +20,6 @@ class CreateCityActionRequest
     #[Length(2)]
     public string $countryIso2;
 
-    #[Length(max: 5)]
+    #[Length(max: 150)]
     public ?string $stateTitle = null;
 }
