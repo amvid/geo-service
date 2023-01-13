@@ -78,7 +78,7 @@ Response 200
 Error Response 409
 
 ```
-City already exists.
+State already exists.
 ```
 
 ### Update
@@ -159,7 +159,7 @@ Response 200
 Error Response 404
 
 ```
-City '044ee132-afc7-441f-84f9-36857c716eaf' not found.
+State '044ee132-afc7-441f-84f9-36857c716eaf' not found.
 ```
 
 ### List
