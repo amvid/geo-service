@@ -164,7 +164,7 @@ City '044ee132-afc7-441f-84f9-36857c716eaf' not found.
 
 ### List
 
-GET /api/v1/cities
+GET /api/v1/states
 
 Query params
 
