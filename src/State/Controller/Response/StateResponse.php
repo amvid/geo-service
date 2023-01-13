@@ -15,6 +15,7 @@ class StateResponse
     public string $code;
     public float $latitude;
     public float $longitude;
+    public ?int $altitude;
     public ?string $type;
     public CountryResponse $country;
 
@@ -26,6 +27,7 @@ class StateResponse
         $this->type = $state->getType();
         $this->latitude = $state->getLatitude();
         $this->longitude = $state->getLongitude();
+        $this->altitude = $state->getAltitude();
 
         if ($withRelations) {
             $this->country = new CountryResponse($state->getCountry());

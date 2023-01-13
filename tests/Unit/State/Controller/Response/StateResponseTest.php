@@ -20,6 +20,7 @@ class StateResponseTest extends TestCase
         $this->assertEquals($state->getCode(), $actual->code);
         $this->assertEquals($state->getLatitude(), $actual->latitude);
         $this->assertEquals($state->getLongitude(), $actual->longitude);
+        $this->assertEquals($state->getAltitude(), $actual->altitude);
         $this->assertEquals($state->getType(), $actual->type);
         $this->assertEquals($state->getCountry()->getId(), $actual->country->id);
     }
