@@ -12,4 +12,5 @@ jobs:
       - uses: php-actions/phpstan@v3
         with:
           path: src/
+          memory_limit: 256M
       - uses: php-actions/phpunit@v3
