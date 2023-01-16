@@ -13,4 +13,6 @@ jobs:
         with:
           path: src/
           memory_limit: 256M
-      - uses: php-actions/phpunit@v3
+      - name: test
+        run: make test
+

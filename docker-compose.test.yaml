@@ -1,0 +1,33 @@
+version: "3"
+
+networks:
+  geo-service-test-network:
+
+services:
+  geo-service-test-app:
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+    container_name: test-app
+    depends_on:
+      - geo-service-test-db
+    ports:
+      - "9002:9000"
+    volumes:
+      - .:/var/www/geo-service
+      - .docker/php/config/php.ini:/usr/local/etc/php/conf.d/php.ini
+    networks:
+      - geo-service-test-network
+
+  geo-service-test-db:
+    image: mariadb:10.9.3
+    container_name: test-db
+    ports:
+      - "4306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-qwerty}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-qwerty}
+      MYSQL_USER: ${DB_USER:-geo-service}
+      MYSQL_DATABASE: ${DB_DATABASE:-geo-service}
+    networks:
+      - geo-service-test-network
