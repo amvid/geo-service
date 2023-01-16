@@ -1,8 +1,10 @@
 FROM php:8.2-fpm-alpine
 
-WORKDIR /var/www/geo-service
 
+RUN apk --no-cache add git unzip zip icu-dev libzip-dev $PHPIZE_DEPS
 RUN docker-php-ext-install pdo pdo_mysql zip
+
+WORKDIR /var/www/geo-service
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
