@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 networks:
   geo-service-test-network:
@@ -10,7 +10,8 @@ services:
       dockerfile: .docker/php/test.Dockerfile
     container_name: test-app
     depends_on:
-      - geo-service-test-db
+      geo-service-test-db:
+        condition: service_healthy
     links:
       - geo-service-test-db
     ports:
@@ -26,6 +27,12 @@ services:
     container_name: test-db
     ports:
       - "4306:3306"
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u geo-service --password=qwerty
+      start_period: 2s
+      interval: 2s
+      timeout: 2s
+      retries: 5
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-qwerty}
       MYSQL_PASSWORD: ${DB_PASSWORD:-qwerty}
