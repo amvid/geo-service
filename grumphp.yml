@@ -1,0 +1,6 @@
+grumphp:
+    tasks:
+        phpstan: ~
+        phpunit: ~
+        phpcs: ~
+        phpcbf: ~

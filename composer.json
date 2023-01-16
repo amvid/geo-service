@@ -25,7 +25,8 @@
   "config": {
     "allow-plugins": {
       "symfony/flex": true,
-      "symfony/runtime": true
+      "symfony/runtime": true,
+      "phpro/grumphp": true
     },
     "sort-packages": true
   },
@@ -70,7 +71,10 @@
     }
   },
   "require-dev": {
+    "phpro/grumphp": "^1.15",
+    "phpstan/phpstan": "^1.9",
     "phpunit/phpunit": "^9.5",
+    "squizlabs/php_codesniffer": "*",
     "symfony/maker-bundle": "^1.48",
     "symfony/phpunit-bridge": "^6.2",
     "symfony/stopwatch": "6.2.*",
