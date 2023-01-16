@@ -7,7 +7,7 @@ services:
   geo-service-test-app:
     build:
       context: .
-      dockerfile: .docker/php/Dockerfile
+      dockerfile: .docker/php/test.Dockerfile
     container_name: test-app
     depends_on:
       - geo-service-test-db
