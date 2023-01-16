@@ -21,7 +21,8 @@ ssh:
 
 .PHONY: test
 test:
-	@docker-compose -f docker-compose.test.yaml up -d --wait
+	@docker-compose -f docker-compose.test.yaml up -d
+	sleep 5;
 	@docker exec test-app sh -c "APP_ENV=test ./bin/console --no-interaction d:m:m && ./vendor/bin/phpunit"
 	@docker-compose -f docker-compose.test.yaml down
 
