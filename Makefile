@@ -21,9 +21,8 @@ ssh:
 
 .PHONY: test
 test:
-	@docker-compose -f docker-compose.test.yaml up -d
-	@docker exec test-app sh -c "APP_ENV=test ./bin/console --no-interaction d:m:m"
-	@docker exec test-app sh -c "APP_ENV=test ./vendor/bin/phpunit"
+	@docker-compose -f docker-compose.test.yaml up -d --wait
+	@docker exec test-app sh -c "APP_ENV=test ./bin/console --no-interaction d:m:m && ./vendor/bin/phpunit"
 	@docker-compose -f docker-compose.test.yaml down
 
 .PHONY: regions

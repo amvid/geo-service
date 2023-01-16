@@ -11,6 +11,8 @@ services:
     container_name: test-app
     depends_on:
       - geo-service-test-db
+    links:
+      - geo-service-test-db
     ports:
       - "9002:9000"
     volumes:
