@@ -13,6 +13,6 @@ jobs:
         with:
           path: src/
           memory_limit: 256M
-      - name: test
+      - name: Run tests
         run: make test
 
