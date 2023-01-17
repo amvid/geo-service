@@ -12,6 +12,7 @@
     "halaxa/json-machine": "^1.1",
     "ramsey/uuid": "^4.6",
     "ramsey/uuid-doctrine": "^1.8",
+    "symfony/browser-kit": "6.2.*",
     "symfony/console": "6.2.*",
     "symfony/dotenv": "6.2.*",
     "symfony/flex": "^2",
@@ -71,6 +72,7 @@
     }
   },
   "require-dev": {
+    "roave/security-advisories": "dev-latest",
     "doctrine/doctrine-fixtures-bundle": "^3.4",
     "phpro/grumphp": "^1.15",
     "phpstan/phpstan": "^1.9",
