@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AirportController extends ApiController
 {
-    private const API_ROUTE = '/api/v1/airports';
+    public const API_ROUTE = '/api/v1/airports';
 
     /**
      * @throws ValidationException
