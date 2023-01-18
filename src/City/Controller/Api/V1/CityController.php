@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CityController extends ApiController
 {
-    private const API_ROUTE = '/api/v1/cities';
+    public const API_ROUTE = '/api/v1/cities';
 
     /**
      * @throws ValidationException
@@ -67,5 +67,4 @@ class CityController extends ApiController
 
         return $this->json($action->run($req)->cities);
     }
-
 }
