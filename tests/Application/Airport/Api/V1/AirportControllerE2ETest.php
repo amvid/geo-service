@@ -125,5 +125,6 @@ class AirportControllerE2ETest extends WebTestCase
         $this->client->request(HttpMethod::DELETE, AirportController::API_ROUTE . '/' . AirportDummy::ID);
 
         self::assertResponseIsSuccessful();
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
     }
 }
