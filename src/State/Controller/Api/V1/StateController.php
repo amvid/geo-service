@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StateController extends ApiController
 {
-    private const API_ROUTE = '/api/v1/states';
+    public const API_ROUTE = '/api/v1/states';
 
     /**
      * @throws ValidationException
