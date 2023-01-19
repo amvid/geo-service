@@ -131,5 +131,6 @@ class CityControllerE2ETest extends WebTestCase
         $this->client->request(HttpMethod::DELETE, CityController::API_ROUTE . '/' . CityDummy::ID);
 
         self::assertResponseIsSuccessful();
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
     }
 }
