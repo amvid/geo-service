@@ -10,8 +10,8 @@ Geo data REST API service with admin dashboard to manage regions, countries, tim
 
 ### Admin Dashboard
 
-![Screenshot](img/country_dark.png)
-![Screenshot](img/airport_light.png)
+![Screenshot](docs/img/country_dark.png)
+![Screenshot](docs/img/airport_light.png)
 
 ### Installation
 
@@ -173,7 +173,7 @@ Response
 }
 ```
 
-### More [here](https://github.com/vfilipovsky/geo-service/tree/main/apidoc)
+### More [here](https://github.com/vfilipovsky/geo-service/tree/main/docs/api)
 
 License
 -------
