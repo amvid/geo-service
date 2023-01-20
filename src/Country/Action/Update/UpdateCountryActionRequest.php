@@ -14,6 +14,9 @@ class UpdateCountryActionRequest
     public ?UuidInterface $id = null;
 
     #[Length(min: 1, max: 150)]
+    public ?string $title = null;
+
+    #[Length(min: 1, max: 150)]
     public ?string $nativeTitle = null;
 
     #[Length(min: 1, max: 20)]

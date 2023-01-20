@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Country\Action\Update;
 
+use App\Country\Exception\CountryAlreadyExistsException;
 use App\Country\Exception\CountryNotFoundException;
 use App\Country\Factory\CountryFactoryInterface;
 use App\Country\Repository\CountryRepositoryInterface;
@@ -15,16 +16,15 @@ use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
-readonly class UpdateCountryAction implements UpdateCountryActionInterface
+class UpdateCountryAction implements UpdateCountryActionInterface
 {
     public function __construct(
-        private CountryFactoryInterface      $countryFactory,
-        private CountryRepositoryInterface   $countryRepository,
-        private TimezoneRepositoryInterface  $timezoneRepository,
-        private CurrencyRepositoryInterface  $currencyRepository,
-        private SubRegionRepositoryInterface $subRegionRepository,
-    )
-    {
+        private readonly CountryFactoryInterface $countryFactory,
+        private readonly CountryRepositoryInterface $countryRepository,
+        private readonly TimezoneRepositoryInterface $timezoneRepository,
+        private readonly CurrencyRepositoryInterface $currencyRepository,
+        private readonly SubRegionRepositoryInterface $subRegionRepository,
+    ) {
     }
 
     /**
@@ -32,6 +32,7 @@ readonly class UpdateCountryAction implements UpdateCountryActionInterface
      * @throws SubRegionNotFoundException
      * @throws TimezoneNotFoundException
      * @throws CountryNotFoundException
+     * @throws CountryAlreadyExistsException
      */
     public function run(UpdateCountryActionRequest $request): UpdateCountryActionResponse
     {
@@ -77,6 +78,16 @@ readonly class UpdateCountryAction implements UpdateCountryActionInterface
             }
 
             $this->countryFactory->setTimezones($tzs);
+        }
+
+        if ($request->title && $request->title !== $exists->getTitle()) {
+            $exists = $this->countryRepository->findByTitle($request->title);
+
+            if ($exists) {
+                throw new CountryAlreadyExistsException();
+            }
+
+            $this->countryFactory->setTitle($request->title);
         }
 
         if ($request->nativeTitle) {

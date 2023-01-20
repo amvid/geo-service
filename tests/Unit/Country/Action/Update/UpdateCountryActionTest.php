@@ -13,7 +13,6 @@ use App\Country\Repository\CountryRepositoryInterface;
 use App\Currency\Entity\Currency;
 use App\Currency\Exception\CurrencyNotFoundException;
 use App\Currency\Repository\CurrencyRepositoryInterface;
-use App\Region\Entity\Region;
 use App\SubRegion\Entity\SubRegion;
 use App\SubRegion\Exception\SubRegionNotFoundException;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
@@ -21,7 +20,6 @@ use App\Tests\Unit\Currency\CurrencyDummy;
 use App\Tests\Unit\Region\RegionDummy;
 use App\Tests\Unit\SubRegion\SubRegionDummy;
 use App\Tests\Unit\Timezone\TimezoneDummy;
-use App\Timezone\Entity\Timezone;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -53,6 +51,8 @@ class UpdateCountryActionTest extends TestCase
     private float $longitude = 10.0;
     private float $latitude = 62.0;
 
+    private string $updateTitle = 'Updated Norway';
+
     private array $timezones = ['Europe/Oslo'];
 
     protected function setUp(): void
@@ -76,6 +76,7 @@ class UpdateCountryActionTest extends TestCase
         $this->request->currencyCode = $this->currencyCode;
         $this->request->subRegion = $this->subRegion;
         $this->request->timezones = $this->timezones;
+        $this->request->title = $this->updateTitle;
         $this->request->nativeTitle = $this->nativeTitle;
         $this->request->flag = $this->flag;
         $this->request->phoneCode = $this->phoneCode;
@@ -221,6 +222,7 @@ class UpdateCountryActionTest extends TestCase
             ->willReturn($timezone);
 
         $country->addTimezone($timezone);
+        $country->setTitle($this->updateTitle);
 
         $this->factory
             ->expects($this->once())->method('setNativeTitle')->with($this->nativeTitle)->willReturn($this->factory);
@@ -247,6 +249,7 @@ class UpdateCountryActionTest extends TestCase
 
         $actual = $this->action->run($this->request);
 
+        $this->assertEquals($this->updateTitle, $actual->countryResponse->title);
         $this->assertEquals($this->nativeTitle, $actual->countryResponse->nativeTitle);
         $this->assertEquals($this->latitude, $actual->countryResponse->latitude);
         $this->assertEquals($this->phoneCode, $actual->countryResponse->phoneCode);
