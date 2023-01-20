@@ -63,37 +63,4 @@ class CreateCountryActionRequest
 
     #[Length(min: 1, max: 150)]
     public ?string $nativeTitle = null;
-
-    public function __construct(
-        string  $title,
-        string  $iso2,
-        string  $iso3,
-        string  $phoneCode,
-        string  $numericCode,
-        string  $subRegion,
-        string  $currencyCode,
-        string  $flag,
-        string  $tld,
-        float   $latitude,
-        float   $longitude,
-        array   $timezones,
-        ?int    $altitude = null,
-        ?string $nativeTitle = null,
-    )
-    {
-        $this->title = $title;
-        $this->iso2 = $iso2;
-        $this->iso3 = $iso3;
-        $this->phoneCode = $phoneCode;
-        $this->numericCode = $numericCode;
-        $this->subRegion = $subRegion;
-        $this->currencyCode = $currencyCode;
-        $this->flag = $flag;
-        $this->tld = $tld;
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
-        $this->timezones = $timezones;
-        $this->altitude = $altitude;
-        $this->nativeTitle = $nativeTitle;
-    }
 }

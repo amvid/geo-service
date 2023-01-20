@@ -68,22 +68,20 @@ class CreateCountryActionTest extends TestCase
             $this->subRegionRepository
         );
 
-        $this->request = new CreateCountryActionRequest(
-            $this->title,
-            $this->iso2,
-            $this->iso3,
-            $this->phoneCode,
-            $this->numericCode,
-            $this->subRegionTitle,
-            $this->currency,
-            $this->flag,
-            $this->tld,
-            $this->latitude,
-            $this->longitude,
-            $this->timezones,
-            null,
-            $this->nativeTitle,
-        );
+        $this->request = new CreateCountryActionRequest();
+        $this->request->title = $this->title;
+        $this->request->iso2 = $this->iso2;
+        $this->request->iso3 = $this->iso3;
+        $this->request->phoneCode = $this->phoneCode;
+        $this->request->numericCode = $this->numericCode;
+        $this->request->subRegion = $this->subRegionTitle;
+        $this->request->currencyCode = $this->currency;
+        $this->request->flag = $this->flag;
+        $this->request->tld = $this->tld;
+        $this->request->latitude = $this->latitude;
+        $this->request->longitude = $this->longitude;
+        $this->request->timezones = $this->timezones;
+        $this->request->nativeTitle = $this->nativeTitle;
     }
 
     public function testShouldThrowCountryAlreadyExistsExceptionIfIso2AlreadyTaken(): void
