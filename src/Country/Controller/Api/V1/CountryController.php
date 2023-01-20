@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CountryController extends ApiController
 {
-    private const API_ROUTE = '/api/v1/countries';
+    public const API_ROUTE = '/api/v1/countries';
 
     /**
      * @throws ValidationException
@@ -68,5 +68,4 @@ class CountryController extends ApiController
 
         return $this->json($action->run($req)->countryResponse);
     }
-
 }
