@@ -5,15 +5,18 @@ declare(strict_types=1);
 namespace App\Tests\Application\SubRegion\Api\V1;
 
 use App\Application\Controller\HttpMethod;
+use App\Region\Repository\RegionRepositoryInterface;
 use App\SubRegion\Controller\Api\V1\SubRegionController;
 use App\SubRegion\Entity\SubRegion;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
+use App\Tests\Unit\Region\RegionDummy;
 use App\Tests\Unit\SubRegion\SubRegionDummy;
 use Exception;
 use JsonException;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 class SubRegionControllerE2ETest extends WebTestCase
 {
@@ -32,9 +35,16 @@ class SubRegionControllerE2ETest extends WebTestCase
      */
     public function testCreateActionSuccess(): void
     {
+        try {
+            // ensure that region exists
+            $this->getContainer()->get(RegionRepositoryInterface::class)->save(RegionDummy::get(), true);
+        } catch (Throwable $e) {
+            // do nothing if already exists
+        }
+
         $content = [
             'title' => 'North America',
-            'regionTitle' => 'America',
+            'regionTitle' => RegionDummy::TITLE,
         ];
 
         $this->client->request(
