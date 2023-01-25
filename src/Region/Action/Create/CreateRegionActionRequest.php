@@ -12,9 +12,4 @@ class CreateRegionActionRequest
     #[NotBlank]
     #[Length(min: 1, max: 150)]
     public string $title;
-
-    public function __construct(string $title)
-    {
-        $this->title = $title;
-    }
 }

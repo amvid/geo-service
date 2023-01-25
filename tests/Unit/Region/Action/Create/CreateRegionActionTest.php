@@ -30,7 +30,8 @@ class CreateRegionActionTest extends TestCase
         $id = Uuid::uuid7();
         $title = 'Europe';
 
-        $request = new CreateRegionActionRequest($title);
+        $request = new CreateRegionActionRequest();
+        $request->title = $title;
         $this->assertEquals($title, $request->title);
 
         $region = new Region($id);
@@ -66,7 +67,8 @@ class CreateRegionActionTest extends TestCase
             ->willReturn(new Region());
 
         $action = new CreateRegionAction($this->repository, $this->factory);
-        $request = new CreateRegionActionRequest($title);
+        $request = new CreateRegionActionRequest();
+        $request->title = $title;
 
         $this->expectException(RegionAlreadyExistsException::class);
         $action->run($request);
