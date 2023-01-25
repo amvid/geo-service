@@ -31,7 +31,7 @@ services:
       test: mysqladmin ping -h 127.0.0.1 -u geo-service --password=qwerty
       start_period: 2s
       interval: 2s
-      timeout: 2s
+      timeout: 5s
       retries: 5
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-qwerty}
