@@ -16,8 +16,7 @@ readonly class GetCitiesAction implements GetCitiesActionInterface
         private CityRepositoryInterface $cityRepository,
         private StateRepositoryInterface $stateRepository,
         private CountryRepositoryInterface $countryRepository,
-    )
-    {
+    ) {
     }
 
     /**

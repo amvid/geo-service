@@ -14,10 +14,9 @@ readonly class UpdateStateAction implements UpdateStateActionInterface
 {
     public function __construct(
         private CountryRepositoryInterface $countryRepository,
-        private StateRepositoryInterface   $stateRepository,
-        private StateFactoryInterface      $stateFactory,
-    )
-    {
+        private StateRepositoryInterface $stateRepository,
+        private StateFactoryInterface $stateFactory,
+    ) {
     }
 
     /**

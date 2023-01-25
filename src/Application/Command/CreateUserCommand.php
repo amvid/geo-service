@@ -24,9 +24,8 @@ class CreateUserCommand extends Command
 {
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
-        private readonly UserFactoryInterface    $userFactory,
-    )
-    {
+        private readonly UserFactoryInterface $userFactory,
+    ) {
         parent::__construct();
     }
 

@@ -18,7 +18,8 @@ use Symfony\Bridge\Doctrine\Types\UuidType;
 #[ORM\HasLifecycleCallbacks]
 class Airport
 {
-    use TimestampTrait, PositionTrait;
+    use TimestampTrait;
+    use PositionTrait;
 
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]
@@ -114,5 +115,4 @@ class Airport
         $this->title = $title;
         return $this;
     }
-
 }

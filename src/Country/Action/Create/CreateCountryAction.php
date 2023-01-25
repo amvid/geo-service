@@ -18,13 +18,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 readonly class CreateCountryAction implements CreateCountryActionInterface
 {
     public function __construct(
-        private CountryFactoryInterface      $countryFactory,
-        private CountryRepositoryInterface   $countryRepository,
-        private TimezoneRepositoryInterface  $timezoneRepository,
-        private CurrencyRepositoryInterface  $currencyRepository,
+        private CountryFactoryInterface $countryFactory,
+        private CountryRepositoryInterface $countryRepository,
+        private TimezoneRepositoryInterface $timezoneRepository,
+        private CurrencyRepositoryInterface $currencyRepository,
         private SubRegionRepositoryInterface $subRegionRepository,
-    )
-    {
+    ) {
     }
 
     /**

@@ -32,8 +32,7 @@ class ImportCountriesFromJsonCommand extends Command
         private readonly CurrencyRepositoryInterface $currencyRepository,
         private readonly SubRegionRepositoryInterface $subRegionRepository,
         private readonly TimezoneRepositoryInterface $timezoneRepository,
-    )
-    {
+    ) {
         parent::__construct();
     }
 

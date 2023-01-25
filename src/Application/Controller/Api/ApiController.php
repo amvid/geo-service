@@ -15,10 +15,9 @@ class ApiController extends AbstractController
     public const FORMAT_JSON = 'json';
 
     public function __construct(
-        private readonly ValidatorInterface  $validator,
+        private readonly ValidatorInterface $validator,
         private readonly SerializerInterface $serializer,
-    )
-    {
+    ) {
     }
 
     /**

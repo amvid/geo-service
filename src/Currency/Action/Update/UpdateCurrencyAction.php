@@ -40,5 +40,4 @@ readonly class UpdateCurrencyAction implements UpdateCurrencyActionInterface
 
         return new UpdateCurrencyActionResponse($currency);
     }
-
 }

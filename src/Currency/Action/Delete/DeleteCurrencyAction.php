@@ -25,5 +25,4 @@ readonly class DeleteCurrencyAction implements DeleteCurrencyActionInterface
 
         return $res;
     }
-
 }

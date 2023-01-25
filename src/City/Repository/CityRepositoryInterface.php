@@ -20,11 +20,11 @@ interface CityRepositoryInterface
     public function findByTitle(string $title): ?City;
 
     public function list(
-        int            $offset,
-        int            $limit,
+        int $offset,
+        int $limit,
         ?UuidInterface $id = null,
-        ?string        $title = null,
-        ?State         $state = null,
-        ?Country       $country = null,
+        ?string $title = null,
+        ?State $state = null,
+        ?Country $country = null,
     ): iterable;
 }

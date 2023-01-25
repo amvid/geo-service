@@ -25,5 +25,4 @@ readonly class DeleteTimezoneAction implements DeleteTimezoneActionInterface
 
         return $res;
     }
-
 }

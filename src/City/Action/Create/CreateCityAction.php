@@ -14,12 +14,11 @@ use App\State\Repository\StateRepositoryInterface;
 readonly class CreateCityAction implements CreateCityActionInterface
 {
     public function __construct(
-        private CityFactoryInterface       $cityFactory,
-        private CityRepositoryInterface    $cityRepository,
-        private StateRepositoryInterface   $stateRepository,
+        private CityFactoryInterface $cityFactory,
+        private CityRepositoryInterface $cityRepository,
+        private StateRepositoryInterface $stateRepository,
         private CountryRepositoryInterface $countryRepository,
-    )
-    {
+    ) {
     }
 
     /**

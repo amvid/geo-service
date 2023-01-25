@@ -13,11 +13,10 @@ use App\SubRegion\Repository\SubRegionRepositoryInterface;
 readonly class GetCountriesAction implements GetCountriesActionInterface
 {
     public function __construct(
-        private CountryRepositoryInterface   $countryRepository,
-        private CurrencyRepositoryInterface  $currencyRepository,
+        private CountryRepositoryInterface $countryRepository,
+        private CurrencyRepositoryInterface $currencyRepository,
         private SubRegionRepositoryInterface $subRegionRepository,
-    )
-    {
+    ) {
     }
 
     /**
@@ -61,5 +60,4 @@ readonly class GetCountriesAction implements GetCountriesActionInterface
             )
         );
     }
-
 }

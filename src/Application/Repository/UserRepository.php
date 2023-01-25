@@ -11,8 +11,7 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 
-class UserRepository extends ServiceEntityRepository
-    implements PasswordUpgraderInterface, UserRepositoryInterface
+class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface, UserRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -55,5 +54,4 @@ class UserRepository extends ServiceEntityRepository
     {
         return $this->findOneBy(['email' => $email]);
     }
-
 }

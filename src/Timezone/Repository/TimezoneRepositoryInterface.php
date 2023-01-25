@@ -20,11 +20,10 @@ interface TimezoneRepositoryInterface
     public function findByCode(string $code): ?Timezone;
 
     public function list(
-        int     $offset,
-        int     $limit,
+        int $offset,
+        int $limit,
         ?string $title = null,
         ?string $code = null,
         ?string $utc = null
     ): array;
-
 }

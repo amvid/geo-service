@@ -79,5 +79,4 @@ class CountryFactoryTest extends TestCase
         $this->assertEquals($timezones, $actual->getTimezones());
         $this->assertEquals($subRegion, $actual->getSubRegion());
     }
-
 }

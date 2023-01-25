@@ -95,11 +95,16 @@ class UpdateStateActionTest extends TestCase
             ->with($this->id)
             ->willReturn($state);
 
-        $this->stateFactory->expects($this->once())->method('setTitle')->with($this->title)->willReturn($this->stateFactory);
-        $this->stateFactory->expects($this->once())->method('setType')->with($this->type)->willReturn($this->stateFactory);
-        $this->stateFactory->expects($this->once())->method('setLatitude')->with($this->latitude)->willReturn($this->stateFactory);
-        $this->stateFactory->expects($this->once())->method('setLongitude')->with($this->longitude)->willReturn($this->stateFactory);
-        $this->stateFactory->expects($this->once())->method('setAltitude')->with($this->altitude)->willReturn($this->stateFactory);
+        $this->stateFactory
+            ->expects($this->once())->method('setTitle')->with($this->title)->willReturn($this->stateFactory);
+        $this->stateFactory
+            ->expects($this->once())->method('setType')->with($this->type)->willReturn($this->stateFactory);
+        $this->stateFactory
+            ->expects($this->once())->method('setLatitude')->with($this->latitude)->willReturn($this->stateFactory);
+        $this->stateFactory
+            ->expects($this->once())->method('setLongitude')->with($this->longitude)->willReturn($this->stateFactory);
+        $this->stateFactory
+            ->expects($this->once())->method('setAltitude')->with($this->altitude)->willReturn($this->stateFactory);
 
         $this->countryRepository
             ->expects($this->once())
@@ -107,7 +112,8 @@ class UpdateStateActionTest extends TestCase
             ->with($this->countryIso2)
             ->willReturn($country);
 
-        $this->stateFactory->expects($this->once())->method('setCountry')->with($country)->willReturn($this->stateFactory);
+        $this->stateFactory
+            ->expects($this->once())->method('setCountry')->with($country)->willReturn($this->stateFactory);
 
         $action = new UpdateStateAction($this->countryRepository, $this->stateRepository, $this->stateFactory);
         $actual = $action->run($this->request);

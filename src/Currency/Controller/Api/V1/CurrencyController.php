@@ -67,5 +67,4 @@ class CurrencyController extends ApiController
 
         return $this->json($action->run($req)->currencyResponse);
     }
-
 }

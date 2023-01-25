@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SubRegionController extends ApiController
 {
-    private const API_ROUTE = '/api/v1/subregions';
+    public const API_ROUTE = '/api/v1/subregions';
 
     /**
      * @throws ValidationException
@@ -67,5 +67,4 @@ class SubRegionController extends ApiController
 
         return $this->json($action->run($req)->subRegionResponse);
     }
-
 }

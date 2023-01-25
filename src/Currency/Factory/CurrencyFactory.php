@@ -43,5 +43,4 @@ class CurrencyFactory implements CurrencyFactoryInterface
     {
         return $this->currency;
     }
-
 }

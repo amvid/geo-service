@@ -66,5 +66,4 @@ class DeleteCurrencyActionTest extends TestCase
 
         $action->run($req);
     }
-
 }

@@ -68,5 +68,4 @@ class GetSubRegionsActionTest extends TestCase
         $this->assertEquals($this->northernEurope->getRegion()->getId(), $actual->response[1]->region->id);
         $this->assertEquals($this->northernEurope->getRegion()->getId(), $actual->response[1]->region->id);
     }
-
 }

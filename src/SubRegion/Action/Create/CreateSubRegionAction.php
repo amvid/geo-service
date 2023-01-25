@@ -16,8 +16,7 @@ readonly class CreateSubRegionAction implements CreateSubRegionActionInterface
         private RegionRepositoryInterface $regionRepository,
         private SubRegionRepositoryInterface $subRegionRepository,
         private SubRegionFactoryInterface $subRegionFactory,
-    )
-    {
+    ) {
     }
 
     /**
@@ -32,10 +31,10 @@ readonly class CreateSubRegionAction implements CreateSubRegionActionInterface
             throw new SubRegionAlreadyExistsException();
         }
 
-        $region = $this->regionRepository->findById($request->regionId);
+        $region = $this->regionRepository->findByTitle($request->regionTitle);
 
         if (!$region) {
-            throw new RegionNotFoundException($request->regionId->toString());
+            throw new RegionNotFoundException($request->regionTitle);
         }
 
         $subRegion = $this->subRegionFactory

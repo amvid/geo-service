@@ -22,13 +22,13 @@ interface AirportRepositoryInterface
     public function findByIcao(string $icao): ?Airport;
 
     public function list(
-        int            $offset,
-        int            $limit,
+        int $offset,
+        int $limit,
         ?UuidInterface $id = null,
-        ?string        $title = null,
-        ?string        $iata = null,
-        ?string        $icao = null,
-        ?Timezone      $timezone = null,
-        ?City          $city = null,
+        ?string $title = null,
+        ?string $iata = null,
+        ?string $icao = null,
+        ?Timezone $timezone = null,
+        ?City $city = null,
     ): iterable;
 }

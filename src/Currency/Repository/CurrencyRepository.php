@@ -45,13 +45,12 @@ class CurrencyRepository extends ServiceEntityRepository implements CurrencyRepo
     }
 
     public function list(
-        int     $offset,
-        int     $limit,
+        int $offset,
+        int $limit,
         ?string $name = null,
         ?string $code = null,
         ?string $symbol = null,
-    ): array
-    {
+    ): array {
         $qb = $this->createQueryBuilder('c')
             ->setMaxResults($limit)
             ->setFirstResult($offset)

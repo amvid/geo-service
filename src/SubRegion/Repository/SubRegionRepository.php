@@ -65,5 +65,4 @@ class SubRegionRepository extends ServiceEntityRepository implements SubRegionRe
     {
         return $this->find($id);
     }
-
 }

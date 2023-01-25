@@ -71,5 +71,4 @@ class CreateRegionActionTest extends TestCase
         $this->expectException(RegionAlreadyExistsException::class);
         $action->run($request);
     }
-
 }

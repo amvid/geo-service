@@ -40,5 +40,4 @@ readonly class UpdateTimezoneAction implements UpdateTimezoneActionInterface
 
         return new UpdateTimezoneActionResponse($timezone);
     }
-
 }

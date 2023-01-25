@@ -13,8 +13,7 @@ readonly class CreateCurrencyAction implements CreateCurrencyActionInterface
     public function __construct(
         private CurrencyRepositoryInterface $currencyRepository,
         private CurrencyFactoryInterface $currencyFactory,
-    )
-    {
+    ) {
     }
 
     /**

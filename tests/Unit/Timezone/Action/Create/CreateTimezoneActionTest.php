@@ -84,5 +84,4 @@ class CreateTimezoneActionTest extends TestCase
         $this->expectException(TimezoneAlreadyExistsException::class);
         $action->run($request);
     }
-
 }

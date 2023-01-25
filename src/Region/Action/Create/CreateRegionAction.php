@@ -13,8 +13,7 @@ readonly class CreateRegionAction implements CreateRegionActionInterface
     public function __construct(
         private RegionRepositoryInterface $regionRepository,
         private RegionFactoryInterface $regionFactory,
-    )
-    {
+    ) {
     }
 
     /**

@@ -6,5 +6,4 @@ namespace App\Airport\Action\Delete;
 
 class DeleteAirportActionResponse
 {
-
 }

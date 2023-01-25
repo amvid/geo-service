@@ -13,8 +13,7 @@ readonly class CreateTimezoneAction implements CreateTimezoneActionInterface
     public function __construct(
         private TimezoneRepositoryInterface $timezoneRepository,
         private TimezoneFactoryInterface $timezoneFactory,
-    )
-    {
+    ) {
     }
 
     /**

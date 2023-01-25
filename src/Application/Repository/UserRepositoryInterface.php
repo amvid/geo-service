@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Application\Repository;
+
 use App\Application\Entity\User;
 
 interface UserRepositoryInterface

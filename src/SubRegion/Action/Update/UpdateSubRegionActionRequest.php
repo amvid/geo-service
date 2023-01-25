@@ -15,28 +15,7 @@ class UpdateSubRegionActionRequest
     #[NotBlank]
     public string $title;
 
-    public ?UuidInterface $regionId = null;
-
-    public function __construct(string $title, ?string $regionId = null)
-    {
-        $this->title = $title;
-
-        if ($regionId) {
-            $this->regionId = Uuid::fromString($regionId);
-        }
-    }
-
-    public function setRegionId(string $regionId): self
-    {
-        $this->regionId = Uuid::fromString($regionId);
-        return $this;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-        return $this;
-    }
+    public ?string $regionTitle = null;
 
     public function setId(string $id): self
     {

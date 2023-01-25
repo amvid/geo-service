@@ -110,8 +110,10 @@ class CreateStateActionTest extends TestCase
         $this->factory->expects($this->once())->method('setCode')->with($this->code)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setTitle')->with($this->title)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setType')->with($this->type)->willReturn($this->factory);
-        $this->factory->expects($this->once())->method('setLatitude')->with($this->latitude)->willReturn($this->factory);
-        $this->factory->expects($this->once())->method('setLongitude')->with($this->longitude)->willReturn($this->factory);
+        $this->factory
+            ->expects($this->once())->method('setLatitude')->with($this->latitude)->willReturn($this->factory);
+        $this->factory
+            ->expects($this->once())->method('setLongitude')->with($this->longitude)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setAltitude')->with(null)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('create')->willReturn($state);
 

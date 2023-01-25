@@ -15,7 +15,9 @@ class ImportHelper
     {
         return json_decode(
             file_get_contents($file),
-            true, 512, JSON_THROW_ON_ERROR
+            true,
+            512,
+            JSON_THROW_ON_ERROR
         );
     }
 }

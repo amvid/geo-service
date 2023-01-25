@@ -172,9 +172,12 @@ class CreateAirportActionTest extends TestCase
             ->setAltitude($this->altitude)
             ->setLatitude($this->latitude);
 
-        $this->factory->expects($this->once())->method('setLongitude')->with($this->longitude)->willReturn($this->factory);
-        $this->factory->expects($this->once())->method('setAltitude')->with($this->altitude)->willReturn($this->factory);
-        $this->factory->expects($this->once())->method('setLatitude')->with($this->latitude)->willReturn($this->factory);
+        $this->factory
+            ->expects($this->once())->method('setLongitude')->with($this->longitude)->willReturn($this->factory);
+        $this->factory
+            ->expects($this->once())->method('setAltitude')->with($this->altitude)->willReturn($this->factory);
+        $this->factory
+            ->expects($this->once())->method('setLatitude')->with($this->latitude)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setTitle')->with($this->title)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setCity')->with($city)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setTimezone')->with($timezone)->willReturn($this->factory);
@@ -206,5 +209,4 @@ class CreateAirportActionTest extends TestCase
         $this->assertEquals(CityDummy::ID, $actual->airport->city->id);
         $this->assertEquals(TimezoneDummy::ID, $actual->airport->timezone->id);
     }
-
 }

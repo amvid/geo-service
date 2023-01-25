@@ -6,7 +6,6 @@ namespace App\Application\Trait;
 
 trait OptionalPositionRequestTrait
 {
-
     public ?float $longitude = null;
 
     public ?float $latitude = null;

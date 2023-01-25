@@ -19,6 +19,5 @@ class CurrencyResponseTest extends TestCase
         $this->assertEquals($currency->getName(), $actual->name);
         $this->assertEquals($currency->getCode(), $actual->code);
         $this->assertEquals($currency->getSymbol(), $actual->symbol);
-
     }
 }

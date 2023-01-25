@@ -24,5 +24,4 @@ readonly class GetCurrenciesAction implements GetCurrenciesActionInterface
             )
         );
     }
-
 }

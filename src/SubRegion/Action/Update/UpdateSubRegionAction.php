@@ -14,8 +14,7 @@ readonly class UpdateSubRegionAction implements UpdateSubRegionActionInterface
     public function __construct(
         private SubRegionRepositoryInterface $subRegionRepository,
         private RegionRepositoryInterface $regionRepository,
-    )
-    {
+    ) {
     }
 
     /**
@@ -30,11 +29,11 @@ readonly class UpdateSubRegionAction implements UpdateSubRegionActionInterface
             throw new SubRegionNotFoundException($request->id->toString());
         }
 
-        if ($request->regionId) {
-            $region = $this->regionRepository->findById($request->regionId);
+        if ($request->regionTitle) {
+            $region = $this->regionRepository->findByTitle($request->regionTitle);
 
             if (!$region) {
-                throw new RegionNotFoundException($request->regionId->toString());
+                throw new RegionNotFoundException($request->regionTitle);
             }
 
             $subRegion->setRegion($region);
@@ -45,5 +44,4 @@ readonly class UpdateSubRegionAction implements UpdateSubRegionActionInterface
 
         return new UpdateSubRegionActionResponse($subRegion);
     }
-
 }

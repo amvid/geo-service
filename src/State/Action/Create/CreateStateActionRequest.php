@@ -31,5 +31,4 @@ class CreateStateActionRequest
 
     #[Length(min: 1, max: 50)]
     public ?string $type = null;
-
 }

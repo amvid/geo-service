@@ -6,5 +6,4 @@ namespace App\Country\Action\Delete;
 
 class DeleteCountryActionResponse
 {
-
 }

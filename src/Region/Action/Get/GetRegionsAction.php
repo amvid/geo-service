@@ -18,5 +18,4 @@ readonly class GetRegionsAction implements GetRegionsActionInterface
             $this->regionRepository->list($request->offset, $request->limit, $request->title)
         );
     }
-
 }

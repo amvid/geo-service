@@ -17,5 +17,4 @@ class DeleteCurrencyActionRequest
     {
         $this->id = Uuid::fromString($id);
     }
-
 }

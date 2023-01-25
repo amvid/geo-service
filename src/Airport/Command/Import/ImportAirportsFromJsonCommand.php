@@ -26,13 +26,12 @@ use Throwable;
 class ImportAirportsFromJsonCommand extends Command
 {
     public function __construct(
-        private readonly AirportFactoryInterface     $airportFactory,
-        private readonly AirportRepositoryInterface  $airportRepository,
+        private readonly AirportFactoryInterface $airportFactory,
+        private readonly AirportRepositoryInterface $airportRepository,
         private readonly TimezoneRepositoryInterface $timezoneRepository,
-        private readonly CityRepositoryInterface     $cityRepository,
-        private readonly EntityManagerInterface      $em,
-    )
-    {
+        private readonly CityRepositoryInterface $cityRepository,
+        private readonly EntityManagerInterface $em,
+    ) {
         parent::__construct();
     }
 
@@ -119,5 +118,4 @@ class ImportAirportsFromJsonCommand extends Command
 
         return Command::SUCCESS;
     }
-
 }

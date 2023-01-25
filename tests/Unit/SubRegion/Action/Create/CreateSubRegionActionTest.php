@@ -42,7 +42,10 @@ class CreateSubRegionActionTest extends TestCase
         $subRegion->setCreatedAt();
 
         $regionId = Uuid::fromString(RegionDummy::ID);
-        $request = new CreateSubRegionActionRequest($subRegionTitle, RegionDummy::ID);
+        $request = new CreateSubRegionActionRequest();
+        $request->title = $subRegionTitle;
+        $request->regionTitle = RegionDummy::TITLE;
+
         $this->assertEquals($subRegionTitle, $request->title);
 
         $expectedResponse = new CreateSubRegionActionResponse($subRegion);
@@ -55,8 +58,8 @@ class CreateSubRegionActionTest extends TestCase
 
         $this->regionRepository
             ->expects($this->once())
-            ->method('findById')
-            ->with($regionId)
+            ->method('findByTitle')
+            ->with($region->getTitle())
             ->willReturn($region);
 
         $this->factory->expects($this->once())->method('setTitle')->with($subRegionTitle)->willReturn($this->factory);
@@ -68,14 +71,17 @@ class CreateSubRegionActionTest extends TestCase
 
         try {
             $actual = $action->run($request);
-        } catch (RegionNotFoundException|SubRegionAlreadyExistsException $e) {
+        } catch (RegionNotFoundException | SubRegionAlreadyExistsException $e) {
             $this->fail('Must not thrown an exception: ' . $e->getMessage());
         }
 
         $this->assertEquals($expectedResponse->subRegionResponse->id, $actual->subRegionResponse->id);
         $this->assertEquals($expectedResponse->subRegionResponse->title, $actual->subRegionResponse->title);
         $this->assertEquals($expectedResponse->subRegionResponse->region->id, $actual->subRegionResponse->region->id);
-        $this->assertEquals($expectedResponse->subRegionResponse->region->title, $actual->subRegionResponse->region->title);
+        $this->assertEquals(
+            $expectedResponse->subRegionResponse->region->title,
+            $actual->subRegionResponse->region->title,
+        );
     }
 
     public function testShouldThrowAnErrorIfTitleHasBeenAlreadyTaken(): void
@@ -88,10 +94,11 @@ class CreateSubRegionActionTest extends TestCase
             ->willReturn(new SubRegion());
 
         $action = new CreateSubRegionAction($this->regionRepository, $this->subRegionRepository, $this->factory);
-        $request = new CreateSubRegionActionRequest($title, Uuid::uuid4()->toString());
+        $request = new CreateSubRegionActionRequest();
+        $request->title = $title;
+        $request->regionTitle = RegionDummy::TITLE;
 
         $this->expectException(SubRegionAlreadyExistsException::class);
         $action->run($request);
     }
-
 }

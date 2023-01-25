@@ -57,5 +57,4 @@ class RegionRepository extends ServiceEntityRepository implements RegionReposito
     {
         return $this->find($id);
     }
-
 }

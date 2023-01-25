@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\SubRegion\Action\Update;
 
-use App\Region\Action\Update\UpdateRegionAction;
-use App\Region\Action\Update\UpdateRegionActionRequest;
-use App\Region\Entity\Region;
 use App\Region\Exception\RegionNotFoundException;
 use App\Region\Repository\RegionRepositoryInterface;
 use App\SubRegion\Action\Update\UpdateSubRegionAction;
@@ -15,6 +12,7 @@ use App\SubRegion\Entity\SubRegion;
 use App\SubRegion\Exception\SubRegionNotFoundException;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
 use App\Tests\Unit\Region\RegionDummy;
+use App\Tests\Unit\SubRegion\SubRegionDummy;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
@@ -29,7 +27,7 @@ class UpdateSubRegionActionTest extends TestCase
         $this->regionRepository = $this->getMockBuilder(RegionRepositoryInterface::class)->getMock();
     }
 
-    public function testShouldUpdateRegionAndReturnResponse(): void
+    public function testShouldUpdateSubRegionAndReturnResponse(): void
     {
         $region = RegionDummy::get();
 
@@ -40,14 +38,15 @@ class UpdateSubRegionActionTest extends TestCase
         $subRegion = new SubRegion($id);
         $subRegion->setTitle($title)->setCreatedAt();
 
-        $regionId = Uuid::fromString(RegionDummy::ID);
-        $req = new UpdateSubRegionActionRequest($title, RegionDummy::ID);
-        $req->setTitle($updateTitle)->setId($id->toString());
+        $req = new UpdateSubRegionActionRequest();
+        $req->setId($id->toString());
+        $req->title = $updateTitle;
+        $req->regionTitle = $region->getTitle();
 
         $this->regionRepository
             ->expects($this->once())
-            ->method('findById')
-            ->with($regionId)
+            ->method('findByTitle')
+            ->with($region->getTitle())
             ->willReturn($region);
 
         $this->subRegionRepository
@@ -65,7 +64,7 @@ class UpdateSubRegionActionTest extends TestCase
 
         try {
             $actual = $action->run($req);
-        } catch (SubRegionNotFoundException|RegionNotFoundException $e) {
+        } catch (SubRegionNotFoundException | RegionNotFoundException $e) {
             $this->fail('Must not throw an error: ' . $e->getMessage());
         }
 
@@ -76,16 +75,24 @@ class UpdateSubRegionActionTest extends TestCase
     public function testShouldThrowNotFoundExceptionIfRegionNotFound(): void
     {
         $id = Uuid::uuid4();
-        $req = new UpdateRegionActionRequest();
+        $regionTitle = 'Some title';
+        $req = new UpdateSubRegionActionRequest();
         $req->setId($id->toString());
+        $req->regionTitle = $regionTitle;
 
-        $this->regionRepository
+        $this->subRegionRepository
             ->expects($this->once())
             ->method('findById')
             ->with($id)
+            ->willReturn(SubRegionDummy::get());
+
+        $this->regionRepository
+            ->expects($this->once())
+            ->method('findByTitle')
+            ->with($regionTitle)
             ->willReturn(null);
 
-        $action = new UpdateRegionAction($this->regionRepository);
+        $action = new UpdateSubRegionAction($this->subRegionRepository, $this->regionRepository);
 
         $this->expectException(RegionNotFoundException::class);
         $action->run($req);

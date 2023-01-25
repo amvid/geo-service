@@ -27,8 +27,7 @@ class ImportSubRegionsFromJsonCommand extends Command
         private readonly SubRegionFactoryInterface $subRegionFactory,
         private readonly SubRegionRepositoryInterface $subRegionRepository,
         private readonly RegionRepositoryInterface $regionRepository,
-    )
-    {
+    ) {
         parent::__construct();
     }
 

@@ -120,5 +120,4 @@ class GetCitiesActionTest extends TestCase
         $this->assertEquals($city->getId(), $actual->cities[0]->id);
         $this->assertEquals($city->getTitle(), $actual->cities[0]->title);
     }
-
 }

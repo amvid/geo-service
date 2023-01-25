@@ -75,5 +75,4 @@ class AirportFactory implements AirportFactoryInterface
         $this->airport->setAltitude($altitude);
         return $this;
     }
-
 }

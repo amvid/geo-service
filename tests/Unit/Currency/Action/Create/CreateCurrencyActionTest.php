@@ -84,5 +84,4 @@ class CreateCurrencyActionTest extends TestCase
         $this->expectException(CurrencyAlreadyExistsException::class);
         $action->run($request);
     }
-
 }

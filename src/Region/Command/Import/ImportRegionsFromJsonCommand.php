@@ -25,8 +25,7 @@ class ImportRegionsFromJsonCommand extends Command
     public function __construct(
         private readonly RegionFactoryInterface $regionFactory,
         private readonly RegionRepositoryInterface $regionRepository,
-    )
-    {
+    ) {
         parent::__construct();
     }
 

@@ -55,8 +55,7 @@ class TimezoneRepository extends ServiceEntityRepository implements TimezoneRepo
         ?string $title = null,
         ?string $code = null,
         ?string $utc = null
-    ): array
-    {
+    ): array {
         $qb = $this->createQueryBuilder('t')
             ->setMaxResults($limit)
             ->setFirstResult($offset)

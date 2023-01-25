@@ -68,5 +68,4 @@ class TimezoneController extends ApiController
 
         return $this->json($action->run($req)->timezoneResponse);
     }
-
 }

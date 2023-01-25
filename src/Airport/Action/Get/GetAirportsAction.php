@@ -13,11 +13,10 @@ use App\Timezone\Repository\TimezoneRepositoryInterface;
 readonly class GetAirportsAction implements GetAirportsActionInterface
 {
     public function __construct(
-        private AirportRepositoryInterface  $airportRepository,
-        private CityRepositoryInterface     $cityRepository,
+        private AirportRepositoryInterface $airportRepository,
+        private CityRepositoryInterface $cityRepository,
         private TimezoneRepositoryInterface $timezoneRepository,
-    )
-    {
+    ) {
     }
 
     /**

@@ -25,5 +25,4 @@ readonly class DeleteSubRegionAction implements DeleteSubRegionActionInterface
 
         return $res;
     }
-
 }

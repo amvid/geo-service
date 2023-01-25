@@ -11,9 +11,8 @@ readonly class GetStatesAction implements GetStatesActionInterface
 {
     public function __construct(
         private CountryRepositoryInterface $countryRepository,
-        private StateRepositoryInterface   $stateRepository,
-    )
-    {
+        private StateRepositoryInterface $stateRepository,
+    ) {
     }
 
     public function run(GetStatesActionRequest $request): GetStatesActionResponse
@@ -38,6 +37,5 @@ readonly class GetStatesAction implements GetStatesActionInterface
             $request->type,
             $countryId,
         ));
-
     }
 }

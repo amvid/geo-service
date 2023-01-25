@@ -45,15 +45,14 @@ class StateRepository extends ServiceEntityRepository implements StateRepository
     }
 
     public function list(
-        int            $offset,
-        int            $limit,
+        int $offset,
+        int $limit,
         ?UuidInterface $id = null,
-        ?string        $code = null,
-        ?string        $title = null,
-        ?string        $type = null,
+        ?string $code = null,
+        ?string $title = null,
+        ?string $type = null,
         ?UuidInterface $countryId = null
-    ): array
-    {
+    ): array {
         if ($id) {
             return $this->findBy(['id' => $id]);
         }
@@ -94,5 +93,4 @@ class StateRepository extends ServiceEntityRepository implements StateRepository
     {
         return $this->find($id);
     }
-
 }

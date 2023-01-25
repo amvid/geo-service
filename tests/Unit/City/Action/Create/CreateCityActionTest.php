@@ -125,9 +125,12 @@ class CreateCityActionTest extends TestCase
             ->setTitle($this->title);
 
         $this->factory->expects($this->once())->method('setTitle')->with($this->title)->willReturn($this->factory);
-        $this->factory->expects($this->once())->method('setLongitude')->with($this->longitude)->willReturn($this->factory);
-        $this->factory->expects($this->once())->method('setLatitude')->with($this->latitude)->willReturn($this->factory);
-        $this->factory->expects($this->once())->method('setAltitude')->with($this->altitude)->willReturn($this->factory);
+        $this->factory
+            ->expects($this->once())->method('setLongitude')->with($this->longitude)->willReturn($this->factory);
+        $this->factory
+            ->expects($this->once())->method('setLatitude')->with($this->latitude)->willReturn($this->factory);
+        $this->factory
+            ->expects($this->once())->method('setAltitude')->with($this->altitude)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setCountry')->with($country)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setState')->with($state)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('create')->willReturn($city);

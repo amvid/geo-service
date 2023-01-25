@@ -180,9 +180,12 @@ class UpdateAirportActionTest extends TestCase
             ->setCity($city)
             ->setTimezone($timezone);
 
-        $this->factory->expects($this->once())->method('setLongitude')->with($this->longitude)->willReturn($this->factory);
-        $this->factory->expects($this->once())->method('setAltitude')->with($this->altitude)->willReturn($this->factory);
-        $this->factory->expects($this->once())->method('setLatitude')->with($this->latitude)->willReturn($this->factory);
+        $this->factory
+            ->expects($this->once())->method('setLongitude')->with($this->longitude)->willReturn($this->factory);
+        $this->factory
+            ->expects($this->once())->method('setAltitude')->with($this->altitude)->willReturn($this->factory);
+        $this->factory
+            ->expects($this->once())->method('setLatitude')->with($this->latitude)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setTitle')->with($this->title)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setCity')->with($city)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setTimezone')->with($timezone)->willReturn($this->factory);

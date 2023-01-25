@@ -57,20 +57,19 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
     }
 
     public function list(
-        int            $offset,
-        int            $limit,
+        int $offset,
+        int $limit,
         ?UuidInterface $id,
-        ?string        $title,
-        ?string        $nativeTitle,
-        ?string        $iso2,
-        ?string        $iso3,
-        ?string        $phoneCode,
-        ?string        $numericCode,
-        ?string        $tld,
-        ?Currency      $currency,
-        ?SubRegion     $subRegion,
-    ): array
-    {
+        ?string $title,
+        ?string $nativeTitle,
+        ?string $iso2,
+        ?string $iso3,
+        ?string $phoneCode,
+        ?string $numericCode,
+        ?string $tld,
+        ?Currency $currency,
+        ?SubRegion $subRegion,
+    ): array {
         if ($id) {
             return $this->findBy(['id' => $id]);
         }

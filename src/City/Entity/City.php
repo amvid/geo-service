@@ -18,7 +18,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\HasLifecycleCallbacks]
 class City
 {
-    use TimestampTrait, PositionTrait;
+    use TimestampTrait;
+    use PositionTrait;
 
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]

@@ -58,5 +58,4 @@ class DeleteCountryActionTest extends TestCase
 
         $action->run($req);
     }
-
 }

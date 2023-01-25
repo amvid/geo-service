@@ -16,8 +16,7 @@ readonly class ExceptionListener
     public function __construct(
         private LoggerInterface $logger,
         private KernelInterface $kernel,
-    )
-    {
+    ) {
     }
 
     public function onKernelException(ExceptionEvent $event): void

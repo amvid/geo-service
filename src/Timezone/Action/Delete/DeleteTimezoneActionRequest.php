@@ -17,5 +17,4 @@ class DeleteTimezoneActionRequest
     {
         $this->id = Uuid::fromString($id);
     }
-
 }

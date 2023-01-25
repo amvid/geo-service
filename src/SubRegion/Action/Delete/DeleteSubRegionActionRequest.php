@@ -17,5 +17,4 @@ class DeleteSubRegionActionRequest
     {
         $this->id = Uuid::fromString($id);
     }
-
 }

@@ -24,9 +24,8 @@ class ImportTimezonesFromJsonCommand extends Command
 {
     public function __construct(
         private readonly TimezoneRepositoryInterface $timezoneRepository,
-        private readonly TimezoneFactoryInterface    $timezoneFactory,
-    )
-    {
+        private readonly TimezoneFactoryInterface $timezoneFactory,
+    ) {
         parent::__construct();
     }
 

@@ -21,7 +21,8 @@ use Symfony\Bridge\Doctrine\Types\UuidType;
 #[ORM\HasLifecycleCallbacks]
 class Country
 {
-    use TimestampTrait, PositionTrait;
+    use TimestampTrait;
+    use PositionTrait;
 
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]
@@ -217,5 +218,4 @@ class Country
         $this->tld = $tld;
         return $this;
     }
-
 }

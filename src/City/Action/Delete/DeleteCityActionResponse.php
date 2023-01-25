@@ -6,5 +6,4 @@ namespace App\City\Action\Delete;
 
 class DeleteCityActionResponse
 {
-
 }

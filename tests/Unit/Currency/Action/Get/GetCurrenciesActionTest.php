@@ -61,5 +61,4 @@ class GetCurrenciesActionTest extends TestCase
         $this->assertEquals($this->nok->getId(), $actual->response[0]->id);
         $this->assertEquals($this->eur->getId(), $actual->response[1]->id);
     }
-
 }

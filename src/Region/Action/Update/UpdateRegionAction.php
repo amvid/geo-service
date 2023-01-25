@@ -29,5 +29,4 @@ readonly class UpdateRegionAction implements UpdateRegionActionInterface
 
         return new UpdateRegionActionResponse($region);
     }
-
 }

@@ -19,8 +19,7 @@ readonly class UpdateAirportAction implements UpdateAirportActionInterface
         private AirportRepositoryInterface $airportRepository,
         private CityRepositoryInterface $cityRepository,
         private TimezoneRepositoryInterface $timezoneRepository,
-    )
-    {
+    ) {
     }
 
     /**

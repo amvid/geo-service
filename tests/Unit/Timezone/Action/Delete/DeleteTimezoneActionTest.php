@@ -60,5 +60,4 @@ class DeleteTimezoneActionTest extends TestCase
 
         $action->run($req);
     }
-
 }

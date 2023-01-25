@@ -58,5 +58,4 @@ class DeleteStateActionTest extends TestCase
 
         $action->run($req);
     }
-
 }

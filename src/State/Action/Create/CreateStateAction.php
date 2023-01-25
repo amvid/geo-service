@@ -14,10 +14,9 @@ readonly class CreateStateAction implements CreateStateActionInterface
 {
     public function __construct(
         private CountryRepositoryInterface $countryRepository,
-        private StateRepositoryInterface   $stateRepository,
-        private StateFactoryInterface      $stateFactory,
-    )
-    {
+        private StateRepositoryInterface $stateRepository,
+        private StateFactoryInterface $stateFactory,
+    ) {
     }
 
     /**

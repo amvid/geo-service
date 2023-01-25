@@ -43,5 +43,4 @@ class TimezoneFactory implements TimezoneFactoryInterface
     {
         return $this->timezone;
     }
-
 }

@@ -17,7 +17,8 @@ use Symfony\Bridge\Doctrine\Types\UuidType;
 #[ORM\HasLifecycleCallbacks]
 class State
 {
-    use TimestampTrait, PositionTrait;
+    use TimestampTrait;
+    use PositionTrait;
 
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME, unique: true)]
@@ -98,5 +99,4 @@ class State
         $this->country = $country;
         return $this;
     }
-
 }

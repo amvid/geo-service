@@ -60,5 +60,4 @@ class DeleteRegionActionTest extends TestCase
 
         $action->run($req);
     }
-
 }

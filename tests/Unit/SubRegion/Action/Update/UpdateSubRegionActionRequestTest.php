@@ -13,15 +13,16 @@ class UpdateSubRegionActionRequestTest extends TestCase
     public function testValidInstantiation(): void
     {
         $id = Uuid::uuid4();
-        $regionId = Uuid::uuid4();
+        $regionTitle = 'Europe';
         $title = 'Eastern Europe';
 
-        $actual = new UpdateSubRegionActionRequest($title, $regionId->toString());
+        $actual = new UpdateSubRegionActionRequest();
         $actual->setId($id->toString());
-        $actual->setTitle($title);
+        $actual->title = $title;
+        $actual->regionTitle = $regionTitle;
 
         $this->assertEquals($id, $actual->id);
         $this->assertEquals($title, $actual->title);
-        $this->assertEquals($regionId, $actual->regionId);
+        $this->assertEquals($regionTitle, $actual->regionTitle);
     }
 }

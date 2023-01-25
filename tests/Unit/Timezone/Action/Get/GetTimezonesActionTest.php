@@ -61,5 +61,4 @@ class GetTimezonesActionTest extends TestCase
         $this->assertEquals($this->riga->getId(), $actual->response[0]->id);
         $this->assertEquals($this->oslo->getId(), $actual->response[1]->id);
     }
-
 }

@@ -7,5 +7,4 @@ namespace App\SubRegion\Action\Delete;
 interface DeleteSubRegionActionInterface
 {
     public function run(DeleteSubRegionActionRequest $request): DeleteSubRegionActionResponse;
-
 }

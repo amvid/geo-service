@@ -67,5 +67,4 @@ class RegionController extends ApiController
 
         return $this->json($action->run($req)->regionResponse);
     }
-
 }

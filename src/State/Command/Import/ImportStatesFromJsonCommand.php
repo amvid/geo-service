@@ -24,11 +24,10 @@ use Throwable;
 class ImportStatesFromJsonCommand extends Command
 {
     public function __construct(
-        private readonly StateFactoryInterface      $stateFactory,
-        private readonly StateRepositoryInterface   $stateRepository,
+        private readonly StateFactoryInterface $stateFactory,
+        private readonly StateRepositoryInterface $stateRepository,
         private readonly CountryRepositoryInterface $countryRepository,
-    )
-    {
+    ) {
         parent::__construct();
     }
 

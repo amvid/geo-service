@@ -23,5 +23,4 @@ readonly class GetSubRegionsAction implements GetSubRegionsActionInterface
             )
         );
     }
-
 }

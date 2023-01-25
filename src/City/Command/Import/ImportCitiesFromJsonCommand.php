@@ -26,13 +26,12 @@ use Throwable;
 class ImportCitiesFromJsonCommand extends Command
 {
     public function __construct(
-        private readonly StateRepositoryInterface   $stateRepository,
+        private readonly StateRepositoryInterface $stateRepository,
         private readonly CountryRepositoryInterface $countryRepository,
-        private readonly CityRepositoryInterface    $cityRepository,
-        private readonly CityFactoryInterface       $cityFactory,
-        private readonly EntityManagerInterface     $em,
-    )
-    {
+        private readonly CityRepositoryInterface $cityRepository,
+        private readonly CityFactoryInterface $cityFactory,
+        private readonly EntityManagerInterface $em,
+    ) {
         parent::__construct();
     }
 

@@ -47,16 +47,15 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
     }
 
     public function list(
-        int            $offset,
-        int            $limit,
+        int $offset,
+        int $limit,
         ?UuidInterface $id = null,
-        ?string        $title = null,
-        ?string        $iata = null,
-        ?string        $icao = null,
-        ?Timezone      $timezone = null,
-        ?City          $city = null,
-    ): iterable
-    {
+        ?string $title = null,
+        ?string $iata = null,
+        ?string $icao = null,
+        ?Timezone $timezone = null,
+        ?City $city = null,
+    ): iterable {
         if ($id) {
             return $this->findBy(['id' => $id]);
         }

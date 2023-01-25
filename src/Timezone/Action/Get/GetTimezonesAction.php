@@ -24,5 +24,4 @@ readonly class GetTimezonesAction implements GetTimezonesActionInterface
             )
         );
     }
-
 }

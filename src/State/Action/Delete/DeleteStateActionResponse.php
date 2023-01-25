@@ -6,5 +6,4 @@ namespace App\State\Action\Delete;
 
 class DeleteStateActionResponse
 {
-
 }

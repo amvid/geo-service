@@ -49,5 +49,4 @@ trait PositionTrait
         $this->longitude = $longitude;
         return $this;
     }
-
 }

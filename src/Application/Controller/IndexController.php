@@ -15,5 +15,4 @@ class IndexController extends AbstractController
     {
         return $this->redirect('/admin');
     }
-
 }

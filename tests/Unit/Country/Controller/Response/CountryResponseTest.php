@@ -25,7 +25,8 @@ class CountryResponseTest extends TestCase
         $this->assertEquals($country->getNumericCode(), $actual->numericCode);
         $this->assertEquals($country->getFlag(), $actual->flag);
         $this->assertEquals($country->getTld(), $actual->tld);
-        $this->assertEquals($country->getNativeTitle(), $actual->nativeTitle);;
+        $this->assertEquals($country->getNativeTitle(), $actual->nativeTitle);
+        ;
         $this->assertEquals($country->getCurrency()->getId(), $actual->currency->id);
         $this->assertEquals($country->getSubRegion()->getId(), $actual->subRegion->id);
         $this->assertEquals($country->getLongitude(), $actual->longitude);

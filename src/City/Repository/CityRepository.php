@@ -47,14 +47,13 @@ class CityRepository extends ServiceEntityRepository implements CityRepositoryIn
     }
 
     public function list(
-        int            $offset,
-        int            $limit,
+        int $offset,
+        int $limit,
         ?UuidInterface $id = null,
-        ?string        $title = null,
-        ?State         $state = null,
-        ?Country       $country = null,
-    ): iterable
-    {
+        ?string $title = null,
+        ?State $state = null,
+        ?Country $country = null,
+    ): iterable {
         if ($id) {
             return $this->findBy(['id' => $id]);
         }

@@ -70,5 +70,4 @@ class SubRegion
         $this->region = $region;
         return $this;
     }
-
 }

@@ -7,5 +7,4 @@ namespace App\Timezone\Action\Delete;
 interface DeleteTimezoneActionInterface
 {
     public function run(DeleteTimezoneActionRequest $request): DeleteTimezoneActionResponse;
-
 }
