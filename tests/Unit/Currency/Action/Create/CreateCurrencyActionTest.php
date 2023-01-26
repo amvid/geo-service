@@ -32,7 +32,10 @@ class CreateCurrencyActionTest extends TestCase
         $code = 'EUR';
         $symbol = '€';
 
-        $request = new CreateCurrencyActionRequest($name, $code, $symbol);
+        $request = new CreateCurrencyActionRequest();
+        $request->symbol = $symbol;
+        $request->code = $code;
+        $request->name = $name;
         $this->assertEquals($name, $request->name);
         $this->assertEquals($code, $request->code);
         $this->assertEquals($symbol, $request->symbol);
@@ -79,7 +82,10 @@ class CreateCurrencyActionTest extends TestCase
             ->willReturn(new Currency());
 
         $action = new CreateCurrencyAction($this->repository, $this->factory);
-        $request = new CreateCurrencyActionRequest($name, $code, $symbol);
+        $request = new CreateCurrencyActionRequest();
+        $request->name = $name;
+        $request->code = $code;
+        $request->symbol = $symbol;
 
         $this->expectException(CurrencyAlreadyExistsException::class);
         $action->run($request);

@@ -20,11 +20,4 @@ class CreateCurrencyActionRequest
     #[NotBlank]
     #[Length(min: 1, max: 10)]
     public string $symbol;
-
-    public function __construct(string $name, string $code, string $symbol)
-    {
-        $this->name = $name;
-        $this->code = $code;
-        $this->symbol = $symbol;
-    }
 }
