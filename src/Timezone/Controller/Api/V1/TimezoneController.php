@@ -22,7 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TimezoneController extends ApiController
 {
-    private const API_ROUTE = '/api/v1/timezones';
+    public const API_ROUTE = '/api/v1/timezones';
 
     /**
      * @throws ValidationException
