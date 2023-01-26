@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CurrencyController extends ApiController
 {
-    private const API_ROUTE = '/api/v1/currencies';
+    public const API_ROUTE = '/api/v1/currencies';
 
     /**
      * @throws ValidationException
