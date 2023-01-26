@@ -32,7 +32,11 @@ class CreateTimezoneActionTest extends TestCase
         $code = 'Europe/Oslo';
         $utc = '+01:00';
 
-        $request = new CreateTimezoneActionRequest($title, $code, $utc);
+        $request = new CreateTimezoneActionRequest();
+        $request->code = $code;
+        $request->title = $title;
+        $request->utc = $utc;
+
         $this->assertEquals($title, $request->title);
         $this->assertEquals($code, $request->code);
         $this->assertEquals($utc, $request->utc);
@@ -79,7 +83,10 @@ class CreateTimezoneActionTest extends TestCase
             ->willReturn(new Timezone());
 
         $action = new CreateTimezoneAction($this->repository, $this->factory);
-        $request = new CreateTimezoneActionRequest($title, $code, $utc);
+        $request = new CreateTimezoneActionRequest();
+        $request->code = $code;
+        $request->title = $title;
+        $request->utc = $utc;
 
         $this->expectException(TimezoneAlreadyExistsException::class);
         $action->run($request);

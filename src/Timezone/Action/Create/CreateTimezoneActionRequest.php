@@ -20,11 +20,4 @@ class CreateTimezoneActionRequest
     #[NotBlank]
     #[Length(min: 1, max: 50)]
     public string $utc;
-
-    public function __construct(string $title, string $code, string $utc)
-    {
-        $this->title = $title;
-        $this->code = $code;
-        $this->utc = $utc;
-    }
 }
