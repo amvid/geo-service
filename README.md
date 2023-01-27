@@ -173,7 +173,7 @@ Response
 }
 ```
 
-### More [here](https://github.com/vfilipovsky/geo-service/tree/main/docs/api)
+### More [here](https://github.com/amvid/geo-service/tree/main/docs/api)
 
 License
 -------
