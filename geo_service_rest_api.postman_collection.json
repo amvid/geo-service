@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Melanasia\",\n    \"regionId\": \"ad5d248f-fc54-4412-85aa-806d4c28f2e3\"\n}",
+							"raw": "{\n    \"title\": \"Test sub region\",\n    \"regionTitle\": \"Americas\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -64,7 +64,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Melan\",\n    \"regionId\": \"2b335d63-8b1d-4f62-9514-500bab10f626\"\n}",
+							"raw": "{\n    \"title\": \"Test 2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,7 +72,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/subregions/32fcf1c7-c9b8-403b-938d-88dcab94ad97",
+							"raw": "{{host}}/api/v1/subregions/1d378465-bad3-4ae7-b352-88317ede274a",
 							"host": [
 								"{{host}}"
 							],
@@ -80,7 +80,7 @@
 								"api",
 								"v1",
 								"subregions",
-								"32fcf1c7-c9b8-403b-938d-88dcab94ad97"
+								"1d378465-bad3-4ae7-b352-88317ede274a"
 							]
 						}
 					},
@@ -92,7 +92,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/subregions?limit=500&offset=0&title=sia",
+							"raw": "{{host}}/api/v1/subregions",
 							"host": [
 								"{{host}}"
 							],
@@ -102,18 +102,6 @@
 								"subregions"
 							],
 							"query": [
-								{
-									"key": "limit",
-									"value": "500"
-								},
-								{
-									"key": "offset",
-									"value": "0"
-								},
-								{
-									"key": "title",
-									"value": "sia"
-								},
 								{
 									"key": "regionId",
 									"value": "ad5d248f-fc54-4412-85aa-806d4c28f2e3",
@@ -531,7 +519,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nativeTitle\": \"Norge\",\n    \"latitude\": 10.5,\n    \"longitude\": 62.5\n}",
+							"raw": "{\n    \"title\": \"Norway\",\n    \"nativeTitle\": \"Norge\",\n    \"latitude\": 10.5,\n    \"longitude\": 62.5\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -539,7 +527,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/countries/dbfeb554-b7f2-45c9-9e3b-a6672eb76c36",
+							"raw": "{{host}}/api/v1/countries/38d3ad9d-75c0-4640-b5f4-650ba2f9015b",
 							"host": [
 								"{{host}}"
 							],
@@ -547,7 +535,7 @@
 								"api",
 								"v1",
 								"countries",
-								"dbfeb554-b7f2-45c9-9e3b-a6672eb76c36"
+								"38d3ad9d-75c0-4640-b5f4-650ba2f9015b"
 							]
 						}
 					},
@@ -603,7 +591,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Test State\",\n    \"code\": \"TEST\",\n    \"countryIso2\": \"NO\",\n    \"type\": \"state\",\n    \"longitude\": 10.33,\n    \"latitude\": 22.44,\n    \"altitude\": 100\n}",
+							"raw": "{\n    \"title\": \"Test State\",\n    \"code\": \"TEST\",\n    \"countryIso2\": \"NO\",\n    \"type\": \"state\",\n    \"longitude\": -119.418,\n    \"latitude\": 36.778,\n    \"altitude\": 100\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -679,7 +667,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/states?title=Fren&limit=50&offset=0&countryId=9258951a-02a8-4a24-931b-3890307f691d",
+							"raw": "{{host}}/api/v1/states?title=California&limit=50&offset=0",
 							"host": [
 								"{{host}}"
 							],
@@ -691,7 +679,7 @@
 							"query": [
 								{
 									"key": "title",
-									"value": "Fren"
+									"value": "California"
 								},
 								{
 									"key": "limit",
@@ -700,10 +688,6 @@
 								{
 									"key": "offset",
 									"value": "0"
-								},
-								{
-									"key": "countryId",
-									"value": "9258951a-02a8-4a24-931b-3890307f691d"
 								}
 							]
 						}
@@ -798,7 +782,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/cities?limit=2&offset=0&title=riga&countryIso2=LV&stateCode=RIX",
+							"raw": "{{host}}/api/v1/cities?limit=5&offset=0&title=california&countryIso2=US&stateTitle=California",
 							"host": [
 								"{{host}}"
 							],
@@ -810,7 +794,7 @@
 							"query": [
 								{
 									"key": "limit",
-									"value": "2"
+									"value": "5"
 								},
 								{
 									"key": "offset",
@@ -818,15 +802,15 @@
 								},
 								{
 									"key": "title",
-									"value": "riga"
+									"value": "california"
 								},
 								{
 									"key": "countryIso2",
-									"value": "LV"
+									"value": "US"
 								},
 								{
-									"key": "stateCode",
-									"value": "RIX"
+									"key": "stateTitle",
+									"value": "California"
 								}
 							]
 						}
@@ -873,7 +857,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Test Airport 2\",\n    \"longitude\": 12,\n    \"latitude\": 23,\n    \"altitude\": 10,\n    \"timezone\": \"Europe/Oslo\",\n    \"cityTitle\": \"California\"\n}",
+							"raw": "{\n    \"title\": \"Trondheim Airport Vaernes\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -881,7 +865,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/airports/bd1918dd-84a2-4203-ab8a-55b565ec7116",
+							"raw": "{{host}}/api/v1/airports/a6394382-f2f5-42b6-9e92-f1f9a357045a",
 							"host": [
 								"{{host}}"
 							],
@@ -889,7 +873,7 @@
 								"api",
 								"v1",
 								"airports",
-								"bd1918dd-84a2-4203-ab8a-55b565ec7116"
+								"a6394382-f2f5-42b6-9e92-f1f9a357045a"
 							]
 						}
 					},
@@ -921,7 +905,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/airports?limit=2&offset=0&cityTitle=Trondheim&timezone=Europe/Oslo&iata=TRD&icao=ENVA",
+							"raw": "{{host}}/api/v1/airports?limit=2&offset=0&cityTitle=Trondheim&timezone=Europe/Oslo&iata=TRD&icao=ENVA&id=a6394382-f2f5-42b6-9e92-f1f9a357045a",
 							"host": [
 								"{{host}}"
 							],
@@ -954,6 +938,10 @@
 								{
 									"key": "icao",
 									"value": "ENVA"
+								},
+								{
+									"key": "id",
+									"value": "a6394382-f2f5-42b6-9e92-f1f9a357045a"
 								}
 							]
 						}
