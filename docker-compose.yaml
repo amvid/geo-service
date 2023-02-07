@@ -7,7 +7,7 @@ networks:
 services:
   geo-service-nginx:
     image: nginx:stable-alpine
-    container_name: nginx
+    container_name: geo-service-nginx
     ports:
       - "8081:80"
     volumes:
@@ -23,7 +23,7 @@ services:
     build:
       context: .
       dockerfile: .docker/php/Dockerfile
-    container_name: app
+    container_name: geo-service-app
     ports:
       - "9001:9000"
     volumes:
@@ -34,7 +34,7 @@ services:
 
   geo-service-db:
     image: mariadb:10.9.3
-    container_name: db
+    container_name: geo-service-db
     ports:
       - "5306:3306"
     environment:

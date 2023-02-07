@@ -8,7 +8,7 @@ services:
     build:
       context: .
       dockerfile: .docker/php/test.Dockerfile
-    container_name: test-app
+    container_name: geo-service-test-app
     depends_on:
       geo-service-test-db:
         condition: service_healthy
@@ -24,7 +24,7 @@ services:
 
   geo-service-test-db:
     image: mariadb:10.9.3
-    container_name: test-db
+    container_name: geo-service-test-db
     ports:
       - "4306:3306"
     healthcheck:
