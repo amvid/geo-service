@@ -19,6 +19,12 @@ class CurrencyCrudController extends AbstractCrudController
         return Currency::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        $crud->setPageTitle(Crud::PAGE_INDEX, 'Currencies');
+        return $crud;
+    }
+
     public function configureActions(Actions $actions): Actions
     {
         return $actions->add(Crud::PAGE_INDEX, Action::DETAIL);

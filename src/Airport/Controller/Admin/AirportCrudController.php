@@ -28,6 +28,13 @@ class AirportCrudController extends AbstractCrudController
         return $actions->add(Crud::PAGE_INDEX, Action::DETAIL);
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        $crud->setPageTitle(Crud::PAGE_INDEX, 'Airports');
+        $crud->setSearchFields(['iata', 'icao', 'title']);
+        return $crud;
+    }
+
     public function configureFields(string $pageName): iterable
     {
         return [

@@ -22,6 +22,23 @@ class CountryCrudController extends AbstractCrudController
         return Country::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        $crud->setPageTitle(Crud::PAGE_INDEX, 'Countries');
+        $crud->setSearchFields([
+            'title',
+            'iso2',
+            'iso3',
+            'phoneCode',
+            'numericCode',
+            'tld',
+            'currency.code',
+            'timezones.code',
+        ]);
+
+        return $crud;
+    }
+
     public function configureActions(Actions $actions): Actions
     {
         return $actions->add(Crud::PAGE_INDEX, Action::DETAIL);

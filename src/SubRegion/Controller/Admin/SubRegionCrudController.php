@@ -23,6 +23,8 @@ class SubRegionCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         $crud->setPageTitle('index', 'Sub Regions');
+        $crud->setSearchFields(['region.title', 'title']);
+
         return $crud;
     }
 
