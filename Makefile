@@ -7,6 +7,10 @@ install:
 	@docker-compose up -d
 	@docker exec geo-service-app sh -c "composer install"
 
+.PHONY: update
+update:
+	@docker exec geo-service-app sh -c "composer update"
+
 .PHONY: migration
 migration:
 	docker exec geo-service-app sh -c "php bin/console make migration"
