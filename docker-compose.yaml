@@ -24,6 +24,7 @@ services:
       context: .
       dockerfile: .docker/php/Dockerfile
     container_name: geo-service-app
+    working_dir: /var/www/geo-service
     ports:
       - "9001:9000"
     volumes:
