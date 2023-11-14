@@ -1,13 +1,11 @@
 #!/usr/bin/env sh
 
-# Check if vendor folder exists
 if [ -d "vendor" ]; then
   echo "Vendor folder exists. Skipping 'composer install'."
 else
   composer install
 fi
 
-# Check if bin/rr binary exists
 if [ -f "bin/rr" ]; then
   echo "RR binary exists. Skipping 'vendor/bin/rr get-binary'."
 else
