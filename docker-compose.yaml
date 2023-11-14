@@ -9,7 +9,7 @@ services:
     build:
       context: .
       dockerfile: .docker/php/dev.Dockerfile
-    container_name: geo-service-app
+    container_name: geo-service-app-dev
     working_dir: /var/www/geo-service
     ports:
       - "8085:8080"
