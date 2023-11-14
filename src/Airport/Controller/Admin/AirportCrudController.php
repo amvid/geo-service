@@ -41,18 +41,18 @@ class AirportCrudController extends AbstractCrudController
             TextField::new('id')->hideOnForm(),
             DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex(),
             DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex(),
-            FormField::addPanel('Relations'),
+            FormField::addFieldset('Relations'),
             AssociationField::new('timezone')->autocomplete(),
             AssociationField::new('city.country')
                 ->setLabel('Country')
                 ->hideOnForm()
                 ->setCrudController(CountryCrudController::class),
             AssociationField::new('city')->autocomplete(),
-            FormField::addPanel('Basic'),
+            FormField::addFieldset('Basic'),
             TextField::new('title')->setColumns(4),
             TextField::new('iata')->setColumns(4),
             TextField::new('icao')->setColumns(4),
-            FormField::addPanel('Position'),
+            FormField::addFieldset('Position'),
             NumberField::new('longitude')->hideOnIndex()->setColumns(2),
             NumberField::new('latitude')->hideOnIndex()->setColumns(2),
             NumberField::new('altitude')->hideOnIndex()->setColumns(2),

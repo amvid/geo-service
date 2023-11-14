@@ -1,6 +1,6 @@
 .PHONY: up
 up:
-	@docker-compose up -d
+	@docker-compose up
 
 .PHONY: install
 install:
@@ -18,6 +18,10 @@ migration:
 .PHONY: migrate
 migrate:
 	@docker exec geo-service-app sh -c "php bin/console d:m:m"
+
+.PHONY: user
+user:
+	@docker exec -it geo-service-app php bin/console app:create-user
 
 .PHONY: ssh
 ssh:

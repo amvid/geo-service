@@ -23,6 +23,13 @@ readonly class ExceptionListener
     {
         $e = $event->getThrowable();
 
+        $response = new JsonResponse();
+        $response->setContent($e->getMessage());
+        $response->setStatusCode(500);
+
+        $event->setResponse($response);
+        return;
+
         if ($e instanceof ApplicationException || $this->kernel->getEnvironment() === 'dev') {
             $code = $e->getCode() === 0 ? Response::HTTP_INTERNAL_SERVER_ERROR : $e->getCode();
             $message = $e->getMessage();
