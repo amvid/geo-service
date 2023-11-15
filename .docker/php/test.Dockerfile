@@ -1,14 +1,18 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.2-cli-alpine3.17
 
-
-RUN apk --no-cache add git unzip zip icu-dev libzip-dev $PHPIZE_DEPS
-RUN docker-php-ext-install pdo pdo_mysql zip
+RUN --mount=type=bind,from=mlocati/php-extension-installer:1.5,source=/usr/bin/install-php-extensions,target=/usr/local/bin/install-php-extensions \
+     install-php-extensions pdo pdo_mysql opcache zip xsl dom exif intl pcntl bcmath sockets && \
+     apk del --no-cache ${PHPIZE_DEPS} ${BUILD_DEPENDS}
 
 WORKDIR /var/www/geo-service
 
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+COPY composer.* .
 
 COPY . .
 
 RUN composer install
+
+CMD ["sleep", "30"]

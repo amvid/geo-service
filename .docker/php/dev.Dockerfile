@@ -11,14 +11,6 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 COPY . .
 
-ENV APP_ENV=prod
-
-RUN composer install --optimize-autoloader --no-dev --prefer-dist \
-    && bin/console assets:install \
-    && bin/console cache:clear
-
-COPY --from=ghcr.io/roadrunner-server/roadrunner:2023.3.4 /usr/bin/rr .
-
 EXPOSE 8080/tcp
 
-CMD ./rr serve -c .rr.yaml
+ENTRYPOINT ["sh", ".docker/php/entrypoint.sh"]
