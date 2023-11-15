@@ -10,8 +10,9 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 COPY composer.* .
-RUN composer install
 
 COPY . .
 
-CMD ["sleep", "20"]
+RUN composer install
+
+CMD ["sleep", "30"]
