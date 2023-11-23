@@ -120,8 +120,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password = null): self
     {
+        if (empty($password)) {
+            return $this;
+        }
+
         $this->password = $password;
 
         return $this;

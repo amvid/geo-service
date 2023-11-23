@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Application\Controller\Admin;
 
 use App\Application\Entity\User;
-
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
@@ -35,6 +36,11 @@ class UserCrudController extends AbstractCrudController
         return User::class;
     }
 
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions->add(Crud::PAGE_INDEX, Action::DETAIL);
+    }
+
     public function configureCrud(Crud $crud): Crud
     {
         $crud->setPageTitle(Crud::PAGE_INDEX, 'Users');
@@ -61,7 +67,10 @@ class UserCrudController extends AbstractCrudController
             yield BooleanField::new('isActive');
         }
 
-        yield FormField::addFieldset('Change password')->setIcon('fa fa-key');
+        yield DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex();
+        yield DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex();
+
+        yield FormField::addFieldset('Change password')->setIcon('fa fa-key')->onlyOnForms();
         yield TextField::new('password', 'New password')->onlyWhenCreating()->setRequired(true)
             ->setFormType(RepeatedType::class)
             ->setFormTypeOptions([
@@ -80,9 +89,6 @@ class UserCrudController extends AbstractCrudController
                 'error_bubbling' => true,
                 'invalid_message' => 'The password fields do not match.',
             ]);
-
-        yield DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex();
-        yield DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex();
     }
 
     public function createEditFormBuilder(EntityDto $entityDto, KeyValueStore $formOptions, AdminContext $context): FormBuilderInterface
