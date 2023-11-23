@@ -60,8 +60,6 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
         int $offset,
         int $limit,
         ?string $title,
-        ?string $iso2,
-        ?string $iso3,
         ?string $phoneCode,
     ): array {
         $qb = $this->createQueryBuilder('c')
@@ -73,16 +71,6 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
 
         if ($title) {
             $params['title'] = "$title%";
-            $qb->andWhere('c.title LIKE :title');
-        }
-
-        if ($iso2) {
-            $params['iso2'] = "$iso2%";
-            $qb->andWhere('c.title LIKE :title');
-        }
-
-        if ($iso3) {
-            $params['iso3'] = "$iso3%";
             $qb->andWhere('c.title LIKE :title');
         }
 

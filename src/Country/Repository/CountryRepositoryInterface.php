@@ -27,8 +27,6 @@ interface CountryRepositoryInterface
         int $offset,
         int $limit,
         ?string $title,
-        ?string $iso2,
-        ?string $iso3,
         ?string $phoneCode,
     ): array;
 

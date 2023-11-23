@@ -25,8 +25,6 @@ readonly class GetPhoneCodesAction implements GetPhoneCodesActionInterface
                 $request->offset,
                 $request->limit,
                 $request->title,
-                $request->iso2,
-                $request->iso3,
                 $request->phoneCode,
             )
         );

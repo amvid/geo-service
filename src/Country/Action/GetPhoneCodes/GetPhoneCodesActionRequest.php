@@ -12,8 +12,6 @@ class GetPhoneCodesActionRequest implements LimitOffsetInterface
 {
     use LimitOffsetRequestTrait;
 
-    public ?string $iso2 = null;
-    public ?string $iso3 = null;
     public ?string $title = null;
     public ?string $phoneCode = null;
 
@@ -22,8 +20,6 @@ class GetPhoneCodesActionRequest implements LimitOffsetInterface
         /** @var GetPhoneCodesActionRequest $req */
         $req = LimitOffsetParser::parse($params, new self());
 
-        $req->iso2 = $params['iso2'] ?? null;
-        $req->iso3 = $params['iso3'] ?? null;
         $req->phoneCode = $params['phoneCode'] ?? null;
         $req->title = $params['title'] ?? null;
 
