@@ -13,6 +13,8 @@ use App\Country\Action\Delete\DeleteCountryActionInterface;
 use App\Country\Action\Delete\DeleteCountryActionRequest;
 use App\Country\Action\Get\GetCountriesActionInterface;
 use App\Country\Action\Get\GetCountriesActionRequest;
+use App\Country\Action\GetPhoneCodes\GetPhoneCodesActionInterface;
+use App\Country\Action\GetPhoneCodes\GetPhoneCodesActionRequest;
 use App\Country\Action\Update\UpdateCountryActionInterface;
 use App\Country\Action\Update\UpdateCountryActionRequest;
 use JsonException;
@@ -67,5 +69,12 @@ class CountryController extends ApiController
         $req->setId($id);
 
         return $this->json($action->run($req)->countryResponse);
+    }
+
+    #[Route(self::API_ROUTE . '/phone-codes', name: 'app_country_api_v1_country_phone_codes', methods: HttpMethod::GET)]
+    public function getPhoneCodes(Request $request, GetPhoneCodesActionInterface $action): JsonResponse
+    {
+        $req = GetPhoneCodesActionRequest::fromArray($request->query->all());
+        return $this->json($action->run($req)->response);
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Country\Controller\Response;
 
 use App\Country\Entity\Country;
+use App\Timezone\Entity\Timezone;
 use App\Currency\Controller\Response\CurrencyResponse;
 use App\SubRegion\Controller\Response\SubRegionResponse;
 use App\Timezone\Controller\Response\TimezoneResponse;
@@ -54,6 +55,7 @@ class CountryResponse
 
             $tzs = [];
 
+            /** @var Timezone $timezone */
             foreach ($country->getTimezones() as $timezone) {
                 $tzs[] = new TimezoneResponse($timezone);
             }
