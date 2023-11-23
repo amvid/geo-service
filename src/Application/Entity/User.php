@@ -21,6 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     use TimestampTrait;
 
     public const ADMIN = 'ROLE_ADMIN';
+    public const MANAGER = 'ROLE_MANAGER';
     public const USER = 'ROLE_USER';
 
     #[ORM\Id]
@@ -38,6 +39,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private string $password;
 
+    #[ORM\Column]
+    private bool $isActive = true;
+
     public function __construct(?UuidInterface $id = null)
     {
         if ($id) {
@@ -53,6 +57,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getId(): UuidInterface
     {
         return $this->id;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
+
+        return $this;
     }
 
     public function getEmail(): string
