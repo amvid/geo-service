@@ -30,6 +30,8 @@ class UpdateAirportActionRequest
     #[Length(min: 1, max: 150)]
     public ?string $timezone = null;
 
+    public ?bool $isActive = null;
+
     public function setId(string $id): self
     {
         $this->id = Uuid::fromString($id);

@@ -29,6 +29,7 @@ class GetAirportsActionTest extends TestCase
     private string $icao = 'ENVA';
     private string $title = 'Trondheim Airport';
     private string $timezone = 'Europe/Oslo';
+    private bool $isActive = true;
 
     protected function setUp(): void
     {
@@ -42,6 +43,7 @@ class GetAirportsActionTest extends TestCase
         $this->request->iata = $this->iata;
         $this->request->icao = $this->icao;
         $this->request->timezone = $this->timezone;
+        $this->request->isActive = $this->isActive;
     }
 
     public function testShouldThrowCityNotFoundExceptionIfNotFound(): void
@@ -110,6 +112,7 @@ class GetAirportsActionTest extends TestCase
                 $this->request->title,
                 $this->request->iata,
                 $this->request->icao,
+                $this->request->isActive,
                 $timezone,
                 $city
             )

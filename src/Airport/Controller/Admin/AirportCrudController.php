@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -41,6 +42,7 @@ class AirportCrudController extends AbstractCrudController
             TextField::new('id')->hideOnForm(),
             DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex(),
             DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex(),
+
             FormField::addFieldset('Relations'),
             AssociationField::new('timezone')->autocomplete(),
             AssociationField::new('city.country')
@@ -48,10 +50,13 @@ class AirportCrudController extends AbstractCrudController
                 ->hideOnForm()
                 ->setCrudController(CountryCrudController::class),
             AssociationField::new('city')->autocomplete(),
+
             FormField::addFieldset('Basic'),
             TextField::new('title')->setColumns(4),
             TextField::new('iata')->setColumns(4),
             TextField::new('icao')->setColumns(4),
+            BooleanField::new('isActive')->setColumns(4),
+
             FormField::addFieldset('Position'),
             NumberField::new('longitude')->hideOnIndex()->setColumns(2),
             NumberField::new('latitude')->hideOnIndex()->setColumns(2),

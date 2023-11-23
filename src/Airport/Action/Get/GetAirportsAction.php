@@ -51,6 +51,7 @@ readonly class GetAirportsAction implements GetAirportsActionInterface
                 $request->title,
                 $request->iata,
                 $request->icao,
+                $request->isActive,
                 $timezone,
                 $city,
             )

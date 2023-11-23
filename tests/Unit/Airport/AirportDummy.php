@@ -20,6 +20,7 @@ class AirportDummy
     public const LONGITUDE = 10.10;
     public const LATITUDE = 11.11;
     public const ALTITUDE = 10;
+    public const IS_ACTIVE = true;
 
     public static function get(?Timezone $timezone = null, ?City $city = null): Airport
     {
@@ -39,6 +40,7 @@ class AirportDummy
             ->setLongitude(self::LONGITUDE)
             ->setLatitude(self::LATITUDE)
             ->setAltitude(self::ALTITUDE)
+            ->setIsActive(self::IS_ACTIVE)
             ->setTimezone($timezone)
             ->setCity($city)
             ->setCreatedAt();

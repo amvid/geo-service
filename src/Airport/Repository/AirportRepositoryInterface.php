@@ -28,6 +28,7 @@ interface AirportRepositoryInterface
         ?string $title = null,
         ?string $iata = null,
         ?string $icao = null,
+        ?bool $isActive = null,
         ?Timezone $timezone = null,
         ?City $city = null,
     ): iterable;

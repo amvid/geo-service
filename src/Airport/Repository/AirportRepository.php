@@ -53,6 +53,7 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
         ?string $title = null,
         ?string $iata = null,
         ?string $icao = null,
+        ?bool $isActive = null,
         ?Timezone $timezone = null,
         ?City $city = null,
     ): iterable {
@@ -91,6 +92,11 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
         if ($city) {
             $qb->andWhere('a.city = :city');
             $params['city'] = $city;
+        }
+
+        if (null !== $isActive) {
+            $qb->andWhere('a.isActive = :isActive');
+            $params['isActive'] = $isActive;
         }
 
         return $qb

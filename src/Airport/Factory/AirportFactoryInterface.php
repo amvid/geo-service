@@ -29,4 +29,6 @@ interface AirportFactoryInterface
     public function setLatitude(float $latitude): self;
 
     public function setAltitude(?int $altitude = null): self;
+
+    public function setIsActive(?bool $isActive = null): self;
 }

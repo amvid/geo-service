@@ -75,4 +75,11 @@ class AirportFactory implements AirportFactoryInterface
         $this->airport->setAltitude($altitude);
         return $this;
     }
+
+    public function setIsActive(?bool $isActive = null): AirportFactoryInterface
+    {
+        $this->airport->setIsActive($isActive);
+
+        return $this;
+    }
 }
