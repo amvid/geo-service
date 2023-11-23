@@ -11,7 +11,7 @@ class GetAirportsActionResponse
     /**
      * @var iterable<AirportResponse>
      */
-    public iterable $airports;
+    public iterable $airports = [];
 
     public function __construct(iterable $airports)
     {

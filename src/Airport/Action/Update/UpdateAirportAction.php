@@ -81,6 +81,10 @@ readonly class UpdateAirportAction implements UpdateAirportActionInterface
             $this->airportFactory->setAltitude($request->altitude);
         }
 
+        if (null !== $request->isActive) {
+            $this->airportFactory->setIsActive($request->isActive);
+        }
+
         $this->airportRepository->save($this->airportFactory->create(), true);
         return new UpdateAirportActionResponse($airport);
     }

@@ -20,6 +20,7 @@ class GetAirportsActionRequest implements LimitOffsetInterface
     public ?string $icao = null;
     public ?string $cityTitle = null;
     public ?string $timezone = null;
+    public ?bool $isActive = null;
 
     public static function fromArray(array $params): self
     {
@@ -35,6 +36,7 @@ class GetAirportsActionRequest implements LimitOffsetInterface
         $req->icao = $params['icao'] ?? null;
         $req->cityTitle = $params['cityTitle'] ?? null;
         $req->timezone = $params['timezone'] ?? null;
+        $req->isActive = isset($params['isActive']) ? filter_var($params['isActive'], FILTER_VALIDATE_BOOLEAN) : null;
 
         return $req;
     }

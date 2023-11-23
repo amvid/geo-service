@@ -38,6 +38,7 @@ class UpdateAirportActionTest extends TestCase
     private float $latitude = 22.22;
     private int $altitude = 33;
     private string $timezone = 'Europe/Oslo';
+    private bool $isActive = true;
 
     protected function setUp(): void
     {
@@ -58,6 +59,7 @@ class UpdateAirportActionTest extends TestCase
         $this->request->longitude = $this->longitude;
         $this->request->latitude = $this->latitude;
         $this->request->altitude = $this->altitude;
+        $this->request->isActive = $this->isActive;
     }
 
     public function testShouldThrowAirportNotFoundExceptionIfNotFound(): void
@@ -154,7 +156,8 @@ class UpdateAirportActionTest extends TestCase
             ->setIata($this->iata)
             ->setLongitude($this->longitude)
             ->setAltitude($this->altitude)
-            ->setLatitude($this->latitude);
+            ->setLatitude($this->latitude)
+            ->setIsActive($this->isActive);
 
         $this->airportRepository
             ->expects($this->once())
@@ -191,6 +194,7 @@ class UpdateAirportActionTest extends TestCase
         $this->factory->expects($this->once())->method('setTimezone')->with($timezone)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setIata')->with($this->iata)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setIcao')->with($this->icao)->willReturn($this->factory);
+        $this->factory->expects($this->once())->method('setIsActive')->with($this->isActive)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('create')->with()->willReturn($airport);
 
         $this->airportRepository
@@ -213,6 +217,7 @@ class UpdateAirportActionTest extends TestCase
         $this->assertEquals($airport->getLatitude(), $actual->airport->latitude);
         $this->assertEquals($airport->getAltitude(), $actual->airport->altitude);
         $this->assertEquals($airport->getLongitude(), $actual->airport->longitude);
+        $this->assertEquals($airport->isActive(), $actual->airport->isActive);
         $this->assertEquals($this->id, $actual->airport->id);
         $this->assertEquals(CityDummy::ID, $actual->airport->city->id);
         $this->assertEquals(TimezoneDummy::ID, $actual->airport->timezone->id);

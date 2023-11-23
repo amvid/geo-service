@@ -44,6 +44,9 @@ class Airport
     #[ORM\Column(length: 150, unique: false, nullable: false)]
     private string $title;
 
+    #[ORM\Column(options: ['default' => true])]
+    private bool $isActive = true;
+
     public function __construct(?UuidInterface $id = null)
     {
         if ($id) {
@@ -54,6 +57,18 @@ class Airport
     public function __toString(): string
     {
         return $this->title;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
+
+        return $this;
     }
 
     public function getId(): UuidInterface
