@@ -56,6 +56,35 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
         return $this->findOneBy(['iso2' => $iso2]);
     }
 
+    public function findPhoneCodes(
+        int $offset,
+        int $limit,
+        ?string $title,
+        ?string $phoneCode,
+    ): array {
+        $qb = $this->createQueryBuilder('c')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->where('1=1');
+
+        $params = [];
+
+        if ($title) {
+            $params['title'] = "$title%";
+            $qb->andWhere('c.title LIKE :title');
+        }
+
+        if ($phoneCode) {
+            $params['phoneCode'] = "$phoneCode%";
+            $qb->andWhere('c.phoneCode LIKE :phoneCode');
+        }
+
+        return $qb
+            ->setParameters($params)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function list(
         int $offset,
         int $limit,

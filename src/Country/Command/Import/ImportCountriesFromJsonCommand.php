@@ -112,7 +112,7 @@ class ImportCountriesFromJsonCommand extends Command
                     ->setIso3($country['iso3'])
                     ->setIso2($country['iso2'])
                     ->setNumericCode($country['numeric_code'])
-                    ->setPhoneCode($country['phone_code'])
+                    ->setPhoneCode(str_replace(['+', '-'], '', $country['phone_code']))
                     ->setNativeTitle($country['native'])
                     ->setTld($country['tld'])
                     ->setLongitude((float)$country['longitude'])

@@ -23,6 +23,13 @@ interface CountryRepositoryInterface
 
     public function findByIso2(string $iso2): ?Country;
 
+    public function findPhoneCodes(
+        int $offset,
+        int $limit,
+        ?string $title,
+        ?string $phoneCode,
+    ): array;
+
     public function list(
         int $offset,
         int $limit,
