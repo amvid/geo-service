@@ -4,7 +4,6 @@
 
 Geo data REST API service with admin dashboard to manage regions, countries, timezones, states, cities and airports.
 
-
 [RoadRunner](https://roadrunner.dev) |
 [PHP8.2](https://www.php.net/releases/8.2/en.php) |
 [Symfony 6](https://symfony.com) |
