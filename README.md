@@ -25,8 +25,7 @@ make migrate
 ### Create a user
 
 ```bash
-make ssh
-php bin/console app:create-user
+make user
 ```
 
 ### Tests
