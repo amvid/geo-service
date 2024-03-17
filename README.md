@@ -5,7 +5,7 @@
 Geo data REST API service with admin dashboard to manage regions, countries, timezones, states, cities and airports.
 
 [RoadRunner](https://roadrunner.dev) |
-[PHP8.2](https://www.php.net/releases/8.2/en.php) |
+[PHP8.3](https://www.php.net/releases/8.2/en.php) |
 [Symfony 6](https://symfony.com) |
 [EasyAdminBundle](https://symfony.com/bundles/EasyAdminBundle/current/index.html)
 
@@ -93,11 +93,12 @@ make airports
 
 ### Airport
 
-#### Create 
+#### Create
 
 POST /api/v1/airports
 
 Request
+
 ```json
 {
   "title": "Trondheim Airport Vaernes",
@@ -111,6 +112,7 @@ Request
 ```
 
 Response
+
 ```json
 {
   "id": "a6394382-f2f5-42b6-9e92-f1f9a357045a",
@@ -175,9 +177,6 @@ Response
 
 ### More [here](https://github.com/amvid/geo-service/tree/main/docs/api)
 
-License
--------
+## License
 
 This software is published under the [MIT License](LICENSE.md)
-
-[1]: https://github.com/amvid/geo-service/tree/main/LICENSE.md
