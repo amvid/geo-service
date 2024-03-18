@@ -8,6 +8,8 @@ use App\Country\Entity\Country;
 use App\Currency\Entity\Currency;
 use App\SubRegion\Entity\SubRegion;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Query\Parameter;
 use Doctrine\Persistence\ManagerRegistry;
 use Ramsey\Uuid\UuidInterface;
 
@@ -30,7 +32,6 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
     public function remove(Country $country, bool $flush = false): void
     {
         $this->getEntityManager()->remove($country);
-
         if ($flush) {
             $this->getEntityManager()->flush();
         }
@@ -62,24 +63,23 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
         ?string $title,
         ?string $phoneCode,
     ): array {
-        $qb = $this->createQueryBuilder('c')
-            ->setFirstResult($offset)
-            ->setMaxResults($limit)
-            ->where('1=1');
+        $qb = $this->createQueryBuilder('c')->where('1=1');
 
-        $params = [];
+        $params = new ArrayCollection();
 
         if ($title) {
-            $params['title'] = "$title%";
+            $params->add(new Parameter('title', "$title%"));
             $qb->andWhere('c.title LIKE :title');
         }
 
         if ($phoneCode) {
-            $params['phoneCode'] = "$phoneCode%";
+            $params->add(new Parameter('phoneCode', "$phoneCode%"));
             $qb->andWhere('c.phoneCode LIKE :phoneCode');
         }
 
         return $qb
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
             ->setParameters($params)
             ->getQuery()
             ->getResult();
@@ -120,7 +120,7 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
             ->setMaxResults($limit)
             ->where('1=1');
 
-        $params = [];
+        $params = new ArrayCollection();
 
         if ($title) {
             $params['title'] = "%$title%";

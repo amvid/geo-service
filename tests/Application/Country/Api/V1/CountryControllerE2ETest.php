@@ -148,4 +148,14 @@ class CountryControllerE2ETest extends WebTestCase
         self::assertResponseIsSuccessful();
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
     }
+
+    public function testGetPhoneCodeActionSuccess(): void
+    {
+        $expectedJson = '[{"title":"Updated Title","iso2":"US","iso3":"USA","phoneCode":"1","flag":"\ud83c\uddfa\ud83c\uddf8"}]';
+        $this->client->request(HttpMethod::GET, CountryController::API_ROUTE . '/phone-codes?limit=1&offset=0&phoneCode=1');
+        self::assertResponseIsSuccessful();
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        self::assertJson($this->client->getResponse()->getContent());
+        self::assertEquals($expectedJson, $this->client->getResponse()->getContent());
+    }
 }
