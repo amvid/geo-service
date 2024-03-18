@@ -17,7 +17,7 @@ RUN composer install --optimize-autoloader --no-dev --prefer-dist \
      && bin/console assets:install \
      && bin/console cache:clear
 
-COPY --from=ghcr.io/roadrunner-server/roadrunner:2023.3.4 /usr/bin/rr .
+COPY --from=ghcr.io/roadrunner-server/roadrunner:2023.3.12 /usr/bin/rr .
 
 EXPOSE 8080/tcp
 

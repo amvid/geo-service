@@ -33,7 +33,7 @@ class NationalityControllerE2ETest extends WebTestCase
     public function testCreateActionSuccess(): void
     {
         $content = [
-            'title' => 'American',
+            'title' => 'AmericanTest',
         ];
 
         $this->client->request(

@@ -8,20 +8,20 @@ use App\Nationality\Repository\NationalityRepositoryInterface;
 
 readonly class DeleteNationalityAction implements DeleteNationalityActionInterface
 {
-    public function __construct(private NationalityRepositoryInterface $regionRepository)
+    public function __construct(private NationalityRepositoryInterface $nationalityRepository)
     {
     }
 
     public function run(DeleteNationalityActionRequest $request): DeleteNationalityActionResponse
     {
-        $exists = $this->regionRepository->findById($request->id);
+        $exists = $this->nationalityRepository->findById($request->id);
         $res = new DeleteNationalityActionResponse();
 
         if (!$exists) {
             return $res;
         }
 
-        $this->regionRepository->remove($exists, true);
+        $this->nationalityRepository->remove($exists, true);
 
         return $res;
     }

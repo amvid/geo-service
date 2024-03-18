@@ -33,11 +33,10 @@ test:
 	@docker exec geo-service-test-app sh -c "APP_ENV=test ./bin/console --no-interaction d:m:m"
 	@docker exec geo-service-test-app sh -c "APP_ENV=test ./bin/console d:f:l --no-interaction"
 	@docker exec geo-service-test-app sh -c "APP_ENV=test ./vendor/bin/phpunit"
-	# @docker-compose -f docker-compose.test.yaml down
 
 .PHONY: test-down
 test-down:
-	@docker-compose -f docker-compose.test.yaml down
+	@docker-compose -f docker-compose.test.yaml down -v --timeout=0
 
 .PHONY: regions
 regions:
