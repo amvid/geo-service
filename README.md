@@ -2,7 +2,7 @@
 
 ## Info
 
-Geo data REST API service with admin dashboard to manage regions, countries, timezones, states, cities and airports.
+Geo data REST API service with admin dashboard to manage regions, countries, nationalities, timezones, states, cities and airports.
 
 [RoadRunner](https://roadrunner.dev) |
 [PHP8.3](https://www.php.net/releases/8.3/en.php) |
@@ -87,6 +87,12 @@ Airports
 
 ```bash
 make airports
+```
+
+Nationalities
+
+```bash
+make nationalities
 ```
 
 ## API example
