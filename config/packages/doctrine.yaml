@@ -59,6 +59,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Airport/Entity'
                 prefix: 'App\Airport\Entity'
                 alias: Airport
+            Nationality:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Nationality/Entity'
+                prefix: App\Nationality\Entity
+                alias: Nationality
 
 when@test:
     doctrine:

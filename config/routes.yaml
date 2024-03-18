@@ -4,6 +4,12 @@ controllers:
     namespace: App\Application\Controller
   type: attribute
 
+app_nationalities:
+  resource:
+    path: ../src/Nationality/Controller
+    namespace: App\Nationality\Controller
+  type: attribute
+
 app_regions:
   resource:
     path: ../src/Region/Controller/

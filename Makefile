@@ -71,6 +71,9 @@ cities:
 airports:
 	@docker exec geo-service-app-dev sh -c "bin/console app:import-airports"
 
+nationalities:
+	@docker exec geo-service-app-dev sh -c "bin/console app:import-nationalities"
+
 .PHONY: geo
 geo:
 	make currencies
@@ -81,3 +84,4 @@ geo:
 	make states
 	make cities
 	make airports
+	make nationalities
