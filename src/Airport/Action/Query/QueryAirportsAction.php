@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Airport\Action\Query;
 
 use App\Airport\Controller\Response\QueryAirportResponse;
+use App\Airport\Controller\Response\QueryChildrenAirportResponse;
 use App\Airport\Entity\Airport;
 use App\Airport\Repository\AirportRepositoryInterface;
 
@@ -28,7 +29,7 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
             $request->query,
         );
 
-        /** @var array<QueryAirportResponse> $res */
+        /** @var array<QueryChildrenAirportResponse> $res */
         $res = [];
         $map = [];
 
@@ -56,7 +57,7 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
                         }
                     }
 
-                    $res[] = new QueryAirportResponse(
+                    $res[] = new QueryChildrenAirportResponse(
                         $city . ' (Any)',
                         $ap->getCity()->getIata() ?? $ap->getIata(),
                         $country,
