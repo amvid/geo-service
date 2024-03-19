@@ -70,7 +70,7 @@ class ImportAirportsFromJsonCommand extends Command
                     continue;
                 }
 
-                if (!isset($cities[$a->city])) {
+                if (!isset($cities[$a->city . $a->country])) {
                     $city = $this->cityRepository->findByTitleAndCountry($a->city, $country);
 
                     if (!$city) {
@@ -78,9 +78,9 @@ class ImportAirportsFromJsonCommand extends Command
                         continue;
                     }
 
-                    $cities[$a->city] = $city;
+                    $cities[$a->city . $a->country] = $city;
                 } else {
-                    $city = $cities[$a->city];
+                    $city = $cities[$a->city . $a->country];
                 }
 
                 if (!isset($timezones[$a->tz])) {

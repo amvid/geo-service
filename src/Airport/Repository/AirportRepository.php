@@ -111,11 +111,13 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
     {
         $exactMatchParams = new ArrayCollection();
         $exactMatchParams->add(new Parameter('exactQuery', $query));
+        $exactMatchParams->add(new Parameter('isActive', true));
 
         $exactMatchResult = $this->createQueryBuilder('a')
             ->join('a.city', 'c')
             ->join('c.country', 'co')
             ->where('a.iata = :exactQuery')
+            ->andWhere('a.isActive = :isActive')
             ->setParameters($exactMatchParams)
             ->getQuery()
             ->getResult();
@@ -126,6 +128,7 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
 
         $params = new ArrayCollection();
         $params->add(new Parameter('query', "$query%"));
+        $params->add(new Parameter('isActive', true));
 
         return $this->createQueryBuilder('a')
             ->setFirstResult($offset)
@@ -137,6 +140,7 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
             ->orWhere('a.icao LIKE :query')
             ->orWhere('c.title LIKE :query')
             ->orWhere('co.title LIKE :query')
+            ->andWhere('a.isActive = :isActive')
             ->setParameters($params)
             ->getQuery()
             ->getResult();
