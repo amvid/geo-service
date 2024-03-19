@@ -10,6 +10,8 @@ use App\Airport\Action\Delete\DeleteAirportActionInterface;
 use App\Airport\Action\Delete\DeleteAirportActionRequest;
 use App\Airport\Action\Get\GetAirportsActionInterface;
 use App\Airport\Action\Get\GetAirportsActionRequest;
+use App\Airport\Action\Query\QueryAirportsActionInterface;
+use App\Airport\Action\Query\QueryAirportsActionRequest;
 use App\Airport\Action\Update\UpdateAirportActionInterface;
 use App\Airport\Action\Update\UpdateAirportActionRequest;
 use App\Application\Controller\Api\ApiController;
@@ -54,6 +56,17 @@ class AirportController extends ApiController
         $req = new DeleteAirportActionRequest($id);
         $this->validateRequest($req);
         return $this->json($action->run($req));
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    #[Route(self::API_ROUTE . '/q', name: 'app_airport_api_v1_airport_query', methods: HttpMethod::GET)]
+    public function query(Request $request, QueryAirportsActionInterface $action): JsonResponse
+    {
+        $req = QueryAirportsActionRequest::fromArray($request->query->all());
+        $this->validateRequest($req);
+        return $this->json($action->run($req)->airports);
     }
 
     /**

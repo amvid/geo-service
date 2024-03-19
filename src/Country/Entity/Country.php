@@ -6,6 +6,7 @@ namespace App\Country\Entity;
 
 use App\Application\Trait\PositionTrait;
 use App\Application\Trait\TimestampTrait;
+use App\City\Entity\City;
 use App\Country\Repository\CountryRepository;
 use App\Currency\Entity\Currency;
 use App\SubRegion\Entity\SubRegion;
@@ -40,6 +41,10 @@ class Country
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private Currency $currency;
+
+    #[ORM\OneToOne]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?City $capital = null;
 
     #[ORM\Column(length: 150, unique: true, nullable: false)]
     private string $title;
@@ -82,6 +87,17 @@ class Country
     public function getId(): UuidInterface
     {
         return $this->id;
+    }
+
+    public function setCapital(?City $capital = null): self
+    {
+        $this->capital = $capital;
+        return $this;
+    }
+
+    public function getCapital(): ?City
+    {
+        return $this->capital;
     }
 
     public function getSubRegion(): SubRegion

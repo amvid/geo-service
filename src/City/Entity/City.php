@@ -47,7 +47,7 @@ class City
 
     public function __toString(): string
     {
-        return $this->title;
+        return "$this->title ({$this->country->getTitle()})";
     }
 
     public function getId(): UuidInterface

@@ -21,6 +21,8 @@ interface AirportRepositoryInterface
 
     public function findByIcao(string $icao): ?Airport;
 
+    public function query(int $offset, int $limit, string $query): iterable;
+
     public function list(
         int $offset,
         int $limit,
