@@ -39,6 +39,9 @@ class City
     #[ORM\Column(length: 150, nullable: false)]
     private string $title;
 
+    #[ORM\Column(length: 3, nullable: true)]
+    private ?string $iata = null;
+
     public function __construct(?UuidInterface $id = null)
     {
         if ($id) {
@@ -54,6 +57,17 @@ class City
     public function getId(): UuidInterface
     {
         return $this->id;
+    }
+
+    public function getIata(): ?string
+    {
+        return $this->iata;
+    }
+
+    public function setIata(?string $iata): self
+    {
+        $this->iata = $iata;
+        return $this;
     }
 
     public function getState(): ?State

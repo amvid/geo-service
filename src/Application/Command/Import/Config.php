@@ -35,4 +35,9 @@ class Config
     {
         return getcwd() . '/data/countries_capitals.json';
     }
+
+    public static function getCitiesIataDataFilepath(): string
+    {
+        return getcwd() . '/data/cities_iata.json';
+    }
 }

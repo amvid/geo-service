@@ -45,6 +45,7 @@ class CityCrudController extends AbstractCrudController
             AssociationField::new('state')->autocomplete()->setRequired(false),
             FormField::addFieldset('Basic'),
             TextField::new('title')->setColumns(4),
+            TextField::new('iata')->setColumns(4),
             FormField::addFieldset('Position'),
             NumberField::new('longitude')->setColumns(2),
             NumberField::new('latitude')->setColumns(2),

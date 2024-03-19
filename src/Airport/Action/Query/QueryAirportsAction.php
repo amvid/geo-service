@@ -58,7 +58,7 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
 
                     $res[] = new QueryAirportResponse(
                         $city . ' (Any)',
-                        $ap->getIata(),
+                        $ap->getCity()->getIata() ?? $ap->getIata(),
                         $country,
                     );
                 }
@@ -66,7 +66,7 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
                 foreach ($airports as $airport) {
                     if (!$isGroup) {
                         $res[] = new QueryAirportResponse(
-                            $city,
+                            $airport->getTitle(),
                             $airport->getIata(),
                             $country,
                         );
