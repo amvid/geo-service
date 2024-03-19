@@ -16,6 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CityRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[ORM\UniqueConstraint(name: 'city_title__country_unique', columns: ['country_id', 'title'])]
 class City
 {
     use TimestampTrait;
@@ -35,7 +36,7 @@ class City
     #[ORM\JoinColumn(nullable: true)]
     private ?State $state = null;
 
-    #[ORM\Column(length: 150, unique: true, nullable: false)]
+    #[ORM\Column(length: 150, nullable: false)]
     private string $title;
 
     public function __construct(?UuidInterface $id = null)

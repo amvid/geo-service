@@ -33,7 +33,7 @@ class CurrencyCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('id')->hideOnForm(),
+            TextField::new('id')->hideOnForm()->hideOnIndex(),
             TextField::new('name'),
             TextField::new('code'),
             TextField::new('symbol'),

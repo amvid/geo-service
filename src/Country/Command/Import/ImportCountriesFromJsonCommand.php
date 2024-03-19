@@ -74,7 +74,7 @@ class ImportCountriesFromJsonCommand extends Command
                     $currencies[$country['currency']] = $currency;
                 }
 
-                if (!array_key_exists($country['subregion'], $subRegions)) {
+                if (!empty($country['subregion']) && !array_key_exists($country['subregion'], $subRegions)) {
                     $subRegion = $this->subRegionRepository->findByTitle($country['subregion']);
 
                     if (!$subRegion) {
@@ -106,7 +106,7 @@ class ImportCountriesFromJsonCommand extends Command
                 $newCountry = $this->countryFactory
                     ->setCountry(new Country())
                     ->setCurrency($currencies[$country['currency']])
-                    ->setSubRegion($subRegions[$country['subregion']])
+                    ->setSubRegion($subRegions[$country['subregion']] ?? null)
                     ->setTimezones($tzs)
                     ->setTitle($country['name'])
                     ->setIso3($country['iso3'])

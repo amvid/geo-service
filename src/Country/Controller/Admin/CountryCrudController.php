@@ -48,7 +48,7 @@ class CountryCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('id')->hideOnForm(),
+            TextField::new('id')->hideOnForm()->hideOnIndex(),
             DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex(),
             DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex(),
             FormField::addFieldset('Relations'),
@@ -60,11 +60,11 @@ class CountryCrudController extends AbstractCrudController
             TextField::new('title')->setColumns(4),
             TextField::new('nativeTitle', 'Native')->setColumns(5),
             TextField::new('iso2')->setColumns(4),
-            TextField::new('iso3')->setColumns(4)->hideOnIndex(),
+            TextField::new('iso3')->setColumns(4),
             NumberField::new('numericCode', 'Numeric')->setColumns(4),
-            TextField::new('phoneCode', 'Phone')->setColumns(4)->hideOnIndex(),
+            TextField::new('phoneCode', 'Phone')->setColumns(4),
             TextField::new('flag')->setColumns(4),
-            TextField::new('tld')->setColumns(4)->hideOnIndex(),
+            TextField::new('tld')->setColumns(4),
             FormField::addFieldset('Position'),
             NumberField::new('longitude')->hideOnIndex()->setColumns(2),
             NumberField::new('latitude')->hideOnIndex()->setColumns(2),

@@ -13,7 +13,7 @@ interface CountryFactoryInterface
 {
     public function setCountry(Country $country): self;
 
-    public function setSubRegion(SubRegion $subRegion): self;
+    public function setSubRegion(?SubRegion $subRegion = null): self;
 
     public function setTimezones(Collection $timezones): self;
 

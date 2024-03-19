@@ -32,8 +32,8 @@ class Country
     private UuidInterface $id;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private SubRegion $subRegion;
+    #[ORM\JoinColumn(nullable: true)]
+    private ?SubRegion $subRegion = null;
 
     #[ORM\ManyToMany(targetEntity: Timezone::class, orphanRemoval: true)]
     private Collection $timezones;
@@ -100,12 +100,12 @@ class Country
         return $this->capital;
     }
 
-    public function getSubRegion(): SubRegion
+    public function getSubRegion(): ?SubRegion
     {
         return $this->subRegion;
     }
 
-    public function setSubRegion(SubRegion $subRegion): self
+    public function setSubRegion(?SubRegion $subRegion = null): self
     {
         $this->subRegion = $subRegion;
 

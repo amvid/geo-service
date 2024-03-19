@@ -34,7 +34,7 @@ class TimezoneCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('id')->hideOnForm(),
+            TextField::new('id')->hideOnForm()->hideOnIndex(),
             TextField::new('title'),
             TextField::new('code'),
             TextField::new('utc'),

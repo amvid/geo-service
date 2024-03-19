@@ -67,7 +67,7 @@ cities:
 	@docker exec geo-service-app-dev sh -c "bin/console app:import-cities"
 
 .PHONY: sync-capitals
-cities:
+sync-capitals:
 	@docker exec geo-service-app-dev sh -c "bin/console app:sync-capitals"
 
 .PHONY: airports

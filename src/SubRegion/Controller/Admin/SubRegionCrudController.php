@@ -36,7 +36,7 @@ class SubRegionCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('id')->hideOnForm(),
+            TextField::new('id')->hideOnForm()->hideOnIndex(),
             TextField::new('title'),
             AssociationField::new('region')->autocomplete(),
             DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex(),

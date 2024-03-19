@@ -7,6 +7,7 @@ namespace App\Country\Factory;
 use App\Country\Entity\Country;
 use App\Currency\Entity\Currency;
 use App\SubRegion\Entity\SubRegion;
+use App\Timezone\Entity\Timezone;
 use Doctrine\Common\Collections\Collection;
 
 class CountryFactory implements CountryFactoryInterface
@@ -24,7 +25,7 @@ class CountryFactory implements CountryFactoryInterface
         return $this;
     }
 
-    public function setSubRegion(SubRegion $subRegion): CountryFactoryInterface
+    public function setSubRegion(?SubRegion $subRegion = null): CountryFactoryInterface
     {
         $this->country->setSubRegion($subRegion);
         return $this;
@@ -32,6 +33,7 @@ class CountryFactory implements CountryFactoryInterface
 
     public function setTimezones(Collection $timezones): CountryFactoryInterface
     {
+        /** @var Timezone $timezone */
         foreach ($timezones as $timezone) {
             $this->country->addTimezone($timezone);
         }

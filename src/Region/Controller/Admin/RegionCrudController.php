@@ -33,7 +33,7 @@ class RegionCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('id')->hideOnForm(),
+            TextField::new('id')->hideOnForm()->hideOnIndex(),
             TextField::new('title'),
             DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex(),
             DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex(),

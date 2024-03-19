@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\City\Command\Import;
 
 use App\Application\Command\Import\Config;
+use App\City\Entity\City;
 use App\City\Repository\CityRepositoryInterface;
 use App\Country\Repository\CountryRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,27 +43,32 @@ class SyncCapitalsFromJsonCommand extends Command
 
             $output->writeln('Syncing...');
 
-            foreach (Items::fromStream(fopen(Config::getCountriesCapitalsDataFilepath(), 'rb')) as $capital) {
-                if (null === $capital->city) {
+            foreach (Items::fromStream(fopen(Config::getGeoDataFilepath(), 'rb')) as $country) {
+                if (empty($country->capital)) {
                     continue;
                 }
 
-                $country = $this->countryRepository->findByTitle($capital->country);
+                $countryEntity = $this->countryRepository->findByTitle($country->name);
 
-                if (!$country) {
-                    echo "Country not found: {$capital->country}\n";
+                if (!$countryEntity) {
+                    echo "Country not found: {$country->name}\n";
                     continue;
                 }
 
-                $city = $this->cityRepository->findByTitle($capital->city);
+                $city = $this->cityRepository->findByTitleAndCountry($country->capital, $countryEntity);
 
                 if (!$city) {
-                    echo "City not found for country '{$capital->country}': {$capital->city}\n";
-                    continue;
+                    $city = new City();
+                    $city->setTitle($country->capital);
+                    $city->setCountry($countryEntity);
+                    $city->setAltitude(0);
+                    $city->setLatitude(0.0);
+                    $city->setLongitude(0.0);
+                    $this->cityRepository->save($city);
                 }
 
-                $country->setCapital($city);
-                $this->em->persist($country);
+                $countryEntity->setCapital($city);
+                $this->em->persist($countryEntity);
                 $this->em->flush();
                 $synced++;
             }

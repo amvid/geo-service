@@ -54,11 +54,6 @@ class ImportCitiesFromJsonCommand extends Command
                     continue;
                 }
 
-                $exists = $this->cityRepository->findByTitle($city->city);
-
-                if ($exists) {
-                    continue;
-                }
 
                 if (!isset($countries[$city->country])) {
                     $country = $this->countryRepository->findByIso2($city->country);
@@ -71,6 +66,12 @@ class ImportCitiesFromJsonCommand extends Command
                     $countries[$city->country] = $country;
                 } else {
                     $country = $countries[$city->country];
+                }
+
+                $exists = $this->cityRepository->findByTitleAndCountry($city->city, $country);
+
+                if ($exists) {
+                    continue;
                 }
 
                 $state = null;

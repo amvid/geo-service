@@ -43,9 +43,14 @@ class CityRepository extends ServiceEntityRepository implements CityRepositoryIn
         return $this->find($id);
     }
 
-    public function findByTitle(string $title): ?City
+    public function findByTitleAndCountry(string $title, Country $country): ?City
     {
-        return $this->findOneBy(['title' => $title]);
+        return $this->findOneBy(['title' => $title, 'country' => $country]);
+    }
+
+    public function findByTitle(string $title): iterable
+    {
+        return $this->findBy(['title' => $title]);
     }
 
     public function list(
