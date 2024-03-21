@@ -11,9 +11,13 @@ use App\Airport\Exception\AirportAlreadyExistsException;
 use App\Airport\Factory\AirportFactoryInterface;
 use App\Airport\Repository\AirportRepositoryInterface;
 use App\City\Entity\City;
+use App\Country\Entity\Country;
 use App\City\Exception\CityNotFoundException;
 use App\City\Repository\CityRepositoryInterface;
+use App\Country\Exception\CountryNotFoundException;
+use App\Country\Repository\CountryRepositoryInterface;
 use App\Tests\Unit\City\CityDummy;
+use App\Tests\Unit\Country\CountryDummy;
 use App\Tests\Unit\Timezone\TimezoneDummy;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
@@ -25,10 +29,12 @@ class CreateAirportActionTest extends TestCase
     private AirportFactoryInterface $factory;
     private AirportRepositoryInterface $airportRepository;
     private CityRepositoryInterface $cityRepository;
+    private CountryRepositoryInterface $countryRepository;
     private TimezoneRepositoryInterface $timezoneRepository;
 
     private CreateAirportActionRequest $request;
     private string $iata = 'TST';
+    private string $countryIso2 = 'US';
     private string $icao = 'TEST';
     private string $title = 'Test Airport';
     private string $cityTitle = CityDummy::TITLE;
@@ -43,8 +49,10 @@ class CreateAirportActionTest extends TestCase
         $this->airportRepository = $this->getMockBuilder(AirportRepositoryInterface::class)->getMock();
         $this->cityRepository = $this->getMockBuilder(CityRepositoryInterface::class)->getMock();
         $this->timezoneRepository = $this->getMockBuilder(TimezoneRepositoryInterface::class)->getMock();
+        $this->countryRepository = $this->getMockBuilder(CountryRepositoryInterface::class)->getMock();
 
         $this->request = new CreateAirportActionRequest();
+        $this->request->countryIso2 = $this->countryIso2;;
         $this->request->timezone = $this->timezone;
         $this->request->iata = $this->iata;
         $this->request->icao = $this->icao;
@@ -67,6 +75,7 @@ class CreateAirportActionTest extends TestCase
             $this->factory,
             $this->airportRepository,
             $this->cityRepository,
+            $this->countryRepository,
             $this->timezoneRepository,
         );
 
@@ -76,8 +85,43 @@ class CreateAirportActionTest extends TestCase
         $action->run($this->request);
     }
 
+    public function testShouldThrowCountryNotFoundExceptionIfNotFound(): void
+    {
+        $this->airportRepository
+            ->expects($this->once())
+            ->method('findByIata')
+            ->with($this->iata)
+            ->willReturn(null);
+
+        $this->countryRepository
+            ->expects($this->once())
+            ->method('findByIso2')
+            ->with($this->countryIso2)
+            ->willReturn(null);
+
+        $action = new CreateAirportAction(
+            $this->factory,
+            $this->airportRepository,
+            $this->cityRepository,
+            $this->countryRepository,
+            $this->timezoneRepository,
+        );
+
+        $this->expectException(CountryNotFoundException::class);
+        $this->expectExceptionMessage("Country '$this->countryIso2' not found.");
+
+        $action->run($this->request);
+    }
+
     public function testShouldThrowCityNotFoundExceptionIfNotFound(): void
     {
+        $country = CountryDummy::get();
+        $this->countryRepository
+            ->expects($this->once())
+            ->method('findByIso2')
+            ->with($this->countryIso2)
+            ->willReturn($country);
+
         $this->airportRepository
             ->expects($this->once())
             ->method('findByIata')
@@ -86,14 +130,15 @@ class CreateAirportActionTest extends TestCase
 
         $this->cityRepository
             ->expects($this->once())
-            ->method('findByTitle')
-            ->with($this->cityTitle)
+            ->method('findByTitleAndCountry')
+            ->with($this->cityTitle, $country)
             ->willReturn(null);
 
         $action = new CreateAirportAction(
             $this->factory,
             $this->airportRepository,
             $this->cityRepository,
+            $this->countryRepository,
             $this->timezoneRepository,
         );
 
@@ -111,6 +156,12 @@ class CreateAirportActionTest extends TestCase
             ->with($this->iata)
             ->willReturn(null);
 
+        $this->countryRepository
+            ->expects($this->once())
+            ->method('findByIso2')
+            ->with($this->countryIso2)
+            ->willReturn(new Country());
+
         $this->cityRepository
             ->expects($this->once())
             ->method('findByTitle')
@@ -127,6 +178,7 @@ class CreateAirportActionTest extends TestCase
             $this->factory,
             $this->airportRepository,
             $this->cityRepository,
+            $this->countryRepository,
             $this->timezoneRepository,
         );
 
@@ -138,6 +190,14 @@ class CreateAirportActionTest extends TestCase
 
     public function testShouldReturnAValidResponse(): void
     {
+        $country = CountryDummy::get();
+
+        $this->countryRepository
+            ->expects($this->once())
+            ->method('findByIso2')
+            ->with($this->countryIso2)
+            ->willReturn($country);
+
         $this->airportRepository
             ->expects($this->once())
             ->method('findByIata')
@@ -148,8 +208,8 @@ class CreateAirportActionTest extends TestCase
 
         $this->cityRepository
             ->expects($this->once())
-            ->method('findByTitle')
-            ->with($this->cityTitle)
+            ->method('findByTitleAndCountry')
+            ->with($this->cityTitle, $country)
             ->willReturn($city);
 
         $timezone = TimezoneDummy::get();
@@ -194,6 +254,7 @@ class CreateAirportActionTest extends TestCase
             $this->factory,
             $this->airportRepository,
             $this->cityRepository,
+            $this->countryRepository,
             $this->timezoneRepository,
         );
 

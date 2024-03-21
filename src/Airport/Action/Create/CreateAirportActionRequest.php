@@ -25,6 +25,10 @@ class CreateAirportActionRequest
     public string $iata;
 
     #[NotBlank]
+    #[Length(2)]
+    public string $countryIso2;
+
+    #[NotBlank]
     #[Length(4)]
     public string $icao;
 
