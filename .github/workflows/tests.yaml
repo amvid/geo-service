@@ -17,6 +17,9 @@ jobs:
     - name: Set up Docker Environment
       run: docker-compose -f docker-compose.test.yaml up -d
 
+    - name: Install Dependecies
+      run: docker exec geo-service-test-app sh -c "composer install"
+    
     - name: Run Database Migrations
       run: docker exec geo-service-test-app sh -c "APP_ENV=test ./bin/console --no-interaction d:m:m"
 
