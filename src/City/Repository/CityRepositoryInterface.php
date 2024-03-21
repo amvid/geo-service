@@ -17,7 +17,9 @@ interface CityRepositoryInterface
 
     public function findById(UuidInterface $id): ?City;
 
-    public function findByTitle(string $title): ?City;
+    public function findByTitleAndCountry(string $title, Country $country): ?City;
+
+    public function findByTitle(string $title): iterable;
 
     public function list(
         int $offset,

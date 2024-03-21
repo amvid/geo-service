@@ -3,7 +3,6 @@
 namespace App\Airport\Repository;
 
 use App\Airport\Entity\Airport;
-use App\City\Entity\City;
 use App\Timezone\Entity\Timezone;
 use Ramsey\Uuid\UuidInterface;
 
@@ -21,6 +20,8 @@ interface AirportRepositoryInterface
 
     public function findByIcao(string $icao): ?Airport;
 
+    public function query(int $offset, int $limit, string $query): iterable;
+
     public function list(
         int $offset,
         int $limit,
@@ -30,6 +31,6 @@ interface AirportRepositoryInterface
         ?string $icao = null,
         ?bool $isActive = null,
         ?Timezone $timezone = null,
-        ?City $city = null,
+        iterable $cities = [],
     ): iterable;
 }

@@ -9,6 +9,9 @@ use App\Airport\Entity\Airport;
 use App\Airport\Repository\AirportRepositoryInterface;
 use App\Application\Controller\HttpMethod;
 use App\Tests\Unit\Airport\AirportDummy;
+use App\Tests\Unit\Country\CountryDummy;
+use App\Tests\Unit\SubRegion\SubRegionDummy;
+use App\Tests\Unit\Timezone\TimezoneDummy;
 use Exception;
 use JsonException;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -33,6 +36,7 @@ class AirportControllerE2ETest extends WebTestCase
     public function testCreateActionSuccess(): void
     {
         $content = [
+            'countryIso2' => 'US',
             'title' => 'Test Airport',
             'cityTitle' => 'California',
             'timezone' => 'America/Nome',
@@ -54,6 +58,21 @@ class AirportControllerE2ETest extends WebTestCase
         self::assertResponseIsSuccessful();
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertEquals($content['title'], $response['title']);
+    }
+
+    public function testQueryActionSuccess(): void
+    {
+        $this->client->request(HttpMethod::GET, AirportController::API_ROUTE . '?query=AAA');
+
+        $response = json_decode($this->client->getResponse()->getContent(), true, 512, JSON_THROW_ON_ERROR);
+
+        self::assertEquals(1, count($response));
+        self::assertEquals(AirportDummy::TITLE, $response[0]['title']);
+        self::assertEquals(AirportDummy::IATA, $response[0]['iata']);
+        self::assertEquals(CountryDummy::TITLE, $response[0]['country']);
+
+        self::assertResponseIsSuccessful();
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
     }
 
     public function testCreateActionErrorBadRequest(): void

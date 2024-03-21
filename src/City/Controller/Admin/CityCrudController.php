@@ -37,7 +37,7 @@ class CityCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('id')->hideOnForm(),
+            TextField::new('id')->hideOnForm()->hideOnIndex(),
             DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex(),
             DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex(),
             FormField::addFieldset('Relations'),
@@ -45,10 +45,11 @@ class CityCrudController extends AbstractCrudController
             AssociationField::new('state')->autocomplete()->setRequired(false),
             FormField::addFieldset('Basic'),
             TextField::new('title')->setColumns(4),
+            TextField::new('iata')->setColumns(4),
             FormField::addFieldset('Position'),
-            NumberField::new('longitude')->hideOnIndex()->setColumns(2),
-            NumberField::new('latitude')->hideOnIndex()->setColumns(2),
-            NumberField::new('altitude')->hideOnIndex()->setColumns(2),
+            NumberField::new('longitude')->setColumns(2),
+            NumberField::new('latitude')->setColumns(2),
+            NumberField::new('altitude')->setColumns(2),
         ];
     }
 }

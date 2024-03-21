@@ -1,0 +1,30 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Environment
+      run: docker-compose -f docker-compose.test.yaml up -d
+
+    - name: Install Dependecies
+      run: docker exec geo-service-test-app sh -c "composer install"
+    
+    - name: Run Database Migrations
+      run: docker exec geo-service-test-app sh -c "APP_ENV=test ./bin/console --no-interaction d:m:m"
+
+    - name: Load Fixtures
+      run: docker exec geo-service-test-app sh -c "APP_ENV=test ./bin/console d:f:l --no-interaction"
+
+    - name: Execute PHPUnit Tests
+      run: docker exec geo-service-test-app sh -c "APP_ENV=test ./vendor/bin/phpunit"

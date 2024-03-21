@@ -34,6 +34,7 @@ class CountryCrudController extends AbstractCrudController
             'tld',
             'currency.code',
             'timezones.code',
+            'capital.title',
         ]);
 
         return $crud;
@@ -47,13 +48,14 @@ class CountryCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('id')->hideOnForm(),
+            TextField::new('id')->hideOnForm()->hideOnIndex(),
             DateTimeField::new('createdAt')->hideOnForm()->hideOnIndex(),
             DateTimeField::new('updatedAt')->hideOnForm()->hideOnIndex(),
             FormField::addFieldset('Relations'),
+            AssociationField::new('capital')->autocomplete(),
             AssociationField::new('subRegion')->autocomplete(),
             AssociationField::new('currency')->autocomplete(),
-            AssociationField::new('timezones')->autocomplete(),
+            AssociationField::new('timezones')->autocomplete()->hideOnIndex(),
             FormField::addFieldset('Basic'),
             TextField::new('title')->setColumns(4),
             TextField::new('nativeTitle', 'Native')->setColumns(5),

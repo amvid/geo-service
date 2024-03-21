@@ -99,86 +99,62 @@ make nationalities
 
 ### Airport
 
-#### Create
+#### Query
 
-POST /api/v1/airports
-
-Request
-
-```json
-{
-  "title": "Trondheim Airport Vaernes",
-  "cityTitle": "Trondheim",
-  "timezone": "Europe/Oslo",
-  "iata": "TRD",
-  "icao": "ENVA",
-  "longitude": 10.9239997864,
-  "latitude": 63.4578018188
-}
-```
+GET /api/v1/airports?query=London
 
 Response
 
 ```json
-{
-  "id": "a6394382-f2f5-42b6-9e92-f1f9a357045a",
-  "title": "Trondheim Airport Vaernes",
-  "iata": "TRD",
-  "icao": "ENVA",
-  "longitude": 10.9239997864,
-  "latitude": 63.4578018188,
-  "altitude": null,
-  "timezone": {
-    "id": "1013a9a5-1427-4e5b-8971-b97a442fb3cb",
-    "title": "Central European Time Europe/Oslo (CET)",
-    "code": "Europe/Oslo",
-    "utc": "UTC+01:00"
+[
+  {
+    "title": "London (Any)",
+    "iata": "LON",
+    "country": "United Kingdom",
+    "children": [
+      {
+        "title": "London Biggin Hill Airport",
+        "iata": "BQH",
+        "country": "United Kingdom"
+      },
+      {
+        "title": "London Gatwick Airport",
+        "iata": "LGW",
+        "country": "United Kingdom"
+      },
+      {
+        "title": "London Luton Airport",
+        "iata": "LTN",
+        "country": "United Kingdom"
+      },
+      {
+        "title": "London Heathrow Airport",
+        "iata": "LHR",
+        "country": "United Kingdom"
+      },
+      {
+        "title": "London Stansted Airport",
+        "iata": "STN",
+        "country": "United Kingdom"
+      },
+      {
+        "title": "London City Airport",
+        "iata": "LCY",
+        "country": "United Kingdom"
+      },
+      {
+        "title": "RAF Northolt",
+        "iata": "NHT",
+        "country": "United Kingdom"
+      }
+    ]
   },
-  "city": {
-    "id": "72ebbfde-d2b0-48a1-961e-092a2057ef0a",
-    "title": "Trondheim",
-    "longitude": 10.9239997864,
-    "latitude": 63.4578018188,
-    "altitude": null,
-    "state": null,
-    "country": {
-      "id": "20a21c8b-4003-482a-83c5-7dbf816d20f2",
-      "title": "Norway",
-      "nativeTitle": "Norge",
-      "iso2": "NO",
-      "iso3": "NOR",
-      "numericCode": "578",
-      "phoneCode": "47",
-      "flag": "🇳🇴",
-      "tld": ".no",
-      "longitude": 10,
-      "latitude": 62,
-      "altitude": null,
-      "currency": {
-        "id": "06f8198b-6c60-4cfe-afa0-4c65ebb1002f",
-        "name": "Norwegian Krone",
-        "code": "NOK",
-        "symbol": "kr"
-      },
-      "subRegion": {
-        "id": "a2543731-e2a1-4f19-b89e-20b8948b7317",
-        "title": "Northern Europe",
-        "region": {
-          "id": "40c05d1c-f88b-4aad-9754-e1a597797160",
-          "title": "Europe"
-        }
-      },
-      "timezones": [
-        {
-          "id": "1013a9a5-1427-4e5b-8971-b97a442fb3cb",
-          "title": "Central European Time Europe/Oslo (CET)",
-          "code": "Europe/Oslo",
-          "utc": "UTC+01:00"
-        }
-      ]
-    }
+  {
+    "title": "London Airport",
+    "iata": "YXU",
+    "country": "Canada"
   }
-}
+]
 ```
 
 ### More [here](https://github.com/amvid/geo-service/tree/main/docs/api)

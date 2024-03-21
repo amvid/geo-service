@@ -59,6 +59,12 @@ class CityFactory implements CityFactoryInterface
         return $this;
     }
 
+    public function setIata(?string $iata): CityFactoryInterface
+    {
+        $this->city->setIata($iata);
+        return $this;
+    }
+
     public function create(): City
     {
         return $this->city;

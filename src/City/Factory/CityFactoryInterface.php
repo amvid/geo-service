@@ -24,5 +24,7 @@ interface CityFactoryInterface
 
     public function setAltitude(?int $altitude = null): self;
 
+    public function setIata(?string $iata): self;
+
     public function create(): City;
 }

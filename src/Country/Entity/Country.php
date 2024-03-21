@@ -6,6 +6,7 @@ namespace App\Country\Entity;
 
 use App\Application\Trait\PositionTrait;
 use App\Application\Trait\TimestampTrait;
+use App\City\Entity\City;
 use App\Country\Repository\CountryRepository;
 use App\Currency\Entity\Currency;
 use App\SubRegion\Entity\SubRegion;
@@ -31,8 +32,8 @@ class Country
     private UuidInterface $id;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private SubRegion $subRegion;
+    #[ORM\JoinColumn(nullable: true)]
+    private ?SubRegion $subRegion = null;
 
     #[ORM\ManyToMany(targetEntity: Timezone::class, orphanRemoval: true)]
     private Collection $timezones;
@@ -40,6 +41,10 @@ class Country
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private Currency $currency;
+
+    #[ORM\OneToOne]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?City $capital = null;
 
     #[ORM\Column(length: 150, unique: true, nullable: false)]
     private string $title;
@@ -84,12 +89,23 @@ class Country
         return $this->id;
     }
 
-    public function getSubRegion(): SubRegion
+    public function setCapital(?City $capital = null): self
+    {
+        $this->capital = $capital;
+        return $this;
+    }
+
+    public function getCapital(): ?City
+    {
+        return $this->capital;
+    }
+
+    public function getSubRegion(): ?SubRegion
     {
         return $this->subRegion;
     }
 
-    public function setSubRegion(SubRegion $subRegion): self
+    public function setSubRegion(?SubRegion $subRegion = null): self
     {
         $this->subRegion = $subRegion;
 

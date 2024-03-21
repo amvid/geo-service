@@ -9,6 +9,8 @@ use App\Airport\Factory\AirportFactoryInterface;
 use App\Airport\Repository\AirportRepositoryInterface;
 use App\City\Exception\CityNotFoundException;
 use App\City\Repository\CityRepositoryInterface;
+use App\Country\Exception\CountryNotFoundException;
+use App\Country\Repository\CountryRepositoryInterface;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
 
@@ -18,6 +20,7 @@ readonly class CreateAirportAction implements CreateAirportActionInterface
         private AirportFactoryInterface $airportFactory,
         private AirportRepositoryInterface $airportRepository,
         private CityRepositoryInterface $cityRepository,
+        private CountryRepositoryInterface $countryRepository,
         private TimezoneRepositoryInterface $timezoneRepository,
     ) {
     }
@@ -35,7 +38,13 @@ readonly class CreateAirportAction implements CreateAirportActionInterface
             throw new AirportAlreadyExistsException();
         }
 
-        $city = $this->cityRepository->findByTitle($request->cityTitle);
+        $country = $this->countryRepository->findByIso2($request->countryIso2);
+
+        if (!$country) {
+            throw new CountryNotFoundException($request->countryIso2);
+        }
+
+        $city = $this->cityRepository->findByTitleAndCountry($request->cityTitle, $country);
 
         if (!$city) {
             throw new CityNotFoundException($request->cityTitle);

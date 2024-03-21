@@ -9,8 +9,11 @@ use App\Airport\Factory\AirportFactoryInterface;
 use App\Airport\Repository\AirportRepositoryInterface;
 use App\City\Exception\CityNotFoundException;
 use App\City\Repository\CityRepositoryInterface;
+use App\Country\Exception\CountryNotFoundException;
+use App\Country\Repository\CountryRepositoryInterface;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 readonly class UpdateAirportAction implements UpdateAirportActionInterface
 {
@@ -18,6 +21,7 @@ readonly class UpdateAirportAction implements UpdateAirportActionInterface
         private AirportFactoryInterface $airportFactory,
         private AirportRepositoryInterface $airportRepository,
         private CityRepositoryInterface $cityRepository,
+        private CountryRepositoryInterface $countryRepository,
         private TimezoneRepositoryInterface $timezoneRepository,
     ) {
     }
@@ -38,7 +42,17 @@ readonly class UpdateAirportAction implements UpdateAirportActionInterface
         $this->airportFactory->setAirport($airport);
 
         if ($request->cityTitle && $airport->getCity()->getTitle() !== $request->cityTitle) {
-            $city = $this->cityRepository->findByTitle($request->cityTitle);
+            if (!$request->countryIso2) {
+                throw new BadRequestHttpException('Country ISO2 is required when updating city title');
+            }
+
+            $country = $this->countryRepository->findByIso2($request->countryIso2);
+
+            if (!$country) {
+                throw new CountryNotFoundException($request->countryIso2);
+            }
+
+            $city = $this->cityRepository->findByTitleAndCountry($request->cityTitle, $country);
 
             if (!$city) {
                 throw new CityNotFoundException($request->cityTitle);

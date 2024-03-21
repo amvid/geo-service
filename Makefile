@@ -66,6 +66,14 @@ states:
 cities:
 	@docker exec geo-service-app-dev sh -c "bin/console app:import-cities"
 
+.PHONY: sync-capitals
+sync-capitals:
+	@docker exec geo-service-app-dev sh -c "bin/console app:sync-capitals"
+
+.PHONY: sync-cities-with-iata
+sync-cities-with-iata:
+	@docker exec geo-service-app-dev sh -c "bin/console app:sync-cities-with-iata"
+
 .PHONY: airports
 airports:
 	@docker exec geo-service-app-dev sh -c "bin/console app:import-airports"
@@ -82,5 +90,7 @@ geo:
 	make countries
 	make states
 	make cities
+	make sync-capitals
+	make sync-cities-with-iata
 	make airports
 	make nationalities

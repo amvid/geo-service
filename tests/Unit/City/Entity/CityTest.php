@@ -22,10 +22,16 @@ class CityTest extends TestCase
 
         $cityId = Uuid::uuid4();
         $title = 'Trondheim';
+        $iata = 'TRD';
         $actual = new City($cityId);
-        $actual->setTitle($title)->setState($state)->setCountry($country);
+        $actual
+            ->setTitle($title)
+            ->setIata($iata)
+            ->setState($state)
+            ->setCountry($country);
 
         $this->assertEquals($title, $actual->getTitle());
+        $this->assertEquals($iata, $actual->getIata());
         $this->assertEquals($countryId, $actual->getCountry()->getId());
         $this->assertEquals($stateId, $actual->getState()->getId());
     }

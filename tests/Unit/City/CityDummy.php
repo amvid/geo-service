@@ -15,6 +15,7 @@ class CityDummy
 {
     public const ID = '1619adc7-815e-4ead-aa02-27d64f9bc2f6';
     public const TITLE = 'California';
+    public const IATA = 'CLF';
     public const LONGITUDE = -97;
     public const LATITUDE = 123;
     public const ALTITUDE = null;
@@ -33,6 +34,7 @@ class CityDummy
         $city = new City($cityId);
         $city
             ->setTitle(self::TITLE)
+            ->setIata(self::IATA)
             ->setState($state)
             ->setCountry($country)
             ->setAltitude(self::ALTITUDE)

@@ -9,6 +9,7 @@ use App\Airport\Factory\AirportFactoryInterface;
 use App\Airport\Repository\AirportRepositoryInterface;
 use App\Application\Command\Import\Config;
 use App\City\Repository\CityRepositoryInterface;
+use App\Country\Repository\CountryRepositoryInterface;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use JsonMachine\Items;
@@ -30,6 +31,7 @@ class ImportAirportsFromJsonCommand extends Command
         private readonly AirportRepositoryInterface $airportRepository,
         private readonly TimezoneRepositoryInterface $timezoneRepository,
         private readonly CityRepositoryInterface $cityRepository,
+        private readonly CountryRepositoryInterface $countryRepository,
         private readonly EntityManagerInterface $em,
     ) {
         parent::__construct();
@@ -61,17 +63,24 @@ class ImportAirportsFromJsonCommand extends Command
                     continue;
                 }
 
-                if (!isset($cities[$a->city])) {
-                    $city = $this->cityRepository->findByTitle($a->city);
+                $country = $this->countryRepository->findByIso2($a->country);
+
+                if (!$country) {
+                    $output->writeln("Country '$a->country' not found. Skipping '$a->iata' airport");
+                    continue;
+                }
+
+                if (!isset($cities[$a->city . $a->country])) {
+                    $city = $this->cityRepository->findByTitleAndCountry($a->city, $country);
 
                     if (!$city) {
                         $output->writeln("City '$a->city' not found. Skipping '$a->iata' airport");
                         continue;
                     }
 
-                    $cities[$a->city] = $city;
+                    $cities[$a->city . $a->country] = $city;
                 } else {
-                    $city = $cities[$a->city];
+                    $city = $cities[$a->city . $a->country];
                 }
 
                 if (!isset($timezones[$a->tz])) {

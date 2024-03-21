@@ -8,6 +8,8 @@ use App\Airport\Entity\Airport;
 use App\City\Entity\City;
 use App\Timezone\Entity\Timezone;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Query\Parameter;
 use Doctrine\Persistence\ManagerRegistry;
 use Ramsey\Uuid\UuidInterface;
 
@@ -55,7 +57,7 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
         ?string $icao = null,
         ?bool $isActive = null,
         ?Timezone $timezone = null,
-        ?City $city = null,
+        iterable $cities = [],
     ): iterable {
         if ($id) {
             return $this->findBy(['id' => $id]);
@@ -67,39 +69,78 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
             ->setMaxResults($limit)
             ->where('1=1');
 
-        $params = [];
+        $params = new ArrayCollection();
 
         if ($title) {
             $qb->andWhere('a.title LIKE :title');
-            $params['title'] = "%$title%";
+            $params->add(new Parameter('title', "%$title%"));
         }
 
         if ($iata) {
             $qb->andWhere('a.iata LIKE :iata');
-            $params['iata'] = "%$iata%";
+            $params->add(new Parameter('iata', "%$iata%"));
         }
 
         if ($icao) {
             $qb->andWhere('a.icao LIKE :icao');
-            $params['icao'] = "%$icao%";
+            $params->add(new Parameter('icao', "%$icao%"));
         }
 
         if ($timezone) {
             $qb->andWhere('a.timezone = :timezone');
-            $params['timezone'] = $timezone;
+            $params->add(new Parameter('timezone', $timezone));
         }
 
-        if ($city) {
-            $qb->andWhere('a.city = :city');
-            $params['city'] = $city;
+        if (count($cities) > 0) {
+            $qb->andWhere($qb->expr()->in('a.city', ':cities'));
+            $params->add(new Parameter('cities', $cities));
         }
 
         if (null !== $isActive) {
             $qb->andWhere('a.isActive = :isActive');
-            $params['isActive'] = $isActive;
+            $params->add(new Parameter('isActive', $isActive));
         }
 
         return $qb
+            ->setParameters($params)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function query(int $offset, int $limit, string $query): iterable
+    {
+        $exactMatchParams = new ArrayCollection();
+        $exactMatchParams->add(new Parameter('exactQuery', $query));
+        $exactMatchParams->add(new Parameter('isActive', true));
+
+        $exactMatchResult = $this->createQueryBuilder('a')
+            ->join('a.city', 'c')
+            ->join('c.country', 'co')
+            ->where('a.iata = :exactQuery')
+            ->andWhere('a.isActive = :isActive')
+            ->setParameters($exactMatchParams)
+            ->getQuery()
+            ->getResult();
+
+        if (count($exactMatchResult) > 0) {
+            return $exactMatchResult;
+        }
+
+        $params = new ArrayCollection();
+        $params->add(new Parameter('query', "$query%"));
+        $params->add(new Parameter('isActive', true));
+
+        return $this->createQueryBuilder('a')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->join('a.city', 'c')
+            ->join('c.country', 'co')
+            ->where('a.title LIKE :query')
+            ->orWhere('a.iata LIKE :query')
+            ->orWhere('a.icao LIKE :query')
+            ->orWhere('c.title LIKE :query')
+            ->orWhere('co.title LIKE :query')
+            ->andWhere('a.isActive = :isActive')
             ->setParameters($params)
             ->getQuery()
             ->getResult();
