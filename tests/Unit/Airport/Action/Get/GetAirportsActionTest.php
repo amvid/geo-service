@@ -8,7 +8,6 @@ use App\Airport\Action\Get\GetAirportsAction;
 use App\Airport\Action\Get\GetAirportsActionRequest;
 use App\Airport\Repository\AirportRepositoryInterface;
 use App\City\Entity\City;
-use App\City\Exception\CityNotFoundException;
 use App\City\Repository\CityRepositoryInterface;
 use App\Tests\Unit\Airport\AirportDummy;
 use App\Tests\Unit\City\CityDummy;
@@ -46,29 +45,13 @@ class GetAirportsActionTest extends TestCase
         $this->request->isActive = $this->isActive;
     }
 
-    public function testShouldThrowCityNotFoundExceptionIfNotFound(): void
-    {
-        $this->cityRepository
-            ->expects($this->once())
-            ->method('findByTitle')
-            ->with($this->cityTitle)
-            ->willReturn(null);
-
-        $action = new GetAirportsAction($this->airportRepository, $this->cityRepository, $this->timezoneRepository);
-
-        $this->expectException(CityNotFoundException::class);
-        $this->expectExceptionMessage("City '$this->cityTitle' not found.");
-
-        $action->run($this->request);
-    }
-
     public function testShouldThrowTimezoneNotFoundExceptionIfNotFound(): void
     {
         $this->cityRepository
             ->expects($this->once())
             ->method('findByTitle')
             ->with($this->cityTitle)
-            ->willReturn(new City());
+            ->willReturn([new City()]);
 
         $this->timezoneRepository
             ->expects($this->once())
@@ -86,12 +69,12 @@ class GetAirportsActionTest extends TestCase
 
     public function testShouldReturnAValidResponse(): void
     {
-        $city = CityDummy::get();
+        $cities = [CityDummy::get()];
         $this->cityRepository
             ->expects($this->once())
             ->method('findByTitle')
             ->with($this->cityTitle)
-            ->willReturn($city);
+            ->willReturn($cities);
 
         $timezone = TimezoneDummy::get();
         $this->timezoneRepository
@@ -114,7 +97,7 @@ class GetAirportsActionTest extends TestCase
                 $this->request->icao,
                 $this->request->isActive,
                 $timezone,
-                $city
+                $cities
             )
             ->willReturn($airports);
 

@@ -86,7 +86,7 @@ class CityControllerE2ETest extends WebTestCase
     public function testUpdateActionSuccess(): void
     {
         /** @var City $city */
-        $city = self::getContainer()->get(CityRepositoryInterface::class)->findByTitle(CityDummy::TITLE);
+        $city = self::getContainer()->get(CityRepositoryInterface::class)->findByTitle(CityDummy::TITLE)[0];
 
         $content = ['title' => 'Updated Title'];
 

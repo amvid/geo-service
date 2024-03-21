@@ -57,7 +57,7 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
         ?string $icao = null,
         ?bool $isActive = null,
         ?Timezone $timezone = null,
-        ?City $city = null,
+        iterable $cities = [],
     ): iterable {
         if ($id) {
             return $this->findBy(['id' => $id]);
@@ -91,9 +91,9 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
             $params->add(new Parameter('timezone', $timezone));
         }
 
-        if ($city) {
-            $qb->andWhere('a.city = :city');
-            $params->add(new Parameter('city', $city));
+        if (count($cities) > 0) {
+            $qb->andWhere($qb->expr()->in('a.city', ':cities'));
+            $params->add(new Parameter('cities', $cities));
         }
 
         if (null !== $isActive) {

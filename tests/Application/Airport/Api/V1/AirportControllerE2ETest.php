@@ -33,6 +33,7 @@ class AirportControllerE2ETest extends WebTestCase
     public function testCreateActionSuccess(): void
     {
         $content = [
+            'countryIso2' => 'US',
             'title' => 'Test Airport',
             'cityTitle' => 'California',
             'timezone' => 'America/Nome',

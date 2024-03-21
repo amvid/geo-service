@@ -25,13 +25,10 @@ readonly class GetAirportsAction implements GetAirportsActionInterface
      */
     public function run(GetAirportsActionRequest $request): GetAirportsActionResponse
     {
-        $city = null;
-        if ($request->cityTitle) {
-            $city = $this->cityRepository->findByTitle($request->cityTitle);
+        $cities = [];
 
-            if (!$city) {
-                throw new CityNotFoundException($request->cityTitle);
-            }
+        if ($request->cityTitle) {
+            $cities = $this->cityRepository->findByTitle($request->cityTitle);
         }
 
         $timezone = null;
@@ -53,7 +50,7 @@ readonly class GetAirportsAction implements GetAirportsActionInterface
                 $request->icao,
                 $request->isActive,
                 $timezone,
-                $city,
+                $cities,
             )
         );
     }

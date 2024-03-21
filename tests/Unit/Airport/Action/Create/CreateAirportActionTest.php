@@ -156,16 +156,18 @@ class CreateAirportActionTest extends TestCase
             ->with($this->iata)
             ->willReturn(null);
 
+        $country = CountryDummy::get();
+
         $this->countryRepository
             ->expects($this->once())
             ->method('findByIso2')
             ->with($this->countryIso2)
-            ->willReturn(new Country());
+            ->willReturn($country);
 
         $this->cityRepository
             ->expects($this->once())
-            ->method('findByTitle')
-            ->with($this->cityTitle)
+            ->method('findByTitleAndCountry')
+            ->with($this->cityTitle, $country)
             ->willReturn(new City());
 
         $this->timezoneRepository
