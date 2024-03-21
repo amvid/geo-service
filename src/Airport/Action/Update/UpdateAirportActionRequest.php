@@ -27,6 +27,9 @@ class UpdateAirportActionRequest
     #[Length(min: 1, max: 150)]
     public ?string $cityTitle = null;
 
+    #[Length(2)]
+    public ?string $countryIso2 = null;
+
     #[Length(min: 1, max: 150)]
     public ?string $timezone = null;
 
