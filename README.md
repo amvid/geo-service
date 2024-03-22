@@ -157,8 +157,6 @@ Response
 ]
 ```
 
-### More [here](https://github.com/amvid/geo-service/tree/main/docs/api)
-
 ## License
 
 This software is published under the [MIT License](LICENSE.md)
