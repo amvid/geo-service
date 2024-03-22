@@ -17,8 +17,13 @@ Geo data REST API service with admin dashboard to manage regions, countries, nat
 ### Installation
 
 ```bash
-make install
-make migrate
+make coldstart
+```
+
+### Running
+
+```bash
+make up
 ```
 
 ### Create a user
