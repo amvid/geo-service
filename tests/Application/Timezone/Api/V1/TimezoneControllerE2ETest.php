@@ -103,7 +103,7 @@ class TimezoneControllerE2ETest extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         self::assertEquals(
-            "Timezone '$id' not found.",
+            "{\"error\":\"Timezone '$id' not found.\"}",
             $this->client->getResponse()->getContent()
         );
     }

@@ -10,8 +10,6 @@ use App\Airport\Repository\AirportRepositoryInterface;
 use App\Application\Controller\HttpMethod;
 use App\Tests\Unit\Airport\AirportDummy;
 use App\Tests\Unit\Country\CountryDummy;
-use App\Tests\Unit\SubRegion\SubRegionDummy;
-use App\Tests\Unit\Timezone\TimezoneDummy;
 use Exception;
 use JsonException;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -131,7 +129,7 @@ class AirportControllerE2ETest extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         self::assertEquals(
-            "Airport '1f21557e-f115-4d21-bab1-f401ddc78a62' not found.",
+            "{\"error\":\"Airport '1f21557e-f115-4d21-bab1-f401ddc78a62' not found.\"}",
             $this->client->getResponse()->getContent()
         );
     }

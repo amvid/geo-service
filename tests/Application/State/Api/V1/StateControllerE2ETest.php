@@ -118,7 +118,7 @@ class StateControllerE2ETest extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         self::assertEquals(
-            "State '$id' not found.",
+            "{\"error\":\"State '$id' not found.\"}",
             $this->client->getResponse()->getContent()
         );
     }

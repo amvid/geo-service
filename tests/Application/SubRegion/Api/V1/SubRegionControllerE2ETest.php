@@ -113,7 +113,7 @@ class SubRegionControllerE2ETest extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         self::assertEquals(
-            "Sub region '$id' not found.",
+            "{\"error\":\"Sub region '$id' not found.\"}",
             $this->client->getResponse()->getContent()
         );
     }

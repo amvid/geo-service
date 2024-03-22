@@ -118,7 +118,7 @@ class CityControllerE2ETest extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         self::assertEquals(
-            "City '$id' not found.",
+            "{\"error\":\"City '$id' not found.\"}",
             $this->client->getResponse()->getContent()
         );
     }

@@ -103,7 +103,7 @@ class CurrencyControllerE2ETest extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         self::assertEquals(
-            "Currency '$id' not found.",
+            "{\"error\":\"Currency '$id' not found.\"}",
             $this->client->getResponse()->getContent()
         );
     }

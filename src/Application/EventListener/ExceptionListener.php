@@ -33,7 +33,7 @@ readonly class ExceptionListener
         }
 
         $response = new JsonResponse();
-        $response->setContent($message);
+        $response->setContent(json_encode(['error' => $message]));
         $response->setStatusCode($code);
 
         $event->setResponse($response);

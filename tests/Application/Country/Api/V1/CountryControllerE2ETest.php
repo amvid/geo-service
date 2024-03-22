@@ -133,7 +133,7 @@ class CountryControllerE2ETest extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         self::assertEquals(
-            "Country '$id' not found.",
+            "{\"error\":\"Country '$id' not found.\"}",
             $this->client->getResponse()->getContent()
         );
     }

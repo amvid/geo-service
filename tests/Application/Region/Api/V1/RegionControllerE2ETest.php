@@ -102,7 +102,7 @@ class RegionControllerE2ETest extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         self::assertEquals(
-            "Region '$id' not found.",
+            "{\"error\":\"Region '$id' not found.\"}",
             $this->client->getResponse()->getContent()
         );
     }

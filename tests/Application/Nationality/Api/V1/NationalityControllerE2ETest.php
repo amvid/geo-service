@@ -102,7 +102,7 @@ class NationalityControllerE2ETest extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         self::assertEquals(
-            "Nationality '$id' not found.",
+            "{\"error\":\"Nationality '$id' not found.\"}",
             $this->client->getResponse()->getContent()
         );
     }
