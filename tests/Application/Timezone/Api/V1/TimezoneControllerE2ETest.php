@@ -24,7 +24,7 @@ class TimezoneControllerE2ETest extends WebTestCase
      */
     protected function setUp(): void
     {
-        $this->client = static::createClient();
+        $this->client = static::createClient(server: ['HTTP_AUTHORIZATION' => 'qwerty']);
     }
 
     /**
