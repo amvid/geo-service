@@ -6,9 +6,11 @@ namespace App\Nationality\Controller\Response;
 
 use App\Nationality\Entity\Nationality;
 use Ramsey\Uuid\UuidInterface;
+use OpenApi\Attributes as OA;
 
 class NationalityResponse
 {
+    #[OA\Property(type: 'string', format: 'uuid')]
     public UuidInterface $id;
     public string $title;
 

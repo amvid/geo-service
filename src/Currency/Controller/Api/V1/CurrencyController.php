@@ -18,7 +18,9 @@ use App\Currency\Action\Update\UpdateCurrencyActionRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use OpenApi\Attributes as OA;
 
+#[OA\Tag(name: 'Currencies')]
 class CurrencyController extends ApiController
 {
     public const API_ROUTE = '/api/v1/currencies';

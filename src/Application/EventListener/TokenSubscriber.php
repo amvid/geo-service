@@ -40,6 +40,15 @@ class TokenSubscriber implements EventSubscriberInterface
 
         $token = $request->headers->get('Authorization');
 
+        if (null === $token) {
+            $event->setResponse(new JsonResponse(['error' => 'Bearer token not found'], 401));
+            return;
+        }
+
+        if (str_starts_with($token, 'Bearer ')) {
+            $token = substr($token, 7);
+        }
+
         if ($token !== $this->apiAuthToken) {
             $event->setResponse(new JsonResponse(['error' => 'Invalid token'], 401));
         }

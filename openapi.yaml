@@ -1,0 +1,426 @@
+openapi: 3.0.0
+info:
+  title: 'GeoService API'
+  version: 2.2.0
+servers:
+  -
+    url: 'http://127.0.0.1:8085'
+    description: 'Local environment'
+  -
+    url: 'https://geo.staging.above9travel.com'
+    description: 'Staging environment'
+paths:
+  /api/v1/nationalities:
+    get:
+      tags:
+        - Nationalities
+      operationId: get_app_nationalities_api_v1_nationality_list
+      responses:
+        default:
+          description: ''
+    post:
+      tags:
+        - Nationalities
+      operationId: post_app_nationalities_api_v1_nationality_create
+      responses:
+        default:
+          description: ''
+  '/api/v1/nationalities/{id}':
+    put:
+      tags:
+        - Nationalities
+      operationId: put_app_nationalities_api_v1_nationality_update
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    delete:
+      tags:
+        - Nationalities
+      operationId: delete_app_nationalities_api_v1_nationality_delete
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+  /api/v1/regions:
+    get:
+      tags:
+        - Regions
+      operationId: get_app_region_api_v1_region_list
+      responses:
+        default:
+          description: ''
+    post:
+      tags:
+        - Regions
+      operationId: post_app_region_api_v1_region_create
+      responses:
+        default:
+          description: ''
+  '/api/v1/regions/{id}':
+    put:
+      tags:
+        - Regions
+      operationId: put_app_region_api_v1_region_update
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    delete:
+      tags:
+        - Regions
+      operationId: delete_app_region_api_v1_region_delete
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+  /api/v1/subregions:
+    get:
+      tags:
+        - SubRegions
+      operationId: get_app_subregion_api_v1_subregion_list
+      responses:
+        default:
+          description: ''
+    post:
+      tags:
+        - SubRegions
+      operationId: post_app_subregion_api_v1_subregion_create
+      responses:
+        default:
+          description: ''
+  '/api/v1/subregions/{id}':
+    put:
+      tags:
+        - SubRegions
+      operationId: put_app_subregion_api_v1_subregion_update
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    delete:
+      tags:
+        - SubRegions
+      operationId: delete_app_subregion_api_v1_subregion_delete
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+  /api/v1/timezones:
+    get:
+      tags:
+        - Timezones
+      operationId: get_app_timezone_api_v1_timezone_list
+      responses:
+        default:
+          description: ''
+    post:
+      tags:
+        - Timezones
+      operationId: post_app_timezone_api_v1_timezone_create
+      responses:
+        default:
+          description: ''
+  '/api/v1/timezones/{id}':
+    put:
+      tags:
+        - Timezones
+      operationId: put_app_timezone_api_v1_timezone_update
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    delete:
+      tags:
+        - Timezones
+      operationId: delete_app_timezone_api_v1_timezone_delete
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+  /api/v1/currencies:
+    get:
+      tags:
+        - Currencies
+      operationId: get_app_currency_api_v1_currency_list
+      responses:
+        default:
+          description: ''
+    post:
+      tags:
+        - Currencies
+      operationId: post_app_currency_api_v1_currency_create
+      responses:
+        default:
+          description: ''
+  '/api/v1/currencies/{id}':
+    put:
+      tags:
+        - Currencies
+      operationId: put_app_currency_api_v1_currency_update
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    delete:
+      tags:
+        - Currencies
+      operationId: delete_app_currency_api_v1_currency_delete
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+  /api/v1/countries:
+    get:
+      tags:
+        - Countries
+      operationId: get_app_country_api_v1_country_list
+      responses:
+        default:
+          description: ''
+    post:
+      tags:
+        - Countries
+      operationId: post_app_country_api_v1_country_create
+      responses:
+        default:
+          description: ''
+  '/api/v1/countries/{id}':
+    put:
+      tags:
+        - Countries
+      operationId: put_app_country_api_v1_country_update
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    delete:
+      tags:
+        - Countries
+      operationId: delete_app_country_api_v1_country_delete
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+  /api/v1/countries/phone-codes:
+    get:
+      tags:
+        - Countries
+      operationId: get_app_country_api_v1_country_phone_codes
+      responses:
+        default:
+          description: ''
+  /api/v1/states:
+    get:
+      tags:
+        - States
+      operationId: get_app_state_api_v1_state_list
+      responses:
+        default:
+          description: ''
+    post:
+      tags:
+        - States
+      operationId: post_app_state_api_v1_state_create
+      responses:
+        default:
+          description: ''
+  '/api/v1/states/{id}':
+    put:
+      tags:
+        - States
+      operationId: put_app_state_api_v1_state_update
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    delete:
+      tags:
+        - States
+      operationId: delete_app_state_api_v1_state_delete
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+  /api/v1/cities:
+    get:
+      tags:
+        - Cities
+      operationId: get_app_city_api_v1_city_list
+      responses:
+        default:
+          description: ''
+    post:
+      tags:
+        - Cities
+      operationId: post_app_city_api_v1_city_create
+      responses:
+        default:
+          description: ''
+  '/api/v1/cities/{id}':
+    put:
+      tags:
+        - Cities
+      operationId: put_app_city_api_v1_city_update
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    delete:
+      tags:
+        - Cities
+      operationId: delete_app_city_api_v1_city_delete
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+  /api/v1/airports:
+    get:
+      tags:
+        - Airports
+      operationId: get_app_airport_api_v1_airport_list
+      responses:
+        default:
+          description: ''
+    post:
+      tags:
+        - Airports
+      operationId: post_app_airport_api_v1_airport_create
+      responses:
+        default:
+          description: ''
+  '/api/v1/airports/{id}':
+    put:
+      tags:
+        - Airports
+      operationId: put_app_airport_api_v1_airport_update
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    delete:
+      tags:
+        - Airports
+      operationId: delete_app_airport_api_v1_airport_delete
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+components:
+  securitySchemes:
+    Bearer:
+      type: http
+      bearerFormat: JWT
+      scheme: bearer
+security:
+  -
+    Bearer: []
+

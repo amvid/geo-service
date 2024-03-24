@@ -18,11 +18,11 @@ class QueryAirportsActionRequest implements LimitOffsetInterface
     #[Length(min: 2)]
     public string $query;
 
-    public static function fromArray(array $params): self
+    public static function fromArray(array $params, string $query): self
     {
         /** @var QueryAirportsActionRequest $req */
         $req = LimitOffsetParser::parse($params, new self());
-        $req->query = $params['query'] ?? null;
+        $req->query = $query;
 
         return $req;
     }

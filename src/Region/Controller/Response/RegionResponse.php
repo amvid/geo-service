@@ -6,9 +6,11 @@ namespace App\Region\Controller\Response;
 
 use App\Region\Entity\Region;
 use Ramsey\Uuid\UuidInterface;
+use OpenApi\Attributes as OA;
 
 class RegionResponse
 {
+    #[OA\Property(type: 'string', format: 'uuid')]
     public UuidInterface $id;
     public string $title;
 

@@ -60,7 +60,7 @@ class AirportControllerE2ETest extends WebTestCase
 
     public function testQueryActionSuccess(): void
     {
-        $this->client->request(HttpMethod::GET, AirportController::API_ROUTE . '?query=AAA');
+        $this->client->request(HttpMethod::GET, AirportController::API_ROUTE . '/AAA');
 
         $response = json_decode($this->client->getResponse()->getContent(), true, 512, JSON_THROW_ON_ERROR);
 

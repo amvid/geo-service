@@ -10,9 +10,11 @@ use App\Currency\Controller\Response\CurrencyResponse;
 use App\SubRegion\Controller\Response\SubRegionResponse;
 use App\Timezone\Controller\Response\TimezoneResponse;
 use Ramsey\Uuid\UuidInterface;
+use OpenApi\Attributes as OA;
 
 class CountryResponse
 {
+    #[OA\Property(type: 'string', format: 'uuid')]
     public UuidInterface $id;
     public string $title;
     public ?string $nativeTitle = null;

@@ -8,9 +8,11 @@ use App\City\Entity\City;
 use App\Country\Controller\Response\CountryResponse;
 use App\State\Controller\Response\StateResponse;
 use Ramsey\Uuid\UuidInterface;
+use OpenApi\Attributes as OA;
 
 class CityResponse
 {
+    #[OA\Property(type: 'string', format: 'uuid')]
     public UuidInterface $id;
     public string $title;
     public float $longitude;

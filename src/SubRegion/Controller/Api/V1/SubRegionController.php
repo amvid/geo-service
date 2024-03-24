@@ -18,7 +18,9 @@ use App\SubRegion\Action\Update\UpdateSubRegionActionRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use OpenApi\Attributes as OA;
 
+#[OA\Tag(name: 'SubRegions')]
 class SubRegionController extends ApiController
 {
     public const API_ROUTE = '/api/v1/subregions';

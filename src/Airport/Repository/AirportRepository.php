@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Airport\Repository;
 
 use App\Airport\Entity\Airport;
-use App\City\Entity\City;
 use App\Timezone\Entity\Timezone;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;

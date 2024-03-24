@@ -58,7 +58,6 @@ class UpdateAirportActionTest extends TestCase
 
         $this->request = new UpdateAirportActionRequest();
         $this->request->countryIso2 = $this->countryIso2;
-        $this->request->id = $this->id;
         $this->request->timezone = $this->timezone;
         $this->request->iata = $this->iata;
         $this->request->icao = $this->icao;
@@ -89,7 +88,7 @@ class UpdateAirportActionTest extends TestCase
         $this->expectException(AirportNotFoundException::class);
         $this->expectExceptionMessage("Airport '{$this->id->toString()}' not found.");
 
-        $action->run($this->request);
+        $action->run($this->request, $this->id);
     }
 
     public function testShouldThrowBadRequestExceptionIfCountryIso2NotPassedWithCity(): void
@@ -115,7 +114,7 @@ class UpdateAirportActionTest extends TestCase
         $this->expectException(BadRequestHttpException::class);
         $this->expectExceptionMessage("Country ISO2 is required when updating city title");
 
-        $action->run($this->request);
+        $action->run($this->request, $this->id);
     }
 
     public function testShouldThrowCountryNotFoundExceptionIfNotFound(): void
@@ -145,7 +144,7 @@ class UpdateAirportActionTest extends TestCase
         $this->expectException(CountryNotFoundException::class);
         $this->expectExceptionMessage("Country '$this->countryIso2' not found.");
 
-        $action->run($this->request);
+        $action->run($this->request, $this->id);
     }
 
     public function testShouldThrowCityNotFoundExceptionIfNotFound(): void
@@ -183,7 +182,7 @@ class UpdateAirportActionTest extends TestCase
         $this->expectException(CityNotFoundException::class);
         $this->expectExceptionMessage("City '$this->cityTitle' not found.");
 
-        $action->run($this->request);
+        $action->run($this->request, $this->id);
     }
 
     public function testShouldThrowTimezoneNotFoundExceptionIfNotFound(): void
@@ -227,7 +226,7 @@ class UpdateAirportActionTest extends TestCase
         $this->expectException(TimezoneNotFoundException::class);
         $this->expectExceptionMessage("Timezone '$this->timezone' not found.");
 
-        $action->run($this->request);
+        $action->run($this->request, $this->id);
     }
 
     public function testShouldReturnAValidResponse(): void
@@ -300,7 +299,7 @@ class UpdateAirportActionTest extends TestCase
             $this->timezoneRepository,
         );
 
-        $actual = $action->run($this->request);
+        $actual = $action->run($this->request, $this->id);
 
         $this->assertEquals($airport->getTitle(), $actual->airport->title);
         $this->assertEquals($airport->getIata(), $actual->airport->iata);

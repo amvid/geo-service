@@ -18,7 +18,9 @@ use App\City\Action\Update\UpdateCityActionRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use OpenApi\Attributes as OA;
 
+#[OA\Tag(name: 'Cities')]
 class CityController extends ApiController
 {
     public const API_ROUTE = '/api/v1/cities';

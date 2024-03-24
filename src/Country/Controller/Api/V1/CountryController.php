@@ -21,7 +21,9 @@ use JsonException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use OpenApi\Attributes as OA;
 
+#[OA\Tag(name: 'Countries')]
 class CountryController extends ApiController
 {
     public const API_ROUTE = '/api/v1/countries';

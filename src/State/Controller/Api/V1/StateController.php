@@ -18,7 +18,9 @@ use App\State\Action\Update\UpdateStateActionRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use OpenApi\Attributes as OA;
 
+#[OA\Tag(name: 'States')]
 class StateController extends ApiController
 {
     public const API_ROUTE = '/api/v1/states';

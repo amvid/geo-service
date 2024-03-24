@@ -7,9 +7,11 @@ namespace App\State\Controller\Response;
 use App\Country\Controller\Response\CountryResponse;
 use App\State\Entity\State;
 use Ramsey\Uuid\UuidInterface;
+use OpenApi\Attributes as OA;
 
 class StateResponse
 {
+    #[OA\Property(type: 'string', format: 'uuid')]
     public UuidInterface $id;
     public string $title;
     public string $code;
