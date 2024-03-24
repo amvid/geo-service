@@ -6,6 +6,7 @@ namespace App\Timezone\Action\Update;
 
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
+use Ramsey\Uuid\UuidInterface;
 
 readonly class UpdateTimezoneAction implements UpdateTimezoneActionInterface
 {
@@ -16,12 +17,12 @@ readonly class UpdateTimezoneAction implements UpdateTimezoneActionInterface
     /**
      * @throws TimezoneNotFoundException
      */
-    public function run(UpdateTimezoneActionRequest $request): UpdateTimezoneActionResponse
+    public function run(UpdateTimezoneActionRequest $request, UuidInterface $id): UpdateTimezoneActionResponse
     {
-        $timezone = $this->timezoneRepository->findById($request->id);
+        $timezone = $this->timezoneRepository->findById($id);
 
         if (!$timezone) {
-            throw new TimezoneNotFoundException($request->id->toString());
+            throw new TimezoneNotFoundException($id->toString());
         }
 
         if ($request->title) {

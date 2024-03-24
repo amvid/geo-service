@@ -43,8 +43,7 @@ class UpdateTimezoneActionTest extends TestCase
         $req
             ->setTitle($updateTitle)
             ->setUtc($updateUtc)
-            ->setCode($updateCode)
-            ->setId($id->toString());
+            ->setCode($updateCode);
 
         $this->timezoneRepository
             ->expects($this->once())
@@ -60,8 +59,8 @@ class UpdateTimezoneActionTest extends TestCase
         $action = new UpdateTimezoneAction($this->timezoneRepository);
 
         try {
-            $actual = $action->run($req);
-        } catch (TimezoneNotFoundException$e) {
+            $actual = $action->run($req, $id);
+        } catch (TimezoneNotFoundException $e) {
             $this->fail('Must not throw an error: ' . $e->getMessage());
         }
 
@@ -75,7 +74,6 @@ class UpdateTimezoneActionTest extends TestCase
     {
         $id = Uuid::uuid7();
         $req = new UpdateTimezoneActionRequest();
-        $req->setId($id->toString());
 
         $this->timezoneRepository
             ->expects($this->once())
@@ -86,6 +84,6 @@ class UpdateTimezoneActionTest extends TestCase
         $action = new UpdateTimezoneAction($this->timezoneRepository);
 
         $this->expectException(TimezoneNotFoundException::class);
-        $action->run($req);
+        $action->run($req, $id);
     }
 }
