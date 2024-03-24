@@ -104,7 +104,7 @@ class RegionController extends ApiController
         name: 'id',
         in: 'path',
         required: true,
-        description: 'Nationality uuid'
+        description: 'Region uuid'
     )]
     #[OA\RequestBody(
         content: new OA\JsonContent(
