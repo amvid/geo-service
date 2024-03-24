@@ -46,7 +46,7 @@ class AirportController extends ApiController
         description: 'Airport created successfully.',
         content: new OA\JsonContent(
             type: 'object',
-            ref: new Model(type: AirportResponse::class) // Assuming you have a response class
+            ref: new Model(type: AirportResponse::class)
         )
     )]
     public function create(Request $request, CreateAirportActionInterface $action): JsonResponse
@@ -76,7 +76,7 @@ class AirportController extends ApiController
         description: 'Airport updated successfully.',
         content: new OA\JsonContent(
             type: 'object',
-            ref: new Model(type: AirportResponse::class) // Assuming you have a response class
+            ref: new Model(type: AirportResponse::class)
         )
     )]
     public function update(string $id, Request $request, UpdateAirportActionInterface $action): JsonResponse
@@ -90,6 +90,16 @@ class AirportController extends ApiController
      * @throws ValidationException
      */
     #[Route(self::API_ROUTE . '/{id}', name: 'app_airport_api_v1_airport_delete', methods: HttpMethod::DELETE)]
+    #[OA\Parameter(
+        name: 'id',
+        in: 'path',
+        required: true,
+        description: 'Airport uuid'
+    )]
+    #[OA\Response(
+        response: 200,
+        description: 'Airport deleted successfully.',
+    )]
     public function delete(string $id, DeleteAirportActionInterface $action): JsonResponse
     {
         $req = new DeleteAirportActionRequest($id);
