@@ -12,6 +12,7 @@ use App\Country\Exception\CountryNotFoundException;
 use App\Country\Repository\CountryRepositoryInterface;
 use App\State\Exception\StateNotFoundException;
 use App\State\Repository\StateRepositoryInterface;
+use Ramsey\Uuid\UuidInterface;
 
 readonly class UpdateCityAction implements UpdateCityActionInterface
 {
@@ -29,15 +30,24 @@ readonly class UpdateCityAction implements UpdateCityActionInterface
      * @throws CityNotFoundException
      * @throws StateNotFoundException
      */
-    public function run(UpdateCityActionRequest $request): UpdateCityActionResponse
+    public function run(UpdateCityActionRequest $request, UuidInterface $id): UpdateCityActionResponse
     {
-        $city = $this->cityRepository->findById($request->id);
+        $country = null;
+        $city = $this->cityRepository->findById($id);
 
         if (!$city) {
-            throw new CityNotFoundException($request->id->toString());
+            throw new CityNotFoundException($id->toString());
         }
 
         $this->cityFactory->setCity($city);
+
+        if ($request->iata) {
+            $existingCityByIata = $this->cityRepository->findByIata($request->iata);
+
+            if ($existingCityByIata) {
+                throw new CityAlreadyExistsException($request->iata);
+            }
+        }
 
         if ($request->stateTitle) {
             $state = $this->stateRepository->findByTitle($request->stateTitle);
@@ -60,7 +70,7 @@ readonly class UpdateCityAction implements UpdateCityActionInterface
         }
 
         if ($request->title) {
-            $exists = $this->cityRepository->findByTitle($request->title);
+            $exists = $this->cityRepository->findByTitleAndCountry($request->title, $country);
 
             if ($exists && $exists->getId() !== $city->getId()) {
                 throw new CityAlreadyExistsException($request->title);

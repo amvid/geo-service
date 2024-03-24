@@ -43,6 +43,11 @@ class CityRepository extends ServiceEntityRepository implements CityRepositoryIn
         return $this->find($id);
     }
 
+    public function findByIata(string $iata): ?City
+    {
+        return $this->findOneBy(['iata' => $iata]);
+    }
+
     public function findByTitleAndCountry(string $title, Country $country): ?City
     {
         return $this->findOneBy(['title' => $title, 'country' => $country]);
@@ -58,6 +63,7 @@ class CityRepository extends ServiceEntityRepository implements CityRepositoryIn
         int $limit,
         ?UuidInterface $id = null,
         ?string $title = null,
+        ?string $iata = null,
         ?State $state = null,
         ?Country $country = null,
     ): iterable {
@@ -75,6 +81,11 @@ class CityRepository extends ServiceEntityRepository implements CityRepositoryIn
         if ($title) {
             $params->add(new Parameter('title', "%$title%"));
             $qb->andWhere('c.title LIKE :title');
+        }
+
+        if ($iata) {
+            $params->add(new Parameter('iata', "%$iata%"));
+            $qb->andWhere('c.iata LIKE :iata');
         }
 
         if ($country) {

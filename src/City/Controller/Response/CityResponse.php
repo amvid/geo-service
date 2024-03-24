@@ -15,6 +15,7 @@ class CityResponse
     #[OA\Property(type: 'string', format: 'uuid')]
     public UuidInterface $id;
     public string $title;
+    public ?string $iata = null;
     public float $longitude;
     public float $latitude;
     public ?int $altitude = null;
@@ -25,6 +26,7 @@ class CityResponse
     {
         $this->id = $city->getId();
         $this->title = $city->getTitle();
+        $this->iata = $city->getIata();
         $this->longitude = $city->getLongitude();
         $this->latitude = $city->getLatitude();
         $this->altitude = $city->getAltitude();

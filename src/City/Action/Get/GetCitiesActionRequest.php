@@ -20,6 +20,9 @@ class GetCitiesActionRequest implements LimitOffsetInterface
     #[Length(min: 1, max: 150)]
     public ?string $title = null;
 
+    #[Length(3)]
+    public ?string $iata = null;
+
     #[Length(2)]
     public ?string $countryIso2 = null;
 
@@ -36,6 +39,7 @@ class GetCitiesActionRequest implements LimitOffsetInterface
         }
 
         $req->title = $params['title'] ?? null;
+        $req->iata = $params['iata'] ?? null;
         $req->countryIso2 = $params['countryIso2'] ?? null;
         $req->stateTitle = $params['stateTitle'] ?? null;
 

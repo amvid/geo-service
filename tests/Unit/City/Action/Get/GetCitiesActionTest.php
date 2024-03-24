@@ -25,6 +25,7 @@ class GetCitiesActionTest extends TestCase
     private string $stateTitle = 'New Jersey';
     private string $countryIso2 = 'US';
     private string $title = 'California';
+    private string $iata = 'TST';
     private int $offset = 0;
     private int $limit = 10;
 
@@ -38,6 +39,7 @@ class GetCitiesActionTest extends TestCase
 
         $this->request = new GetCitiesActionRequest();
         $this->request->title = $this->title;
+        $this->request->iata = $this->iata;
         $this->request->countryIso2 = $this->countryIso2;
         $this->request->stateTitle = $this->stateTitle;
         $this->request->limit = $this->limit;
@@ -108,6 +110,7 @@ class GetCitiesActionTest extends TestCase
                 $this->limit,
                 $this->request->id,
                 $this->request->title,
+                $this->request->iata,
                 $state,
                 $country,
             )

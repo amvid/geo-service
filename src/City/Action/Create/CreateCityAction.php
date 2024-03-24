@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\City\Action\Create;
 
+use App\City\Exception\CityAlreadyExistsException;
 use App\City\Factory\CityFactoryInterface;
 use App\City\Repository\CityRepositoryInterface;
 use App\Country\Exception\CountryNotFoundException;
@@ -34,6 +35,14 @@ readonly class CreateCityAction implements CreateCityActionInterface
         }
 
         $this->cityFactory->setCountry($country);
+
+        if ($request->iata) {
+            $existingCityByIata = $this->cityRepository->findByIata($request->iata);
+
+            if ($existingCityByIata) {
+                throw new CityAlreadyExistsException($request->iata);
+            }
+        }
 
         if ($request->stateTitle) {
             $state = $this->stateRepository->findByTitle($request->stateTitle);

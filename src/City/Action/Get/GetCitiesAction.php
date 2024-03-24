@@ -50,6 +50,7 @@ readonly class GetCitiesAction implements GetCitiesActionInterface
                 $request->limit,
                 $request->id,
                 $request->title,
+                $request->iata,
                 $state,
                 $country
             )

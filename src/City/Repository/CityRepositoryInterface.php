@@ -17,6 +17,8 @@ interface CityRepositoryInterface
 
     public function findById(UuidInterface $id): ?City;
 
+    public function findByIata(string $iata): ?City;
+
     public function findByTitleAndCountry(string $title, Country $country): ?City;
 
     public function findByTitle(string $title): iterable;
@@ -26,6 +28,7 @@ interface CityRepositoryInterface
         int $limit,
         ?UuidInterface $id = null,
         ?string $title = null,
+        ?string $iata = null,
         ?State $state = null,
         ?Country $country = null,
     ): iterable;
