@@ -15,6 +15,7 @@ use App\SubRegion\Repository\SubRegionRepositoryInterface;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Ramsey\Uuid\UuidInterface;
 
 class UpdateCountryAction implements UpdateCountryActionInterface
 {
@@ -34,12 +35,12 @@ class UpdateCountryAction implements UpdateCountryActionInterface
      * @throws CountryNotFoundException
      * @throws CountryAlreadyExistsException
      */
-    public function run(UpdateCountryActionRequest $request): UpdateCountryActionResponse
+    public function run(UpdateCountryActionRequest $request, UuidInterface $id): UpdateCountryActionResponse
     {
-        $exists = $this->countryRepository->findById($request->id);
+        $exists = $this->countryRepository->findById($id);
 
         if (!$exists) {
-            throw new CountryNotFoundException($request->id->toString());
+            throw new CountryNotFoundException($id->toString());
         }
 
         $this->countryFactory->setCountry($exists);
