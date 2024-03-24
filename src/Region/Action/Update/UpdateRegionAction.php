@@ -6,6 +6,7 @@ namespace App\Region\Action\Update;
 
 use App\Region\Exception\RegionNotFoundException;
 use App\Region\Repository\RegionRepositoryInterface;
+use Ramsey\Uuid\UuidInterface;
 
 readonly class UpdateRegionAction implements UpdateRegionActionInterface
 {
@@ -16,12 +17,12 @@ readonly class UpdateRegionAction implements UpdateRegionActionInterface
     /**
      * @throws RegionNotFoundException
      */
-    public function run(UpdateRegionActionRequest $request): UpdateRegionActionResponse
+    public function run(UpdateRegionActionRequest $request, UuidInterface $id): UpdateRegionActionResponse
     {
-        $region = $this->regionRepository->findById($request->id);
+        $region = $this->regionRepository->findById($id);
 
         if (!$region) {
-            throw new RegionNotFoundException($request->id->toString());
+            throw new RegionNotFoundException($id->toString());
         }
 
         $region->setTitle($request->title);
