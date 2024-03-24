@@ -6,6 +6,7 @@ namespace App\Nationality\Action\Update;
 
 use App\Nationality\Repository\NationalityRepositoryInterface;
 use App\Nationality\Exception\NationalityNotFoundException;
+use Ramsey\Uuid\UuidInterface;
 
 readonly class UpdateNationalityAction implements UpdateNationalityActionInterface
 {
@@ -16,12 +17,12 @@ readonly class UpdateNationalityAction implements UpdateNationalityActionInterfa
     /**
      * @throws NationalityNotFoundException
      */
-    public function run(UpdateNationalityActionRequest $request): UpdateNationalityActionResponse
+    public function run(UpdateNationalityActionRequest $request, UuidInterface $id): UpdateNationalityActionResponse
     {
-        $nationality = $this->nationalityRepository->findById($request->id);
+        $nationality = $this->nationalityRepository->findById($id);
 
         if (!$nationality) {
-            throw new NationalityNotFoundException($request->id->toString());
+            throw new NationalityNotFoundException($id->toString());
         }
 
         $nationality->setTitle($request->title);

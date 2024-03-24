@@ -31,7 +31,7 @@ class UpdateNationalityActionTest extends TestCase
         $nationality->setTitle($title)->setCreatedAt();
 
         $req = new UpdateNationalityActionRequest();
-        $req->setTitle($updateTitle)->setId($id->toString());
+        $req->setTitle($updateTitle);
 
         $this->nationalityRepository
             ->expects($this->once())
@@ -47,7 +47,7 @@ class UpdateNationalityActionTest extends TestCase
         $action = new UpdateNationalityAction($this->nationalityRepository);
 
         try {
-            $actual = $action->run($req);
+            $actual = $action->run($req, $id);
         } catch (NationalityNotFoundException $e) {
             $this->fail('Must not throw an error: ' . $e->getMessage());
         }
@@ -60,7 +60,6 @@ class UpdateNationalityActionTest extends TestCase
     {
         $id = Uuid::uuid7();
         $req = new UpdateNationalityActionRequest();
-        $req->setId($id->toString());
 
         $this->nationalityRepository
             ->expects($this->once())
@@ -71,6 +70,6 @@ class UpdateNationalityActionTest extends TestCase
         $action = new UpdateNationalityAction($this->nationalityRepository);
 
         $this->expectException(NationalityNotFoundException::class);
-        $action->run($req);
+        $action->run($req, $id);
     }
 }
