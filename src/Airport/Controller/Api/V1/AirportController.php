@@ -138,6 +138,7 @@ class AirportController extends ApiController
     #[Route(self::API_ROUTE, name: 'app_airport_api_v1_airport_list', methods: HttpMethod::GET)]
     #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500')]
     #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0')]
+    #[OA\Parameter(name: 'id', in: 'query', required: false, description: 'Airprot uuid')]
     #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'Airport title')]
     #[OA\Parameter(name: 'iata', in: 'query', required: false, description: 'Airport IATA code')]
     #[OA\Parameter(name: 'icao', in: 'query', required: false, description: 'Airport ICAO code')]

@@ -109,6 +109,7 @@ class CityController extends ApiController
     #[Route(self::API_ROUTE, name: 'app_city_api_v1_city_list', methods: HttpMethod::GET)]
     #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500')]
     #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0')]
+    #[OA\Parameter(name: 'id', in: 'query', required: false, description: 'City uuid')]
     #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'City title')]
     #[OA\Parameter(name: 'iata', in: 'query', required: false, description: 'City IATA code')]
     #[OA\Parameter(name: 'countryIso2', in: 'query', required: false, description: 'Couyntry ISO2 code')]
