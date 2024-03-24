@@ -84,10 +84,10 @@ class CurrencyController extends ApiController
     #[OA\Parameter(name: 'symbol', in: 'query', required: false, description: 'Currency symbol')]
     #[OA\Response(
         response: 200,
-        description: 'Currencies list',
+        description: 'List of currencies.',
         content: new OA\JsonContent(
-            type: 'object',
-            ref: new Model(type: CurrencyResponse::class)
+            type: 'array',
+            items: new OA\Items(ref: new Model(type: CurrencyResponse::class))
         )
     )]
     public function list(Request $request, GetCurrenciesActionInterface $action): JsonResponse

@@ -18,7 +18,6 @@ use App\Country\Action\GetPhoneCodes\GetPhoneCodesActionRequest;
 use App\Country\Action\Update\UpdateCountryActionInterface;
 use App\Country\Action\Update\UpdateCountryActionRequest;
 use App\Country\Controller\Response\CountryResponse;
-use App\Country\Controller\Response\PhoneCodeResponse;
 use JsonException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -94,10 +93,10 @@ class CountryController extends ApiController
     #[OA\Parameter(name: 'currencyCode', in: 'query', required: false, description: 'Currency code')]
     #[OA\Response(
         response: 200,
-        description: 'Countries list',
+        description: 'List of countries.',
         content: new OA\JsonContent(
-            type: 'object',
-            ref: new Model(type: CountryResponse::class)
+            type: 'array',
+            items: new OA\Items(ref: new Model(type: CountryResponse::class))
         )
     )]
     public function list(Request $request, GetCountriesActionInterface $action): JsonResponse
@@ -145,10 +144,10 @@ class CountryController extends ApiController
     #[OA\Parameter(name: 'phoneCode', in: 'query', required: false, description: 'Phone code')]
     #[OA\Response(
         response: 200,
-        description: 'Phone codes list',
+        description: 'List of phone codes.',
         content: new OA\JsonContent(
-            type: 'object',
-            ref: new Model(type: PhoneCodeResponse::class)
+            type: 'array',
+            items: new OA\Items(ref: new Model(type: CountryResponse::class))
         )
     )]
     public function getPhoneCodes(Request $request, GetPhoneCodesActionInterface $action): JsonResponse
