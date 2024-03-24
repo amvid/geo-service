@@ -6,6 +6,7 @@ namespace App\Currency\Action\Update;
 
 use App\Currency\Exception\CurrencyNotFoundException;
 use App\Currency\Repository\CurrencyRepositoryInterface;
+use Ramsey\Uuid\UuidInterface;
 
 readonly class UpdateCurrencyAction implements UpdateCurrencyActionInterface
 {
@@ -16,12 +17,12 @@ readonly class UpdateCurrencyAction implements UpdateCurrencyActionInterface
     /**
      * @throws CurrencyNotFoundException
      */
-    public function run(UpdateCurrencyActionRequest $request): UpdateCurrencyActionResponse
+    public function run(UpdateCurrencyActionRequest $request, UuidInterface $id): UpdateCurrencyActionResponse
     {
-        $currency = $this->currencyRepository->findById($request->id);
+        $currency = $this->currencyRepository->findById($id);
 
         if (!$currency) {
-            throw new CurrencyNotFoundException($request->id->toString());
+            throw new CurrencyNotFoundException($id->toString());
         }
 
         if ($request->name) {

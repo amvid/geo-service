@@ -43,8 +43,7 @@ class UpdateCurrencyActionTest extends TestCase
         $req
             ->setName($updateName)
             ->setSymbol($updateSymbol)
-            ->setCode($updateCode)
-            ->setId($id->toString());
+            ->setCode($updateCode);
 
         $this->repository
             ->expects($this->once())
@@ -60,7 +59,7 @@ class UpdateCurrencyActionTest extends TestCase
         $action = new UpdateCurrencyAction($this->repository);
 
         try {
-            $actual = $action->run($req);
+            $actual = $action->run($req, $id);
         } catch (CurrencyNotFoundException $e) {
             $this->fail('Must not throw an error: ' . $e->getMessage());
         }
@@ -75,7 +74,6 @@ class UpdateCurrencyActionTest extends TestCase
     {
         $id = Uuid::uuid4();
         $req = new UpdateCurrencyActionRequest();
-        $req->setId($id->toString());
 
         $this->repository
             ->expects($this->once())
@@ -86,6 +84,6 @@ class UpdateCurrencyActionTest extends TestCase
         $action = new UpdateCurrencyAction($this->repository);
 
         $this->expectException(CurrencyNotFoundException::class);
-        $action->run($req);
+        $action->run($req, $id);
     }
 }
