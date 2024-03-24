@@ -9,6 +9,7 @@ use App\Country\Repository\CountryRepositoryInterface;
 use App\State\Exception\StateNotFoundException;
 use App\State\Factory\StateFactoryInterface;
 use App\State\Repository\StateRepositoryInterface;
+use Ramsey\Uuid\UuidInterface;
 
 readonly class UpdateStateAction implements UpdateStateActionInterface
 {
@@ -23,12 +24,12 @@ readonly class UpdateStateAction implements UpdateStateActionInterface
      * @throws StateNotFoundException
      * @throws CountryNotFoundException
      */
-    public function run(UpdateStateActionRequest $request): UpdateStateActionResponse
+    public function run(UpdateStateActionRequest $request, UuidInterface $id): UpdateStateActionResponse
     {
-        $state = $this->stateRepository->findById($request->id);
+        $state = $this->stateRepository->findById($id);
 
         if (!$state) {
-            throw new StateNotFoundException($request->id->toString());
+            throw new StateNotFoundException($id->toString());
         }
 
         $this->stateFactory->setState($state);
