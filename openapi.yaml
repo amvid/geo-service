@@ -6,25 +6,53 @@ servers:
   -
     url: 'http://127.0.0.1:8085'
     description: 'Local environment'
-  -
-    url: 'https://geo.staging.above9travel.com'
-    description: 'Staging environment'
 paths:
   /api/v1/nationalities:
     get:
       tags:
         - Nationalities
       operationId: get_app_nationalities_api_v1_nationality_list
+      parameters:
+        -
+          name: limit
+          in: query
+          description: 'Default 500'
+          required: false
+        -
+          name: offset
+          in: query
+          description: 'Default 0'
+          required: false
+        -
+          name: title
+          in: query
+          description: 'Nationality title'
+          required: false
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'List of nationalities.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NationalityResponse'
     post:
       tags:
         - Nationalities
       operationId: post_app_nationalities_api_v1_nationality_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNationalityActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Nationality created successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NationalityResponse'
   '/api/v1/nationalities/{id}':
     put:
       tags:
@@ -34,12 +62,22 @@ paths:
         -
           name: id
           in: path
+          description: 'Nationality uuid'
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateNationalityActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Nationality updated successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NationalityResponse'
     delete:
       tags:
         - Nationalities
@@ -48,27 +86,59 @@ paths:
         -
           name: id
           in: path
+          description: 'Nationality uuid'
           required: true
           schema:
             type: string
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Nationality deleted successfully.'
   /api/v1/regions:
     get:
       tags:
         - Regions
       operationId: get_app_region_api_v1_region_list
+      parameters:
+        -
+          name: limit
+          in: query
+          description: 'Default 500'
+          required: false
+        -
+          name: offset
+          in: query
+          description: 'Default 0'
+          required: false
+        -
+          name: title
+          in: query
+          description: 'Nationality title'
+          required: false
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'List of regions.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RegionResponse'
     post:
       tags:
         - Regions
       operationId: post_app_region_api_v1_region_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRegionActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Region created successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionResponse'
   '/api/v1/regions/{id}':
     put:
       tags:
@@ -78,12 +148,22 @@ paths:
         -
           name: id
           in: path
+          description: 'Region uuid'
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRegionActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Region updated successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionResponse'
     delete:
       tags:
         - Regions
@@ -92,27 +172,59 @@ paths:
         -
           name: id
           in: path
+          description: 'Region uuid'
           required: true
           schema:
             type: string
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Region deleted successfully.'
   /api/v1/subregions:
     get:
       tags:
         - SubRegions
       operationId: get_app_subregion_api_v1_subregion_list
+      parameters:
+        -
+          name: limit
+          in: query
+          description: 'Default 500'
+          required: false
+        -
+          name: offset
+          in: query
+          description: 'Default 0'
+          required: false
+        -
+          name: title
+          in: query
+          description: 'SubRegion title'
+          required: false
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'List of subregions.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubRegionResponse'
     post:
       tags:
         - SubRegions
       operationId: post_app_subregion_api_v1_subregion_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSubRegionActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Nationality created successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubRegionResponse'
   '/api/v1/subregions/{id}':
     put:
       tags:
@@ -122,12 +234,22 @@ paths:
         -
           name: id
           in: path
+          description: 'SubRegion uuid'
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSubRegionActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'SubRegion updated successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubRegionResponse'
     delete:
       tags:
         - SubRegions
@@ -136,27 +258,69 @@ paths:
         -
           name: id
           in: path
+          description: 'SubRegion uuid'
           required: true
           schema:
             type: string
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'SubRegion deleted successfully.'
   /api/v1/timezones:
     get:
       tags:
         - Timezones
       operationId: get_app_timezone_api_v1_timezone_list
+      parameters:
+        -
+          name: limit
+          in: query
+          description: 'Default 500'
+          required: false
+        -
+          name: offset
+          in: query
+          description: 'Default 0'
+          required: false
+        -
+          name: title
+          in: query
+          description: 'Timezone title'
+          required: false
+        -
+          name: code
+          in: query
+          description: 'Timezone code'
+          required: false
+        -
+          name: utc
+          in: query
+          description: 'Timezone UTC'
+          required: false
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'List of timezones.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TimezoneResponse'
     post:
       tags:
         - Timezones
       operationId: post_app_timezone_api_v1_timezone_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTimezoneActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Nationality created successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimezoneResponse'
   '/api/v1/timezones/{id}':
     put:
       tags:
@@ -166,12 +330,22 @@ paths:
         -
           name: id
           in: path
+          description: 'Timezone uuid'
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTimezoneActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Timezone updated successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TimezoneResponse'
     delete:
       tags:
         - Timezones
@@ -180,27 +354,69 @@ paths:
         -
           name: id
           in: path
+          description: 'Timezone uuid'
           required: true
           schema:
             type: string
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Timezone deleted successfully.'
   /api/v1/currencies:
     get:
       tags:
         - Currencies
       operationId: get_app_currency_api_v1_currency_list
+      parameters:
+        -
+          name: limit
+          in: query
+          description: 'Default 500'
+          required: false
+        -
+          name: offset
+          in: query
+          description: 'Default 0'
+          required: false
+        -
+          name: name
+          in: query
+          description: 'Currency name'
+          required: false
+        -
+          name: code
+          in: query
+          description: 'Currency code'
+          required: false
+        -
+          name: symbol
+          in: query
+          description: 'Currency symbol'
+          required: false
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'List of currencies.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CurrencyResponse'
     post:
       tags:
         - Currencies
       operationId: post_app_currency_api_v1_currency_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCurrencyActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Currency created successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyResponse'
   '/api/v1/currencies/{id}':
     put:
       tags:
@@ -210,12 +426,22 @@ paths:
         -
           name: id
           in: path
+          description: 'Currency uuid'
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCurrencyActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Currency updated successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyResponse'
     delete:
       tags:
         - Currencies
@@ -224,27 +450,99 @@ paths:
         -
           name: id
           in: path
+          description: 'Currency uuid'
           required: true
           schema:
             type: string
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Currency deleted successfully.'
   /api/v1/countries:
     get:
       tags:
         - Countries
       operationId: get_app_country_api_v1_country_list
+      parameters:
+        -
+          name: limit
+          in: query
+          description: 'Default 500'
+          required: false
+        -
+          name: offset
+          in: query
+          description: 'Default 0'
+          required: false
+        -
+          name: title
+          in: query
+          description: 'Country title'
+          required: false
+        -
+          name: id
+          in: query
+          description: 'Country uuid'
+          required: false
+        -
+          name: iso2
+          in: query
+          description: 'Country ISO2 code'
+          required: false
+        -
+          name: iso3
+          in: query
+          description: 'Country ISO3 code'
+          required: false
+        -
+          name: nativeTitle
+          in: query
+          description: 'Country native title'
+          required: false
+        -
+          name: numericCode
+          in: query
+          description: 'Country numeric code'
+          required: false
+        -
+          name: tld
+          in: query
+          description: 'Country top level domain'
+          required: false
+        -
+          name: subRegion
+          in: query
+          description: 'SubRegion title'
+          required: false
+        -
+          name: currencyCode
+          in: query
+          description: 'Currency code'
+          required: false
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'List of countries.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryResponse'
     post:
       tags:
         - Countries
       operationId: post_app_country_api_v1_country_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCountryActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Country created successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryResponse'
   '/api/v1/countries/{id}':
     put:
       tags:
@@ -254,12 +552,22 @@ paths:
         -
           name: id
           in: path
+          description: 'Country uuid'
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCountryActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Country updated successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryResponse'
     delete:
       tags:
         - Countries
@@ -268,35 +576,94 @@ paths:
         -
           name: id
           in: path
+          description: 'Country uuid'
           required: true
           schema:
             type: string
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Country deleted successfully.'
   /api/v1/countries/phone-codes:
     get:
       tags:
         - Countries
       operationId: get_app_country_api_v1_country_phone_codes
+      parameters:
+        -
+          name: limit
+          in: query
+          description: 'Default 500'
+          required: false
+        -
+          name: offset
+          in: query
+          description: 'Default 0'
+          required: false
+        -
+          name: title
+          in: query
+          description: 'Country title'
+          required: false
+        -
+          name: phoneCode
+          in: query
+          description: 'Phone code'
+          required: false
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'List of phone codes.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryResponse'
   /api/v1/states:
     get:
       tags:
         - States
       operationId: get_app_state_api_v1_state_list
+      parameters:
+        -
+          name: limit
+          in: query
+          description: 'Default 500'
+          required: false
+        -
+          name: offset
+          in: query
+          description: 'Default 0'
+          required: false
+        -
+          name: title
+          in: query
+          description: 'State title'
+          required: false
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'List of states.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StateResponse'
     post:
       tags:
         - States
       operationId: post_app_state_api_v1_state_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStateActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Nationality created successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateResponse'
   '/api/v1/states/{id}':
     put:
       tags:
@@ -306,12 +673,22 @@ paths:
         -
           name: id
           in: path
+          description: 'State uuid'
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStateActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Nationality updated successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StateResponse'
     delete:
       tags:
         - States
@@ -320,27 +697,79 @@ paths:
         -
           name: id
           in: path
+          description: 'State uuid'
           required: true
           schema:
             type: string
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'State deleted successfully.'
   /api/v1/cities:
     get:
       tags:
         - Cities
       operationId: get_app_city_api_v1_city_list
+      parameters:
+        -
+          name: limit
+          in: query
+          description: 'Default 500'
+          required: false
+        -
+          name: offset
+          in: query
+          description: 'Default 0'
+          required: false
+        -
+          name: id
+          in: query
+          description: 'City uuid'
+          required: false
+        -
+          name: title
+          in: query
+          description: 'City title'
+          required: false
+        -
+          name: iata
+          in: query
+          description: 'City IATA code'
+          required: false
+        -
+          name: countryIso2
+          in: query
+          description: 'Couyntry ISO2 code'
+          required: false
+        -
+          name: stateTitle
+          in: query
+          description: 'State title'
+          required: false
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'List of cities.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CityResponse'
     post:
       tags:
         - Cities
       operationId: post_app_city_api_v1_city_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCityActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'City created successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CityResponse'
   '/api/v1/cities/{id}':
     put:
       tags:
@@ -350,12 +779,22 @@ paths:
         -
           name: id
           in: path
+          description: 'City uuid'
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCityActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'City updated successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CityResponse'
     delete:
       tags:
         - Cities
@@ -364,27 +803,89 @@ paths:
         -
           name: id
           in: path
+          description: 'City uuid'
           required: true
           schema:
             type: string
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'City deleted successfully.'
   /api/v1/airports:
     get:
       tags:
         - Airports
       operationId: get_app_airport_api_v1_airport_list
+      parameters:
+        -
+          name: limit
+          in: query
+          description: 'Default 500'
+          required: false
+        -
+          name: offset
+          in: query
+          description: 'Default 0'
+          required: false
+        -
+          name: id
+          in: query
+          description: 'Airprot uuid'
+          required: false
+        -
+          name: title
+          in: query
+          description: 'Airport title'
+          required: false
+        -
+          name: iata
+          in: query
+          description: 'Airport IATA code'
+          required: false
+        -
+          name: icao
+          in: query
+          description: 'Airport ICAO code'
+          required: false
+        -
+          name: cityTitle
+          in: query
+          description: 'City title'
+          required: false
+        -
+          name: timezone
+          in: query
+          description: 'Timezone (e.g. Europe/Oslo)'
+          required: false
+        -
+          name: isActive
+          in: query
+          description: 'Is active (true/false)'
+          required: false
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'List of airports.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AirportResponse'
     post:
       tags:
         - Airports
       operationId: post_app_airport_api_v1_airport_create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAirportActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Airport created successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirportResponse'
   '/api/v1/airports/{id}':
     put:
       tags:
@@ -394,12 +895,22 @@ paths:
         -
           name: id
           in: path
+          description: 'Airport uuid'
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAirportActionRequest'
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Airport updated successfully.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirportResponse'
     delete:
       tags:
         - Airports
@@ -408,13 +919,757 @@ paths:
         -
           name: id
           in: path
+          description: 'Airport uuid'
           required: true
           schema:
             type: string
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Airport deleted successfully.'
+  '/api/v1/airports/{query}':
+    get:
+      tags:
+        - Airports
+      operationId: get_app_airport_api_v1_airport_query
+      parameters:
+        -
+          name: query
+          in: path
+          description: 'Query string to search airports by title, IATA, ICAO, city or country.'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'List of airports.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QueryChildrenAirportResponse'
 components:
+  schemas:
+    NationalityResponse:
+      required:
+        - title
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+      type: object
+    CreateNationalityActionRequest:
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          maxLength: 150
+          minLength: 1
+      type: object
+    UpdateNationalityActionRequest:
+      required:
+        - title
+      properties:
+        title:
+          type: string
+      type: object
+    RegionResponse:
+      required:
+        - title
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+      type: object
+    CreateRegionActionRequest:
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          maxLength: 150
+          minLength: 1
+      type: object
+    UpdateRegionActionRequest:
+      required:
+        - title
+      properties:
+        title:
+          type: string
+      type: object
+    SubRegionResponse:
+      required:
+        - title
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        region:
+          nullable: true
+          oneOf:
+            -
+              $ref: '#/components/schemas/RegionResponse'
+      type: object
+    CreateSubRegionActionRequest:
+      required:
+        - title
+        - regionTitle
+      properties:
+        title:
+          type: string
+          maxLength: 150
+          minLength: 1
+        regionTitle:
+          type: string
+          maxLength: 150
+          minLength: 1
+      type: object
+    UpdateSubRegionActionRequest:
+      required:
+        - title
+      properties:
+        title:
+          type: string
+        regionTitle:
+          type: string
+          nullable: true
+      type: object
+    TimezoneResponse:
+      required:
+        - title
+        - code
+        - utc
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        code:
+          type: string
+        utc:
+          type: string
+      type: object
+    CreateTimezoneActionRequest:
+      required:
+        - title
+        - code
+        - utc
+      properties:
+        title:
+          type: string
+          maxLength: 150
+          minLength: 1
+        code:
+          type: string
+          maxLength: 150
+          minLength: 1
+        utc:
+          type: string
+          maxLength: 50
+          minLength: 1
+      type: object
+    UpdateTimezoneActionRequest:
+      required:
+        - title
+        - code
+        - utc
+      properties:
+        title:
+          type: string
+        code:
+          type: string
+        utc:
+          type: string
+      type: object
+    CurrencyResponse:
+      required:
+        - name
+        - code
+        - symbol
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        code:
+          type: string
+        symbol:
+          type: string
+      type: object
+    CreateCurrencyActionRequest:
+      required:
+        - name
+        - code
+        - symbol
+      properties:
+        name:
+          type: string
+          maxLength: 100
+          minLength: 1
+        code:
+          type: string
+          maxLength: 3
+          minLength: 1
+        symbol:
+          type: string
+          maxLength: 10
+          minLength: 1
+      type: object
+    UpdateCurrencyActionRequest:
+      required:
+        - name
+        - code
+        - symbol
+      properties:
+        name:
+          type: string
+        code:
+          type: string
+        symbol:
+          type: string
+      type: object
+    CountryResponse:
+      required:
+        - title
+        - iso2
+        - iso3
+        - numericCode
+        - phoneCode
+        - flag
+        - tld
+        - longitude
+        - latitude
+        - timezones
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        nativeTitle:
+          type: string
+          nullable: true
+        iso2:
+          type: string
+        iso3:
+          type: string
+        numericCode:
+          type: string
+        phoneCode:
+          type: string
+        flag:
+          type: string
+        tld:
+          type: string
+        longitude:
+          type: number
+          format: float
+        latitude:
+          type: number
+          format: float
+        altitude:
+          type: integer
+          nullable: true
+        currency:
+          nullable: true
+          oneOf:
+            -
+              $ref: '#/components/schemas/CurrencyResponse'
+        subRegion:
+          nullable: true
+          oneOf:
+            -
+              $ref: '#/components/schemas/SubRegionResponse'
+        timezones:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimezoneResponse'
+      type: object
+    CreateCountryActionRequest:
+      required:
+        - iso2
+        - iso3
+        - numericCode
+        - phoneCode
+        - title
+        - subRegion
+        - currencyCode
+        - flag
+        - tld
+        - latitude
+        - longitude
+        - timezones
+      properties:
+        iso2:
+          type: string
+          maxLength: 2
+          minLength: 2
+        iso3:
+          type: string
+          maxLength: 3
+          minLength: 3
+        numericCode:
+          type: string
+          maxLength: 3
+          minLength: 1
+        phoneCode:
+          type: string
+          maxLength: 20
+          minLength: 1
+        title:
+          type: string
+          maxLength: 150
+          minLength: 1
+        subRegion:
+          type: string
+          maxLength: 150
+          minLength: 1
+        currencyCode:
+          type: string
+          maxLength: 3
+          minLength: 1
+        flag:
+          type: string
+          maxLength: 100
+          minLength: 1
+        tld:
+          type: string
+          maxLength: 20
+          minLength: 1
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
+        timezones:
+          title: 'Array of timezone codes: "Europe/Oslo"'
+          type: array
+          items: {  }
+          minItems: 1
+        altitude:
+          type: integer
+          nullable: true
+        nativeTitle:
+          type: string
+          maxLength: 150
+          minLength: 1
+          nullable: true
+      type: object
+    UpdateCountryActionRequest:
+      properties:
+        title:
+          type: string
+          maxLength: 150
+          minLength: 1
+          nullable: true
+        nativeTitle:
+          type: string
+          maxLength: 150
+          minLength: 1
+          nullable: true
+        phoneCode:
+          type: string
+          maxLength: 20
+          minLength: 1
+          nullable: true
+        subRegion:
+          type: string
+          maxLength: 150
+          minLength: 1
+          nullable: true
+        currencyCode:
+          type: string
+          maxLength: 3
+          minLength: 1
+          nullable: true
+        flag:
+          type: string
+          maxLength: 100
+          minLength: 1
+          nullable: true
+        tld:
+          type: string
+          maxLength: 20
+          minLength: 1
+          nullable: true
+        timezones:
+          type: array
+          items: {  }
+          minItems: 1
+          nullable: true
+        latitude:
+          type: number
+          format: float
+          nullable: true
+        longitude:
+          type: number
+          format: float
+          nullable: true
+        altitude:
+          type: integer
+          nullable: true
+      type: object
+    StateResponse:
+      required:
+        - title
+        - code
+        - latitude
+        - longitude
+        - country
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        code:
+          type: string
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
+        altitude:
+          type: integer
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        country:
+          $ref: '#/components/schemas/CountryResponse'
+      type: object
+    CreateStateActionRequest:
+      required:
+        - title
+        - code
+        - countryIso2
+        - longitude
+        - latitude
+      properties:
+        title:
+          type: string
+          maxLength: 150
+          minLength: 1
+        code:
+          type: string
+          maxLength: 5
+          minLength: 1
+        countryIso2:
+          type: string
+          maxLength: 2
+          minLength: 2
+        longitude:
+          type: number
+          format: float
+        latitude:
+          type: number
+          format: float
+        altitude:
+          type: integer
+          nullable: true
+        type:
+          type: string
+          maxLength: 50
+          minLength: 1
+          nullable: true
+      type: object
+    UpdateStateActionRequest:
+      properties:
+        title:
+          type: string
+          maxLength: 150
+          minLength: 1
+          nullable: true
+        type:
+          type: string
+          maxLength: 50
+          minLength: 1
+          nullable: true
+        longitude:
+          type: number
+          format: float
+          nullable: true
+        latitude:
+          type: number
+          format: float
+          nullable: true
+        altitude:
+          type: integer
+          nullable: true
+        countryIso2:
+          type: string
+          maxLength: 2
+          minLength: 2
+          nullable: true
+      type: object
+    CityResponse:
+      required:
+        - title
+        - longitude
+        - latitude
+        - country
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        iata:
+          type: string
+          nullable: true
+        longitude:
+          type: number
+          format: float
+        latitude:
+          type: number
+          format: float
+        altitude:
+          type: integer
+          nullable: true
+        state:
+          nullable: true
+          oneOf:
+            -
+              $ref: '#/components/schemas/StateResponse'
+        country:
+          $ref: '#/components/schemas/CountryResponse'
+      type: object
+    CreateCityActionRequest:
+      required:
+        - title
+        - countryIso2
+        - longitude
+        - latitude
+      properties:
+        title:
+          type: string
+          maxLength: 150
+          minLength: 1
+        iata:
+          type: string
+          maxLength: 3
+          minLength: 3
+          nullable: true
+        countryIso2:
+          type: string
+          maxLength: 2
+          minLength: 2
+        stateTitle:
+          type: string
+          maxLength: 150
+          nullable: true
+        longitude:
+          type: number
+          format: float
+        latitude:
+          type: number
+          format: float
+        altitude:
+          type: integer
+          nullable: true
+      type: object
+    UpdateCityActionRequest:
+      properties:
+        title:
+          type: string
+          maxLength: 150
+          minLength: 1
+          nullable: true
+        iata:
+          type: string
+          maxLength: 3
+          minLength: 3
+          nullable: true
+        countryIso2:
+          type: string
+          maxLength: 2
+          minLength: 2
+          nullable: true
+        stateTitle:
+          type: string
+          maxLength: 150
+          nullable: true
+        longitude:
+          type: number
+          format: float
+          nullable: true
+        latitude:
+          type: number
+          format: float
+          nullable: true
+        altitude:
+          type: integer
+          nullable: true
+      type: object
+    AirportResponse:
+      required:
+        - title
+        - iata
+        - icao
+        - isActive
+        - longitude
+        - latitude
+        - timezone
+        - city
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        iata:
+          type: string
+        icao:
+          type: string
+        isActive:
+          type: boolean
+        longitude:
+          type: number
+          format: float
+        latitude:
+          type: number
+          format: float
+        altitude:
+          type: integer
+          nullable: true
+        timezone:
+          $ref: '#/components/schemas/TimezoneResponse'
+        city:
+          $ref: '#/components/schemas/CityResponse'
+      type: object
+    CreateAirportActionRequest:
+      required:
+        - title
+        - cityTitle
+        - iata
+        - countryIso2
+        - icao
+        - timezone
+        - longitude
+        - latitude
+      properties:
+        title:
+          type: string
+          maxLength: 150
+          minLength: 1
+        cityTitle:
+          type: string
+          maxLength: 150
+          minLength: 1
+        iata:
+          type: string
+          maxLength: 3
+          minLength: 3
+        countryIso2:
+          type: string
+          maxLength: 2
+          minLength: 2
+        icao:
+          type: string
+          maxLength: 4
+          minLength: 4
+        timezone:
+          type: string
+          maxLength: 150
+        longitude:
+          type: number
+          format: float
+        latitude:
+          type: number
+          format: float
+        altitude:
+          type: integer
+          nullable: true
+      type: object
+    UpdateAirportActionRequest:
+      properties:
+        icao:
+          type: string
+          maxLength: 4
+          minLength: 4
+          nullable: true
+        iata:
+          type: string
+          maxLength: 3
+          minLength: 3
+          nullable: true
+        title:
+          type: string
+          maxLength: 150
+          minLength: 1
+          nullable: true
+        cityTitle:
+          type: string
+          maxLength: 150
+          minLength: 1
+          nullable: true
+        countryIso2:
+          type: string
+          maxLength: 2
+          minLength: 2
+          nullable: true
+        timezone:
+          type: string
+          maxLength: 150
+          minLength: 1
+          nullable: true
+        isActive:
+          type: boolean
+          nullable: true
+        longitude:
+          type: number
+          format: float
+          nullable: true
+        latitude:
+          type: number
+          format: float
+          nullable: true
+        altitude:
+          type: integer
+          nullable: true
+      type: object
+    QueryChildrenAirportResponse:
+      required:
+        - title
+        - iata
+        - country
+      properties:
+        title:
+          type: string
+        iata:
+          type: string
+        country:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryAirportResponse'
+          default: []
+      type: object
+    QueryAirportResponse:
+      required:
+        - title
+        - iata
+        - country
+      properties:
+        title:
+          type: string
+        iata:
+          type: string
+        country:
+          type: string
+      type: object
   securitySchemes:
     Bearer:
       type: http
