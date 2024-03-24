@@ -36,6 +36,7 @@ class CityControllerE2ETest extends WebTestCase
     {
         $content = [
             'title' => 'Test City',
+            'iata' => 'TST',
             'countryIso2' => CountryDummy::ISO2,
             'stateTitle' => StateDummy::TITLE,
             'longitude' => 11,
@@ -88,7 +89,7 @@ class CityControllerE2ETest extends WebTestCase
         /** @var City $city */
         $city = self::getContainer()->get(CityRepositoryInterface::class)->findByTitle(CityDummy::TITLE)[0];
 
-        $content = ['title' => 'Updated Title'];
+        $content = ['title' => 'Updated Title', 'countryIso2' => CountryDummy::ISO2];
 
         $this->client->request(
             HttpMethod::PUT,
@@ -108,7 +109,7 @@ class CityControllerE2ETest extends WebTestCase
      */
     public function testUpdateActionCityNotFound(): void
     {
-        $content = ['title' => 'Updated Title'];
+        $content = ['title' => 'Updated Title', 'countryIso2' => CountryDummy::ISO2];
         $id = CityDummy::ID;
         $this->client->request(
             HttpMethod::PUT,

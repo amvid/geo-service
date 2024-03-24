@@ -4,15 +4,11 @@ declare(strict_types=1);
 
 namespace App\Country\Action\Update;
 
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\Length;
 
 class UpdateCountryActionRequest
 {
-    public ?UuidInterface $id = null;
-
     #[Length(min: 1, max: 150)]
     public ?string $title = null;
 
@@ -45,10 +41,4 @@ class UpdateCountryActionRequest
     public ?float $longitude = null;
 
     public ?int $altitude = null;
-
-    public function setId(string $id): self
-    {
-        $this->id = Uuid::fromString($id);
-        return $this;
-    }
 }

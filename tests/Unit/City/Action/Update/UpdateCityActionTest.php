@@ -28,6 +28,7 @@ class UpdateCityActionTest extends TestCase
     private UpdateCityActionRequest $request;
 
     private string $title = 'California';
+    private string $iata = 'TST';
     private string $countryIso2 = 'US';
     private string $stateTitle = 'New Jersey';
     private float $latitude = 10.10;
@@ -42,8 +43,8 @@ class UpdateCityActionTest extends TestCase
         $this->countryRepository = $this->getMockBuilder(CountryRepositoryInterface::class)->getMock();
 
         $this->request = new UpdateCityActionRequest();
-        $this->request->setId(CityDummy::ID);
         $this->request->title = $this->title;
+        $this->request->iata = $this->iata;
         $this->request->stateTitle = $this->stateTitle;
         $this->request->countryIso2 = $this->countryIso2;
         $this->request->latitude = $this->latitude;
@@ -69,7 +70,34 @@ class UpdateCityActionTest extends TestCase
         $this->expectException(CityNotFoundException::class);
         $this->expectExceptionMessage('City \'' . CityDummy::ID . '\' not found.');
 
-        $action->run($this->request);
+        $action->run($this->request, Uuid::fromString(CityDummy::ID));
+    }
+
+    public function testShouldThrowCityAlreadyExistsExceptionIfIataAlreadyInUse(): void
+    {
+        $this->cityRepository
+            ->expects($this->once())
+            ->method('findById')
+            ->with(Uuid::fromString(CityDummy::ID))
+            ->willReturn(CityDummy::get());
+
+        $this->cityRepository
+            ->expects($this->once())
+            ->method('findByIata')
+            ->with($this->iata)
+            ->willReturn(null);
+
+        $action = new UpdateCityAction(
+            $this->factory,
+            $this->cityRepository,
+            $this->stateRepository,
+            $this->countryRepository,
+        );
+
+        $this->expectException(StateNotFoundException::class);
+        $this->expectExceptionMessage("State '$this->stateTitle' not found.");
+
+        $action->run($this->request, Uuid::fromString(CityDummy::ID));
     }
 
     public function testShouldThrowStateNotFoundExceptionIfNotFound(): void
@@ -96,7 +124,7 @@ class UpdateCityActionTest extends TestCase
         $this->expectException(StateNotFoundException::class);
         $this->expectExceptionMessage("State '$this->stateTitle' not found.");
 
-        $action->run($this->request);
+        $action->run($this->request, Uuid::fromString(CityDummy::ID));
     }
 
     public function testShouldThrowCountryNotFoundExceptionIfNotFound(): void
@@ -129,6 +157,6 @@ class UpdateCityActionTest extends TestCase
         $this->expectException(CountryNotFoundException::class);
         $this->expectExceptionMessage("Country '$this->countryIso2' not found.");
 
-        $action->run($this->request);
+        $action->run($this->request, Uuid::fromString(CityDummy::ID));
     }
 }

@@ -83,8 +83,6 @@ class UpdateCountryActionTest extends TestCase
         $this->request->tld = $this->tld;
         $this->request->longitude = $this->longitude;
         $this->request->latitude = $this->latitude;
-
-        $this->request->setId($this->id->toString());
     }
 
     public function testShouldThrowCountryNotFoundExceptionIfCountryNotFoundById(): void
@@ -96,7 +94,7 @@ class UpdateCountryActionTest extends TestCase
             ->willReturn(null);
 
         $this->expectException(CountryNotFoundException::class);
-        $this->action->run($this->request);
+        $this->action->run($this->request, $this->id);
     }
 
     public function testShouldThrowSubRegionNotFoundExceptionIfNotExists(): void
@@ -114,7 +112,7 @@ class UpdateCountryActionTest extends TestCase
             ->willReturn(null);
 
         $this->expectException(SubRegionNotFoundException::class);
-        $this->action->run($this->request);
+        $this->action->run($this->request, $this->id);
     }
 
     public function testShouldThrowCurrencyNotFoundExceptionIfNotExists(): void
@@ -138,7 +136,7 @@ class UpdateCountryActionTest extends TestCase
             ->willReturn(null);
 
         $this->expectException(CurrencyNotFoundException::class);
-        $this->action->run($this->request);
+        $this->action->run($this->request, $this->id);
     }
 
     public function testShouldThrowTimezoneNotFoundExceptionIfNotExists(): void
@@ -168,7 +166,7 @@ class UpdateCountryActionTest extends TestCase
             ->willReturn(null);
 
         $this->expectException(TimezoneNotFoundException::class);
-        $this->action->run($this->request);
+        $this->action->run($this->request, $this->id);
     }
 
     public function testShouldReturnAValidResponse(): void
@@ -247,7 +245,7 @@ class UpdateCountryActionTest extends TestCase
 
         $this->countryRepository->expects($this->once())->method('save')->with($country, true);
 
-        $actual = $this->action->run($this->request);
+        $actual = $this->action->run($this->request, $this->id);
 
         $this->assertEquals($this->updateTitle, $actual->countryResponse->title);
         $this->assertEquals($this->nativeTitle, $actual->countryResponse->nativeTitle);

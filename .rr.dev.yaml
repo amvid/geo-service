@@ -4,17 +4,17 @@ server:
   command: "php public/index.php"
   env:
     - APP_RUNTIME: Baldinof\RoadRunnerBundle\Runtime\Runtime
+    - XDEBUG_SESSION: 1
 
 http:
   address: 0.0.0.0:8080
   middleware: [ "static", "gzip" ]
   pool:
+    num_workers: ${APP_NUM_WORKERS:-1}
     debug: true
-  uploads:
-    forbid: [ ".php", ".exe", ".bat" ]
   static:
     dir: "public"
-    forbid: [ ".php", ".htaccess" ]
+    forbid: [ ".php" ]
 
 logs:
   mode: development
@@ -24,5 +24,3 @@ logs:
     server:
       level: info # Everything written to worker stderr is logged
       mode: raw
-    metrics:
-      level: debug

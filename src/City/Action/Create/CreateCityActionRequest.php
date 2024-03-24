@@ -16,6 +16,9 @@ class CreateCityActionRequest
     #[Length(min: 1, max: 150)]
     public string $title;
 
+    #[Length(3)]
+    public ?string $iata = null;
+
     #[NotBlank]
     #[Length(2)]
     public string $countryIso2;

@@ -31,7 +31,7 @@ class UpdateRegionActionTest extends TestCase
         $region->setTitle($title)->setCreatedAt();
 
         $req = new UpdateRegionActionRequest();
-        $req->setTitle($updateTitle)->setId($id->toString());
+        $req->setTitle($updateTitle);
 
         $this->regionRepository
             ->expects($this->once())
@@ -47,7 +47,7 @@ class UpdateRegionActionTest extends TestCase
         $action = new UpdateRegionAction($this->regionRepository);
 
         try {
-            $actual = $action->run($req);
+            $actual = $action->run($req, $id);
         } catch (RegionNotFoundException $e) {
             $this->fail('Must not throw an error: ' . $e->getMessage());
         }
@@ -60,7 +60,6 @@ class UpdateRegionActionTest extends TestCase
     {
         $id = Uuid::uuid7();
         $req = new UpdateRegionActionRequest();
-        $req->setId($id->toString());
 
         $this->regionRepository
             ->expects($this->once())
@@ -71,6 +70,6 @@ class UpdateRegionActionTest extends TestCase
         $action = new UpdateRegionAction($this->regionRepository);
 
         $this->expectException(RegionNotFoundException::class);
-        $action->run($req);
+        $action->run($req, $id);
     }
 }

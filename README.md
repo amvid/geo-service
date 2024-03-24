@@ -8,11 +8,19 @@ Geo data REST API service with admin dashboard to manage regions, countries, nat
 [PHP8.3](https://www.php.net/releases/8.3/en.php) |
 [Symfony 6](https://symfony.com) |
 [EasyAdminBundle](https://symfony.com/bundles/EasyAdminBundle/current/index.html)
+[OpenAPI](https://swagger.io/specification/)
 
 ### Admin Dashboard
 
 ![Screenshot](docs/img/country_dark.png)
 ![Screenshot](docs/img/airport_light.png)
+
+### Swagger UI
+
+```text
+https://127.0.0.1:8085/apidoc
+
+```
 
 ### Installation
 
@@ -36,6 +44,14 @@ make user
 
 ```bash
 make test
+```
+
+### OpenAPI
+
+Regenerate openapi.yaml in project root directory
+
+```bash
+make openapi
 ```
 
 ### Import

@@ -7,6 +7,7 @@ namespace App\Tests\Unit\City\Action\Create;
 use App\City\Action\Create\CreateCityAction;
 use App\City\Action\Create\CreateCityActionRequest;
 use App\City\Entity\City;
+use App\City\Exception\CityAlreadyExistsException;
 use App\City\Factory\CityFactoryInterface;
 use App\City\Repository\CityRepositoryInterface;
 use App\Country\Entity\Country;
@@ -30,6 +31,7 @@ class CreateCityActionTest extends TestCase
     private CreateCityActionRequest $request;
 
     private string $title = 'Riga';
+    private string $iata = 'RIX';
     private string $countryIso2 = 'LV';
     private string $stateTitle = 'RIX';
     private float $longitude = 55.12;
@@ -45,6 +47,7 @@ class CreateCityActionTest extends TestCase
 
         $this->request = new CreateCityActionRequest();
         $this->request->title = $this->title;
+        $this->request->iata = $this->iata;
         $this->request->countryIso2 = $this->countryIso2;
         $this->request->stateTitle = $this->stateTitle;
         $this->request->latitude = $this->latitude;
@@ -97,6 +100,33 @@ class CreateCityActionTest extends TestCase
         $this->expectExceptionMessage("State '$this->stateTitle' not found.");
 
         $action->run($this->request);
+    }
+
+    public function testShouldThrowCityAlreadyExistsExceptionIfIataAlreadyInUse(): void
+    {
+        $this->countryRepository
+            ->expects($this->once())
+            ->method('findByIso2')
+            ->with($this->countryIso2)
+            ->willReturn(new Country());
+
+        $this->cityRepository
+            ->expects($this->once())
+            ->method('findByIata')
+            ->with($this->iata)
+            ->willReturn(new City());
+
+        $action = new CreateCityAction(
+            $this->factory,
+            $this->cityRepository,
+            $this->stateRepository,
+            $this->countryRepository,
+        );
+
+        $this->expectException(CityAlreadyExistsException::class);
+        $this->expectExceptionMessage("City '$this->iata' already exists.");
+
+        $action->run($this->request, Uuid::fromString(CityDummy::ID));
     }
 
     public function testShouldCreateCityAndReturnAValidResponse(): void

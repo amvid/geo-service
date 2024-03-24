@@ -13,6 +13,7 @@ use App\Country\Exception\CountryNotFoundException;
 use App\Country\Repository\CountryRepositoryInterface;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 readonly class UpdateAirportAction implements UpdateAirportActionInterface
@@ -31,12 +32,12 @@ readonly class UpdateAirportAction implements UpdateAirportActionInterface
      * @throws AirportNotFoundException
      * @throws CityNotFoundException
      */
-    public function run(UpdateAirportActionRequest $request): UpdateAirportActionResponse
+    public function run(UpdateAirportActionRequest $request, UuidInterface $id): UpdateAirportActionResponse
     {
-        $airport = $this->airportRepository->findById($request->id);
+        $airport = $this->airportRepository->findById($id);
 
         if (!$airport) {
-            throw new AirportNotFoundException($request->id->toString());
+            throw new AirportNotFoundException($id->toString());
         }
 
         $this->airportFactory->setAirport($airport);

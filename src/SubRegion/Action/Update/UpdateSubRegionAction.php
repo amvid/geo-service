@@ -8,6 +8,7 @@ use App\Region\Exception\RegionNotFoundException;
 use App\Region\Repository\RegionRepositoryInterface;
 use App\SubRegion\Exception\SubRegionNotFoundException;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
+use Ramsey\Uuid\UuidInterface;
 
 readonly class UpdateSubRegionAction implements UpdateSubRegionActionInterface
 {
@@ -21,12 +22,12 @@ readonly class UpdateSubRegionAction implements UpdateSubRegionActionInterface
      * @throws RegionNotFoundException
      * @throws SubRegionNotFoundException
      */
-    public function run(UpdateSubRegionActionRequest $request): UpdateSubRegionActionResponse
+    public function run(UpdateSubRegionActionRequest $request, UuidInterface $id): UpdateSubRegionActionResponse
     {
-        $subRegion = $this->subRegionRepository->findById($request->id);
+        $subRegion = $this->subRegionRepository->findById($id);
 
         if (!$subRegion) {
-            throw new SubRegionNotFoundException($request->id->toString());
+            throw new SubRegionNotFoundException($id->toString());
         }
 
         if ($request->regionTitle) {

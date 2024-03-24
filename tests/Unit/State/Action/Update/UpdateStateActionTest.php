@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\State\Action\Update;
 
-use App\Country\Entity\Country;
 use App\Country\Repository\CountryRepositoryInterface;
-use App\Currency\Entity\Currency;
-use App\Region\Entity\Region;
 use App\State\Action\Update\UpdateStateAction;
 use App\State\Action\Update\UpdateStateActionRequest;
 use App\State\Entity\State;
 use App\State\Exception\StateNotFoundException;
 use App\State\Factory\StateFactoryInterface;
 use App\State\Repository\StateRepositoryInterface;
-use App\SubRegion\Entity\SubRegion;
 use App\Tests\Unit\Country\CountryDummy;
-use App\Timezone\Entity\Timezone;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -51,7 +46,6 @@ class UpdateStateActionTest extends TestCase
         $this->countryIso2 = 'US';
 
         $this->request = new UpdateStateActionRequest();
-        $this->request->id = $this->id;
         $this->request->title = $this->title;
         $this->request->longitude = $this->longitude;
         $this->request->latitude = $this->latitude;
@@ -72,7 +66,7 @@ class UpdateStateActionTest extends TestCase
 
         $this->expectException(StateNotFoundException::class);
         $this->expectExceptionMessage("State '$this->id' not found.");
-        $action->run($this->request);
+        $action->run($this->request, $this->id);
     }
 
     public function testShouldReturnNewUpdateStateResponse(): void
@@ -116,7 +110,7 @@ class UpdateStateActionTest extends TestCase
             ->expects($this->once())->method('setCountry')->with($country)->willReturn($this->stateFactory);
 
         $action = new UpdateStateAction($this->countryRepository, $this->stateRepository, $this->stateFactory);
-        $actual = $action->run($this->request);
+        $actual = $action->run($this->request, $this->id);
 
         $this->assertEquals($this->id, $actual->state->id);
     }

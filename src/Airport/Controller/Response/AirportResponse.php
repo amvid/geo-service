@@ -8,9 +8,11 @@ use App\Airport\Entity\Airport;
 use App\City\Controller\Response\CityResponse;
 use App\Timezone\Controller\Response\TimezoneResponse;
 use Ramsey\Uuid\UuidInterface;
+use OpenApi\Attributes as OA;
 
 class AirportResponse
 {
+    #[OA\Property(type: 'string', format: 'uuid')]
     public UuidInterface $id;
     public string $title;
     public string $iata;

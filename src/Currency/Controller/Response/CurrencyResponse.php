@@ -6,9 +6,11 @@ namespace App\Currency\Controller\Response;
 
 use App\Currency\Entity\Currency;
 use Ramsey\Uuid\UuidInterface;
+use OpenApi\Attributes as OA;
 
 class CurrencyResponse
 {
+    #[OA\Property(type: 'string', format: 'uuid')]
     public UuidInterface $id;
     public string $name;
     public string $code;
