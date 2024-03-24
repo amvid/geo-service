@@ -29,6 +29,9 @@ migrate:
 openapi:
 	@docker exec -it geo-service-app-dev sh -c "bin/console nelmio:apidoc:dump --format=yaml > openapi.yaml"
 
+cache:
+	@docker exec geo-service-app-dev sh -c "bin/console cache:clear"
+
 .PHONY: user
 user:
 	@docker exec -it geo-service-app-dev php bin/console app:create-user
