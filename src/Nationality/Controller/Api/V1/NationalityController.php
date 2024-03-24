@@ -35,7 +35,7 @@ class NationalityController extends ApiController
     #[OA\RequestBody(
         content: new OA\JsonContent(
             type: "object",
-            ref: new Model(type: NationalityResponse::class)
+            ref: new Model(type: CreateNationalityActionRequest::class)
         )
     )]
     #[OA\Response(
