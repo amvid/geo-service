@@ -39,7 +39,6 @@ class UpdateSubRegionActionTest extends TestCase
         $subRegion->setTitle($title)->setCreatedAt();
 
         $req = new UpdateSubRegionActionRequest();
-        $req->setId($id->toString());
         $req->title = $updateTitle;
         $req->regionTitle = $region->getTitle();
 
@@ -63,7 +62,7 @@ class UpdateSubRegionActionTest extends TestCase
         $action = new UpdateSubRegionAction($this->subRegionRepository, $this->regionRepository);
 
         try {
-            $actual = $action->run($req);
+            $actual = $action->run($req, $id);
         } catch (SubRegionNotFoundException | RegionNotFoundException $e) {
             $this->fail('Must not throw an error: ' . $e->getMessage());
         }
@@ -77,7 +76,6 @@ class UpdateSubRegionActionTest extends TestCase
         $id = Uuid::uuid4();
         $regionTitle = 'Some title';
         $req = new UpdateSubRegionActionRequest();
-        $req->setId($id->toString());
         $req->regionTitle = $regionTitle;
 
         $this->subRegionRepository
@@ -95,6 +93,6 @@ class UpdateSubRegionActionTest extends TestCase
         $action = new UpdateSubRegionAction($this->subRegionRepository, $this->regionRepository);
 
         $this->expectException(RegionNotFoundException::class);
-        $action->run($req);
+        $action->run($req, $id);
     }
 }
