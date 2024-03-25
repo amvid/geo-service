@@ -21,13 +21,11 @@ jobs:
       run: echo "TAG_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
     - name: Generate TypeScript Client
       run: npx @openapitools/openapi-generator-cli generate -i openapi.yaml -g typescript-fetch -o clients/geo-service-ts-client --git-user-id=amvid --git-repo-id=geo-service --additional-properties npmName=@amvid/geo-service,snapshot=false,npmVersion=${{ env.TAG_VERSION }}
-    - name: Enter the client directory
-      run: cd clients/geo-service-ts-client
-    - name: Install Dependencies
-      run: npm install
-    - name: Build the TypeScript project
-      run: npm run build
-    - name: Publish to npm
-      run: npm publish --access public
+    - name: Build and Publish
+      run: |
+        cd clients/geo-service-ts-client
+        npm install
+        npm run build
+        npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
