@@ -7,6 +7,20 @@ servers:
     url: 'http://127.0.0.1:8085'
     description: 'Local environment'
 paths:
+  /api/ping:
+    get:
+      tags:
+        - Server
+      operationId: get_ping
+      responses:
+        '200':
+          description: 'Airport updated successfully.'
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: pong
   /api/v1/nationalities:
     get:
       tags:
