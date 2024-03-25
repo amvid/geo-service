@@ -54,6 +54,12 @@ Regenerate openapi.yaml in project root directory
 make openapi
 ```
 
+### Client installation to your typescript frontend or backend application
+
+```bash
+npm install @amvid/geo-service
+```
+
 ### Import
 
 All geo data
