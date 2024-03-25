@@ -9,7 +9,7 @@ http:
   address: 0.0.0.0:8080
   pool:
     debug: false
-    num_workers: ${APP_NUM_WORKERS:-1}
+    num_workers: ${APP_NUM_WORKERS:-2}
   middleware: [ "static", "gzip" ]
   static:
     dir: "public"
