@@ -22,3 +22,7 @@ services:
       $apiAuthEnabled: '%env(bool:API_AUTH_ENABLED)%'
     tags:
       - { name: kernel.event_subscriber }
+
+  App\Application\Service\Twig\Environment:
+    decorates: twig
+    parent: twig
