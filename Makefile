@@ -1,18 +1,26 @@
 .PHONY: up
 up:
-	@docker-compose up
+	@docker compose up
+
+.PHONY: dev
+dev:
+	@docker compose up
 
 .PHONY: coldstart
 coldstart:
 	@docker-compose up -d
 	@docker exec geo-service-app-dev sh -c "composer install"
 	@docker exec geo-service-app-dev sh -c "bin/console d:m:m"
+	@docker exec geo-service-app-dev sh -c "bin/console assets:install"
 	@docker exec -it geo-service-app-dev sh -c "bin/console app:create-user"
 
 .PHONY: install
 install:
 	@docker-compose up -d
 	@docker exec geo-service-app-dev sh -c "composer install"
+
+assets:
+	@docker exec geo-service-app-dev sh -c "bin/console assets:install"
 
 .PHONY: update
 update:
