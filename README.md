@@ -7,7 +7,7 @@ Geo data REST API service with admin dashboard to manage regions, countries, nat
 [RoadRunner](https://roadrunner.dev) |
 [PHP8.3](https://www.php.net/releases/8.3/en.php) |
 [Symfony 6](https://symfony.com) |
-[EasyAdminBundle](https://symfony.com/bundles/EasyAdminBundle/current/index.html)
+[EasyAdminBundle](https://symfony.com/bundles/EasyAdminBundle/current/index.html) |
 [OpenAPI](https://swagger.io/specification/)
 
 ### Admin Dashboard
