@@ -136,15 +136,15 @@ class AirportController extends ApiController
      * @throws ValidationException
      */
     #[Route(self::API_ROUTE, name: 'app_airport_api_v1_airport_list', methods: HttpMethod::GET)]
-    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500')]
-    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0')]
-    #[OA\Parameter(name: 'id', in: 'query', required: false, description: 'Airprot uuid')]
-    #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'Airport title')]
-    #[OA\Parameter(name: 'iata', in: 'query', required: false, description: 'Airport IATA code')]
-    #[OA\Parameter(name: 'icao', in: 'query', required: false, description: 'Airport ICAO code')]
-    #[OA\Parameter(name: 'cityTitle', in: 'query', required: false, description: 'City title')]
-    #[OA\Parameter(name: 'timezone', in: 'query', required: false, description: 'Timezone (e.g. Europe/Oslo)')]
-    #[OA\Parameter(name: 'isActive', in: 'query', required: false, description: 'Is active (true/false)')]
+    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'id', in: 'query', required: false, description: 'Airprot uuid', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'Airport title', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'iata', in: 'query', required: false, description: 'Airport IATA code', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'icao', in: 'query', required: false, description: 'Airport ICAO code', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'cityTitle', in: 'query', required: false, description: 'City title', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'timezone', in: 'query', required: false, description: 'Timezone (e.g. Europe/Oslo)', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'isActive', in: 'query', required: false, description: 'Is active (true/false)', content: new OA\JsonContent(type: 'boolean'))]
     #[OA\Response(
         response: 200,
         description: 'List of airports.',

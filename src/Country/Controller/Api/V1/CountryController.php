@@ -80,17 +80,17 @@ class CountryController extends ApiController
      * @throws ValidationException
      */
     #[Route(self::API_ROUTE, name: 'app_country_api_v1_country_list', methods: HttpMethod::GET)]
-    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500')]
-    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0')]
-    #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'Country title')]
-    #[OA\Parameter(name: 'id', in: 'query', required: false, description: 'Country uuid')]
-    #[OA\Parameter(name: 'iso2', in: 'query', required: false, description: 'Country ISO2 code')]
-    #[OA\Parameter(name: 'iso3', in: 'query', required: false, description: 'Country ISO3 code')]
-    #[OA\Parameter(name: 'nativeTitle', in: 'query', required: false, description: 'Country native title')]
-    #[OA\Parameter(name: 'numericCode', in: 'query', required: false, description: 'Country numeric code')]
-    #[OA\Parameter(name: 'tld', in: 'query', required: false, description: 'Country top level domain')]
-    #[OA\Parameter(name: 'subRegion', in: 'query', required: false, description: 'SubRegion title')]
-    #[OA\Parameter(name: 'currencyCode', in: 'query', required: false, description: 'Currency code')]
+    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'Country title', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'id', in: 'query', required: false, description: 'Country uuid', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'iso2', in: 'query', required: false, description: 'Country ISO2 code', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'iso3', in: 'query', required: false, description: 'Country ISO3 code', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'nativeTitle', in: 'query', required: false, description: 'Country native title', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'numericCode', in: 'query', required: false, description: 'Country numeric code', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'tld', in: 'query', required: false, description: 'Country top level domain', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'subRegion', in: 'query', required: false, description: 'SubRegion title', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'currencyCode', in: 'query', required: false, description: 'Currency code', content: new OA\JsonContent(type: 'string'))]
     #[OA\Response(
         response: 200,
         description: 'List of countries.',
@@ -138,10 +138,10 @@ class CountryController extends ApiController
     }
 
     #[Route(self::API_ROUTE . '/phone-codes', name: 'app_country_api_v1_country_phone_codes', methods: HttpMethod::GET)]
-    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500')]
-    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0')]
-    #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'Country title')]
-    #[OA\Parameter(name: 'phoneCode', in: 'query', required: false, description: 'Phone code')]
+    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'Country title', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'phoneCode', in: 'query', required: false, description: 'Phone code', content: new OA\JsonContent(type: 'string'))]
     #[OA\Response(
         response: 200,
         description: 'List of phone codes.',

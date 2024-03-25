@@ -77,11 +77,11 @@ class CurrencyController extends ApiController
      * @throws ValidationException
      */
     #[Route(self::API_ROUTE, name: 'app_currency_api_v1_currency_list', methods: HttpMethod::GET)]
-    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500')]
-    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0')]
-    #[OA\Parameter(name: 'name', in: 'query', required: false, description: 'Currency name')]
-    #[OA\Parameter(name: 'code', in: 'query', required: false, description: 'Currency code')]
-    #[OA\Parameter(name: 'symbol', in: 'query', required: false, description: 'Currency symbol')]
+    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'name', in: 'query', required: false, description: 'Currency name', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'code', in: 'query', required: false, description: 'Currency code', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'symbol', in: 'query', required: false, description: 'Currency symbol', content: new OA\JsonContent(type: 'string'))]
     #[OA\Response(
         response: 200,
         description: 'List of currencies.',

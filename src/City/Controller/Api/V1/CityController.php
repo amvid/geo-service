@@ -107,13 +107,13 @@ class CityController extends ApiController
      * @throws ValidationException
      */
     #[Route(self::API_ROUTE, name: 'app_city_api_v1_city_list', methods: HttpMethod::GET)]
-    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500')]
-    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0')]
-    #[OA\Parameter(name: 'id', in: 'query', required: false, description: 'City uuid')]
-    #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'City title')]
-    #[OA\Parameter(name: 'iata', in: 'query', required: false, description: 'City IATA code')]
-    #[OA\Parameter(name: 'countryIso2', in: 'query', required: false, description: 'Couyntry ISO2 code')]
-    #[OA\Parameter(name: 'stateTitle', in: 'query', required: false, description: 'State title')]
+    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'id', in: 'query', required: false, description: 'City uuid', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'City title', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'iata', in: 'query', required: false, description: 'City IATA code', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'countryIso2', in: 'query', required: false, description: 'Couyntry ISO2 code', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'stateTitle', in: 'query', required: false, description: 'State title', content: new OA\JsonContent(type: 'string'))]
     #[OA\Response(
         response: 200,
         description: 'List of cities.',

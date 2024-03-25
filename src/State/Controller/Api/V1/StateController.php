@@ -73,9 +73,9 @@ class StateController extends ApiController
      * @throws ValidationException
      */
     #[Route(self::API_ROUTE, name: 'app_state_api_v1_state_list', methods: HttpMethod::GET)]
-    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500')]
-    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0')]
-    #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'State title')]
+    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'State title', content: new OA\JsonContent(type: 'string'))]
     #[OA\Response(
         response: 200,
         description: 'List of states.',

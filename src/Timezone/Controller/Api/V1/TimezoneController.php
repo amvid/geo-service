@@ -78,11 +78,11 @@ class TimezoneController extends ApiController
      * @throws ValidationException
      */
     #[Route(self::API_ROUTE, name: 'app_timezone_api_v1_timezone_list', methods: HttpMethod::GET)]
-    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500')]
-    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0')]
-    #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'Timezone title')]
-    #[OA\Parameter(name: 'code', in: 'query', required: false, description: 'Timezone code')]
-    #[OA\Parameter(name: 'utc', in: 'query', required: false, description: 'Timezone UTC')]
+    #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0', content: new OA\JsonContent(type: 'integer'))]
+    #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'Timezone title', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'code', in: 'query', required: false, description: 'Timezone code', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'utc', in: 'query', required: false, description: 'Timezone UTC', content: new OA\JsonContent(type: 'string'))]
     #[OA\Response(
         response: 200,
         description: 'List of timezones.',

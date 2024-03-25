@@ -32,16 +32,28 @@ paths:
           in: query
           description: 'Default 500'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: offset
           in: query
           description: 'Default 0'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: title
           in: query
           description: 'Nationality title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
       responses:
         '200':
           description: 'List of nationalities.'
@@ -118,16 +130,28 @@ paths:
           in: query
           description: 'Default 500'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: offset
           in: query
           description: 'Default 0'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: title
           in: query
           description: 'Nationality title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
       responses:
         '200':
           description: 'List of regions.'
@@ -204,16 +228,28 @@ paths:
           in: query
           description: 'Default 500'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: offset
           in: query
           description: 'Default 0'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: title
           in: query
           description: 'SubRegion title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
       responses:
         '200':
           description: 'List of subregions.'
@@ -290,26 +326,46 @@ paths:
           in: query
           description: 'Default 500'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: offset
           in: query
           description: 'Default 0'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: title
           in: query
           description: 'Timezone title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: code
           in: query
           description: 'Timezone code'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: utc
           in: query
           description: 'Timezone UTC'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
       responses:
         '200':
           description: 'List of timezones.'
@@ -386,26 +442,46 @@ paths:
           in: query
           description: 'Default 500'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: offset
           in: query
           description: 'Default 0'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: name
           in: query
           description: 'Currency name'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: code
           in: query
           description: 'Currency code'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: symbol
           in: query
           description: 'Currency symbol'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
       responses:
         '200':
           description: 'List of currencies.'
@@ -482,56 +558,100 @@ paths:
           in: query
           description: 'Default 500'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: offset
           in: query
           description: 'Default 0'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: title
           in: query
           description: 'Country title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: id
           in: query
           description: 'Country uuid'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: iso2
           in: query
           description: 'Country ISO2 code'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: iso3
           in: query
           description: 'Country ISO3 code'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: nativeTitle
           in: query
           description: 'Country native title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: numericCode
           in: query
           description: 'Country numeric code'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: tld
           in: query
           description: 'Country top level domain'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: subRegion
           in: query
           description: 'SubRegion title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: currencyCode
           in: query
           description: 'Currency code'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
       responses:
         '200':
           description: 'List of countries.'
@@ -608,21 +728,37 @@ paths:
           in: query
           description: 'Default 500'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: offset
           in: query
           description: 'Default 0'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: title
           in: query
           description: 'Country title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: phoneCode
           in: query
           description: 'Phone code'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
       responses:
         '200':
           description: 'List of phone codes.'
@@ -643,16 +779,28 @@ paths:
           in: query
           description: 'Default 500'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: offset
           in: query
           description: 'Default 0'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: title
           in: query
           description: 'State title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
       responses:
         '200':
           description: 'List of states.'
@@ -729,36 +877,64 @@ paths:
           in: query
           description: 'Default 500'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: offset
           in: query
           description: 'Default 0'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: id
           in: query
           description: 'City uuid'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: title
           in: query
           description: 'City title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: iata
           in: query
           description: 'City IATA code'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: countryIso2
           in: query
           description: 'Couyntry ISO2 code'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: stateTitle
           in: query
           description: 'State title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
       responses:
         '200':
           description: 'List of cities.'
@@ -835,46 +1011,82 @@ paths:
           in: query
           description: 'Default 500'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: offset
           in: query
           description: 'Default 0'
           required: false
+          content:
+            application/json:
+              schema:
+                type: integer
         -
           name: id
           in: query
           description: 'Airprot uuid'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: title
           in: query
           description: 'Airport title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: iata
           in: query
           description: 'Airport IATA code'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: icao
           in: query
           description: 'Airport ICAO code'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: cityTitle
           in: query
           description: 'City title'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: timezone
           in: query
           description: 'Timezone (e.g. Europe/Oslo)'
           required: false
+          content:
+            application/json:
+              schema:
+                type: string
         -
           name: isActive
           in: query
           description: 'Is active (true/false)'
           required: false
+          content:
+            application/json:
+              schema:
+                type: boolean
       responses:
         '200':
           description: 'List of airports.'
