@@ -19,8 +19,12 @@ jobs:
     - name: Extract Tag Name
       id: get_version
       run: echo "TAG_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-    - name: Generate TypeScript Client
-      run: npx @openapitools/openapi-generator-cli generate -i openapi.yaml -g typescript-fetch -o clients/geo-service-ts-client --git-user-id=amvid --git-repo-id=geo-service --additional-properties npmName=@amvid/geo-service,snapshot=false,npmVersion=${{ env.TAG_VERSION }}
+    - name: Install jq
+      run: sudo apt-get update && sudo apt-get install -y jq
+    - name: Generate client and add license
+      run: |
+        npx @openapitools/openapi-generator-cli generate -i openapi.yaml -g typescript-fetch -o clients/geo-service-ts-client --git-user-id=amvid --git-repo-id=geo-service --additional-properties npmName=@amvid/geo-service,snapshot=false,npmVersion=${{ env.TAG_VERSION }}
+        jq '. + {license: "MIT"}' clients/geo-service-ts-client/package.json > temp.json && mv temp.json clients/geo-service-ts-client/package.json
     - name: Build and Publish
       run: |
         cd clients/geo-service-ts-client
