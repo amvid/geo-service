@@ -2,7 +2,7 @@ baldinof_road_runner:
     # When the kernel should be rebooted.
     # See https://github.com/baldinof/roadrunner-bundle#kernel-reboots
     kernel_reboot:
-        strategy: always
+        # strategy: always
         # # if you want to use a fresh container on each request, use the `always` strategy
         # strategy: [on_exception, max_jobs]
         # # Exceptions you KNOW that do not put your app in an unrecoverable state
