@@ -8,7 +8,7 @@ dev:
 
 .PHONY: coldstart
 coldstart:
-	@docker-compose up -d
+	@docker compose up -d
 	@docker exec geo-service-app-dev sh -c "composer install"
 	@docker exec geo-service-app-dev sh -c "bin/console d:m:m"
 	@docker exec geo-service-app-dev sh -c "bin/console assets:install"
@@ -16,7 +16,7 @@ coldstart:
 
 .PHONY: install
 install:
-	@docker-compose up -d
+	@docker compose up -d
 	@docker exec geo-service-app-dev sh -c "composer install"
 
 assets:
@@ -50,14 +50,14 @@ ssh:
 
 .PHONY: test
 test:
-	@docker-compose -f docker-compose.test.yaml up -d
+	@docker compose -f docker-compose.test.yaml up -d
 	@docker exec geo-service-test-app sh -c "APP_ENV=test ./bin/console --no-interaction d:m:m"
 	@docker exec geo-service-test-app sh -c "APP_ENV=test ./bin/console d:f:l --no-interaction"
 	@docker exec geo-service-test-app sh -c "APP_ENV=test ./vendor/bin/phpunit"
 
 .PHONY: test-down
 test-down:
-	@docker-compose -f docker-compose.test.yaml down -v --timeout=0
+	@docker compose -f docker-compose.test.yaml down -v --timeout=0
 
 .PHONY: regions
 regions:
