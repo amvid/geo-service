@@ -1581,14 +1581,14 @@
         "gmtOffset": -14400,
         "gmtOffsetName": "UTC-04:00",
         "abbreviation": "AMT",
-        "tzName": "Amazon Time (Brazil)[3"
+        "tzName": "Amazon Time (Brazil)"
       },
       {
         "zoneName": "America\/Campo_Grande",
         "gmtOffset": -14400,
         "gmtOffsetName": "UTC-04:00",
         "abbreviation": "AMT",
-        "tzName": "Amazon Time (Brazil)[3"
+        "tzName": "Amazon Time (Brazil)"
       },
       {
         "zoneName": "America\/Cuiaba",
@@ -1637,7 +1637,7 @@
         "gmtOffset": -14400,
         "gmtOffsetName": "UTC-04:00",
         "abbreviation": "AMT",
-        "tzName": "Amazon Time (Brazil)[3"
+        "tzName": "Amazon Time (Brazil)"
       },
       {
         "zoneName": "America\/Recife",
