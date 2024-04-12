@@ -8,6 +8,8 @@ dev:
 
 .PHONY: coldstart
 coldstart:
+	rm -rf vendor
+	rm bin/rr
 	@docker compose up -d
 	@docker exec geo-service-app-dev sh -c "composer install"
 	@docker exec geo-service-app-dev sh -c "bin/console d:m:m"
