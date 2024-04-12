@@ -23,7 +23,7 @@ services:
       - geo-service-test-network
 
   geo-service-test-db:
-    image: mariadb:10.9.3
+    image: mariadb:11.3
     container_name: geo-service-test-db
     ports:
       - "4306:3306"

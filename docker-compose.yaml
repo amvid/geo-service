@@ -20,7 +20,7 @@ services:
       - geo-service-network
 
   geo-service-db:
-    image: mariadb:10.9.3
+    image: mariadb:11.3
     container_name: geo-service-db
     ports:
       - "5306:3306"

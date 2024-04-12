@@ -1,4 +1,4 @@
-FROM php:8.3.4-cli-alpine3.18
+FROM php:8.3.6-cli-alpine3.18
 
 RUN --mount=type=bind,from=mlocati/php-extension-installer:1.5,source=/usr/bin/install-php-extensions,target=/usr/local/bin/install-php-extensions \
      install-php-extensions pdo pdo_mysql zip opcache xsl dom exif intl pcntl bcmath sockets && \
@@ -17,7 +17,7 @@ RUN composer install --optimize-autoloader --no-dev --prefer-dist \
      && bin/console assets:install \
      && bin/console cache:clear
 
-COPY --from=ghcr.io/roadrunner-server/roadrunner:2023.3.12 /usr/bin/rr .
+COPY --from=ghcr.io/roadrunner-server/roadrunner:2024.1.0 /usr/bin/rr .
 
 EXPOSE 8080/tcp
 
