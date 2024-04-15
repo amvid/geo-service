@@ -10,9 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: TimezoneRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity('title')]
+#[UniqueEntity('code')]
 class Timezone
 {
     use TimestampTrait;

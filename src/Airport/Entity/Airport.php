@@ -13,9 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: AirportRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity('icao')]
+#[UniqueEntity('iata')]
 class Airport
 {
     use TimestampTrait;

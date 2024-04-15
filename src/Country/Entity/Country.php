@@ -17,9 +17,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CountryRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity('title')]
+#[UniqueEntity('iso2')]
+#[UniqueEntity('iso3')]
+#[UniqueEntity('numericCode')]
 class Country
 {
     use TimestampTrait;

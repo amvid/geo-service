@@ -13,10 +13,12 @@ use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CityRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ORM\UniqueConstraint(name: 'city_title__country_unique', columns: ['country_id', 'title'])]
+#[UniqueEntity('iata')]
 class City
 {
     use TimestampTrait;
@@ -39,7 +41,7 @@ class City
     #[ORM\Column(length: 150, nullable: false)]
     private string $title;
 
-    #[ORM\Column(length: 3, nullable: true)]
+    #[ORM\Column(length: 3, nullable: true, unique: true)]
     private ?string $iata = null;
 
     public function __construct(?UuidInterface $id = null)

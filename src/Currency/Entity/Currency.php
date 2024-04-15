@@ -10,9 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\Doctrine\UuidType;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CurrencyRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity('code')]
+#[UniqueEntity('name')]
 class Currency
 {
     use TimestampTrait;

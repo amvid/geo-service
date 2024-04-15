@@ -11,9 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: SubRegionRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[UniqueEntity('title')]
 class SubRegion
 {
     use TimestampTrait;
