@@ -5,6 +5,7 @@ rpc:
 
 server:
   command: "php public/index.php"
+  relay: pipes
   env:
     - APP_RUNTIME: Baldinof\RoadRunnerBundle\Runtime\Runtime
 

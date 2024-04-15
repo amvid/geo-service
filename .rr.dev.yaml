@@ -2,6 +2,7 @@ version: "3"
 
 server:
   command: "php public/index.php"
+  relay: pipes
   env:
     - APP_RUNTIME: Baldinof\RoadRunnerBundle\Runtime\Runtime
     - XDEBUG_SESSION: '1'
@@ -22,5 +23,5 @@ logs:
     http:
       level: debug # Log all http requests, set to info to disable
     server:
-      level: info # Everything written to worker stderr is logged
+      level: debug # Everything written to worker stderr is logged
       mode: raw
