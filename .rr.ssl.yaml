@@ -13,13 +13,12 @@ http:
   pool:
     debug: false
     num_workers: ${RR_NUM_WORKERS:-3}
-    max_jobs: ${RR_WORKER_MAX_JOBS:-100}
     supervisor:
       max_worker_memory: ${RR_WORKER_MAX_MEMORY:-75}
-  middleware: [ "static", "gzip" ]
+  middleware: ["static", "gzip"]
   static:
     dir: "public"
-    forbid: [ ".php" ]
+    forbid: [".php"]
   ssl:
     address: 0.0.0.0:443
     redirect: true
