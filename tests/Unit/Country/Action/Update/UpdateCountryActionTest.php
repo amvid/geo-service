@@ -23,17 +23,18 @@ use App\Tests\Unit\Timezone\TimezoneDummy;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class UpdateCountryActionTest extends TestCase
 {
-    private CountryFactoryInterface $factory;
-    private CountryRepositoryInterface $countryRepository;
-    private SubRegionRepositoryInterface $subRegionRepository;
-    private TimezoneRepositoryInterface $timezoneRepository;
-    private CurrencyRepositoryInterface $currencyRepository;
+    private CountryFactoryInterface&MockObject $factory;
+    private CountryRepositoryInterface&MockObject $countryRepository;
+    private SubRegionRepositoryInterface&MockObject $subRegionRepository;
+    private TimezoneRepositoryInterface&MockObject $timezoneRepository;
+    private CurrencyRepositoryInterface&MockObject $currencyRepository;
     private UpdateCountryAction $action;
     private UpdateCountryActionRequest $request;
 

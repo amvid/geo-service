@@ -12,15 +12,16 @@ use App\State\Exception\StateNotFoundException;
 use App\State\Factory\StateFactoryInterface;
 use App\State\Repository\StateRepositoryInterface;
 use App\Tests\Unit\Country\CountryDummy;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class UpdateStateActionTest extends TestCase
 {
-    private StateFactoryInterface $stateFactory;
-    private StateRepositoryInterface $stateRepository;
-    private CountryRepositoryInterface $countryRepository;
+    private StateFactoryInterface&MockObject $stateFactory;
+    private StateRepositoryInterface&MockObject $stateRepository;
+    private CountryRepositoryInterface&MockObject $countryRepository;
 
     private UpdateStateActionRequest $request;
     private UuidInterface $id;

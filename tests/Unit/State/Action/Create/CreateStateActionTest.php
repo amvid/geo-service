@@ -4,30 +4,24 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\State\Action\Create;
 
-use App\Country\Entity\Country;
 use App\Country\Exception\CountryNotFoundException;
 use App\Country\Repository\CountryRepositoryInterface;
-use App\Currency\Entity\Currency;
-use App\Region\Entity\Region;
 use App\State\Action\Create\CreateStateAction;
 use App\State\Action\Create\CreateStateActionRequest;
 use App\State\Entity\State;
 use App\State\Exception\StateAlreadyExistsException;
 use App\State\Factory\StateFactoryInterface;
 use App\State\Repository\StateRepositoryInterface;
-use App\SubRegion\Entity\SubRegion;
 use App\Tests\Unit\Country\CountryDummy;
 use App\Tests\Unit\State\StateDummy;
-use App\Timezone\Entity\Timezone;
-use Doctrine\Common\Collections\ArrayCollection;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Ramsey\Uuid\Uuid;
 
 class CreateStateActionTest extends TestCase
 {
-    private CountryRepositoryInterface $countryRepository;
-    private StateRepositoryInterface $stateRepository;
-    private StateFactoryInterface $factory;
+    private CountryRepositoryInterface&MockObject $countryRepository;
+    private StateRepositoryInterface&MockObject $stateRepository;
+    private StateFactoryInterface&MockObject $factory;
 
     private string $title = 'New Jersey';
     private string $code = 'NJ';

@@ -13,7 +13,6 @@ use App\Country\Repository\CountryRepositoryInterface;
 use App\Currency\Entity\Currency;
 use App\Currency\Exception\CurrencyNotFoundException;
 use App\Currency\Repository\CurrencyRepositoryInterface;
-use App\Region\Entity\Region;
 use App\SubRegion\Entity\SubRegion;
 use App\SubRegion\Exception\SubRegionNotFoundException;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
@@ -21,20 +20,20 @@ use App\Tests\Unit\Currency\CurrencyDummy;
 use App\Tests\Unit\Region\RegionDummy;
 use App\Tests\Unit\SubRegion\SubRegionDummy;
 use App\Tests\Unit\Timezone\TimezoneDummy;
-use App\Timezone\Entity\Timezone;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class CreateCountryActionTest extends TestCase
 {
-    private CountryFactoryInterface $factory;
-    private CountryRepositoryInterface $countryRepository;
-    private SubRegionRepositoryInterface $subRegionRepository;
-    private TimezoneRepositoryInterface $timezoneRepository;
-    private CurrencyRepositoryInterface $currencyRepository;
+    private CountryFactoryInterface&MockObject $factory;
+    private CountryRepositoryInterface&MockObject $countryRepository;
+    private SubRegionRepositoryInterface&MockObject $subRegionRepository;
+    private TimezoneRepositoryInterface&MockObject $timezoneRepository;
+    private CurrencyRepositoryInterface&MockObject $currencyRepository;
     private CreateCountryAction $action;
     private CreateCountryActionRequest $request;
 

@@ -14,13 +14,14 @@ use App\Tests\Unit\City\CityDummy;
 use App\Tests\Unit\Timezone\TimezoneDummy;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class GetAirportsActionTest extends TestCase
 {
-    private AirportRepositoryInterface $airportRepository;
-    private CityRepositoryInterface $cityRepository;
-    private TimezoneRepositoryInterface $timezoneRepository;
+    private AirportRepositoryInterface&MockObject $airportRepository;
+    private CityRepositoryInterface&MockObject $cityRepository;
+    private TimezoneRepositoryInterface&MockObject $timezoneRepository;
 
     private GetAirportsActionRequest $request;
     private string $cityTitle = 'Trondheim';

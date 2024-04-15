@@ -8,12 +8,13 @@ use App\Currency\Action\Delete\DeleteCurrencyAction;
 use App\Currency\Action\Delete\DeleteCurrencyActionRequest;
 use App\Currency\Entity\Currency;
 use App\Currency\Repository\CurrencyRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class DeleteCurrencyActionTest extends TestCase
 {
-    private CurrencyRepositoryInterface $repository;
+    private CurrencyRepositoryInterface&MockObject $repository;
 
     protected function setUp(): void
     {

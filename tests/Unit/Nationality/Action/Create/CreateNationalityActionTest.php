@@ -11,13 +11,14 @@ use App\Nationality\Entity\Nationality;
 use App\Nationality\Exception\NationalityAlreadyExistsException;
 use App\Nationality\Factory\NationalityFactoryInterface;
 use App\Nationality\Repository\NationalityRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class CreateNationalityActionTest extends TestCase
 {
-    private readonly NationalityFactoryInterface $factory;
-    private readonly NationalityRepositoryInterface $repository;
+    private readonly NationalityFactoryInterface&MockObject $factory;
+    private readonly NationalityRepositoryInterface&MockObject $repository;
 
     protected function setUp(): void
     {

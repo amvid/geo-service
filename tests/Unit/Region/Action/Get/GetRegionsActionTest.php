@@ -8,12 +8,13 @@ use App\Region\Action\Get\GetRegionsAction;
 use App\Region\Action\Get\GetRegionsActionRequest;
 use App\Region\Entity\Region;
 use App\Region\Repository\RegionRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class GetRegionsActionTest extends TestCase
 {
-    private RegionRepositoryInterface $repository;
+    private RegionRepositoryInterface&MockObject $repository;
     private Region $asia;
     private Region $europe;
 

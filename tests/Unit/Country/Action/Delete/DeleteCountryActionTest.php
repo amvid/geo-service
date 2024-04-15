@@ -8,12 +8,13 @@ use App\Country\Action\Delete\DeleteCountryAction;
 use App\Country\Action\Delete\DeleteCountryActionRequest;
 use App\Country\Entity\Country;
 use App\Country\Repository\CountryRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class DeleteCountryActionTest extends TestCase
 {
-    private CountryRepositoryInterface $repository;
+    private CountryRepositoryInterface&MockObject $repository;
 
     protected function setUp(): void
     {

@@ -9,12 +9,13 @@ use App\Region\Action\Update\UpdateRegionActionRequest;
 use App\Region\Entity\Region;
 use App\Region\Exception\RegionNotFoundException;
 use App\Region\Repository\RegionRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class UpdateRegionActionTest extends TestCase
 {
-    private RegionRepositoryInterface $regionRepository;
+    private RegionRepositoryInterface&MockObject $regionRepository;
 
     protected function setUp(): void
     {

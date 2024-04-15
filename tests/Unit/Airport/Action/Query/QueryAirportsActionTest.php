@@ -8,11 +8,12 @@ use App\Airport\Action\Query\QueryAirportsAction;
 use App\Airport\Action\Query\QueryAirportsActionRequest;
 use App\Airport\Repository\AirportRepositoryInterface;
 use App\Tests\Unit\Airport\AirportDummy;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class QueryAirportsActionTest extends TestCase
 {
-    private AirportRepositoryInterface $airportRepository;
+    private AirportRepositoryInterface&MockObject $airportRepository;
     private QueryAirportsActionRequest $request;
 
     private int $offset = 0;

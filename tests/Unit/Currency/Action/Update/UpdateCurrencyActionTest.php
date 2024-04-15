@@ -9,12 +9,13 @@ use App\Currency\Action\Update\UpdateCurrencyActionRequest;
 use App\Currency\Entity\Currency;
 use App\Currency\Exception\CurrencyNotFoundException;
 use App\Currency\Repository\CurrencyRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class UpdateCurrencyActionTest extends TestCase
 {
-    private CurrencyRepositoryInterface $repository;
+    private CurrencyRepositoryInterface&MockObject $repository;
 
     protected function setUp(): void
     {

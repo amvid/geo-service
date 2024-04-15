@@ -11,13 +11,14 @@ use App\Timezone\Entity\Timezone;
 use App\Timezone\Exception\TimezoneAlreadyExistsException;
 use App\Timezone\Factory\TimezoneFactoryInterface;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class CreateTimezoneActionTest extends TestCase
 {
-    private readonly TimezoneFactoryInterface $factory;
-    private readonly TimezoneRepositoryInterface $repository;
+    private readonly TimezoneFactoryInterface&MockObject $factory;
+    private readonly TimezoneRepositoryInterface&MockObject $repository;
 
     protected function setUp(): void
     {

@@ -18,15 +18,16 @@ use App\State\Repository\StateRepositoryInterface;
 use App\Tests\Unit\City\CityDummy;
 use App\Tests\Unit\Country\CountryDummy;
 use App\Tests\Unit\State\StateDummy;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class CreateCityActionTest extends TestCase
 {
-    private CityFactoryInterface $factory;
-    private CityRepositoryInterface $cityRepository;
-    private StateRepositoryInterface $stateRepository;
-    private CountryRepositoryInterface $countryRepository;
+    private CityFactoryInterface&MockObject $factory;
+    private CityRepositoryInterface&MockObject $cityRepository;
+    private StateRepositoryInterface&MockObject $stateRepository;
+    private CountryRepositoryInterface&MockObject $countryRepository;
 
     private CreateCityActionRequest $request;
 

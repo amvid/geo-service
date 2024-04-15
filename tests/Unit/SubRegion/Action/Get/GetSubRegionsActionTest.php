@@ -9,12 +9,13 @@ use App\SubRegion\Action\Get\GetSubRegionsAction;
 use App\SubRegion\Action\Get\GetSubRegionsActionRequest;
 use App\SubRegion\Entity\SubRegion;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class GetSubRegionsActionTest extends TestCase
 {
-    private SubRegionRepositoryInterface $repository;
+    private SubRegionRepositoryInterface&MockObject $repository;
     private SubRegion $easternEurope;
     private SubRegion $northernEurope;
 

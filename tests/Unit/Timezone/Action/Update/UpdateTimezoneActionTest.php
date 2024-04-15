@@ -9,12 +9,13 @@ use App\Timezone\Action\Update\UpdateTimezoneActionRequest;
 use App\Timezone\Entity\Timezone;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class UpdateTimezoneActionTest extends TestCase
 {
-    private TimezoneRepositoryInterface $timezoneRepository;
+    private TimezoneRepositoryInterface&MockObject $timezoneRepository;
 
     protected function setUp(): void
     {

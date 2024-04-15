@@ -8,12 +8,13 @@ use App\Region\Action\Delete\DeleteRegionAction;
 use App\Region\Action\Delete\DeleteRegionActionRequest;
 use App\Region\Entity\Region;
 use App\Region\Repository\RegionRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class DeleteRegionActionTest extends TestCase
 {
-    private RegionRepositoryInterface $repository;
+    private RegionRepositoryInterface&MockObject $repository;
 
     protected function setUp(): void
     {

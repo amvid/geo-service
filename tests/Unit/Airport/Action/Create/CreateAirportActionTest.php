@@ -11,7 +11,6 @@ use App\Airport\Exception\AirportAlreadyExistsException;
 use App\Airport\Factory\AirportFactoryInterface;
 use App\Airport\Repository\AirportRepositoryInterface;
 use App\City\Entity\City;
-use App\Country\Entity\Country;
 use App\City\Exception\CityNotFoundException;
 use App\City\Repository\CityRepositoryInterface;
 use App\Country\Exception\CountryNotFoundException;
@@ -21,16 +20,17 @@ use App\Tests\Unit\Country\CountryDummy;
 use App\Tests\Unit\Timezone\TimezoneDummy;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class CreateAirportActionTest extends TestCase
 {
-    private AirportFactoryInterface $factory;
-    private AirportRepositoryInterface $airportRepository;
-    private CityRepositoryInterface $cityRepository;
-    private CountryRepositoryInterface $countryRepository;
-    private TimezoneRepositoryInterface $timezoneRepository;
+    private AirportFactoryInterface&MockObject $factory;
+    private AirportRepositoryInterface&MockObject $airportRepository;
+    private CityRepositoryInterface&MockObject $cityRepository;
+    private CountryRepositoryInterface&MockObject $countryRepository;
+    private TimezoneRepositoryInterface&MockObject $timezoneRepository;
 
     private CreateAirportActionRequest $request;
     private string $iata = 'TST';

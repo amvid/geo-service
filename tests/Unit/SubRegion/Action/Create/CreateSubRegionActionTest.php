@@ -14,14 +14,15 @@ use App\SubRegion\Exception\SubRegionAlreadyExistsException;
 use App\SubRegion\Factory\SubRegionFactoryInterface;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
 use App\Tests\Unit\Region\RegionDummy;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class CreateSubRegionActionTest extends TestCase
 {
-    private readonly SubRegionFactoryInterface $factory;
-    private readonly SubRegionRepositoryInterface $subRegionRepository;
-    private readonly RegionRepositoryInterface $regionRepository;
+    private readonly SubRegionFactoryInterface&MockObject $factory;
+    private readonly SubRegionRepositoryInterface&MockObject $subRegionRepository;
+    private readonly RegionRepositoryInterface&MockObject $regionRepository;
 
     protected function setUp(): void
     {

@@ -14,13 +14,14 @@ use App\State\Repository\StateRepositoryInterface;
 use App\Tests\Unit\City\CityDummy;
 use App\Tests\Unit\Country\CountryDummy;
 use App\Tests\Unit\State\StateDummy;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class GetCitiesActionTest extends TestCase
 {
-    private CityRepositoryInterface $cityRepository;
-    private StateRepositoryInterface $stateRepository;
-    private CountryRepositoryInterface $countryRepository;
+    private CityRepositoryInterface&MockObject $cityRepository;
+    private StateRepositoryInterface&MockObject $stateRepository;
+    private CountryRepositoryInterface&MockObject $countryRepository;
 
     private string $stateTitle = 'New Jersey';
     private string $countryIso2 = 'US';

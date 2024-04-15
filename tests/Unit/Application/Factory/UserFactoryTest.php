@@ -7,12 +7,13 @@ namespace App\Tests\Unit\Application\Factory;
 use App\Application\Entity\User;
 use App\Application\Factory\UserFactory;
 use App\Application\Factory\UserFactoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFactoryTest extends TestCase
 {
-    private UserPasswordHasherInterface $hasher;
+    private UserPasswordHasherInterface&MockObject $hasher;
     private UserFactoryInterface $factory;
 
     protected function setUp(): void

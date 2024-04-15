@@ -8,12 +8,13 @@ use App\Nationality\Action\Get\GetNationalitiesAction;
 use App\Nationality\Action\Get\GetNationalitiesActionRequest;
 use App\Nationality\Entity\Nationality;
 use App\Nationality\Repository\NationalityRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class GetNationalitiesActionTest extends TestCase
 {
-    private NationalityRepositoryInterface $repository;
+    private NationalityRepositoryInterface&MockObject $repository;
     private Nationality $norwegian;
     private Nationality $american;
 

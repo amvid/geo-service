@@ -8,12 +8,13 @@ use App\Timezone\Action\Get\GetTimezonesAction;
 use App\Timezone\Action\Get\GetTimezonesActionRequest;
 use App\Timezone\Entity\Timezone;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class GetTimezonesActionTest extends TestCase
 {
-    private TimezoneRepositoryInterface $repository;
+    private TimezoneRepositoryInterface&MockObject $repository;
     private Timezone $riga;
     private Timezone $oslo;
 

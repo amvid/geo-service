@@ -8,12 +8,13 @@ use App\State\Action\Delete\DeleteStateAction;
 use App\State\Action\Delete\DeleteStateActionRequest;
 use App\State\Entity\State;
 use App\State\Repository\StateRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class DeleteStateActionTest extends TestCase
 {
-    private StateRepositoryInterface $repository;
+    private StateRepositoryInterface&MockObject $repository;
 
     protected function setUp(): void
     {

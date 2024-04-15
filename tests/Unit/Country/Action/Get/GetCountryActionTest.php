@@ -15,15 +15,16 @@ use App\SubRegion\Exception\SubRegionNotFoundException;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
 use App\Tests\Unit\Currency\CurrencyDummy;
 use App\Tests\Unit\SubRegion\SubRegionDummy;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class GetCountryActionTest extends TestCase
 {
-    private CountryRepositoryInterface $countryRepository;
-    private SubRegionRepositoryInterface $subRegionRepository;
-    private CurrencyRepositoryInterface $currencyRepository;
+    private CountryRepositoryInterface&MockObject $countryRepository;
+    private SubRegionRepositoryInterface&MockObject $subRegionRepository;
+    private CurrencyRepositoryInterface&MockObject $currencyRepository;
 
     private GetCountriesActionRequest $request;
 

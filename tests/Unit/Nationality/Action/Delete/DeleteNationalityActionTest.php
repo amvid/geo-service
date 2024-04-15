@@ -8,12 +8,13 @@ use App\Nationality\Action\Delete\DeleteNationalityAction;
 use App\Nationality\Action\Delete\DeleteNationalityActionRequest;
 use App\Nationality\Entity\Nationality;
 use App\Nationality\Repository\NationalityRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class DeleteNationalityActionTest extends TestCase
 {
-    private NationalityRepositoryInterface $repository;
+    private NationalityRepositoryInterface&MockObject $repository;
 
     protected function setUp(): void
     {

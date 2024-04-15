@@ -8,13 +8,14 @@ use App\City\Action\Delete\DeleteCityAction;
 use App\City\Action\Delete\DeleteCityActionRequest;
 use App\City\Repository\CityRepositoryInterface;
 use App\Tests\Unit\City\CityDummy;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class DeleteCityActionTest extends TestCase
 {
-    private CityRepositoryInterface $cityRepository;
+    private CityRepositoryInterface&MockObject $cityRepository;
 
     private UuidInterface $id;
 

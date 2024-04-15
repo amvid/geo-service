@@ -13,13 +13,14 @@ use App\SubRegion\Exception\SubRegionNotFoundException;
 use App\SubRegion\Repository\SubRegionRepositoryInterface;
 use App\Tests\Unit\Region\RegionDummy;
 use App\Tests\Unit\SubRegion\SubRegionDummy;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class UpdateSubRegionActionTest extends TestCase
 {
-    private SubRegionRepositoryInterface $subRegionRepository;
-    private RegionRepositoryInterface $regionRepository;
+    private SubRegionRepositoryInterface&MockObject $subRegionRepository;
+    private RegionRepositoryInterface&MockObject $regionRepository;
 
     protected function setUp(): void
     {

@@ -8,13 +8,14 @@ use App\Airport\Action\Delete\DeleteAirportAction;
 use App\Airport\Action\Delete\DeleteAirportActionRequest;
 use App\Airport\Repository\AirportRepositoryInterface;
 use App\Tests\Unit\Airport\AirportDummy;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class DeleteAirportActionTest extends TestCase
 {
-    private AirportRepositoryInterface $airportRepository;
+    private AirportRepositoryInterface&MockObject $airportRepository;
 
     private UuidInterface $id;
 

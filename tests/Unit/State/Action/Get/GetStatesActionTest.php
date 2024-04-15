@@ -4,24 +4,20 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\State\Action\Get;
 
-use App\Country\Entity\Country;
 use App\Country\Repository\CountryRepositoryInterface;
-use App\Currency\Entity\Currency;
-use App\Region\Entity\Region;
 use App\State\Action\Get\GetStatesAction;
 use App\State\Action\Get\GetStatesActionRequest;
 use App\State\Entity\State;
 use App\State\Repository\StateRepositoryInterface;
-use App\SubRegion\Entity\SubRegion;
 use App\Tests\Unit\Country\CountryDummy;
-use App\Timezone\Entity\Timezone;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
 class GetStatesActionTest extends TestCase
 {
-    private CountryRepositoryInterface $countryRepository;
+    private CountryRepositoryInterface&MockObject $countryRepository;
     private StateRepositoryInterface $stateRepository;
 
     private GetStatesActionRequest $request;

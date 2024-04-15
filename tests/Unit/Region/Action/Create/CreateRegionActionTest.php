@@ -11,13 +11,14 @@ use App\Region\Entity\Region;
 use App\Region\Exception\RegionAlreadyExistsException;
 use App\Region\Factory\RegionFactoryInterface;
 use App\Region\Repository\RegionRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class CreateRegionActionTest extends TestCase
 {
-    private readonly RegionFactoryInterface $factory;
-    private readonly RegionRepositoryInterface $repository;
+    private readonly RegionFactoryInterface&MockObject $factory;
+    private readonly RegionRepositoryInterface&MockObject $repository;
 
     protected function setUp(): void
     {

@@ -8,12 +8,13 @@ use App\Currency\Action\Get\GetCurrenciesAction;
 use App\Currency\Action\Get\GetCurrenciesActionRequest;
 use App\Currency\Entity\Currency;
 use App\Currency\Repository\CurrencyRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class GetCurrenciesActionTest extends TestCase
 {
-    private CurrencyRepositoryInterface $repository;
+    private CurrencyRepositoryInterface&MockObject $repository;
     private Currency $nok;
     private Currency $eur;
 

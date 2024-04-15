@@ -11,13 +11,14 @@ use App\Currency\Entity\Currency;
 use App\Currency\Exception\CurrencyAlreadyExistsException;
 use App\Currency\Factory\CurrencyFactoryInterface;
 use App\Currency\Repository\CurrencyRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class CreateCurrencyActionTest extends TestCase
 {
-    private readonly CurrencyFactoryInterface $factory;
-    private readonly CurrencyRepositoryInterface $repository;
+    private readonly CurrencyFactoryInterface&MockObject $factory;
+    private readonly CurrencyRepositoryInterface&MockObject $repository;
 
     protected function setUp(): void
     {

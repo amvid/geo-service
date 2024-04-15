@@ -9,11 +9,12 @@ use App\Country\Action\GetPhoneCodes\GetPhoneCodesActionRequest;
 use App\Country\Controller\Response\PhoneCodeResponse;
 use App\Country\Repository\CountryRepositoryInterface;
 use App\Tests\Unit\Country\CountryDummy;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class GetPhoneCodesActionTest extends TestCase
 {
-    private CountryRepositoryInterface $countryRepository;
+    private CountryRepositoryInterface&MockObject $countryRepository;
     private GetPhoneCodesActionRequest $request;
 
     private string $title = 'Norway';

@@ -8,12 +8,13 @@ use App\Timezone\Action\Delete\DeleteTimezoneAction;
 use App\Timezone\Action\Delete\DeleteTimezoneActionRequest;
 use App\Timezone\Entity\Timezone;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class DeleteTimezoneActionTest extends TestCase
 {
-    private TimezoneRepositoryInterface $repository;
+    private TimezoneRepositoryInterface&MockObject $repository;
 
     protected function setUp(): void
     {

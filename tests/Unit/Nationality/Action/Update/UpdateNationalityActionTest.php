@@ -9,12 +9,13 @@ use App\Nationality\Action\Update\UpdateNationalityActionRequest;
 use App\Nationality\Entity\Nationality;
 use App\Nationality\Exception\NationalityNotFoundException;
 use App\Nationality\Repository\NationalityRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 
 class UpdateNationalityActionTest extends TestCase
 {
-    private NationalityRepositoryInterface $nationalityRepository;
+    private NationalityRepositoryInterface&MockObject $nationalityRepository;
 
     protected function setUp(): void
     {

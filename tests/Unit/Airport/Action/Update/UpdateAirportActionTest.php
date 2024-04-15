@@ -20,6 +20,7 @@ use App\Tests\Unit\Country\CountryDummy;
 use App\Tests\Unit\Timezone\TimezoneDummy;
 use App\Timezone\Exception\TimezoneNotFoundException;
 use App\Timezone\Repository\TimezoneRepositoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -27,11 +28,11 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UpdateAirportActionTest extends TestCase
 {
-    private AirportFactoryInterface $factory;
-    private AirportRepositoryInterface $airportRepository;
-    private CityRepositoryInterface $cityRepository;
-    private CountryRepositoryInterface $countryRepository;
-    private TimezoneRepositoryInterface $timezoneRepository;
+    private AirportFactoryInterface&MockObject $factory;
+    private AirportRepositoryInterface&MockObject $airportRepository;
+    private CityRepositoryInterface&MockObject $cityRepository;
+    private CountryRepositoryInterface&MockObject $countryRepository;
+    private TimezoneRepositoryInterface&MockObject $timezoneRepository;
 
     private UpdateAirportActionRequest $request;
     private UuidInterface $id;
