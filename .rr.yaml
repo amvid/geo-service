@@ -20,20 +20,6 @@ http:
   static:
     dir: "public"
     forbid: [".php"]
-  ssl:
-    address: 0.0.0.0:443
-    redirect: true
-    key: ${RR_SSL_CERT_KEY}
-    cert: ${RR_SSL_CERT_CRT}
-    acme:
-      certs_dir: ${RR_SSL_CERT_DIR:-.cert}
-      email: ${RR_SSL_EMAIL}
-      alt_http_port: 80
-      alt_tlsalpn_port: 443
-      challenge_type: http-01
-      use_production_endpoint: true
-      domains:
-        - ${RR_SSL_DOMAIN}
 
 logs:
   mode: production
