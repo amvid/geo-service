@@ -3,7 +3,6 @@ version: "3"
 networks:
   geo-service-network:
 
-
 services:
   geo-service-app:
     build:
