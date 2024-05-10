@@ -21,12 +21,6 @@ Geo data REST API service with admin dashboard to manage regions, countries, nat
 http://127.0.0.1:8085/apidoc
 ```
 
-### Installation
-
-```bash
-make coldstart
-```
-
 ### Running
 
 ```bash
