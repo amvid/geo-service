@@ -16,7 +16,7 @@ interface AirportFactoryInterface
 
     public function setTitle(string $title): self;
 
-    public function setIcao(string $icao): self;
+    public function setIcao(?string $icao = null): self;
 
     public function setIata(string $iata): self;
 

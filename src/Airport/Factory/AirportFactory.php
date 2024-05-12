@@ -34,7 +34,7 @@ class AirportFactory implements AirportFactoryInterface
         return $this;
     }
 
-    public function setIcao(string $icao): AirportFactoryInterface
+    public function setIcao(?string $icao = null): AirportFactoryInterface
     {
         $this->airport->setIcao($icao);
         return $this;

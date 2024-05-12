@@ -26,6 +26,11 @@ class Config
         return getcwd() . '/data/cities_airports.json';
     }
 
+    public static function getAirports2DataFilepath(): string
+    {
+        return getcwd() . '/data/airports.json';
+    }
+
     public static function getNationalitiesDataFilepath(): string
     {
         return getcwd() . '/data/nationalities.json';

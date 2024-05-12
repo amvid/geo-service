@@ -17,7 +17,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: AirportRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-#[UniqueEntity('icao')]
 #[UniqueEntity('iata')]
 class Airport
 {
@@ -41,8 +40,8 @@ class Airport
     #[ORM\Column(length: 3, unique: true, nullable: false)]
     private string $iata;
 
-    #[ORM\Column(length: 4, unique: true, nullable: false)]
-    private string $icao;
+    #[ORM\Column(length: 4, nullable: true)]
+    private ?string $icao;
 
     #[ORM\Column(length: 150, unique: false, nullable: false)]
     private string $title;
@@ -112,12 +111,12 @@ class Airport
         return $this;
     }
 
-    public function getIcao(): string
+    public function getIcao(): ?string
     {
         return $this->icao;
     }
 
-    public function setIcao(string $icao): self
+    public function setIcao(?string $icao = null): self
     {
         $this->icao = $icao;
         return $this;
