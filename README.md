@@ -111,6 +111,7 @@ Airports
 
 ```bash
 make airports
+make airports2
 ```
 
 Nationalities

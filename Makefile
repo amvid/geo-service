@@ -91,6 +91,10 @@ sync-cities-with-iata:
 airports:
 	@docker exec geo-service-app-dev sh -c "bin/console app:import-airports"
 
+.PHONY: airports2
+airports2:
+	@docker exec geo-service-app-dev sh -c "bin/console app:import-airports2"
+
 nationalities:
 	@docker exec geo-service-app-dev sh -c "bin/console app:import-nationalities"
 
