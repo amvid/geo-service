@@ -108,23 +108,6 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
 
     public function query(int $offset, int $limit, string $query): iterable
     {
-        $exactMatchParams = new ArrayCollection();
-        $exactMatchParams->add(new Parameter('exactQuery', $query));
-        $exactMatchParams->add(new Parameter('isActive', true));
-
-        $exactMatchResult = $this->createQueryBuilder('a')
-            ->join('a.city', 'c')
-            ->join('c.country', 'co')
-            ->where('a.iata = :exactQuery')
-            ->andWhere('a.isActive = :isActive')
-            ->setParameters($exactMatchParams)
-            ->getQuery()
-            ->getResult();
-
-        if (count($exactMatchResult) > 0) {
-            return $exactMatchResult;
-        }
-
         $params = new ArrayCollection();
         $params->add(new Parameter('query', "$query%"));
         $params->add(new Parameter('isActive', true));
