@@ -59,6 +59,7 @@ readonly class CreateAirportAction implements CreateAirportActionInterface
         $airport = $this->airportFactory
             ->setIata($request->iata)
             ->setIcao($request->icao)
+            ->setRank($request->rank)
             ->setTitle($request->title)
             ->setLatitude($request->latitude)
             ->setLongitude($request->longitude)

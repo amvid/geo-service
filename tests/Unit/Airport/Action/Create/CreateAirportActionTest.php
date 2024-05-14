@@ -38,6 +38,7 @@ class CreateAirportActionTest extends TestCase
     private string $icao = 'TEST';
     private string $title = 'Test Airport';
     private string $cityTitle = CityDummy::TITLE;
+    private float $rank = 0.25;
     private float $longitude = 11.11;
     private float $latitude = 22.22;
     private int $altitude = 33;
@@ -54,6 +55,7 @@ class CreateAirportActionTest extends TestCase
         $this->request = new CreateAirportActionRequest();
         $this->request->countryIso2 = $this->countryIso2;;
         $this->request->timezone = $this->timezone;
+        $this->request->rank = $this->rank;
         $this->request->iata = $this->iata;
         $this->request->icao = $this->icao;
         $this->request->title = $this->title;
@@ -245,6 +247,7 @@ class CreateAirportActionTest extends TestCase
         $this->factory->expects($this->once())->method('setTimezone')->with($timezone)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setIata')->with($this->iata)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setIcao')->with($this->icao)->willReturn($this->factory);
+        $this->factory->expects($this->once())->method('setRank')->with($this->rank)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('create')->with()->willReturn($airport);
 
         $this->airportRepository
@@ -265,6 +268,7 @@ class CreateAirportActionTest extends TestCase
         $this->assertEquals($airport->getTitle(), $actual->airport->title);
         $this->assertEquals($airport->getIata(), $actual->airport->iata);
         $this->assertEquals($airport->getIcao(), $actual->airport->icao);
+        $this->assertEquals($airport->getRank(), $actual->airport->rank);
         $this->assertEquals($airport->getLatitude(), $actual->airport->latitude);
         $this->assertEquals($airport->getAltitude(), $actual->airport->altitude);
         $this->assertEquals($airport->getLongitude(), $actual->airport->longitude);

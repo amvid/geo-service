@@ -18,6 +18,7 @@ class AirportResponseTest extends TestCase
         $this->assertEquals($airport->getId(), $actual->id);
         $this->assertEquals($airport->getIata(), $actual->iata);
         $this->assertEquals($airport->getIcao(), $actual->icao);
+        $this->assertEquals($airport->getRank(), $actual->rank);
         $this->assertEquals($airport->getTitle(), $actual->title);
         $this->assertEquals($airport->getLongitude(), $actual->longitude);
         $this->assertEquals($airport->getLatitude(), $actual->latitude);

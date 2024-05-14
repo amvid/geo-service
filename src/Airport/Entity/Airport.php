@@ -46,6 +46,9 @@ class Airport
     #[ORM\Column(length: 150, unique: false, nullable: false)]
     private string $title;
 
+    #[ORM\Column(nullable: false)]
+    private float $rank = 0;
+
     #[ORM\Column(options: ['default' => true])]
     private bool $isActive = true;
 
@@ -59,6 +62,18 @@ class Airport
     public function __toString(): string
     {
         return $this->title;
+    }
+
+    public function setRank(float $rank = 0.0): self
+    {
+        $this->rank = $rank;
+
+        return $this;
+    }
+
+    public function getRank(): float
+    {
+        return $this->rank;
     }
 
     public function isActive(): bool

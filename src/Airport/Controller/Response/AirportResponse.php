@@ -17,6 +17,7 @@ class AirportResponse
     public string $title;
     public string $iata;
     public string $icao;
+    public float $rank;
     public bool $isActive;
     public float $longitude;
     public float $latitude;
@@ -30,6 +31,7 @@ class AirportResponse
         $this->title = $airport->getTitle();
         $this->iata = $airport->getIata();
         $this->icao = $airport->getIcao();
+        $this->rank = $airport->getRank();
         $this->isActive = $airport->isActive();
         $this->longitude = $airport->getLongitude();
         $this->altitude = $airport->getAltitude();

@@ -35,4 +35,6 @@ class CreateAirportActionRequest
     #[NotBlank]
     #[Length(max: 150)]
     public string $timezone;
+
+    public float $rank = 0.0;
 }

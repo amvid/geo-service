@@ -39,6 +39,7 @@ class UpdateAirportActionTest extends TestCase
     private string $countryIso2 = 'US';
     private string $iata = 'TST';
     private string $icao = 'TEST';
+    private float $rank = 0.35;
     private string $title = 'Test Airport';
     private string $cityTitle = 'New York';
     private float $longitude = 11.11;
@@ -68,6 +69,7 @@ class UpdateAirportActionTest extends TestCase
         $this->request->latitude = $this->latitude;
         $this->request->altitude = $this->altitude;
         $this->request->isActive = $this->isActive;
+        $this->request->rank = $this->rank;
     }
 
     public function testShouldThrowAirportNotFoundExceptionIfNotFound(): void
@@ -284,6 +286,7 @@ class UpdateAirportActionTest extends TestCase
         $this->factory->expects($this->once())->method('setTimezone')->with($timezone)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setIata')->with($this->iata)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setIcao')->with($this->icao)->willReturn($this->factory);
+        $this->factory->expects($this->once())->method('setRank')->with($this->rank)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('setIsActive')->with($this->isActive)->willReturn($this->factory);
         $this->factory->expects($this->once())->method('create')->with()->willReturn($airport);
 
@@ -305,6 +308,7 @@ class UpdateAirportActionTest extends TestCase
         $this->assertEquals($airport->getTitle(), $actual->airport->title);
         $this->assertEquals($airport->getIata(), $actual->airport->iata);
         $this->assertEquals($airport->getIcao(), $actual->airport->icao);
+        $this->assertEquals($airport->getRank(), $actual->airport->rank);
         $this->assertEquals($airport->getLatitude(), $actual->airport->latitude);
         $this->assertEquals($airport->getAltitude(), $actual->airport->altitude);
         $this->assertEquals($airport->getLongitude(), $actual->airport->longitude);

@@ -53,9 +53,10 @@ class AirportCrudController extends AbstractCrudController
 
             FormField::addFieldset('Basic'),
             TextField::new('title')->setColumns(4),
-            TextField::new('iata')->setColumns(4),
-            TextField::new('icao')->setColumns(4),
-            BooleanField::new('isActive')->setColumns(4),
+            TextField::new('iata')->setColumns(2),
+            TextField::new('icao')->setColumns(2),
+            NumberField::new('rank')->setColumns(1),
+            BooleanField::new('isActive'),
 
             FormField::addFieldset('Position'),
             NumberField::new('longitude')->hideOnIndex()->setColumns(2),

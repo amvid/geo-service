@@ -110,6 +110,7 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
     {
         $params = new ArrayCollection();
         $params->add(new Parameter('query', "$query%"));
+        $params->add(new Parameter('exactQuery', $query));
         $params->add(new Parameter('isActive', true));
 
         return $this->createQueryBuilder('a')
@@ -117,12 +118,14 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
             ->setMaxResults($limit)
             ->join('a.city', 'c')
             ->join('c.country', 'co')
-            ->where('a.title LIKE :query')
-            ->orWhere('a.iata LIKE :query')
-            ->orWhere('a.icao LIKE :query')
+            ->where('a.iata LIKE :query')
+            ->orWhere('a.title LIKE :query')
             ->orWhere('c.title LIKE :query')
             ->orWhere('co.title LIKE :query')
             ->andWhere('a.isActive = :isActive')
+            ->orderBy('CASE WHEN a.iata = :exactQuery THEN 0 ELSE 1 END', 'ASC')
+            ->addOrderBy('a.rank', 'DESC')
+            ->addOrderBy('a.title', 'ASC')
             ->setParameters($params)
             ->getQuery()
             ->getResult();

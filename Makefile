@@ -6,6 +6,12 @@ up:
 dev:
 	@docker compose up
 
+.PHONY: coldstart
+coldstart:
+	-rm -rf vendor
+	-rm -rf bin/rr
+	@docker compose up
+
 .PHONY: install
 install:
 	@docker compose up -d

@@ -43,6 +43,7 @@ class AirportControllerE2ETest extends WebTestCase
             'longitude' => 11,
             'latitude' => 22,
             'altitude' => 10,
+            'rank' => 0.11,
         ];
 
         $this->client->request(
@@ -56,6 +57,7 @@ class AirportControllerE2ETest extends WebTestCase
         self::assertResponseIsSuccessful();
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         self::assertEquals($content['title'], $response['title']);
+        self::assertEquals($content['rank'], $response['rank']);
     }
 
     public function testQueryActionSuccess(): void

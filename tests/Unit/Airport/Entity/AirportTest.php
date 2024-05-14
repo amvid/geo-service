@@ -21,17 +21,20 @@ class AirportTest extends TestCase
         $icao = 'NTGA';
         $iata = 'AAA';
         $title = 'Anaa';
+        $rank = 0.25;
 
         $airport = new Airport($airportId);
         $airport
             ->setTitle('Anaa')
             ->setIata('AAA')
             ->setIcao('NTGA')
+            ->setRank($rank)
             ->setTimezone($timezone)
             ->setCity($city)
             ->setCreatedAt();
 
         $this->assertEquals($airportId, $airport->getId());
+        $this->assertEquals($rank, $airport->getRank());
         $this->assertEquals($icao, $airport->getIcao());
         $this->assertEquals($iata, $airport->getIata());
         $this->assertEquals($title, $airport->getTitle());

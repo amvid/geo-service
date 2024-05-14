@@ -40,6 +40,12 @@ class AirportFactory implements AirportFactoryInterface
         return $this;
     }
 
+    public function setRank(float $rank = 0.0): AirportFactoryInterface
+    {
+        $this->airport->setRank($rank);
+        return $this;
+    }
+
     public function setIata(string $iata): AirportFactoryInterface
     {
         $this->airport->setIata($iata);

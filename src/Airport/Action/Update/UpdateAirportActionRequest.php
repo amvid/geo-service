@@ -30,4 +30,6 @@ class UpdateAirportActionRequest
     public ?string $timezone = null;
 
     public ?bool $isActive = null;
+
+    public ?float $rank = null;
 }

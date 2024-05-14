@@ -72,6 +72,9 @@ class ImportAirports2FromJsonCommand extends Command
                     $exists = $this->airportRepository->findByIata($airport->Iata);
 
                     if ($exists) {
+                        $exists->setRank($airport->Rank ?? 0.0);
+                        $this->airportRepository->save($exists, true);
+
                         continue;
                     }
 
@@ -149,17 +152,14 @@ class ImportAirports2FromJsonCommand extends Command
                         ->setTitle($airport->Name)
                         ->setIcao($airport->Icao ?? null)
                         ->setIata($airport->Iata)
+                        ->setRank($airport->Rank ?? 0.0)
                         ->setLongitude((float)$airport->Longitude)
                         ->setLatitude((float)$airport->Latitude)
                         ->setAltitude((int)$airport->Elevation)
                         ->create();
 
-                    try {
-                        $this->airportRepository->save($newAirport, true);
-                        $imported++;
-                    } catch (Throwable $e) {
-                        dd($e->getMessage(), $airport);
-                    }
+                    $this->airportRepository->save($newAirport, true);
+                    $imported++;
 
                     if ($imported % 2000 === 0) {
                         $this->em->clear();

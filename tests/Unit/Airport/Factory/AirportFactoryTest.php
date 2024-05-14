@@ -26,6 +26,7 @@ class AirportFactoryTest extends TestCase
         $title = 'Test Title';
         $iata = 'TST';
         $icao = 'TEST';
+        $rank = 0.25;
         $longitude = 11.12;
         $latitude = 12.11;
         $altitude = 21;
@@ -34,6 +35,7 @@ class AirportFactoryTest extends TestCase
             ->setTitle($title)
             ->setIata($iata)
             ->setIcao($icao)
+            ->setRank($rank)
             ->setCity($city)
             ->setTimezone($timezone)
             ->setLongitude($longitude)
@@ -42,6 +44,7 @@ class AirportFactoryTest extends TestCase
             ->create();
 
         $this->assertEquals($title, $actual->getTitle());
+        $this->assertEquals($rank, $actual->getRank());
         $this->assertEquals($icao, $actual->getIcao());
         $this->assertEquals($iata, $actual->getIata());
         $this->assertEquals($longitude, $actual->getLongitude());

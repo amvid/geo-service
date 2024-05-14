@@ -16,10 +16,6 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
     ) {
     }
 
-    /**
-     * @throws TimezoneNotFoundException
-     * @throws CityNotFoundException
-     */
     public function run(QueryAirportsActionRequest $request): QueryAirportsActionResponse
     {
         /** @var array<Airport> $airports */
@@ -36,48 +32,45 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
         foreach ($airports as $airport) {
             $city = $airport->getCity();
             $country = $city->getCountry();
-            $map[$country->getTitle()][$city->getTitle()][] = $airport;
+            $cityIata = $city->getIata() ?? $airport->getIata();
+
+            if (!isset($map[$country->getTitle()])) {
+                $map[$country->getTitle()] = [];
+            }
+            if (!isset($map[$country->getTitle()][$cityIata])) {
+                $map[$country->getTitle()][$cityIata] = [];
+            }
+
+            $map[$country->getTitle()][$cityIata][] = $airport;
         }
 
-        foreach ($map as $country => $cities) {
-            foreach ($cities as $city => $airports) {
+        foreach ($map as $countryTitle => $cities) {
+            foreach ($cities as $cityIata => $airports) {
                 $isGroup = count($airports) > 1;
-                $airport = $airports[0];
 
                 if ($isGroup) {
-                    $ap = $airports[0];
-
-                    foreach ($airports as $a) {
-                        $cityEntity = $a->getCity();
-                        $countryEntity = $cityEntity->getCountry();
-
-                        if ($cityEntity === $countryEntity->getCapital()) {
-                            $ap = $a;
-                            break;
-                        }
-                    }
-
+                    $cityTitle = $airports[0]->getCity()->getTitle();
                     $res[] = new QueryChildrenAirportResponse(
-                        $city . ' (Any)',
-                        $ap->getCity()->getIata() ?? $ap->getIata(),
-                        $country,
+                        $cityTitle . ' (Any)',
+                        $cityIata,
+                        $countryTitle
                     );
-                }
 
-                foreach ($airports as $airport) {
-                    if (!$isGroup) {
-                        $res[] = new QueryAirportResponse(
+                    $parentIndex = count($res) - 1;
+
+                    foreach ($airports as $airport) {
+                        $res[$parentIndex]->children[] = new QueryAirportResponse(
                             $airport->getTitle(),
                             $airport->getIata(),
-                            $country,
+                            $countryTitle
                         );
-                        continue;
                     }
-
-                    $res[count($res) - 1]->children[] = new QueryAirportResponse(
+                } else {
+                    $airport = $airports[0];
+                    $res[] = new QueryAirportResponse(
                         $airport->getTitle(),
                         $airport->getIata(),
-                        $country,
+                        $countryTitle
                     );
                 }
             }

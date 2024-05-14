@@ -17,6 +17,7 @@ class AirportDummy
     public const TITLE = 'Anaa';
     public const ICAO = 'NTGA';
     public const IATA = 'AAA';
+    public const RANK = 0.25;
     public const LONGITUDE = 10.10;
     public const LATITUDE = 11.11;
     public const ALTITUDE = 10;
@@ -37,6 +38,7 @@ class AirportDummy
             ->setTitle(self::TITLE)
             ->setIcao(self::ICAO)
             ->setIata(self::IATA)
+            ->setRank(self::RANK)
             ->setLongitude(self::LONGITUDE)
             ->setLatitude(self::LATITUDE)
             ->setAltitude(self::ALTITUDE)

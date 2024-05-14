@@ -72,6 +72,10 @@ readonly class UpdateAirportAction implements UpdateAirportActionInterface
             $this->airportFactory->setTimezone($timezone);
         }
 
+        if ($request->rank) {
+            $this->airportFactory->setRank($request->rank);
+        }
+
         if ($request->icao) {
             $this->airportFactory->setIcao($request->icao);
         }
