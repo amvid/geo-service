@@ -17,6 +17,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: AirportRepository::class)]
 #[ORM\HasLifecycleCallbacks]
+#[ORM\Index(columns: ['title', 'is_active'], name: 'airport_search_idx')]
 #[UniqueEntity('iata')]
 class Airport
 {

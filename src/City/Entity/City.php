@@ -18,6 +18,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 #[ORM\Entity(repositoryClass: CityRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ORM\UniqueConstraint(name: 'city_title__country_unique', columns: ['country_id', 'title'])]
+#[ORM\Index(columns: ['title'], name: 'city_search_idx')]
 #[UniqueEntity('iata')]
 class City
 {
