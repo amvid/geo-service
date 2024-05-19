@@ -767,7 +767,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CountryResponse'
+                  $ref: '#/components/schemas/PhoneCodeResponse'
   /api/v1/states:
     get:
       tags:
@@ -1545,6 +1545,25 @@ components:
           type: integer
           nullable: true
       type: object
+    PhoneCodeResponse:
+      required:
+        - title
+        - iso2
+        - iso3
+        - phoneCode
+        - flag
+      properties:
+        title:
+          type: string
+        iso2:
+          type: string
+        iso3:
+          type: string
+        phoneCode:
+          type: string
+        flag:
+          type: string
+      type: object
     StateResponse:
       required:
         - title
@@ -1743,6 +1762,7 @@ components:
         - title
         - iata
         - icao
+        - rank
         - isActive
         - longitude
         - latitude
@@ -1758,6 +1778,9 @@ components:
           type: string
         icao:
           type: string
+        rank:
+          type: number
+          format: float
         isActive:
           type: boolean
         longitude:
@@ -1808,6 +1831,10 @@ components:
         timezone:
           type: string
           maxLength: 150
+        rank:
+          type: number
+          format: float
+          default: 0
         longitude:
           type: number
           format: float
@@ -1852,6 +1879,10 @@ components:
           nullable: true
         isActive:
           type: boolean
+          nullable: true
+        rank:
+          type: number
+          format: float
           nullable: true
         longitude:
           type: number
