@@ -1,4 +1,4 @@
-FROM php:8.3.6-cli-alpine3.18
+FROM php:8.3.9-cli-alpine3.20
 
 RUN --mount=type=bind,from=mlocati/php-extension-installer:1.5,source=/usr/bin/install-php-extensions,target=/usr/local/bin/install-php-extensions \
      install-php-extensions pdo pdo_mysql opcache zip xsl dom exif intl pcntl bcmath sockets && \

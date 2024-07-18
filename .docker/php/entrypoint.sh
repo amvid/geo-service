@@ -11,7 +11,7 @@ bin/console assets:install
 
 if [ ! -f "bin/rr" ]; then
 	echo "RoadRunner binary not found. Downloading..."
-	vendor/bin/rr get-binary -f v2024.1.4 --location bin
+	vendor/bin/rr get-binary -f v2024.1.5 --location bin
 	chmod +x bin/rr
 else
 	echo "RoadRunner binary found. Skipping download."
