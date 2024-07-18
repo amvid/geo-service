@@ -136,48 +136,80 @@ Response
     "title": "London (Any)",
     "iata": "LON",
     "country": "United Kingdom",
+    "subregion": "Northern Europe",
+    "region": "Europe",
     "children": [
       {
-        "title": "London Biggin Hill Airport",
-        "iata": "BQH",
-        "country": "United Kingdom"
-      },
-      {
-        "title": "London Gatwick Airport",
-        "iata": "LGW",
-        "country": "United Kingdom"
-      },
-      {
-        "title": "London Luton Airport",
-        "iata": "LTN",
-        "country": "United Kingdom"
+        "title": "London Metropolitan Area",
+        "iata": "LON",
+        "country": "United Kingdom",
+        "region": "Europe",
+        "subregion": "Northern Europe"
       },
       {
         "title": "London Heathrow Airport",
         "iata": "LHR",
-        "country": "United Kingdom"
+        "country": "United Kingdom",
+        "region": "Europe",
+        "subregion": "Northern Europe"
       },
       {
-        "title": "London Stansted Airport",
-        "iata": "STN",
-        "country": "United Kingdom"
+        "title": "London Gatwick Airport",
+        "iata": "LGW",
+        "country": "United Kingdom",
+        "region": "Europe",
+        "subregion": "Northern Europe"
       },
       {
         "title": "London City Airport",
         "iata": "LCY",
-        "country": "United Kingdom"
+        "country": "United Kingdom",
+        "region": "Europe",
+        "subregion": "Northern Europe"
+      },
+      {
+        "title": "London Stansted Airport",
+        "iata": "STN",
+        "country": "United Kingdom",
+        "region": "Europe",
+        "subregion": "Northern Europe"
+      },
+      {
+        "title": "London Luton Airport",
+        "iata": "LTN",
+        "country": "United Kingdom",
+        "region": "Europe",
+        "subregion": "Northern Europe"
+      },
+      {
+        "title": "London Biggin Hill Airport",
+        "iata": "BQH",
+        "country": "United Kingdom",
+        "region": "Europe",
+        "subregion": "Northern Europe"
       },
       {
         "title": "RAF Northolt",
         "iata": "NHT",
-        "country": "United Kingdom"
+        "country": "United Kingdom",
+        "region": "Europe",
+        "subregion": "Northern Europe"
       }
     ]
   },
   {
     "title": "London Airport",
     "iata": "YXU",
-    "country": "Canada"
+    "country": "Canada",
+    "region": "Americas",
+    "subregion": "Northern America"
+  },
+  {
+    "title": "London-Corbin Airport/Magee Field",
+    "iata": "LOZ",
+    "country": "United States",
+    "region": "Americas",
+    "subregion": "Northern America"
   }
 ]
 ```
