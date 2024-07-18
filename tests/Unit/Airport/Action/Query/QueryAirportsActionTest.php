@@ -54,9 +54,15 @@ class QueryAirportsActionTest extends TestCase
         $action = new QueryAirportsAction($this->airportRepository);
         $response = $action->run($this->request);
 
+        $country = $airport->getCity()->getCountry();
+        $subregion = $country->getSubregion();
+        $region = $subregion->getRegion();
+
         $this->assertCount(1, $response->airports);
         $this->assertEquals($airport->getTitle(), $response->airports[0]->title);
         $this->assertEquals($airport->getIata(), $response->airports[0]->iata);
-        $this->assertEquals($airport->getCity()->getCountry()->getTitle(), $response->airports[0]->country);
+        $this->assertEquals($country->getTitle(), $response->airports[0]->country);
+        $this->assertEquals($subregion->getTitle(), $response->airports[0]->subregion);
+        $this->assertEquals($region->getTitle(), $response->airports[0]->region);
     }
 }

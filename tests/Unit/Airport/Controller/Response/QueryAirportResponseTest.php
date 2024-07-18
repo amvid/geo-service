@@ -14,10 +14,16 @@ class QueryAirportResponseTest extends TestCase
     {
         $airport = AirportDummy::get();
 
+        $country = $airport->getCity()->getCountry();
+        $subregion = $country->getSubregion();
+        $region = $subregion->getRegion();
+
         $actual = new QueryAirportResponse(
             $airport->getTitle(),
             $airport->getIata(),
-            $airport->getCity()->getCountry()->getTitle()
+            $airport->getCity()->getCountry()->getTitle(),
+            $region->getTitle(),
+            $subregion->getTitle(),
         );
 
         $this->assertEquals($airport->getTitle(), $actual->title);

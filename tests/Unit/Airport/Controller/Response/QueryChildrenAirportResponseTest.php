@@ -14,17 +14,24 @@ class QueryChildrenAirportResponseTest extends TestCase
     public function testValidInstantiation(): void
     {
         $airport = AirportDummy::get();
+        $country = $airport->getCity()->getCountry();
+        $subregion = $country->getSubregion();
+        $region = $subregion->getRegion();
 
         $children = new QueryAirportResponse(
             $airport->getTitle(),
             $airport->getIata(),
-            $airport->getCity()->getCountry()->getTitle()
+            $airport->getCity()->getCountry()->getTitle(),
+            $region->getTitle(),
+            $subregion->getTitle(),
         );
 
         $actual = new QueryChildrenAirportResponse(
             $airport->getTitle(),
             $airport->getIata(),
             $airport->getCity()->getCountry()->getTitle(),
+            $region->getTitle(),
+            $subregion->getTitle(),
             [$children]
         );
 

@@ -13,8 +13,7 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
 {
     public function __construct(
         private AirportRepositoryInterface $airportRepository,
-    ) {
-    }
+    ) {}
 
     public function run(QueryAirportsActionRequest $request): QueryAirportsActionResponse
     {
@@ -28,15 +27,23 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
         /** @var array<QueryChildrenAirportResponse> $res */
         $res = [];
         $map = [];
+        $regions = [];
+        $subregions = [];
 
         foreach ($airports as $airport) {
             $city = $airport->getCity();
             $country = $city->getCountry();
+            $subregion = $country->getSubregion();
+            $region = $subregion->getRegion();
             $cityIata = $city->getIata() ?? $airport->getIata();
+
+            $regions[$country->getTitle()] = $region->getTitle();
+            $subregions[$country->getTitle()] = $subregion->getTitle();
 
             if (!isset($map[$country->getTitle()])) {
                 $map[$country->getTitle()] = [];
             }
+
             if (!isset($map[$country->getTitle()][$cityIata])) {
                 $map[$country->getTitle()][$cityIata] = [];
             }
@@ -53,7 +60,9 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
                     $res[] = new QueryChildrenAirportResponse(
                         $cityTitle . ' (Any)',
                         $cityIata,
-                        $countryTitle
+                        $countryTitle,
+                        $regions[$countryTitle],
+                        $subregions[$countryTitle],
                     );
 
                     $parentIndex = count($res) - 1;
@@ -62,7 +71,9 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
                         $res[$parentIndex]->children[] = new QueryAirportResponse(
                             $airport->getTitle(),
                             $airport->getIata(),
-                            $countryTitle
+                            $countryTitle,
+                            $regions[$countryTitle],
+                            $subregions[$countryTitle],
                         );
                     }
                 } else {
@@ -70,7 +81,9 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
                     $res[] = new QueryAirportResponse(
                         $airport->getTitle(),
                         $airport->getIata(),
-                        $countryTitle
+                        $countryTitle,
+                        $regions[$countryTitle],
+                        $subregions[$countryTitle],
                     );
                 }
             }
