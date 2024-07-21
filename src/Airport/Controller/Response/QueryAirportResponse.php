@@ -9,10 +9,10 @@ class QueryAirportResponse
     public string $title;
     public string $iata;
     public string $country;
-    public string $region;
-    public string $subregion;
+    public ?string $region = null;
+    public ?string $subregion = null;
 
-    public function __construct(string $title, string $iata, string $country, string $region, string $subregion)
+    public function __construct(string $title, string $iata, string $country, ?string $region = null, ?string $subregion = null)
     {
 
         $this->title = $title;

@@ -36,18 +36,18 @@ class Country
     #[ORM\CustomIdGenerator(class: UuidGenerator::class)]
     private UuidInterface $id;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: true)]
     private ?SubRegion $subRegion = null;
 
-    #[ORM\ManyToMany(targetEntity: Timezone::class, orphanRemoval: true)]
+    #[ORM\ManyToMany(targetEntity: Timezone::class, orphanRemoval: true, fetch: 'EAGER')]
     private Collection $timezones;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private Currency $currency;
 
-    #[ORM\OneToOne]
+    #[ORM\OneToOne(fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: true)]
     private ?City $capital = null;
 

@@ -9,13 +9,13 @@ class QueryChildrenAirportResponse
     public string $title;
     public string $iata;
     public string $country;
-    public string $subregion;
-    public string $region;
+    public ?string $subregion = null;
+    public ?string $region = null;
 
     /** @var array<QueryAirportResponse> */
     public array $children = [];
 
-    public function __construct(string $title, string $iata, string $country, string $region, string $subregion, array $children = [])
+    public function __construct(string $title, string $iata, string $country, ?string $region = null, ?string $subregion = null, array $children = [])
     {
         $this->title = $title;
         $this->iata = $iata;

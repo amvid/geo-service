@@ -34,11 +34,11 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
             $city = $airport->getCity();
             $country = $city->getCountry();
             $subregion = $country->getSubregion();
-            $region = $subregion->getRegion();
+            $region = $subregion?->getRegion();
             $cityIata = $city->getIata() ?? $airport->getIata();
 
-            $regions[$country->getTitle()] = $region->getTitle();
-            $subregions[$country->getTitle()] = $subregion->getTitle();
+            $regions[$country->getTitle()] = $region?->getTitle();
+            $subregions[$country->getTitle()] = $subregion?->getTitle();
 
             if (!isset($map[$country->getTitle()])) {
                 $map[$country->getTitle()] = [];
