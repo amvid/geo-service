@@ -9,7 +9,6 @@ dev:
 .PHONY: coldstart
 coldstart:
 	-rm -rf vendor
-	-rm -rf bin/rr
 	@docker compose up
 
 .PHONY: install
