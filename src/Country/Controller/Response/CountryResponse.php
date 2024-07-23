@@ -53,7 +53,10 @@ class CountryResponse
 
         if ($withRelations) {
             $this->currency = new CurrencyResponse($country->getCurrency());
-            $this->subRegion = new SubRegionResponse($country->getSubRegion());
+
+            if ($country->getSubRegion() !== null) {
+                $this->subRegion = new SubRegionResponse($country->getSubRegion());
+            }
 
             $tzs = [];
 

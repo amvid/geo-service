@@ -6,6 +6,7 @@ namespace App\SubRegion\Repository;
 
 use App\SubRegion\Entity\SubRegion;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 use Ramsey\Uuid\UuidInterface;
 
@@ -46,7 +47,7 @@ class SubRegionRepository extends ServiceEntityRepository implements SubRegionRe
             ->setFirstResult($offset)
             ->where('1=1');
 
-        $params = [];
+        $params = new ArrayCollection();
 
         if ($title) {
             $params['title'] = "%$title%";

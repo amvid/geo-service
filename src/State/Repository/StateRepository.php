@@ -6,6 +6,7 @@ namespace App\State\Repository;
 
 use App\State\Entity\State;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 use Ramsey\Uuid\UuidInterface;
 
@@ -66,7 +67,7 @@ class StateRepository extends ServiceEntityRepository implements StateRepository
             ->setFirstResult($offset)
             ->where('1=1');
 
-        $params = [];
+        $params = new ArrayCollection();
 
         if ($type) {
             $params['type'] = "%$type%";

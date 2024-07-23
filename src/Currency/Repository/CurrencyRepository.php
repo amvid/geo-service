@@ -6,6 +6,7 @@ namespace App\Currency\Repository;
 
 use App\Currency\Entity\Currency;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 use Ramsey\Uuid\UuidInterface;
 
@@ -56,7 +57,7 @@ class CurrencyRepository extends ServiceEntityRepository implements CurrencyRepo
             ->setFirstResult($offset)
             ->where('1=1');
 
-        $params = [];
+        $params = new ArrayCollection();
 
         if ($name) {
             $params['name'] = "%$name%";
