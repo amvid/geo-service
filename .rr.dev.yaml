@@ -16,6 +16,8 @@ http:
   pool:
     num_workers: ${RR_NUM_WORKERS:-3}
     debug: true
+    supervisor:
+      exec_ttl: "2s"
   static:
     dir: "public"
     forbid: [ ".php" ]

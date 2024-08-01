@@ -16,7 +16,7 @@ class AirportResponse
     public UuidInterface $id;
     public string $title;
     public string $iata;
-    public string $icao;
+    public ?string $icao;
     public float $rank;
     public bool $isActive;
     public float $longitude;

@@ -16,6 +16,7 @@ http:
     num_workers: ${RR_NUM_WORKERS:-3}
     supervisor:
       max_worker_memory: ${RR_WORKER_MAX_MEMORY:-75}
+      exec_ttl: "2s"
   middleware: ["static", "gzip"]
   static:
     dir: "public"
