@@ -60,6 +60,7 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
                     $res[] = new QueryChildrenAirportResponse(
                         $cityTitle . ' (Any)',
                         $cityIata,
+                        $cityTitle,
                         $countryTitle,
                         $regions[$countryTitle],
                         $subregions[$countryTitle],
@@ -71,6 +72,7 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
                         $res[$parentIndex]->children[] = new QueryAirportResponse(
                             $airport->getTitle(),
                             $airport->getIata(),
+                            $airport->getCity()->getTitle(),
                             $countryTitle,
                             $regions[$countryTitle],
                             $subregions[$countryTitle],
@@ -81,6 +83,7 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
                     $res[] = new QueryAirportResponse(
                         $airport->getTitle(),
                         $airport->getIata(),
+                        $airport->getCity()->getTitle(),
                         $countryTitle,
                         $regions[$countryTitle],
                         $subregions[$countryTitle],

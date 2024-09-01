@@ -14,14 +14,16 @@ class QueryChildrenAirportResponseTest extends TestCase
     public function testValidInstantiation(): void
     {
         $airport = AirportDummy::get();
-        $country = $airport->getCity()->getCountry();
+        $city = $airport->getCity();
+        $country = $city->getCountry();
         $subregion = $country->getSubregion();
         $region = $subregion->getRegion();
 
         $children = new QueryAirportResponse(
             $airport->getTitle(),
             $airport->getIata(),
-            $airport->getCity()->getCountry()->getTitle(),
+            $city->getTitle(),
+            $country->getTitle(),
             $region->getTitle(),
             $subregion->getTitle(),
         );
@@ -29,7 +31,8 @@ class QueryChildrenAirportResponseTest extends TestCase
         $actual = new QueryChildrenAirportResponse(
             $airport->getTitle(),
             $airport->getIata(),
-            $airport->getCity()->getCountry()->getTitle(),
+            $city->getTitle(),
+            $country->getTitle(),
             $region->getTitle(),
             $subregion->getTitle(),
             [$children]
@@ -37,10 +40,12 @@ class QueryChildrenAirportResponseTest extends TestCase
 
         $this->assertEquals($airport->getTitle(), $actual->title);
         $this->assertEquals($airport->getIata(), $actual->iata);
-        $this->assertEquals($airport->getCity()->getCountry()->getTitle(), $actual->country);
+        $this->assertEquals($city->getTitle(), $actual->city);
+        $this->assertEquals($country->getTitle(), $actual->country);
 
         $this->assertEquals($airport->getTitle(), $actual->children[0]->title);
         $this->assertEquals($airport->getIata(), $actual->children[0]->iata);
-        $this->assertEquals($airport->getCity()->getCountry()->getTitle(), $actual->children[0]->country);
+        $this->assertEquals($city->getTitle(), $actual->children[0]->city);
+        $this->assertEquals($country->getTitle(), $actual->children[0]->country);
     }
 }
