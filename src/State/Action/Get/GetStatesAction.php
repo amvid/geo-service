@@ -12,20 +12,17 @@ readonly class GetStatesAction implements GetStatesActionInterface
     public function __construct(
         private CountryRepositoryInterface $countryRepository,
         private StateRepositoryInterface $stateRepository,
-    ) {
-    }
+    ) {}
 
     public function run(GetStatesActionRequest $request): GetStatesActionResponse
     {
-        $countryId = null;
+        $country = null;
         if ($request->countryIso2) {
             $country = $this->countryRepository->findByIso2($request->countryIso2);
 
             if (!$country) {
                 return new GetStatesActionResponse([]);
             }
-
-            $countryId = $country->getId();
         }
 
         return new GetStatesActionResponse($this->stateRepository->list(
@@ -35,7 +32,7 @@ readonly class GetStatesAction implements GetStatesActionInterface
             $request->code,
             $request->title,
             $request->type,
-            $countryId,
+            $country,
         ));
     }
 }

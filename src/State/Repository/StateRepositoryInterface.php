@@ -27,6 +27,6 @@ interface StateRepositoryInterface
         ?string $code = null,
         ?string $title = null,
         ?string $type = null,
-        ?UuidInterface $countryId = null,
+        ?Country $country = null,
     ): array;
 }

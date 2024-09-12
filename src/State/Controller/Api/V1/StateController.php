@@ -76,6 +76,7 @@ class StateController extends ApiController
     #[OA\Parameter(name: 'limit', in: 'query', required: false, description: 'Default 500', content: new OA\JsonContent(type: 'integer'))]
     #[OA\Parameter(name: 'offset', in: 'query', required: false, description: 'Default 0', content: new OA\JsonContent(type: 'integer'))]
     #[OA\Parameter(name: 'title', in: 'query', required: false, description: 'State title', content: new OA\JsonContent(type: 'string'))]
+    #[OA\Parameter(name: 'countryIso2', in: 'query', required: false, description: 'Country ISO2 code', content: new OA\JsonContent(type: 'string'))]
     #[OA\Response(
         response: 200,
         description: 'List of states.',

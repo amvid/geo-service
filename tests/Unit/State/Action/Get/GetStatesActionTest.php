@@ -98,7 +98,7 @@ class GetStatesActionTest extends TestCase
                 $this->code,
                 $this->title,
                 $this->type,
-                $country->getId(),
+                $country,
             )
             ->willReturn([$state]);
 

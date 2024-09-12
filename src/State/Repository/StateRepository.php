@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\State\Repository;
 
+use App\Country\Entity\Country;
 use App\State\Entity\State;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Query\Parameter;
 use Doctrine\Persistence\ManagerRegistry;
 use Ramsey\Uuid\UuidInterface;
 
@@ -52,7 +54,7 @@ class StateRepository extends ServiceEntityRepository implements StateRepository
         ?string $code = null,
         ?string $title = null,
         ?string $type = null,
-        ?UuidInterface $countryId = null
+        ?Country $country = null
     ): array {
         if ($id) {
             return $this->findBy(['id' => $id]);
@@ -70,18 +72,18 @@ class StateRepository extends ServiceEntityRepository implements StateRepository
         $params = new ArrayCollection();
 
         if ($type) {
-            $params['type'] = "%$type%";
+            $params->add('type', "%$type%");
             $qb->andWhere('s.type LIKE :type');
         }
 
         if ($title) {
-            $params['title'] = "%$title%";
+            $params->add(new Parameter('title', "%$title%"));
             $qb->andWhere('s.title LIKE :title');
         }
 
-        if ($countryId) {
-            $params['countryId'] = $countryId;
-            $qb->andWhere('s.country = :countryId');
+        if ($country) {
+            $params->add(new Parameter('country', $country));
+            $qb->andWhere('s.country = :country');
         }
 
         return $qb
