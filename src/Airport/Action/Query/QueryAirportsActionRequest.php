@@ -22,7 +22,7 @@ class QueryAirportsActionRequest implements LimitOffsetInterface
     {
         /** @var QueryAirportsActionRequest $req */
         $req = LimitOffsetParser::parse($params, new self());
-        $req->query = $query;
+        $req->query = rawurldecode($query);
 
         return $req;
     }
