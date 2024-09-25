@@ -58,6 +58,7 @@ class QueryAirportsActionTest extends TestCase
         $country = $city->getCountry();
         $subregion = $country->getSubregion();
         $region = $subregion->getRegion();
+        $timezone = $airport->getTimezone();
 
         $this->assertCount(1, $response->airports);
         $this->assertEquals($airport->getTitle(), $response->airports[0]->title);
@@ -66,5 +67,6 @@ class QueryAirportsActionTest extends TestCase
         $this->assertEquals($country->getTitle(), $response->airports[0]->country);
         $this->assertEquals($subregion->getTitle(), $response->airports[0]->subregion);
         $this->assertEquals($region->getTitle(), $response->airports[0]->region);
+        $this->assertEquals($timezone->getCode(), $response->airports[0]->timezone);
     }
 }

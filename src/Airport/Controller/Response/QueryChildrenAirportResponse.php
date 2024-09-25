@@ -10,18 +10,20 @@ class QueryChildrenAirportResponse
     public string $iata;
     public string $city;
     public string $country;
+    public string $timezone;
     public ?string $subregion = null;
     public ?string $region = null;
 
     /** @var array<QueryAirportResponse> */
     public array $children = [];
 
-    public function __construct(string $title, string $iata, string $city, string $country, ?string $region = null, ?string $subregion = null, array $children = [])
+    public function __construct(string $title, string $iata, string $city, string $country, string $timezone, ?string $region = null, ?string $subregion = null, array $children = [])
     {
         $this->title = $title;
         $this->iata = $iata;
         $this->city = $city;
         $this->country = $country;
+        $this->timezone = $timezone;
         $this->subregion = $subregion;
         $this->region = $region;
         $this->children = $children;

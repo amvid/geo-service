@@ -18,12 +18,14 @@ class QueryChildrenAirportResponseTest extends TestCase
         $country = $city->getCountry();
         $subregion = $country->getSubregion();
         $region = $subregion->getRegion();
+        $timezone = $airport->getTimezone();
 
         $children = new QueryAirportResponse(
             $airport->getTitle(),
             $airport->getIata(),
             $city->getTitle(),
             $country->getTitle(),
+            $timezone->getCode(),
             $region->getTitle(),
             $subregion->getTitle(),
         );
@@ -33,6 +35,7 @@ class QueryChildrenAirportResponseTest extends TestCase
             $airport->getIata(),
             $city->getTitle(),
             $country->getTitle(),
+            $timezone->getCode(),
             $region->getTitle(),
             $subregion->getTitle(),
             [$children]
@@ -42,6 +45,9 @@ class QueryChildrenAirportResponseTest extends TestCase
         $this->assertEquals($airport->getIata(), $actual->iata);
         $this->assertEquals($city->getTitle(), $actual->city);
         $this->assertEquals($country->getTitle(), $actual->country);
+        $this->assertEquals($timezone->getCode(), $actual->timezone);
+        $this->assertEquals($region->getTitle(), $actual->region);
+        $this->assertEquals($subregion->getTitle(), $actual->subregion);
 
         $this->assertEquals($airport->getTitle(), $actual->children[0]->title);
         $this->assertEquals($airport->getIata(), $actual->children[0]->iata);

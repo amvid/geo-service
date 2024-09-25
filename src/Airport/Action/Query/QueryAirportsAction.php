@@ -56,12 +56,14 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
                 $isGroup = count($airports) > 1;
 
                 if ($isGroup) {
-                    $cityTitle = $airports[0]->getCity()->getTitle();
+                    $airport = $airports[0];
+                    $cityTitle = $airport->getCity()->getTitle();
                     $res[] = new QueryChildrenAirportResponse(
                         $cityTitle . ' (Any)',
                         $cityIata,
                         $cityTitle,
                         $countryTitle,
+                        $airport->getTimezone()->getCode(),
                         $regions[$countryTitle],
                         $subregions[$countryTitle],
                     );
@@ -74,6 +76,7 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
                             $airport->getIata(),
                             $airport->getCity()->getTitle(),
                             $countryTitle,
+                            $airport->getTimezone()->getCode(),
                             $regions[$countryTitle],
                             $subregions[$countryTitle],
                         );
@@ -85,6 +88,7 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
                         $airport->getIata(),
                         $airport->getCity()->getTitle(),
                         $countryTitle,
+                        $airport->getTimezone()->getCode(),
                         $regions[$countryTitle],
                         $subregions[$countryTitle],
                     );
