@@ -6,11 +6,11 @@ services:
     autoconfigure: true
 
   App\:
-    resource: '../src/'
+    resource: "../src/"
     exclude:
-      - '../src/DependencyInjection/'
-      - '../src/*/Entity/'
-      - '../src/Kernel.php'
+      - "../src/DependencyInjection/"
+      - "../src/*/Entity/"
+      - "../src/Kernel.php"
 
   App\Application\EventListener\ExceptionListener:
     tags:
@@ -18,11 +18,7 @@ services:
 
   App\Application\EventListener\TokenSubscriber:
     arguments:
-      $apiAuthToken: '%env(API_AUTH_TOKEN)%'
-      $apiAuthEnabled: '%env(bool:API_AUTH_ENABLED)%'
+      $apiAuthToken: "%env(API_AUTH_TOKEN)%"
+      $apiAuthEnabled: "%env(bool:API_AUTH_ENABLED)%"
     tags:
       - { name: kernel.event_subscriber }
-
-  App\Application\Service\Twig\Environment:
-    decorates: twig
-    parent: twig
