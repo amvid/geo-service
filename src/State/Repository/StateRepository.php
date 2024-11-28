@@ -72,7 +72,7 @@ class StateRepository extends ServiceEntityRepository implements StateRepository
         $params = new ArrayCollection();
 
         if ($type) {
-            $params->add('type', "%$type%");
+            $params->add(new Parameter('type', "%$type%"));
             $qb->andWhere('s.type LIKE :type');
         }
 

@@ -123,32 +123,32 @@ class CountryRepository extends ServiceEntityRepository implements CountryReposi
         $params = new ArrayCollection();
 
         if ($title) {
-            $params['title'] = "%$title%";
+            $params->add(new Parameter('title', "%$title%"));
             $qb->andWhere('c.title LIKE :title');
         }
 
         if ($nativeTitle) {
-            $params['nativeTitle'] = "%$nativeTitle%";
+            $params->add('nativeTitle', "%$nativeTitle%");
             $qb->andWhere('c.nativeTitle LIKE :nativeTitle');
         }
 
         if ($phoneCode) {
-            $params['phoneCode'] = $phoneCode;
+            $params->add('phoneCode', "%$phoneCode%");
             $qb->andWhere('c.phoneCode = :phoneCode');
         }
 
         if ($tld) {
-            $params['tld'] = $tld;
+            $params->add('tld', "%$tld%");
             $qb->andWhere('c.tld = :tld');
         }
 
         if ($currency) {
-            $params['currency'] = $currency;
+            $params->add('currency', "%$currency%");
             $qb->andWhere('c.currency = :currency');
         }
 
         if ($subRegion) {
-            $params['subRegion'] = $subRegion;
+            $params->add('subRegion', "%$subRegion%");
             $qb->andWhere('c.subRegion = :subRegion');
         }
 

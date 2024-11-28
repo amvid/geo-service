@@ -16,8 +16,7 @@ readonly class GetCountriesAction implements GetCountriesActionInterface
         private CountryRepositoryInterface $countryRepository,
         private CurrencyRepositoryInterface $currencyRepository,
         private SubRegionRepositoryInterface $subRegionRepository,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws CurrencyNotFoundException

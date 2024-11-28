@@ -24,7 +24,7 @@ readonly class ExceptionListener
 
         if ($e instanceof ApplicationException || $this->kernel->getEnvironment() === 'dev') {
             $code = $e->getCode() === 0 ? Response::HTTP_INTERNAL_SERVER_ERROR : $e->getCode();
-            $message = $e->getMessage();
+            $message = $e->getMessage() . "\n" .  $e->getTraceAsString();
         } else {
             $code = Response::HTTP_INTERNAL_SERVER_ERROR;
             $message = 'Internal service error.';
