@@ -18,7 +18,7 @@ class SubRegionFixture extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         /** @var Region $region */
-        $region = $this->getReference(RegionFixture::REGION_REFERENCE);
+        $region = $this->getReference(RegionFixture::REGION_REFERENCE, Region::class);
         $subRegion = SubRegionDummy::get($region);
         $manager->persist($subRegion);
         $manager->flush();

@@ -18,10 +18,10 @@ class AirportFixture extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         /** @var Timezone $tz */
-        $tz = $this->getReference(TimezoneFixture::TIMEZONE_REFERENCE);
+        $tz = $this->getReference(TimezoneFixture::TIMEZONE_REFERENCE, Timezone::class);
 
         /** @var City $city */
-        $city = $this->getReference(CityFixture::CITY_REFERENCE);
+        $city = $this->getReference(CityFixture::CITY_REFERENCE, City::class);
 
         $manager->persist(AirportDummy::get($tz, $city));
         $manager->flush();

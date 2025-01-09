@@ -18,7 +18,7 @@ class StateFixture extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         /** @var Country $country */
-        $country = $this->getReference(CountryFixture::COUNTRY_REFERENCE);
+        $country = $this->getReference(CountryFixture::COUNTRY_REFERENCE, Country::class);
         $state = StateDummy::get($country);
 
         $manager->persist($state);

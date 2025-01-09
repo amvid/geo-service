@@ -22,13 +22,13 @@ class CountryFixture extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         /** @var Timezone $tz */
-        $tz = $this->getReference(TimezoneFixture::TIMEZONE_REFERENCE);
+        $tz = $this->getReference(TimezoneFixture::TIMEZONE_REFERENCE, Timezone::class);
 
         /** @var SubRegion $subRegion */
-        $subRegion = $this->getReference(SubRegionFixture::SUBREGION_REFERENCE);
+        $subRegion = $this->getReference(SubRegionFixture::SUBREGION_REFERENCE, SubRegion::class);
 
         /** @var Currency $currency */
-        $currency = $this->getReference(CurrencyFixture::CURRENCY_REFERENCE);
+        $currency = $this->getReference(CurrencyFixture::CURRENCY_REFERENCE, Currency::class);
         $country = CountryDummy::get($tz, $subRegion, $currency);
 
         $manager->persist($country);
