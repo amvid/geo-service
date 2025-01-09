@@ -45,4 +45,9 @@ class Config
     {
         return getcwd() . '/data/cities_iata.json';
     }
+
+    public static function getAirports3DataFilepath(): string
+    {
+        return getcwd() . '/data/airports_new_source.csv';
+    }
 }

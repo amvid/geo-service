@@ -100,6 +100,10 @@ airports:
 airports2:
 	@docker exec geo-service-app-dev sh -c "bin/console app:import-airports2"
 
+.PHONY: airports2
+airports3:
+	@docker exec geo-service-app-dev sh -c "bin/console app:import-airports3"
+
 nationalities:
 	@docker exec geo-service-app-dev sh -c "bin/console app:import-nationalities"
 
@@ -115,4 +119,6 @@ geo:
 	make sync-capitals
 	make sync-cities-with-iata
 	make airports
+	make airports2
+	make airports3
 	make nationalities
