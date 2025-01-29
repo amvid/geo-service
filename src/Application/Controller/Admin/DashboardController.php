@@ -14,6 +14,7 @@ use App\Region\Entity\Region;
 use App\State\Entity\State;
 use App\SubRegion\Entity\SubRegion;
 use App\Timezone\Entity\Timezone;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
@@ -35,6 +36,14 @@ class DashboardController extends AbstractDashboardController
         return Dashboard::new()
             ->setFaviconPath('favicon.ico')
             ->setTitle('GeoService');
+    }
+
+    public function configureCrud(): Crud
+    {
+        return parent::configureCrud()
+            ->renderContentMaximized(true)
+            ->renderSidebarMinimized(true)
+            ->hideNullValues(true);
     }
 
     public function configureUserMenu(UserInterface $user): UserMenu
