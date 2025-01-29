@@ -53,10 +53,6 @@ make openapi
 npm install @amvid/geo-service
 ```
 
-### SSL
-
-Roadrunner [automatically](https://docs.roadrunner.dev/http/http#lets-encrypt) obtains and refreshes Let's Encrypt certificate.
-
 ### Import
 
 All geo data
@@ -112,6 +108,7 @@ Airports
 ```bash
 make airports
 make airports2
+make airports3
 ```
 
 Nationalities

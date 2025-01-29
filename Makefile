@@ -100,7 +100,7 @@ airports:
 airports2:
 	@docker exec geo-service-app-dev sh -c "bin/console app:import-airports2"
 
-.PHONY: airports2
+.PHONY: airports3
 airports3:
 	@docker exec geo-service-app-dev sh -c "bin/console app:import-airports3"
 
