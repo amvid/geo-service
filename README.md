@@ -132,63 +132,126 @@ Response
   {
     "title": "London (Any)",
     "iata": "LON",
+    "city": "London",
     "country": "United Kingdom",
+    "timezone": "Europe/London",
     "subregion": "Northern Europe",
     "region": "Europe",
     "children": [
       {
         "title": "London Metropolitan Area",
         "iata": "LON",
+        "city": "London",
         "country": "United Kingdom",
+        "timezone": "Europe/London",
         "region": "Europe",
         "subregion": "Northern Europe"
       },
       {
         "title": "London Heathrow Airport",
         "iata": "LHR",
+        "city": "London",
         "country": "United Kingdom",
+        "timezone": "Europe/London",
         "region": "Europe",
         "subregion": "Northern Europe"
       },
       {
         "title": "London Gatwick Airport",
         "iata": "LGW",
+        "city": "London",
         "country": "United Kingdom",
+        "timezone": "Europe/London",
         "region": "Europe",
         "subregion": "Northern Europe"
       },
       {
         "title": "London City Airport",
         "iata": "LCY",
+        "city": "London",
         "country": "United Kingdom",
+        "timezone": "Europe/London",
         "region": "Europe",
         "subregion": "Northern Europe"
       },
       {
         "title": "London Stansted Airport",
         "iata": "STN",
+        "city": "London",
         "country": "United Kingdom",
+        "timezone": "Europe/London",
         "region": "Europe",
         "subregion": "Northern Europe"
       },
       {
         "title": "London Luton Airport",
         "iata": "LTN",
+        "city": "London",
         "country": "United Kingdom",
+        "timezone": "Europe/London",
         "region": "Europe",
         "subregion": "Northern Europe"
       },
       {
         "title": "London Biggin Hill Airport",
         "iata": "BQH",
+        "city": "London",
         "country": "United Kingdom",
+        "timezone": "Europe/London",
+        "region": "Europe",
+        "subregion": "Northern Europe"
+      },
+      {
+        "title": "Euston Station",
+        "iata": "QQU",
+        "city": "London",
+        "country": "United Kingdom",
+        "timezone": "Europe/London",
+        "region": "Europe",
+        "subregion": "Northern Europe"
+      },
+      {
+        "title": "London - Kings Cross",
+        "iata": "QQK",
+        "city": "London",
+        "country": "United Kingdom",
+        "timezone": "Europe/London",
+        "region": "Europe",
+        "subregion": "Northern Europe"
+      },
+      {
+        "title": "Paddington Station",
+        "iata": "QQP",
+        "city": "London",
+        "country": "United Kingdom",
+        "timezone": "Europe/London",
         "region": "Europe",
         "subregion": "Northern Europe"
       },
       {
         "title": "RAF Northolt",
         "iata": "NHT",
+        "city": "London",
         "country": "United Kingdom",
+        "timezone": "Europe/London",
+        "region": "Europe",
+        "subregion": "Northern Europe"
+      },
+      {
+        "title": "St Pancras Railway Station",
+        "iata": "QQS",
+        "city": "London",
+        "country": "United Kingdom",
+        "timezone": "Europe/London",
+        "region": "Europe",
+        "subregion": "Northern Europe"
+      },
+      {
+        "title": "Waterloo International",
+        "iata": "QQW",
+        "city": "London",
+        "country": "United Kingdom",
+        "timezone": "Europe/London",
         "region": "Europe",
         "subregion": "Northern Europe"
       }
@@ -197,14 +260,18 @@ Response
   {
     "title": "London Airport",
     "iata": "YXU",
+    "city": "London",
     "country": "Canada",
+    "timezone": "America/Toronto",
     "region": "Americas",
     "subregion": "Northern America"
   },
   {
     "title": "London-Corbin Airport/Magee Field",
     "iata": "LOZ",
+    "city": "London",
     "country": "United States",
+    "timezone": "America/New_York",
     "region": "Americas",
     "subregion": "Northern America"
   }
