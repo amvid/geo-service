@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block css %}
+    <style>
+        body {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .error-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .error-message p {
+            font-size: 1.25rem;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 15px;
+        }
+
+        /* Light mode styles */
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #f8f9fa;
+                color: #343a40;
+            }
+
+            .error-container {
+                background: #f8f9fa;
+            }
+
+            .error-icon {
+                color: #dc3545;
+            }
+
+            .error-title {
+                color: #343a40;
+            }
+
+            .error-message p {
+                color: #6c757d;
+            }
+        }
+
+        /* Dark mode styles */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #2c2c2c;
+                color: #ffffff;
+            }
+
+            .error-container {
+                background: #2c2c2c;
+            }
+
+            .error-icon {
+                color: #ff6f6f;
+            }
+
+            .error-title {
+                color: #ffffff;
+            }
+
+            .error-message p {
+                color: #cccccc;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block title %}Whooops!{% endblock %}
+
+{% block body %}
+    <div class="error-container">
+        <div class="error-icon">⚠️</div>
+        <div class="error-title">Whooops!</div>
+        <div class="error-message">
+            <p>{{ message }}</p>
+        </div>
+    </div>
+{% endblock %}

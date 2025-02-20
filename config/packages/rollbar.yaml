@@ -1,0 +1,8 @@
+when@stage:
+  rollbar:
+    access_token: "%env(resolve:ROLLBAR_ACCESS_TOKEN)%"
+    environment: stage
+when@prod:
+  rollbar:
+    access_token: "%env(resolve:ROLLBAR_ACCESS_TOKEN)%"
+    environment: prod
