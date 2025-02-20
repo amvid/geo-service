@@ -1,13 +1,7 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
   trusted_proxies: "%env(TRUSTED_PROXIES)%"
-  trusted_headers:
-    [
-      "x-forwarded-for",
-      "x-forwarded-host",
-      "x-forwarded-proto",
-      "x-forwarded-port",
-    ]
+  trusted_headers: ["x-forwarded-for", "x-forwarded-host", "x-forwarded-proto"]
   secret: "%env(APP_SECRET)%"
   #csrf_protection: true
   http_method_override: false
