@@ -23,6 +23,10 @@ when@dev:
 when@test:
   monolog:
     handlers:
+      nested:
+        type: stream
+        path: php://stderr
+        level: info
       main:
         type: fingers_crossed
         action_level: error

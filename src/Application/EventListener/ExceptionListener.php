@@ -50,8 +50,11 @@ readonly class ExceptionListener
         if ($e instanceof ApplicationException || $this->kernel->getEnvironment() === 'dev') {
             $message = $e->getMessage();
         } else {
-            $response = new JsonResponse(['error' => $message]);
+            $response = new JsonResponse();
+            $response->setContent(json_encode(['error' => $message], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
             $response->setStatusCode($code > 599 ? Response::HTTP_INTERNAL_SERVER_ERROR : $code);
+            $event->setResponse($response);
+            return;
         }
 
         if (strpos($request->getPathInfo(), '/admin') === 0) {
@@ -70,7 +73,8 @@ readonly class ExceptionListener
             $event->setResponse($response);
             return;
         } else {
-            $response = new JsonResponse(['error' => $message]);
+            $response = new JsonResponse();
+            $response->setContent(json_encode(['error' => $message], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
             $response->setStatusCode($code > 599 ? Response::HTTP_INTERNAL_SERVER_ERROR : $code);
         }
 
