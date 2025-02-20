@@ -109,7 +109,7 @@ class AirportRepository extends ServiceEntityRepository implements AirportReposi
     public function query(int $offset, int $limit, string $query): iterable
     {
         $params = new ArrayCollection();
-        $params->add(new Parameter('query', "$query%"));
+        $params->add(new Parameter('query', "%$query%"));
         $params->add(new Parameter('exactQuery', $query));
         $params->add(new Parameter('isActive', true));
 
