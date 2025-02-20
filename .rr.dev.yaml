@@ -8,19 +8,19 @@ server:
   relay: pipes
   env:
     - APP_RUNTIME: Baldinof\RoadRunnerBundle\Runtime\Runtime
-    - XDEBUG_SESSION: '1'
+    - XDEBUG_SESSION: "1"
 
 http:
-  address: 0.0.0.0:${RR_HTTP_PORT:-8080}
-  middleware: [ "static", "gzip" ]
+  address: 0.0.0.0:8080
+  middleware: ["static", "gzip"]
   pool:
-    num_workers: ${RR_NUM_WORKERS:-3}
+    num_workers: 3
     debug: true
     supervisor:
-      exec_ttl: "2s"
+      exec_ttl: "5s"
   static:
     dir: "public"
-    forbid: [ ".php" ]
+    forbid: [".php"]
 
 logs:
   mode: development
