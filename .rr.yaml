@@ -13,7 +13,7 @@ http:
   address: 0.0.0.0:8080
   pool:
     debug: false
-    num_workers: 3
+    num_workers: 6
     supervisor:
       max_worker_memory: 100
       exec_ttl: "5s"
