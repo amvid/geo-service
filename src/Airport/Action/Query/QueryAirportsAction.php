@@ -11,6 +11,8 @@ use App\Airport\Repository\AirportRepositoryInterface;
 
 readonly class QueryAirportsAction implements QueryAirportsActionInterface
 {
+    public const int LIMIT = 10;
+
     public function __construct(
         private AirportRepositoryInterface $airportRepository,
     ) {}
@@ -20,7 +22,7 @@ readonly class QueryAirportsAction implements QueryAirportsActionInterface
         /** @var array<Airport> $airports */
         $airports = $this->airportRepository->query(
             $request->offset,
-            $request->limit,
+            self::LIMIT,
             $request->query,
         );
 
