@@ -118,10 +118,16 @@ class AirportController extends ApiController
     )]
     #[OA\Response(
         response: 200,
-        description: 'List of airports.',
+        description: 'Airports indexed by IATA code.',
         content: new OA\JsonContent(
-            type: 'array',
-            items: new OA\Items(ref: new Model(type: AirportResponse::class))
+            type: 'object',
+            example: [
+                'FRA' => ['iata' => 'FRA', 'title' => 'Frankfurt Airport',],
+                'RIX' => ['iata' => 'RIX', 'title' => 'Riga Airport',],
+                'TRD' => ['iata' => 'TRD', 'title' => 'Trondheim Airport',],
+                'SMH' => null,
+            ],
+            additionalProperties: new OA\AdditionalProperties(ref: new Model(type: AirportResponse::class))
         )
     )]
     public function getByIataCodes(Request $request, GetAirportsByIataCodesActionInterface $action): JsonResponse

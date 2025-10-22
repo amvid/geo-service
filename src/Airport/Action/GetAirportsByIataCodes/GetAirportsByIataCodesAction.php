@@ -29,6 +29,8 @@ final readonly class GetAirportsByIataCodesAction implements GetAirportsByIataCo
 
             if ($airport) {
                 $result[$iataCode] = new AirportResponse($airport);
+            } else {
+                $result[$iataCode] = null;
             }
         }
 
