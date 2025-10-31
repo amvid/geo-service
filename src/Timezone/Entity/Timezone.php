@@ -44,7 +44,7 @@ class Timezone
 
     public function __toString(): string
     {
-        return $this->title;
+        return $this->title .  ' (' . $this->utc . ')';
     }
 
     public function getId(): UuidInterface
