@@ -7,16 +7,19 @@ server:
   command: "php public/index.php"
   relay: pipes
   env:
-    - APP_RUNTIME: Baldinof\RoadRunnerBundle\Runtime\Runtime
+    APP_RUNTIME: Baldinof\RoadRunnerBundle\Runtime\Runtime
 
 http:
   address: 0.0.0.0:8080
   pool:
     debug: false
+    allocate_timeout: 10s
+    max_queue_size: 32
+    max_jobs: 1000
     num_workers: 6
     supervisor:
       max_worker_memory: 100
-      exec_ttl: "5s"
+      ttl: 7200s
   middleware: ["static", "gzip"]
   static:
     dir: "public"
