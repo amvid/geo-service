@@ -5,7 +5,7 @@ rpc:
 
 server:
   command: "php public/index.php"
-  relay: pipes
+  relay: "tcp://127.0.0.1:6002"
   env:
     APP_RUNTIME: Baldinof\RoadRunnerBundle\Runtime\Runtime
 
