@@ -1,0 +1,33 @@
+{
+	auto_https off
+	admin off
+
+	frankenphp {
+		worker {
+			file /var/www/geo-service/public/index.php
+			num 1
+			watch /var/www/geo-service/src/**/*.php
+			watch /var/www/geo-service/config/**/*.yaml
+		}
+	}
+}
+
+:8080 {
+	root * /var/www/geo-service/public
+
+	encode zstd br gzip
+
+	@static file
+	handle @static {
+		file_server
+	}
+
+	handle {
+		php_server
+	}
+
+	log {
+		output stderr
+		level DEBUG
+	}
+}

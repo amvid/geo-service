@@ -12,6 +12,8 @@ services:
     working_dir: /var/www/geo-service
     ports:
       - "8085:8080"
+    environment:
+      APP_RUNTIME: Runtime\FrankenPhpSymfony\Runtime
     volumes:
       - .:/var/www/geo-service
       - .docker/php/config/php.ini:/usr/local/etc/php/conf.d/php.ini

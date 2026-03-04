@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 
 if [ ! -d "vendor" ]; then
 	echo "Vendor directory not found. Installing dependencies..."
@@ -8,4 +9,4 @@ else
 	echo "Vendor directory found. Skipping dependency installation."
 fi
 
-rr serve -c .rr.dev.yaml
+frankenphp run --config frankenphp/Caddyfile.dev

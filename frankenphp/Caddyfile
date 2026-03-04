@@ -1,0 +1,32 @@
+{
+	auto_https off
+	admin off
+
+	frankenphp {
+		worker {
+			file /var/www/geo-service/public/index.php
+			num 10
+			env MAX_REQUESTS 1000
+		}
+	}
+}
+
+:8080 {
+	root * /var/www/geo-service/public
+
+	encode zstd br gzip
+
+	@static file
+	handle @static {
+		file_server
+	}
+
+	handle {
+		php_server
+	}
+
+	log {
+		output stderr
+		level INFO
+	}
+}
