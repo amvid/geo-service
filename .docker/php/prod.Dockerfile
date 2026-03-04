@@ -10,7 +10,7 @@ COPY frankenphp/Caddyfile /etc/caddy/Caddyfile
 COPY . .
 
 ENV APP_ENV=prod
-ENV APP_RUNTIME=Runtime\FrankenPhpSymfony\Runtime
+ENV APP_RUNTIME="Runtime\\FrankenPhpSymfony\\Runtime"
 
 RUN composer install --optimize-autoloader --no-dev --prefer-dist --no-scripts
 
